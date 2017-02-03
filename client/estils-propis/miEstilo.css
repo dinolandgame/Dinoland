@@ -1,0 +1,342 @@
+.navbar-header a img{
+    height: 45px;
+}
+
+body {
+    background-image: url("../images/fondo_2.jpg");
+	background-repeat: repeat;
+	background-color: #bddfec;
+}
+
+#contingut_home{
+  margin-top: 80px;
+}
+.navbar-brand{
+	padding: 4px 18px 4px 18px;
+	height: 45px;
+}
+
+.navbar-default{
+	background-color: #368844;
+	border-color: #368844;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
+	background-color: #205f2a;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{
+	background-color: #205f2a;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{
+background-color: #205f2a;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{
+	background-color: #205f2a;
+}
+
+/*FOOTER*/
+
+.footer-bs {
+    background-color: #3c3d41;
+	padding: 30px 40px;
+	margin-top: 50px;
+	color: rgba(255,255,255,1.00);
+	position: absolute;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 6px;
+}
+.footer-bs .footer-brand, .footer-bs .footer-nav, .footer-bs .footer-social, .footer-bs .footer-ns { padding:10px 25px; }
+.footer-bs .footer-nav, .footer-bs .footer-social, .footer-bs .footer-ns { border-color: transparent; }
+.footer-bs .footer-brand h2 { margin:0px 0px 10px; }
+.footer-bs .footer-brand p { font-size:12px; color:rgba(255,255,255,0.70); }
+
+.footer-bs .footer-nav ul.pages { list-style:none; padding:0px; }
+.footer-bs .footer-nav ul.pages li { padding:5px 0px;}
+.footer-bs .footer-nav ul.pages a { color:rgba(255,255,255,1.00); font-weight:bold; text-transform:uppercase; }
+.footer-bs .footer-nav ul.pages a:hover { color:rgba(255,255,255,0.80); text-decoration:none; }
+.footer-bs .footer-nav h4 {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	margin-bottom:10px;
+}
+
+.footer-bs .footer-nav ul.list { list-style:none; padding:0px; }
+.footer-bs .footer-nav ul.list li { padding:5px 0px;}
+.footer-bs .footer-nav ul.list a { color:rgba(255,255,255,0.80); }
+.footer-bs .footer-nav ul.list a:hover { color:rgba(255,255,255,0.60); text-decoration:none; }
+
+.footer-bs .footer-social ul { list-style:none; padding:0px; }
+.footer-bs .footer-social h4 {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+.footer-bs .footer-social li { padding:5px 4px;}
+.footer-bs .footer-social a { color:rgba(255,255,255,1.00);}
+.footer-bs .footer-social a:hover { color:rgba(255,255,255,0.80); text-decoration:none; }
+
+.footer-bs .footer-ns h4 {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	margin-bottom:10px;
+}
+.footer-bs .footer-ns p { font-size:12px; color:rgba(255,255,255,0.70); }
+
+@media (min-width: 768px) {
+	.footer-bs .footer-nav, .footer-bs .footer-social, .footer-bs .footer-ns { border-left:solid 1px rgba(255,255,255,0.10); }
+}
+
+.video{
+	text-align: center;
+	width: 100%;
+}
+
+.video iframe{
+	margin: 0 auto;
+	display: inline-block;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.btn-default{
+	background-color: #368844;
+	border-color: #368844;
+}
+
+.btn-default:hover{
+	background-color: #205f2a;
+	border-color: #205f2a;
+}
+
+.form-registre{
+    margin-top: 80px;
+}
+
+.contingut{
+    background-color: aliceblue;
+    border-radius: 20px;
+    border: 13px solid green;
+}
+
+
+/* cambiar formato de error*/
+input.error{
+	background-color:rgb(255, 223, 137);
+}
+
+.error{
+	color: #ED2B05;
+  font-size:0.8em;
+}
+
+
+/****************************************************/
+/****************************************************/
+/****************************************************/
+/****************************************************/
+/****************************************************/
+/************************PAGE MASTER Juego CSS****************************/
+/****************************************************/
+/****************************************************/
+/****************************************************/
+/****************************************************/
+/****************************************************/
+.sidebar1 {
+    background: #F17153;
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#008868, #01a982);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#008868, #01a982);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#008868, #01a982);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#008868, #01a982);
+    /* Standard syntax */
+    padding: 0px;
+    min-height: 100%;
+}
+/*.logo {
+    max-height: 130px;
+}
+.logo>img {
+    margin-top: 30px;
+    padding: 3px;
+    border: 3px solid white;
+    border-radius: 100%;
+}*/
+.list {
+    color: #fff;
+    list-style: none;
+    padding-left: 0px;
+}
+.list::first-line {
+    color: rgba(255, 255, 255, 0.5);
+}
+.list> li, h5 {
+    padding: 5px 0px 5px 40px;
+}
+.list>li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-left: 5px solid white;
+    color: white;
+    font-weight: bolder;
+    padding-left: 35px;
+
+}.main-content{
+    text-align:center;
+}
+
+/*-------------IMATGE PERFIL-----------------------*/
+.profile-header-container{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.profile-header-img {
+    padding: 30px;
+    padding-bottom: 20px;
+}
+
+.profile-header-img > img.img-circle {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #51D2B7;
+}
+
+.profile-header {
+    margin-top: 43px;
+}
+
+/**
+ * Ranking component
+ */
+.rank-label-container {
+    margin-top: -19px;
+    /* z-index: 1000; */
+    text-align: center;
+}
+
+.label.label-default.rank-label {
+    background-color: rgb(81, 210, 183);
+    padding: 5px 10px 5px 10px;
+    border-radius: 27px;
+}
+
+/*------------------------------------------------------*/
+
+/*---------------MONEDES PERFIL--------------------------------*/
+.coins{
+    display:inline-block;
+    font-size:15px;
+    color: white;
+}
+/*------------------------------------------------------------*/
+
+.progress{
+    margin:10px 40px 10px 40px;
+}
+
+/*------------NAVBAR----------------*/
+.navbar-default .navbar-nav>li>a{
+    color: white;
+}
+
+.navbar-default .navbar-nav>li>a:hover{
+    color: white;
+}
+
+.navbar{
+    margin-bottom: 0px;
+}
+
+.navegacio{
+    width: 200px;
+    margin: 0px;
+    margin-top: -2px;
+    color: white;
+    font-size: 20px;
+    height: 60px;
+}
+
+.navegacio:hover{
+    opacity: 0.8;
+}
+
+#nav_parque{
+    margin-left: -46px;
+    background-color: #614767;
+}
+
+#nav_recursos{
+    background-color: #2ad2c9;
+}
+
+#nav_expediciones{
+    background-color: #01a982;
+}
+
+#nav_ayuda{
+    background-color: #ff8d6d;
+}
+/*--------------------------------------------*/
+
+/*------------------AQUI VA EL JOC---------------*/
+#joc img{
+    width: 100%;
+    height: 700px;
+    margin: 0px;
+    float:left;
+
+}
+/*---------------------------------------------*/
+
+
+/*------------------MEDALLES PERFIL-------------*/
+
+#titol_medalles{
+    background-color: #425563;
+    height: 50px;
+    color: white;
+    text-align: center;
+    padding-top: 15px;
+}
+
+#medalles{
+    background-color: coral;
+}
+
+#content_medalles{
+    margin: 0px 20px 0px 20px
+}
+
+.quick-btn {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 80px;
+  padding-top: 16px;
+  margin: 10px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid white;
+}
+.quick-btn .label {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
+.btn-metis-4 {
+  color: #ffffff;
+  background-color: #a264e7;
+  border-color: #62309a;
+}
+
+/*---------------------------------------------*/

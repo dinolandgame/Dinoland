@@ -1,0 +1,50 @@
+<template name="game">
+
+
+
+	{{#if currentUser}}
+
+		<div class="container-fluid">
+	         <div class="row">
+
+			{{#unless currentUser.emails.[0].verified}}
+
+	                {{> navbarDinoGame}}
+
+	                <div class="col-lg-10" id="section">
+        						<p class="alert alert-warning">Necesitas verificar tu cuenta de correo antes de jugar a Dinoland.
+        			    		<a href="#" id="resend-verification-link">Enviar email de verificación de nuevo.</a>.</p>
+        					</div>
+
+	  		{{else}}
+
+	        	   {{> navbarDinoGame}}
+
+
+
+		                    {{> yield 'dinoGame'}}
+
+		                    {{> yield 'aside'}}
+
+	            			    {{> yield 'recur'}}
+
+
+
+
+	    	{{/unless}}
+
+	    	</div>
+	    </div>
+	{{else}}
+
+
+
+
+              		{{> yield 'nolog'}}
+
+
+
+	{{/if}}
+
+
+</template>

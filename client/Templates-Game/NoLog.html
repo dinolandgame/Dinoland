@@ -1,0 +1,73 @@
+<template name="Nolog">
+  {{#momentum plugin='growl'}}
+  <div class="">
+    <header>
+      {{> header}}
+    </header>
+
+    <section >
+      <div class="">
+              <h1 style="text-align: center;"><a href="{{pathFor 'HomeLogin'}}" role="button" id="home"><span class="glyphicon glyphicon-home"></span>&nbsp;Conéctate</a> o <a href="#" datta-toggle="modal" id="logreg"> registrate </a></h1>
+      </div>
+    </section>
+
+    <footer>
+      <div class="">
+
+        <footer class="footer-bs">
+        <div class="row">
+          <div class="col-md-3 footer-brand animated fadeInLeft">
+              <!-- <h2>Logo</h2> -->
+              <img alt="Brand" src="images/logo_footer.png"/>
+                <p>DinoLand es un juego de navegador free to play en el que tendrás que
+                construir tu propio parque de dinosaurios</p>
+                <p>© 2016 DinoLand, Todos los derechos reservados</p>
+            </div>
+          <div class="col-md-4 footer-nav animated fadeInUp">
+              <h4>Menu —</h4>
+              <div class="col-md-6">
+                    <ul class="pages">
+                        <li><a href="#">Juego</a></li>
+                        <li><a href="#">El Proyecto</a></li>
+                        <li><a href="#">Comunidad</a></li>
+                        <li><a href="#">Asistencia</a></li>
+                        <li><a href="#">Registrarse</a></li>
+                    </ul>
+                </div>
+              <div class="col-md-6">
+                    <ul class="list">
+                        <li><a href="#">Sobre nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+          <div class="col-md-2 footer-social animated fadeInDown">
+              <h4>Síguenos</h4>
+              <ul>
+                  <li><a href="#">Facebook</a></li>
+                  <li><a href="#">Twitter</a></li>
+                  <li><a href="#">Instagram</a></li>
+                  <li><a href="#">Youtube</a></li>
+                </ul>
+            </div>
+          <div class="col-md-3 footer-ns animated fadeInRight">
+              <h4>Newsletter</h4>
+                <p>Estate atento sobre las novedades del juego</p>
+                <p>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Escribe tu email...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-envelope"></span></button>
+                      </span>
+                    </div><!-- /input-group -->
+                 </p>
+            </div>
+        </div>
+    </footer>
+      </div>
+    </footer>
+  </div>
+  {{/momentum}}
+</template>
