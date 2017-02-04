@@ -1,2 +1,13 @@
-.meteor/
+.meteor/local/build/
+.meteor/local/bundler-cache/
+.meteor/local/dev_bundle/
+.meteor/local/isopacks/
+.meteor/local/plugin-cache/
+.meteor/local/shell/
+.meteor/local/resolver-result-cache.json
+.meteor/.finished-upgraders
+.meteor/platforms
+.meteor/release
+.meteor/versions
 node_modules/
+
