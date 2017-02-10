@@ -1,3 +1,4 @@
+import {Meteor} from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
@@ -13,6 +14,7 @@ Template.hello.helpers({
     return Template.instance().counter.get();
   },
 });
+
 
 Template.hello.events({
   'click button'(event, instance) {
