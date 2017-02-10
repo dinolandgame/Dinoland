@@ -1,6 +1,2 @@
 .meteor/local
-.meteor/.finished-upgraders
-.meteor/platforms
-.meteor/release
-.meteor/versions
 node_modules/
