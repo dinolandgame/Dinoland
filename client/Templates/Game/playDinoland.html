@@ -1,10 +1,16 @@
 <template name="dinoGame">
-	{{#if currentUser}}
-					<!--{{>  dinoGame}}-->
-					<div id="joc" class="col-sm-10">
-	                        <img src="images/fondo_1.png" style="height: 475px;">
-	                    </div>
+    {{#if currentUser}}
+    <!--{{>  dinoGame}}-->
+    <div id="joc" class="col-sm-10">
+        {{> canvas}}
+    </div>
 
-	{{/if}}
 
+
+    {{/if}}
+
+</template>
+
+<template name ="canvas">
+    <div id="canvas_phaser"></div>
 </template>
