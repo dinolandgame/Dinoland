@@ -33,4 +33,5 @@ email
 sacha:spin
 percolate:momentum
 tap:i18n
+tap:i18n-ui
 robertlowe:meteor-phaser

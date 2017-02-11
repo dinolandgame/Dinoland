@@ -1,3 +1,20 @@
 {
-    "game": "Juego"
-}
+    "game"		:		"Juego",
+    "home"		:		"Principal",
+    "project"	: 		"El Proyecto",
+    "comunity"	: 		"Comunidad",
+    "contact"	:		"Contacto",
+    "help"		:		"Ayuda",
+    "user"		: 		"Usuario",
+    "edit"		:		"Editar",
+    "profile"	: 		"Perfil",
+    "eprof"		:		"Editar Perfil",
+    "message"	:		"Mensaje",
+    "notifies"	:		"Notificaciones",
+    "close"		:		"Cerrar",
+    "sesion"	:		"Sesión",
+    "logout"	:		"Cerrar Sesión",
+    "language"	:		"Idioma",
+    "news"		:		"Notícias"
+
+   }
