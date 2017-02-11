@@ -1,4 +1,19 @@
 {
-    "game": "Game"
-
+    "game"		:		"Game",
+    "home"		: 		"Home",
+    "project"	: 		"The Project",
+    "comunity"	: 		"Comunity",
+    "contact"	:		"Contact",
+    "help"		:		"Help",
+    "user"		:		"User",
+    "edit"		:		"Edit",
+    "profile"	: 		"Profile",
+    "eprof"		:		"Edit Profile",
+    "message"	:		"Message",
+    "notifies"	:		"Notifies",
+    "close"		:		"Close",
+    "sesion"	:		"Sesion",
+    "logout"	:		"Log Out",
+    "language"	:		"Language",
+    "news"		: 		"News"
 }

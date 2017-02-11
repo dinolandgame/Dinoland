@@ -1,0 +1,4 @@
+[https]
+proxy=https://192.168.10.4:3128
+[http]
+proxy=http://192.168.10.4:3128
