@@ -56,8 +56,8 @@ Router.route('/proyecto', function(){
 
 });
 
-Router.route('/Nolog', function(){
-	this.render('Nolog')
+Router.route('/nolog', function(){
+	this.render('nolog')
 
 });
 
@@ -69,42 +69,12 @@ Router.route('/Nolog', function(){
 Router.route('/game', function () {
 
 		this.layout('game');
-
-		if(Meteor.userId()){
-			this.render('expediciones', {to: 'aside'});
-		}else{
-			this.render('dinoGame', {to: 'dinoGame'});
-		}
-			
-			this.next();
 		
-   
-});
-
-
-
-
-Router.route('/expediciones', function () {
-  this.layout('game');
 		if(Meteor.userId()){
-			this.render('expediciones', {to: 'aside'});
+			this.render('dinoGame', {to: 'dinoGame'});
 		}else{
 			this.render('Nolog', {to: 'nolog'});
 		}
-
-this.next();
-
-});
-
-Router.route('/recursos', function () {
-	this.layout('game');
-		if(Meteor.userId()){
-			this.render('recursos', {to: 'recur'});
-		}else{
-			this.render('Nolog', {to: 'nolog'});
-		}
-		this.next();
-
 });
 
 
