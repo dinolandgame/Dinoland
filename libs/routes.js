@@ -70,10 +70,15 @@ Router.route('/game', function () {
 
 		this.layout('game');
 
-
+		if(Meteor.userId()){
+			this.render('expediciones', {to: 'aside'});
+		}else{
 			this.render('dinoGame', {to: 'dinoGame'});
+		}
+			
+			this.next();
 		
-   this.next();
+   
 });
 
 
@@ -86,7 +91,8 @@ Router.route('/expediciones', function () {
 		}else{
 			this.render('Nolog', {to: 'nolog'});
 		}
-  this.next();
+
+this.next();
 
 });
 
@@ -97,8 +103,8 @@ Router.route('/recursos', function () {
 		}else{
 			this.render('Nolog', {to: 'nolog'});
 		}
+		this.next();
 
-  this.next();
 });
 
 

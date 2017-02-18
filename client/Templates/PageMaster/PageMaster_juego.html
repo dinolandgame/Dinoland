@@ -8,15 +8,11 @@
 
 		<div class="container-fluid">
 	         <div class="row">
-
-			
-
-	                {{> navbarDinoGame}}
-
-	                <div class="col-lg-10" id="section">
-        						<p class="alert alert-warning">Necesitas verificar tu cuenta de correo antes de jugar a Dinoland.
-        			    		<a href="#" id="resend-verification-link">Enviar email de verificación de nuevo.</a>.</p>
-                    </div>
+	         
+	              <div class="col-lg-10" id="section">
+					<p class="alert alert-warning">Necesitas verificar tu cuenta de correo antes de jugar a Dinoland.
+		    		<a href="#" id="resend-verification-link">Enviar email de verificación de nuevo.</a>.</p>
+	            </div>
             </div>
         </div>
 
@@ -25,26 +21,21 @@
 
             <div>
                <div>
-	        	   {{> navbarDinoGame}}
-
-		                    {{> yield 'dinoGame'}}
-
-		                    {{> yield 'aside'}}
-
-	            			{{> yield 'recur'}}
+               	<!-- Aqui llamamos a la plantilla que va a contener el juego y que sera unica en la pagina-->
+		            {{> yield 'dinoGame'}}
 
 	    	    </div>
 	        </div>
         {{/unless}}
-        
+
+	        <ul>
+				<li><a href="{{pathFor 'HomeLogin'}}" role="button" id="home" class="navegacio"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
+			</ul>
+
 <!--    Si l'usuari no està connectat-->
     {{else}}
 
-
-
             {{> yield 'nolog'}}
-
-
 
 	{{/if}}
 
