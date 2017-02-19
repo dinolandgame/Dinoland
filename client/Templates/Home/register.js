@@ -17,7 +17,7 @@ Template.register.events({
 		username:user,
 		email:email,
 		password:pass1
-		//,terminos:term
+		
 	};
 
 	Accounts.createUser(userObject, function(err){
@@ -45,6 +45,7 @@ Template.register.events({
 		}
 	});
 	console.log('submit form' + user + email + pass1 + pass2);
+	Meteor.call('crear_partida');
 	return false;
 	}
 

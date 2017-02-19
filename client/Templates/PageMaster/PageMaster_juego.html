@@ -30,6 +30,9 @@
 
 	        <ul>
 				<li><a href="{{pathFor 'HomeLogin'}}" role="button" id="home" class="navegacio"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
+				{{#each money}}
+					<li>DINERO: {{dinero}}</li>
+				{{/each}}
 			</ul>
 
 <!--    Si l'usuari no està connectat-->

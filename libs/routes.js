@@ -23,6 +23,9 @@ Router.configure({
   layoutTemplate: 'PageMaster',
   notFoundTemplate: 'notFoundTemplate',
   loadingTemplate: 'loading',
+  waitOn: function(){
+  	return Meteor.subscribe('partida');
+  }
 		/*
 		waitOn: function() {
 				return	Meteor.user().subscription;
