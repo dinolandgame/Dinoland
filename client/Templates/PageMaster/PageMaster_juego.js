@@ -21,6 +21,7 @@ Template.game.events({
 
 		Router.go('proyecto');
 		},
+		
 "click a#resend-verification-link":function ( event, template ) {
     	Meteor.call( 'sendVerificationLink', ( error, response ) => {
       	if ( error ) {

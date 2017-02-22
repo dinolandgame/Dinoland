@@ -7,7 +7,21 @@ Meteor.methods({
     if ( userId ) {
       return Accounts.sendVerificationEmail( userId );
     }
+  },
+  //methodo creacion partida
+  crear_partida(){
+    
+         user= Meteor.userId();
+         Partida.insert({_id:user,dinero:100});
+       
+  },
+  sumardinero(){
+    user= Meteor.userId();
+    
+
+    Partida.update({_id:user},{ $inc:{dinero:100}});
   }
+
 });
 
 Meteor.startup(() => {
@@ -44,5 +58,7 @@ Accounts.emailTemplates.verifyEmail = {
   subject: "Example Email",
   text: "The contents of our email in plain text.",
 });*/
+
+  
 
 
