@@ -2,7 +2,7 @@ Template.canvas.onRendered(function(){
    
     //probando la carga de sprites
 
-var game = new Phaser.Game(1000, 791, Phaser.AUTO, 'canvas_phaser', { preload: preload, create: create });
+var game = new Phaser.Game(1366, 768, Phaser.AUTO, 'canvas_phaser', { preload: preload, create: create });
 
 function preload() {
 
@@ -29,9 +29,10 @@ function create() {
 
 }
 
-function clicar(sinte1){
+function clicar(sinte1){  
     
-    sinte1.tint = 0xff0000;
+    sinte1.tint = 0xff0000; 
+
     //alert("sinte1");
 }
 
@@ -47,3 +48,4 @@ function hover1(sinte1){
     
     
 });
+

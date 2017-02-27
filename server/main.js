@@ -11,15 +11,36 @@ Meteor.methods({
   //methodo creacion partida
   crear_partida(){
     
-         user= Meteor.userId();
-         Partida.insert({_id:user,dinero:100});
+     user= Meteor.userId();
+     Partida.insert({_id:user,
+                      dinero:100,
+                      energia:20,
+                      suministros:50,
+                      visitantes:10,
+                      edificio:[1,2]}); 
        
+       /*{
+    _id:1,
+    nom:"Edificio Administración",
+    nivel:1,
+    costeEnergia:0,
+    costeConstrución:200,
+    descripcion:"descripcion edificio",
+    avatar:"images/logo.png"
+  
+}*/
   },
   sumardinero(){
     user= Meteor.userId();
     
 
     Partida.update({_id:user},{ $inc:{dinero:100}});
+  },
+  suberNivel(id){
+    user = Meteor.userId();
+    
+
+    Partida.update({_id:user},{ $set:{edificio:[]}});
   }
 
 });

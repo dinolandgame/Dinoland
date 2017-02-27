@@ -32,6 +32,22 @@
 				<li><a href="{{pathFor 'HomeLogin'}}" role="button" id="home" class="navegacio"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
 				{{#each money}}
 					<li>DINERO: {{dinero}}</li>
+					<li>SUMINISTROS: {{suministros}}</li>
+					<li>Energia: {{energia}}</li>
+					<li>visitantes: {{visitantes}}</li>
+
+					{{#each edificio}}
+
+						{{#each edifi this}}
+							{{#if filtro _id}}
+								<li>Edificio nombre: {{nom}}</li>
+								<li><img src="{{avatar}}"></li>
+							{{/if}}
+
+						{{/each}}
+						
+
+					{{/each}}
 				{{/each}}
 			</ul>
 

@@ -72,7 +72,8 @@ Router.route('/nolog', function(){
 Router.route('/game', function () {
 
 		this.layout('game');
-		
+		Meteor.subscribe('edificio');
+
 		if(Meteor.userId()){
 			this.render('dinoGame', {to: 'dinoGame'});
 		}else{
