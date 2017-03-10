@@ -89,7 +89,7 @@ Router.route( '/verify-email/:token', {
   action ( params) {
     Accounts.verifyEmail( params,token, (error)=> {
 	      if ( error ) {
-	        console.log( error.reason, 'Q NO COÑOO!!!!' );
+	        console.log( error.reason, 'NO NO NO......' );
 	      }
 	      else {
 	      	console.log( 'Email verified! Thanks!', 'success' );
@@ -100,4 +100,20 @@ Router.route( '/verify-email/:token', {
     this.next();
   }
 
+});
+
+Router.route('/game/:_id', function () {
+  var params = this.params; // { _id: "5" }
+  var id = params._id;
+  if(Meteor.userId()){
+			this.render('dinoGame', {to: 'dinoGame'},{
+			    data: function () {
+			      return Edificio.findOne({_id: this.params._id});
+			    }
+			 });
+		}else{
+			this.render('Nolog', {to: 'nolog'});
+		}
+   
+   // "5"
 });

@@ -17,7 +17,7 @@ Meteor.methods({
                       energia:20,
                       suministros:50,
                       visitantes:10,
-                      edificio:[1,2]}); 
+                      edificio:[1,2,3]}); 
        
        /*{
     _id:1,
@@ -34,14 +34,14 @@ Meteor.methods({
     user= Meteor.userId();
     
 
-    Partida.update({_id:user},{ $inc:{dinero:100}});
+    Partida.update({_id:user},{ $inc:{dinero:1}});
   },
-  suberNivel(id){
-    user = Meteor.userId();
-    
+ update_part(obj1,obj2){
+      user= Meteor.userId();
+      Partida.update({ _id:user, edificio: obj1 } , { $set: { "edificio.$" : obj2 } } )
 
-    Partida.update({_id:user},{ $set:{edificio:[]}});
   }
+  
 
 });
 

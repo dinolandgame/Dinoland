@@ -3,7 +3,7 @@ Template.register.events({
 	"click a#reglogin":function(event,template){
 		event.preventDefault();
 		Modal.hide(template);//cerramos template actual
-		Router.go('/HomeLogin');//abrimos template login
+		Router.go('/HomeLogin');//vamos a home
 	},
 	"submit #register-form":function(event,template){
 		//busqueda de un valor en el .html por su "id" i registrado en una variable
@@ -11,7 +11,7 @@ Template.register.events({
 		var email = template.find('#regmail').value;
 		var pass1 = template.find('#regpass1').value;
 		var pass2 = template.find('#regpass2').value;
-		//var term  = template.find('#regterminos').value;
+		
 	
 	var userObject = {
 		username:user,

@@ -147,6 +147,306 @@ input.error{
 /****************************************************/
 /****************************************************/
 /****************************************************/
+
+html,body{
+   /* width: 100%;
+    height: 100%;
+    background-color: #2d862d;*/
+    overflow: hidden;
+    font-family: 'roboto';
+}
+.pop{
+    width: 80%; 
+}
+
+.pop_content{
+    height: 500px; 
+}
+
+.border{
+    border-radius: 10px; 
+}
+
+.btn_dinoland{
+    position: absolute;
+    border-radius: 30px;
+    background-color: #ff6b6b;
+    color: white;
+    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 );
+    height: 60px;
+    border: none;
+    text-align: center;
+}
+
+.btn_dinoland p{
+    padding-top: 12px;
+    padding-right: 10px;
+    
+}
+
+.btn_dinoland i{
+    float: left;
+    padding-left: 5px;
+    padding-top: 2px;
+}
+
+#btn_expediciones{
+    
+    left: 3%;
+    top: 88%;
+    width: 180px;
+}
+
+#btn_tienda{
+    left: 20%;
+    top: 88%;
+    width: 160px;
+}
+
+.btn_dinoland:focus{
+    background-color: #ff6b6b;
+    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 );
+}
+
+.btn_dinoland:hover{
+    background-color: #e15252;;
+}
+
+#btn_social{
+    position: absolute;
+    left: 91%;
+    top: 83%;
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    background-color: #65c3df;
+    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 );
+}
+
+#btn_social:hover{
+    background-color: #5aaec7;
+}
+
+.recursos{
+    
+    background-color: #45b7af;
+    box-shadow: 3px 1px 12px 0px rgb( 0, 1, 2 );
+    position: absolute;
+    cursor: pointer;
+    width: 150px;
+    height: 35px;
+    left: 90%;
+    border-radius: 20px;
+}
+
+.recursos:hover{
+    background-color: #3a9e97;
+}
+
+#recurs1{
+    top: 5%;
+}
+#recurs2{
+    top: 11%;
+}
+#recurs3{
+    top: 17%;
+}
+#recurs4{
+    top: 23.15%;
+}
+
+#btn_medals{
+    position: absolute;
+    top: 40%;
+    left: 95%;
+    height: 70px;
+    width: 108px;
+    border-radius: 60px;
+    background-color: #f8cb00;
+    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 ); 
+}
+
+#btn_medals:hover{
+    background-color: #dab200; 
+}
+
+
+.img_recurso{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 15%;
+    left: 2%;
+}
+
+#user{
+    position: absolute;
+    top: 5%;
+    left: 4%;
+    height: 70px;
+    width: 150px;
+    
+}
+
+#img_perfil{
+    border-radius: 100%;
+    background-image: url(../images/foto_perfil.jpg);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    z-index: 7;
+    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 );
+}
+
+#progress_exp{
+    border-radius: 20px;
+    background-color: #a48ad4;
+    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 );
+    position: absolute;
+    cursor: pointer;
+    width: 150px;
+    height: 30px;
+    left: 20%;
+    top: 30%;
+    z-index: 6;
+}
+
+/********* MODALS NORMALS *************/
+
+.modal-content{
+    background-color: #333645;
+}
+.header_modal{
+    background-color: #a48ad4;
+    height: 40px;
+    width: 20%;
+    border-radius: 30px;
+    margin-left: 40%;
+}
+
+.header_modal h2{
+    color: white;
+    text-align: center;
+    padding-top: 9px;
+}
+
+#contingut_modal{
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    margin-top:  20px;
+    height: 86%;
+}
+
+.modal-body{
+    padding: 0 25px;
+}
+
+/********* MODALS EDIFICI ***************/
+
+.header_modal_edifici{
+    background-color: #a48ad4;
+    height: 40px;
+    width: 60%;
+    border-radius: 30px;
+    margin-left: 20%;
+}
+
+.header_modal_edifici h2{
+    color: white;
+    text-align: center;
+    padding-top: 9px;
+}
+
+.descripcio_modal_edifici{
+    color: white;
+}
+
+.btn_modal_edifici{
+    background-color: #4285f4;
+    border-radius: 20px;
+    color: white;
+    padding-left: 20px!important;
+    padding-right: 20px!important;
+}
+
+.close{
+    color: white;
+    opacity: 0.7;
+}
+
+.close:hover{
+    color: white;
+    opacity: 1;
+}
+
+/************SIDEBAR********************/
+
+#sidebar{
+    background-color: #8ad3e6;
+    height: 100%;
+    z-index: 2;
+    margin-left: -16.666666667%;
+}
+
+#sidebar_medals{
+    background-color: #8ad3e6;
+    /*margin-top: 10%;*/
+    height: 50%;
+    z-index: 2;
+    margin-left: 100%;
+}
+
+#btn_desplegar{
+    position: absolute;
+    top: 40%;
+    z-index: -2;
+    left: 85%;
+    height: 60px;
+    border-bottom-right-radius: 60px;
+    border-top-right-radius: 60px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    background-color: #f8cb00;
+    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 );
+}
+
+#btn_desplegar i{
+    padding-left: 30px;
+}
+
+#btn_desplegar:hover{
+    background-color: #dab200; 
+}
+
+#btn_plegar{
+    display: none;
+    position: absolute;
+    top: 40%;
+    z-index: -2;
+    left: 100%;
+    height: 60px;
+    border-bottom-right-radius: 60px;
+    border-top-right-radius: 60px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    background-color: #f8cb00;
+    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 );
+}
+
+#btn_plegar i{
+    padding-left: 30px;
+}
+
+#btn_plegar:hover{
+    background-color: #dab200; 
+}
+
+
 .sidebar1 {
     background: #F17153;
     /* For browsers that do not support gradients */
@@ -161,14 +461,20 @@ input.error{
     padding: 0px;
     min-height: 100%;
 }
+
+.sombra_sidebar{
+    -webkit-box-shadow: 9px 2px 8px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 9px 2px 8px -4px rgba(0,0,0,0.75);
+    box-shadow: 9px 2px 8px -4px rgba(0,0,0,0.75);
+}
 /*.logo {
-    max-height: 130px;
+max-height: 130px;
 }
 .logo>img {
-    margin-top: 30px;
-    padding: 3px;
-    border: 3px solid white;
-    border-radius: 100%;
+margin-top: 30px;
+padding: 3px;
+border: 3px solid white;
+border-radius: 100%;
 }*/
 .list {
     color: #fff;
@@ -199,7 +505,7 @@ input.error{
 }
 
 .profile-header-img {
-    padding: 30px;
+    padding: 54px;
     padding-bottom: 20px;
 }
 
@@ -213,130 +519,3 @@ input.error{
     margin-top: 43px;
 }
 
-/**
- * Ranking component
- */
-.rank-label-container {
-    margin-top: -19px;
-    /* z-index: 1000; */
-    text-align: center;
-}
-
-.label.label-default.rank-label {
-    background-color: rgb(81, 210, 183);
-    padding: 5px 10px 5px 10px;
-    border-radius: 27px;
-}
-
-/*------------------------------------------------------*/
-
-/*---------------MONEDES PERFIL--------------------------------*/
-.coins{
-    display:inline-block;
-    font-size:15px;
-    color: white;
-}
-/*------------------------------------------------------------*/
-
-.progress{
-    margin:10px 40px 10px 40px;
-}
-
-/*------------NAVBAR----------------*/
-.navbar-default .navbar-nav>li>a{
-    color: white;
-}
-
-.navbar-default .navbar-nav>li>a:hover{
-    color: white;
-}
-
-.navbar{
-    margin-bottom: 0px;
-}
-
-.navegacio{
-    width: 200px;
-    margin: 0px;
-    margin-top: -2px;
-    color: white;
-    font-size: 20px;
-    height: 60px;
-}
-
-.navegacio:hover{
-    opacity: 0.8;
-}
-
-#nav_parque{
-    margin-left: -46px;
-    background-color: #614767;
-}
-
-#nav_recursos{
-    background-color: #2ad2c9;
-}
-
-#nav_expediciones{
-    background-color: #01a982;
-}
-
-#nav_ayuda{
-    background-color: #ff8d6d;
-}
-/*--------------------------------------------*/
-
-/*------------------AQUI VA EL JOC---------------*/
-#joc img{
-    width: 100%;
-    height: 700px;
-    margin: 0px;
-    float:left;
-
-}
-/*---------------------------------------------*/
-
-
-/*------------------MEDALLES PERFIL-------------*/
-
-#titol_medalles{
-    background-color: #425563;
-    height: 50px;
-    color: white;
-    text-align: center;
-    padding-top: 15px;
-}
-
-#medalles{
-    background-color: coral;
-}
-
-#content_medalles{
-    margin: 0px 20px 0px 20px
-}
-
-.quick-btn {
-  position: relative;
-  display: inline-block;
-  width: 90px;
-  height: 80px;
-  padding-top: 16px;
-  margin: 10px;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  border: 1px solid white;
-}
-.quick-btn .label {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-}
-
-.btn-metis-4 {
-  color: #ffffff;
-  background-color: #a264e7;
-  border-color: #62309a;
-}
-
-/*---------------------------------------------*/
