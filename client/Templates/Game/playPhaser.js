@@ -1,5 +1,5 @@
 /*Template.dinoGame.onRendered(function(){
-	
+/*	
 
 function preload() {
 

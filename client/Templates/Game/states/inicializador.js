@@ -16,7 +16,7 @@ Inicializador.prototype = {
        this.load.image('fondo', '../images/island_gif.gif');
    },
   create: function(){
-       this.game.stage.backgroundColor = '#00b0be';
+       this.stage.backgroundColor = '#00b0be';
        
   },
   update: function(){

@@ -1,6 +1,6 @@
 Template.dinoGame.events({
 
-"click #btn_desplegar":function(event,template){
+    "click #btn_desplegar":function(event,template){
 		event.preventDefault();
 		$('#btn_desplegar').hide();
         $('#user').fadeOut(500);
@@ -18,14 +18,29 @@ Template.dinoGame.events({
         $('#sidebar').removeClass("sombra_sidebar");
         $('#user').fadeIn(500);
         $('#btn_desplegar').show();
-	},"click a#home":function(event,template){
+	},
+    "click a#home":function(event,template){
 			event.preventDefault();
 
 			Router.go('/');
-			}
+	},
+    "click #user":function(event,template){
+        event.preventDefault();
+        $('#btn_desplegar').hide();
+        $('#user').fadeOut(500);
+       // $.ionSound.play("snap");
+        $('#sidebar').addClass("sombra_sidebar");
+        $('#sidebar').animate({"left": "16.66666667%"}, "slow"); 
+        $('#btn_plegar').show();
+    }
+    /*,
+    "click #medals_despl":function(event,template){
+   
+        $('#sidebar_medals').css({"margin-left": "80%"});
+    }*/
 	
         
-  
+ }); 
 
 /*
 $(document).ready(function(){
@@ -97,4 +112,3 @@ $(document).ready(function(){
 */
 
 
-});

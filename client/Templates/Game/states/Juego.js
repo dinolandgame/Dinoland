@@ -37,11 +37,10 @@ Juego.prototype = {
     
     },
     
-    
-    update: function(){
-        move_camera_by_pointer(game.input.mousePointer);
-    move_camera_by_pointer(game.input.pointer1);  
-        
+
+    update:function(){
+        move_camera_by_pointer(this.input.mousePointer);
+        move_camera_by_pointer(this.input.pointer1);
     }
 }
 
@@ -64,8 +63,8 @@ function clicar(edifici){
 var o_mcamera;
 
 function update() {
-    move_camera_by_pointer(game.input.mousePointer);
-    move_camera_by_pointer(game.input.pointer1);  
+    move_camera_by_pointer(this.input.mousePointer);
+    move_camera_by_pointer(this.input.pointer1);  
 }
 
 function move_camera_by_pointer(o_pointer) {
