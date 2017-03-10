@@ -1,9 +1,7 @@
 Preloader = function(game){
-    this.game = game;
-    this.game.ready = false;
+    this.ready = false;
     var text;
     var fondo;
-
 };
  
 Preloader.prototype = {
@@ -15,46 +13,47 @@ Preloader.prototype = {
         // puesto que interesa mostralo en la pantalla junto con la barra de carga
         //this.fondo = this.add.sprite(this.game.world.centerX, this.game.world.centerY);
         //this.fondo.anchor.setTo(0.5);
-        fondo = this.game.add.image(0,0,'fondo');
+        fondo = this.add.image(0,0,'fondo');
         
-        text = this.game.add.text(15, 10, 'Insertando en la isla', {fill: '#fff'});
+        text = this.add.text(15, 10, 'Insertando en la isla', {fill: '#fff'});
         
         //Se añade el sprite que se cargó en el inicializador
-        this.game.preloadBar = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY + 128, 'preloadbar');
+        this.preloadBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY + 128, 'preloadbar');
         
-        this.game.preloadBar.anchor.setTo(0.5);
+        this.preloadBar.anchor.setTo(0.5);
         // Mediante está función del loader de Phaser (objeto load), el sprite que se use como barra
         //de carga irá apareciendo a medida que se van cargando los archivos.
-        this.game.load.setPreloadSprite(this.preloadBar);
+        this.load.setPreloadSprite(this.preloadBar);
         
         // ***********  ASSETS DEL JUEGO A CARGAR *******************//
         //this.load.audio('myMusic', ['path/1.mp3', 'path/1.ogg']);
         //this.load.audio('myMusic', 'path/1.wav');
         //this.load.audio('m1', '/audio/1.mp3');
-       this.game.load.image('mapa', 'images/mapa_buit.png');
-        this.game.load.image('hotel', 'images/hotel.png');
-        this.game.load.spritesheet('bar1', 'images/bar1.png', 150, 148, 10);
+       this.load.image('mapa', '../images/mapa_buit.png');
+        this.load.image('hotel', '../images/hotel.png');
+        this.load.spritesheet('bar1', '../images/bar1.png', 150, 148, 10);
         
         // La siguiente función se ejecuta una vez se dispara el evento del loader de Phaser de que
         // se ha finalizado la carga de todos los assets
-        this.game.load.onLoadComplete.add(this.loadComplete, this);
+        this.load.onLoadComplete.add(this.loadComplete, this);
     },
     loadComplete: function(){
         // Se acabaron de cargar todos los recursos/ assets del juego
-       this.game.ready = true;
+       this.ready = true;
     },
     update: function(){
         // Si en algún momento el loader acabó su trabajo, ya puede empezar el juego
-        if(this.game.ready === true) 
+        if(this.ready === true) 
         {
             text.text= "Loading finished";
-            game.time.events.add(Phaser.Timer.SECOND * 2, empezar, this.game);              
+            this.time.events.add(Phaser.Timer.SECOND * 2, empezar, this);              
         } 
     },
-
-    empezar: function(){
-        this.game.state.start('Juego'); 
-    }
     
 };
 
+function empezar(){
+    
+    this.state.start('Juego'); 
+    
+}

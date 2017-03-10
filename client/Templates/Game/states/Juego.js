@@ -1,16 +1,16 @@
 Juego = function(game){
-    this.game = game;
+    
 };
  
 
 Juego.prototype = {
     create: function(){ 
         //Lo ideal seria fer una funcio que comprovi el tamany de la pantalla, i aixi sapiga on situar el mapa i com de grans han de ser els bounds.
-   this.game.world.setBounds(-150, -100, 1600, 998); //fem que el mon sigui mes gran que el canvas
-    var ground = this.game.add.sprite(-150, -100, 'mapa'); //coloquem el mapa a la posicio indicada. El punt 0 ,0 és l'origen
-    var hotel = this.game.add.sprite(110,100,'hotel'); //coloquem el hotel a la posicio indicada
+    this.world.setBounds(-150, -100, 1600, 998); //fem que el mon sigui mes gran que el canvas
+    var ground = this.add.sprite(-150, -100, 'mapa'); //coloquem el mapa a la posicio indicada. El punt 0 ,0 és l'origen
+    var hotel = this.add.sprite(110,100,'hotel'); //coloquem el hotel a la posicio indicada
     
-    var bar1 = this.game.add.sprite(350,400,'bar1');
+    var bar1 = this.add.sprite(350,400,'bar1');
     
     bar1.animations.add('run');
     bar1.animations.play('run', 10, true);
@@ -39,8 +39,8 @@ Juego.prototype = {
     
     
     update: function(){
-        move_camera_by_pointer(this.game.input.mousePointer);
-        move_camera_by_pointer(this.game.input.pointer1);  
+        move_camera_by_pointer(game.input.mousePointer);
+    move_camera_by_pointer(game.input.pointer1);  
         
     }
 }
@@ -54,7 +54,7 @@ function hoverOff(edifici){
 }
 
 function clicar(edifici){
-    //$.ionSound.play("button_tiny"); 
+   // $.ionSound.play("button_tiny"); 
     $('#pop_sintetizador').modal('show');
     quinedifici = edifici.key;
     $('#nom_edifici').text(quinedifici);
@@ -64,8 +64,8 @@ function clicar(edifici){
 var o_mcamera;
 
 function update() {
-    move_camera_by_pointer(this.game.input.mousePointer);
-    move_camera_by_pointer(this.game.input.pointer1);  
+    move_camera_by_pointer(game.input.mousePointer);
+    move_camera_by_pointer(game.input.pointer1);  
 }
 
 function move_camera_by_pointer(o_pointer) {
