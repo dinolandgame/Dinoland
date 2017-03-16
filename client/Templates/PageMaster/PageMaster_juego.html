@@ -8,15 +8,11 @@
 
 		<div class="container-fluid">
 	         <div class="row">
-
-			
-
-	                {{> navbarDinoGame}}
-
-	                <div class="col-lg-10" id="section">
-        						<p class="alert alert-warning">Necesitas verificar tu cuenta de correo antes de jugar a Dinoland.
-        			    		<a href="#" id="resend-verification-link">Enviar email de verificación de nuevo.</a>.</p>
-                    </div>
+	         
+	              <div class="col-lg-10" id="section">
+					<p class="alert alert-warning">Necesitas verificar tu cuenta de correo antes de jugar a Dinoland.
+		    		<a href="#" id="resend-verification-link">Enviar email de verificación de nuevo.</a>.</p>
+	            </div>
             </div>
         </div>
 
@@ -25,28 +21,223 @@
 
             <div>
                <div>
-	        	   {{> navbarDinoGame}}
 
-		                    {{> yield 'dinoGame'}}
-
-		                    {{> yield 'aside'}}
-
-	            			{{> yield 'recur'}}
+               	<!-- Aqui llamamos a la plantilla que va a contener el juego y que sera unica en la pagina-->
+		            {{> yield 'dinoGame'}}
 
 	    	    </div>
 	        </div>
         {{/unless}}
-        
+        	
+	        <!--<ul>
+				
+
+				<li><button type="button" class="boton-mejorar">prova</button></li>
+				{{#each partida}}
+					<li>DINERO: {{dinero}}</li>
+					<li>SUMINISTROS: {{suministros}}</li>
+					<li>Energia: {{energia}}</li>
+					<li>visitantes: {{visitantes}}</li>
+
+					{{#each edificio}}
+
+						{{#each edifi this}}
+							{{#if filtro1 }}
+								<li>Edificio nombre: {{nom}}</li>
+								<button class="mejorar btn btn-primary"> Mejorar </button>
+								<button class="pujar_n btn btn-primary" > Pujar nivell </button>
+									<div class="caixaEdifi"> 
+										<p>nom:{{nom}}</p>
+										<p>nivel:{{nivel}} </p>
+										<a id="modal-415230" href="#modal-container-415230" role="button" class="ejemplo" data-toggle="modal" data-edificio="bar1"><li><img  id="modal-prova" src="{{avatar}}"></li> </a>
+									</div>
+							{{/if}}
+							{{#if filtro2 _id}}
+								<li>Edificio nombre: {{nom}}</li>
+								<button class="mejorar btn btn-primary"> Mejorar </button>
+								<button class="pujar_n btn btn-primary" > Pujar nivell </button>
+									<div class="caixaEdifi"> 
+										<p>nom:{{nom}}</p>
+										<p>nivel:{{nivel}} </p>
+										<a id="modal-415230"  href="#modal-container-415230" role="button" class="ejemplo" data-toggle="modal" data-edificio="bar2"><li><img src="{{avatar}}"></li> </a>
+									</div>
+							{{/if}}
+							{{#if filtro3 _id}}
+								<li>Edificio nombre: {{nom}}</li>
+								<button class="mejorar btn btn-primary"> Mejorar </button>
+								<button class="pujar_n btn btn-primary" > Pujar nivell </button>
+									<div class="caixaEdifi"> 
+										<p>nom:{{nom}}</p>
+										<p>nivel:{{nivel}} </p>
+										<a id="modal-415230"  data-edificio="bar3" href="#modal-container-415230" role="button" class="ejemplo" data-toggle="modal"><li><img src="{{avatar}}"></li> </a>
+									</div>
+							{{/if}}
+						{{/each}}
+
+					{{/each}}
+				{{/each}}
+			</ul>-->
+
 <!--    Si l'usuari no està connectat-->
     {{else}}
 
-
-
             {{> yield 'nolog'}}
-
-
 
 	{{/if}}
 
+<!--
+<div class="modal fade" id="modal-container-415230" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm" >
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" name="button"><span aria-hidden="true">&times;</span></button>
+					</div>
+	        		<div class="modal-body text-center" style="border-radius:100px;">
+	        			<div class="panel panel-default">
+	        				<div class="panel-heading">
+	        					<h3 class="panel title">
+	        						Edificio Administracion
+	        					</h3>
+	        				</div>
+	        				<div class="panel-body ">
+	        					
+							{{#each partida}}										
+									<li>DINERO: {{dinero}}</li>
+									<li>SUMINISTROS: {{suministros}}</li>
+									<li>Energia: {{energia}}</li>
+									<li>visitantes: {{visitantes}}</li>
 
+									{{#each edificio}}
+
+										{{#each edifi this}}
+											<div class="caixaEdifi">
+
+												{{#if filtro key}}
+													<button class="mejorar btn btn-primary"> Mejorar </button>
+													<button class="pujar_n btn btn-primary" > Pujar nivell </button>
+													<li>Edificio nombre: {{nom}}</li>
+													<li>Edificio nivel: {{nivel}}</li>
+													<li>Key : {{key}}</li>
+													<li><img src="{{avatar}}"></li>
+												{{/if}}
+											</div>
+
+										{{/each}}
+							
+
+									{{/each}}
+					
+					{{/each}}
+	                          
+	        					<a href="#" datta-toggle="modal" id="otra template">¿ya tienes cuenta?</a>
+	        				</div>
+	        			</div>
+					</div>
+				</div>
+			</div>
+		</div>-->
+
+
+<!--
+<div class="modal fade" id="modal-container-4152300" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm" >
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" name="button"><span aria-hidden="true">&times;</span></button>
+					</div>
+	        		<div class="modal-body text-center" style="border-radius:100px;">
+	        			<div class="panel panel-default">
+	        				<div class="panel-heading">
+	        					<h3 class="panel title">
+	        						Edificio Administracion
+	        					</h3>
+	        				</div>
+	        				<div class="panel-body ">
+	        					
+							{{#each partida}}										
+									<li>DINERO: {{dinero}}</li>
+									<li>SUMINISTROS: {{suministros}}</li>
+									<li>Energia: {{energia}}</li>
+									<li>visitantes: {{visitantes}}</li>
+
+									{{#each edificio}}
+
+										{{#each edifi this}}
+											<div class="caixaEdifi"> 
+												{{#if filtro2 _id}}
+													<button class="mejorar btn btn-primary"> Mejorar </button>
+													<button class="pujar_n btn btn-primary" > Pujar nivell </button>
+													<li>Edificio nombre: {{nom}}</li>
+													<li>Edificio nivel: {{nivel}}</li>
+													<li><img src="{{avatar}}"></li>
+												{{/if}}
+											</div>
+
+										{{/each}}
+							
+
+									{{/each}}
+					
+{{/each}}
+	                          
+	        					<a href="#" datta-toggle="modal" id="otra template">¿ya tienes cuenta?</a>
+	        				</div>
+	        			</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<div class="modal fade" id="modal-container-415232" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm" >
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" name="button"><span aria-hidden="true">&times;</span></button>
+					</div>
+	        		<div class="modal-body text-center" style="border-radius:100px;">
+	        			<div class="panel panel-default">
+	        				<div class="panel-heading">
+	        					<h3 class="panel title">
+	        						Edificio Administracion
+	        					</h3>
+	        				</div>
+	        				<div class="panel-body ">
+	        					
+						{{#each partida}}										
+									<li>DINERO: {{dinero}}</li>
+									<li>SUMINISTROS: {{suministros}}</li>
+									<li>Energia: {{energia}}</li>
+									<li>visitantes: {{visitantes}}</li>
+
+									{{#each edificio}}
+
+										{{#each edifi this}}
+											<div class="caixaEdifi"> 
+												{{#if filtro3 _id}}
+													<button class="mejorar btn btn-primary"> Mejorar </button>
+													<button class="pujar_n btn btn-primary" > Pujar nivell </button>
+													<li>Edificio nombre: {{nom}}</li>
+													<li>Edificio nivel: {{nivel}}</li>
+													<li><img src="{{avatar}}"></li>
+												{{/if}}
+											</div>
+
+										{{/each}}
+							
+
+									{{/each}}
+					
+						{{/each}}
+	                          
+	        					<a href="#" datta-toggle="modal" id="otra template">¿ya tienes cuenta?</a>
+	        				</div>
+	        			</div>
+					</div>
+				</div>
+			</div>
+		</div>
+-->
 </template>

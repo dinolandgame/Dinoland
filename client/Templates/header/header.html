@@ -11,17 +11,10 @@
 		      </button>
 		      <a class="navbar-brand" href="{{pathFor 'HomeLogin'}}" id="home"><img alt="Brand" src="images/logo.png"/></a>
 		    </div>
-	<!--header usuario conectado-->
-		    {{#if currentUser}}
-
+	
+		    
 				{{> navbarHome}}
-
-			{{else}}
-	<!--header usuario NO conectado-->
-
-		   		{{> navbarHome}}
-
-		    {{/if}}
+	    
 
 		  </div><!-- /.container-fluid -->
 		</nav>

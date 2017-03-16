@@ -1,4 +1,5 @@
 Template.header.events({
+
 "click a#logout":function(event,template){
 		event.preventDefault();
 		//propiedad package bootstraps-3-modal mostrar Template

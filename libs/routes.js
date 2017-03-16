@@ -23,6 +23,9 @@ Router.configure({
   layoutTemplate: 'PageMaster',
   notFoundTemplate: 'notFoundTemplate',
   loadingTemplate: 'loading',
+  waitOn: function(){
+  	return Meteor.subscribe('partida');
+  }
 		/*
 		waitOn: function() {
 				return	Meteor.user().subscription;
@@ -56,8 +59,8 @@ Router.route('/proyecto', function(){
 
 });
 
-Router.route('/Nolog', function(){
-	this.render('Nolog')
+Router.route('/nolog', function(){
+	this.render('nolog')
 
 });
 
@@ -69,36 +72,13 @@ Router.route('/Nolog', function(){
 Router.route('/game', function () {
 
 		this.layout('game');
+		Meteor.subscribe('edificio');
 
-
+		if(Meteor.userId()){
 			this.render('dinoGame', {to: 'dinoGame'});
-		
-   this.next();
-});
-
-
-
-
-Router.route('/expediciones', function () {
-  this.layout('game');
-		if(Meteor.userId()){
-			this.render('expediciones', {to: 'aside'});
 		}else{
 			this.render('Nolog', {to: 'nolog'});
 		}
-  this.next();
-
-});
-
-Router.route('/recursos', function () {
-	this.layout('game');
-		if(Meteor.userId()){
-			this.render('recursos', {to: 'recur'});
-		}else{
-			this.render('Nolog', {to: 'nolog'});
-		}
-
-  this.next();
 });
 
 
@@ -109,7 +89,7 @@ Router.route( '/verify-email/:token', {
   action ( params) {
     Accounts.verifyEmail( params,token, (error)=> {
 	      if ( error ) {
-	        console.log( error.reason, 'Q NO COÑOO!!!!' );
+	        console.log( error.reason, 'NO NO NO......' );
 	      }
 	      else {
 	      	console.log( 'Email verified! Thanks!', 'success' );
@@ -120,4 +100,20 @@ Router.route( '/verify-email/:token', {
     this.next();
   }
 
+});
+
+Router.route('/game/:_id', function () {
+  var params = this.params; // { _id: "5" }
+  var id = params._id;
+  if(Meteor.userId()){
+			this.render('dinoGame', {to: 'dinoGame'},{
+			    data: function () {
+			      return Edificio.findOne({_id: this.params._id});
+			    }
+			 });
+		}else{
+			this.render('Nolog', {to: 'nolog'});
+		}
+   
+   // "5"
 });
