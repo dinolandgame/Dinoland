@@ -1,0 +1,174 @@
+<template name="dinoGame">
+
+	<div id="sidebar" class="col-sm-2 sidebar1">
+   <button id="btn_desplegar" class="btn pmd-ripple-effect btn-primary pmd-z-depth btn_dinoland" type="button"><i class="material-icons md-light pmd-md">person</i></button>        
+   
+     <button id="btn_plegar" class="btn pmd-ripple-effect btn-primary pmd-z-depth btn_dinoland" type="button"><i class="material-icons md-light pmd-md">person</i></button>   
+    <div class="profile-header-container">   
+        <div class="profile-header-img">
+            <img class="img-circle" src="images/foto_perfil.jpg">
+            <!-- cercle voltant -->
+            <div class="rank-label-container">
+                <span class="label label-default rank-label">Usuario 1</span>
+            </div>
+        </div>
+
+        <div class="progress">
+            <div data-percentage="0%" style="width: 20%;" class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        <p class="coins">nivel 8 - 856/900 exp</p>
+        <br>
+        <div class="coins">
+            <i class="ionicons ion-egg"></i>
+        </div>
+        <p class="coins">2,342</p>
+
+
+    </div> 
+    <br>
+
+    <div>
+        <div class="left-navigation">
+            <ul class="list">
+                <h5><strong>PERFIL</strong></h5>
+                <li><i class="ionicons ion-ios-person"></i>  Mi parque</li>
+                <li><i class="ionicons ion-ios-search-strong"></i>  Expediciones</li>
+                <li><i class="fa fa-envelope-o"></i> Mensajes</li>
+                <li><i class="fa fa-shopping-cart"></i> Mejoras</li>
+                <li><i class="fa fa-bar-chart"></i> Estadísticas</li>
+                <li><a href="{{pathFor 'principal'}}" role="button" id="home" class="navegacio"><span class="glyphicon glyphicon-home"></span>&nbsp;Salir</a><i class="ionicons ion-log-out"></i> Salir</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<button id="btn_expediciones" data-target="#pop_expediciones" data-toggle="modal" class="btn pmd-ripple-effect btn-primary pmd-z-depth btn_dinoland" type="button"><i class="material-icons md-light pmd-md">search</i><p>EXPEDICIONES</p></button>
+ 
+<button id="btn_tienda" data-target="#pop_tienda" data-toggle="modal" class="btn pmd-ripple-effect btn-primary pmd-z-depth btn_dinoland" type="button"><i class="material-icons md-light pmd-md">shopping_cart</i><p>TIENDA</p></button>
+ 
+<button id="btn_social" data-target="#pop_social" data-toggle="modal" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button"><i class="material-icons md-light pmd-md">group</i><p>SOCIAL</p></button>
+ 
+<button id="btn_medals" data-target="#pop_medals" data-toggle="modal" class="btn pmd-ripple-effect btn-primary pmd-z-depth btn_dinoland" type="button"><i class="material-icons md-light pmd-md">poll</i></button>
+ 
+
+<!-- POP EXPEDICIONES -->
+<div tabindex="-1" class="modal fade" id="pop_expediciones" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog pop">
+		<div class="modal-content border">
+			<div class="modal-body pop_content">
+                <div class="header_modal">
+                    <h2>EXPEDICIONES</h2>
+                </div>
+                
+                <div id="contingut_modal">
+                    <p>Contenido aquí</p>
+                </div>
+			    
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- POP TIENDA -->
+<div tabindex="-1" class="modal fade" id="pop_tienda" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog pop">
+		<div class="modal-content border">
+			<div class="modal-body pop_content">
+			    <div class="header_modal">
+                    <h2>TIENDA</h2>
+                </div>
+                
+                <div id="contingut_modal">
+                    <p>Contenido aquí</p>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- POP SOCIAL -->
+<div tabindex="-1" class="modal fade" id="pop_social" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog pop">
+		<div class="modal-content border">
+			<div class="modal-body pop_content">
+			    <div class="header_modal">
+                    <h2>SOCIAL</h2>
+                </div>
+                
+                <div id="contingut_modal">
+                    <p>Contenido aquí</p>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- POP EDIFICI -->
+
+<div tabindex="-1" class="modal fade" id="pop_sintetizador" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+				<div class="header_modal_edifici">
+                    <h2 id="nom_edifici">SINTETIZADOR DE ALIMENTOS</h2>
+                </div>
+			</div>
+			<div class="pmd-modal-media"> <img width="1184" height="666" class="img-responsive" src="images/edificio1.jpg"> </div>
+			<div class="modal-body">
+			 <p class="descripcio_modal_edifici">El sintentizador de alimentos genera comida para los Dinosaurios del parque. Ojo, el T-REX come mucho! </p> 
+			</div>
+			<div class="pmd-modal-action">
+			    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal_edifici">SUBIR NIVEL
+			    </button>
+			    
+			    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal_edifici">RECOGER ALIMENTO
+			    </button>
+			    
+			    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal_edifici">GENERAR ALIMENTO
+			    </button>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="recurs1" class="recursos" data-target="#pop_tienda" data-toggle="modal">
+    <img class="img_recurso" src="images/amber1.png">
+</div>
+
+<div id="recurs2" class="recursos" data-target="#pop_tienda" data-toggle="modal">
+    <img class="img_recurso" src="images/amber2.png">
+</div>
+
+<div id="recurs3" class="recursos" data-target="#pop_tienda" data-toggle="modal">
+    <img class="img_recurso" src="images/amber3.png">
+</div>
+
+<div id="recurs4" class="recursos" data-target="#pop_tienda" data-toggle="modal">
+    <img class="img_recurso" src="images/amber4.png">
+</div>
+
+
+
+<div id="sidebar_medals">
+    
+</div>
+
+<div id="user">
+    <div id="img_perfil">
+        
+    </div>
+   <div id="progress_exp">
+            
+   </div>
+</div>
+
+     <div id="dinosaur">
+         {{dino}}
+     </div>
+    
+
+</template>

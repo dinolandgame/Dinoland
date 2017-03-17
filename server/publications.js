@@ -1,5 +1,3 @@
-
-
 Meteor.publish('partida', function(){
 	return Partida.find({_id: this.userId});
 	//return Partida.find();
@@ -7,5 +5,4 @@ Meteor.publish('partida', function(){
 Meteor.publish('edificio', function(){
 	return Edificio.find();
 });
-
 
