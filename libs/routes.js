@@ -3,7 +3,7 @@ Router.onBeforeAction(function(){
 //si no esta log
 	if(!Meteor.userId()){
 		//va a la ruta homeLogin
-		this.render('principal');
+		this.render('HomeLogin');
 
 		//finalizar el proceso de la peticion
 		this.next();
@@ -11,18 +11,13 @@ Router.onBeforeAction(function(){
 // si esta log
 	else{
 		//si esta en la ruta homeLogin llevalo a la ruta
-		if(Router.current().route.getName() === 'principal'){
+		if(Router.current().route.getName() === 'HomeLogin'){
 			Router.go('game');
 		}
 
 		this.next();
 	}
 });
-
-
-
-    
-
 
 Router.configure({
   layoutTemplate: 'PageMaster',
@@ -31,21 +26,32 @@ Router.configure({
   waitOn: function(){
   	return Meteor.subscribe('partida');
   }
+		/*
+		waitOn: function() {
+				return	Meteor.user().subscription;
 
+			},
+		action: function(){
+				if (!this.ready()) {
+				  this.render('loading');
+				}
+				else {
+				   this.render('dinoGame', {to: 'dinoGame'});
+
+				}
+		}*/
 });
 
 
 Router.route('/', function () {
 
-  this.render('principal');
+  this.render('HomeLogin');
 
-},{
- layoutTemplate:"PageMaster" 
 });
 
 
-Router.route('/principal', function () {
-  this.render('principal');
+Router.route('/HomeLogin', function () {
+  this.render('HomeLogin');
 });
 
 Router.route('/proyecto', function(){
@@ -58,21 +64,22 @@ Router.route('/nolog', function(){
 
 });
 
-Router.route('/game',function(){
-    this.render('game');
-            
-    /*onRun:function(){
-            
-        game = new Phaser.Game(1400, 800, Phaser.CANVAS, 'dinosaur');
-           
-        
-        }
-*/
-});
+
 
 
 //****************** yield + template*************/
 
+Router.route('/game', function () {
+
+		this.layout('game');
+		Meteor.subscribe('edificio');
+
+		if(Meteor.userId()){
+			this.render('dinoGame', {to: 'dinoGame'});
+		}else{
+			this.render('Nolog', {to: 'nolog'});
+		}
+});
 
 
 
@@ -95,4 +102,18 @@ Router.route( '/verify-email/:token', {
 
 });
 
-
+Router.route('/game/:_id', function () {
+  var params = this.params; // { _id: "5" }
+  var id = params._id;
+  if(Meteor.userId()){
+			this.render('dinoGame', {to: 'dinoGame'},{
+			    data: function () {
+			      return Edificio.findOne({_id: this.params._id});
+			    }
+			 });
+		}else{
+			this.render('Nolog', {to: 'nolog'});
+		}
+   
+   // "5"
+});
