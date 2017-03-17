@@ -81,5 +81,3 @@ Accounts.emailTemplates.verifyEmail = {
 });*/
 
   
-
-

@@ -1,0 +1,73 @@
+<template name="Login">
+    <div  id="" class="container-fluid">
+           <div id="contingut_home" class="contingut col-sm-8 col-sm-offset-2">
+            <div class="row">
+               {{#if currentUser}}
+                <div class="col-sm-12">
+                	<div class="video">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/clLc5NJfdio"    frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h3>
+                        Notícias
+                    </h3>
+                    <blockquote>
+                        <p>
+                            Versión 1.0: Hemos añadido la funcionalidad de los huevos.
+                        </p> <small>Daniel Sánchez <cite>Web Programmer</cite></small>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            Versión 1.1: Se incluye la función de comprar ítems en la tienda.
+                        </p> <small>Adrián Guillén <cite>Web Programmer</cite></small>
+                    </blockquote>
+                </div>
+                {{else}}
+                <div class="form-registre col-sm-4 text-center">
+                    <form role="form" id="login-form" method="post">
+                                 <div class="form-group">
+                                    <label>Nombre de usuario</label>
+                                    <input type="text" class="form-control" name="lognombre" placeholder="usuario" id="lognombre" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Contraseña</label>
+                                    <input type="password" class="form-control" name="logclave" placeholder="password" id="logpass1" required/>
+                                </div>
+                                <br>
+                             <input type="submit" id="login-account" class="btn btn-default btn-primary" value="Login cuenta"/>
+                                <br>
+                            </form>
+                            <br>
+                            <a href="#" datta-toggle="modal" id="logreg"> ¿Aún no tienes cuenta?</a>
+                            <br>
+                            <br>
+                            <a href="#" datta-toggle="modal" id="logolvid"> ¿Olvidaste la contraseña?</a>
+                </div>
+
+                <div class="col-sm-8">
+
+                <div class="video">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/clLc5NJfdio"    frameborder="0" allowfullscreen></iframe>
+                </div>
+
+                <h3>
+                    Notícias
+                </h3>
+                <blockquote>
+                    <p>
+                        Versión 1.0: Hemos añadido la funcionalidad de los huevos.
+                    </p> <small>Daniel Sánchez <cite>Web Programmer</cite></small>
+                </blockquote>
+                <blockquote>
+                    <p>
+                        Versión 1.1: Se incluye la función de comprar ítems en la tienda.
+                    </p> <small>Adrián Guillén <cite>Web Programmer</cite></small>
+                </blockquote>
+                            </div>
+                            {{/if}}
+
+                </div>
+                </div><!-- fi #contingut-->
+            </div>
+
+
+</template>
