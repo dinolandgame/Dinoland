@@ -11,10 +11,20 @@ Router.onBeforeAction(function(){
 // si esta log
 	else{
 		//si esta en la ruta homeLogin llevalo a la ruta
-		if(Router.current().route.getName() === 'principal'){
+		/*if(Router.current().route.getName() === 'principal'){
 			Router.go('game');
-		}
-
+		}*/
+        
+        if(Router.current().route.getName() === 'game'){
+            $('body').css("overflow","hidden");            
+        }
+        
+        else{
+            $('body').css("overflow","auto");   
+            $('canvas').remove();
+        }
+            
+        
 		this.next();
 	}
 });

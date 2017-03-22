@@ -21,8 +21,10 @@ Template.dinoGame.events({
 	},
     "click a#home":function(event,template){
 			event.preventDefault();
-
+           
 			Router.go('/');
+            /*$('canvas').remove();
+            $('body').css("overflow","auto");*/
 	},
     "click #user":function(event,template){
         event.preventDefault();
@@ -37,6 +39,7 @@ Template.dinoGame.events({
         //game = new Phaser.Game(1400, 800, Phaser.CANVAS, 'dinosaur');
         Router.go('game');
     }
+    
     /*,
     "click #medals_despl":function(event,template){
    
