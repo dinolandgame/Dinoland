@@ -134,24 +134,28 @@
 		</div>
 	</div>
 </div>
-
+{{#each partida}}
 <div id="recurs1" class="recursos" data-target="#pop_tienda" data-toggle="modal">
-    <img class="img_recurso" src="images/amber1.png">
+   <img class="img_recurso" src="images/amber1.png">
+    <div>DINERO: {{dinero}}</div>
 </div>
 
 <div id="recurs2" class="recursos" data-target="#pop_tienda" data-toggle="modal">
     <img class="img_recurso" src="images/amber2.png">
+    <div>SUMINISTROS: {{suministros}}</div>
 </div>
 
 <div id="recurs3" class="recursos" data-target="#pop_tienda" data-toggle="modal">
     <img class="img_recurso" src="images/amber3.png">
+    <div>ENERGIA: {{energia}}</div>
 </div>
 
 <div id="recurs4" class="recursos" data-target="#pop_tienda" data-toggle="modal">
     <img class="img_recurso" src="images/amber4.png">
+    <div>VISITANTES: {{visitantes}}</div>
 </div>
 
-
+{{/each}}
 
 <div id="sidebar_medals">
     

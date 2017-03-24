@@ -23,6 +23,7 @@ Template.dinoGame.events({
 			event.preventDefault();
            
 			Router.go('/');
+            location.reload();
             /*$('canvas').remove();
             $('body').css("overflow","auto");*/
 	},
@@ -49,6 +50,12 @@ Template.dinoGame.events({
         
  }); 
 
+    Template.dinoGame.helpers({
+		partida: function(){
+
+			return Partida.find({});
+		}
+    })
 /*
 $(document).ready(function(){
     
