@@ -37,27 +37,6 @@ if(Meteor.isClient){
 	    });
 	  },
 	  
-	"click .pujar_n": function(){
-			console.log("subir nivel");
-			//console.log(this);
-			EdificiUp = Edificio.findOne({nom:this.nom,nivel:(this.nivel+1)});
-			
-			//EdificiUp = Edifici.find({});
-			if(EdificiUp != null){
-				//console.log(EdificiUp);
-
-				/*Partida.update(
-				   { _id:Meteor.user()._id, edificio: this.id },
-				   { $set: { "edificio.$" : EdificiUp } }
-				)*/
-					Meteor.call('update_part', Edifici._id,EdificiUp._id);
-					//console.log(this._id+" -- "+ EdificiUp._id);
-				alert("se ha subido de nivel");
-			
-			}else{
-				console.log("aquet edifici ja esta en el seu maxim nivell");
-			}
-		},
 
 		"click .mejorar":function(event, template){
 				console.log("se esta mejorando...");
