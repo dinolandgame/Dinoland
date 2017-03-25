@@ -170,7 +170,31 @@ html,body{
     border-radius: 10px; 
 }
 
-.btn_dinoland{
+#btn-tienda{
+    cursor: pointer;
+    position: absolute;
+    left: 16%;
+    top: 90%;
+    height: 50px;
+}
+
+#btn-expediciones{
+    cursor: pointer;
+    position: absolute;
+    left: 3%;
+    top: 90%;
+    height: 50px;
+}
+
+#btn-social{
+    cursor: pointer;
+    position: absolute;
+    left: 93%;
+    top: 86%;
+    height: 80px;
+}
+
+/*.btn_dinoland{
     position: absolute;
     border-radius: 30px;
     background-color: #ff6b6b;
@@ -228,35 +252,30 @@ html,body{
 
 #btn_social:hover{
     background-color: #5aaec7;
-}
+}*/
 
-.recursos{
-    
-    background-color: #45b7af;
-    box-shadow: 3px 1px 12px 0px rgb( 0, 1, 2 );
+.recurs{
     position: absolute;
     cursor: pointer;
-    width: 150px;
-    height: 35px;
-    left: 90%;
-    border-radius: 20px;
+    height: 45px;
+    left: 88%;
 }
 
 .recursos:hover{
-    background-color: #3a9e97;
+    opacity: 0.8;
 }
 
 #recurs1{
     top: 5%;
 }
 #recurs2{
-    top: 11%;
+    top: 12%;
 }
 #recurs3{
-    top: 17%;
+    top: 19%;
 }
 #recurs4{
-    top: 23.15%;
+    top: 24.15%;
 }
 
 #btn_medals{
@@ -394,6 +413,7 @@ html,body{
     height: 100%;
     z-index: 2;
     margin-left: -16.666666667%;
+    position: absolute;
 }
 
 #sidebar_medals{
@@ -484,20 +504,29 @@ border-radius: 100%;
     list-style: none;
     padding-left: 0px;
 }
-.list::first-line {
-    color: rgba(255, 255, 255, 0.5);
-}
+
 .list> li, h5 {
     padding: 5px 0px 5px 40px;
+    cursor: pointer;
 }
 .list>li:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-left: 5px solid white;
     color: white;
-    font-weight: bolder;
     padding-left: 35px;
+}
 
-}.main-content{
+.log-out{
+    color: white;
+    text-decoration: none;
+}
+
+.log-out:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.main-content{
     text-align:center;
 }
 
