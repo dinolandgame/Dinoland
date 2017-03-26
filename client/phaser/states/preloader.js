@@ -29,9 +29,14 @@ Preloader.prototype = {
         //this.load.audio('myMusic', ['path/1.mp3', 'path/1.ogg']);
         //this.load.audio('myMusic', 'path/1.wav');
         //this.load.audio('m1', '/audio/1.mp3');
-       this.load.image('mapa', '../images/mapa_buit.png');
-        this.load.image('hotel', '../images/hotel.png');
-        this.load.spritesheet('bar1', '../images/bar1.png', 150, 148, 10);
+        this.load.image('mapa', '../images/mapa_buit.png');
+    
+        this.load.spritesheet('bar1', '../images/bar1.png', 608, 535, 10);
+        this.load.spritesheet('bar2', '../images/bar2.png', 608, 535, 10);
+        this.load.spritesheet('bar3', '../images/bar3.png', 608, 535, 10);
+        this.load.spritesheet('clan1', '../images/clan1.png', 653, 605, 14);
+        this.load.spritesheet('clan2', '../images/clan2.png', 653, 605, 14);
+        this.load.spritesheet('clan3', '../images/clan3.png', 653, 605, 14);
         
         // La siguiente función se ejecuta una vez se dispara el evento del loader de Phaser de que
         // se ha finalizado la carga de todos los assets

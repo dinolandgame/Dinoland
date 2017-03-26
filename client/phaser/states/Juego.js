@@ -8,9 +8,12 @@ Juego.prototype = {
         //Lo ideal seria fer una funcio que comprovi el tamany de la pantalla, i aixi sapiga on situar el mapa i com de grans han de ser els bounds.
     this.world.setBounds(-150, -100, 1600, 998); //fem que el mon sigui mes gran que el canvas
     var ground = this.add.sprite(-150, -100, 'mapa'); //coloquem el mapa a la posicio indicada. El punt 0 ,0 és l'origen
-    var hotel = this.add.sprite(110,100,'hotel'); //coloquem el hotel a la posicio indicada
-    
-    var bar1 = this.add.sprite(350,400,'bar1');
+
+    clan1 = this.add.sprite(550,400,'clan1');
+    bar1 = this.add.sprite(350,400,'bar1');
+        bar1.scale.setTo(0.3,0.3);
+        clan1.scale.setTo(0.3,0.3);
+
     
     bar1.animations.add('run');
     bar1.animations.play('run', 10, true);
@@ -21,19 +24,18 @@ Juego.prototype = {
     bar1.events.onInputOver.add(hover,this);
     bar1.events.onInputOut.add(hoverOff,this);
     bar1.events.onInputDown.add(clicar,this);
-    
-    
-    hotel.inputEnabled = true;
-    hotel.events.onInputOver.add(hover,this);
-    hotel.events.onInputOut.add(hoverOff,this);
-    hotel.events.onInputDown.add(clicar,this);
-    
-    //Només agafa el píxel quan es passa per sobre o es clica, la transparencia no
-    hotel.input.pixelPerfectOver = true;
-    hotel.input.pixelPerfectClick = true;
 
-    //Cursor pointer
-    hotel.input.useHandCursor = true;
+    clan1.animations.add('run');
+    clan1.animations.play('run', 10, true);
+    clan1.inputEnabled = true;
+    clan1.input.pixelPerfectOver = true;
+    clan1.input.pixelPerfectClick = true;
+    clan1.input.useHandCursor = true;
+    clan1.events.onInputOver.add(hover,this);
+    clan1.events.onInputOut.add(hoverOff,this);
+    clan1.events.onInputDown.add(clicar,this);
+
+    
     
     },
     
@@ -41,6 +43,7 @@ Juego.prototype = {
     update:function(){
         move_camera_by_pointer(this.input.mousePointer);
         move_camera_by_pointer(this.input.pointer1);
+
     }
 }
 
@@ -56,9 +59,10 @@ function clicar(edifici){
    // $.ionSound.play("button_tiny"); 
     $('#pop_sintetizador').modal('show');
     quinedifici = edifici.key;
-    $('#nom_edifici').text(quinedifici);
-    
+    $('#nom_edifici').text(quinedifici); 
+    obtenerDatos(quinedifici);
 }
+
 
 var o_mcamera;
 
