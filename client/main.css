@@ -194,121 +194,38 @@ html,body{
     height: 80px;
 }
 
-/*.btn_dinoland{
+#btn-sound{
+    cursor: pointer;
     position: absolute;
-    border-radius: 30px;
-    background-color: #ff6b6b;
-    color: white;
-    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 );
-    height: 60px;
-    border: none;
-    text-align: center;
+    left: 96%;
+    top: 30%;
+    height: 40px;
 }
 
-.btn_dinoland p{
-    padding-top: 12px;
-    padding-right: 10px;
-    
-}
-
-.btn_dinoland i{
-    float: left;
-    padding-left: 5px;
-    padding-top: 2px;
-}
-
-#btn_expediciones{
-    
-    left: 3%;
-    top: 88%;
-    width: 180px;
-}
-
-#btn_tienda{
-    left: 20%;
-    top: 88%;
-    width: 160px;
-}
-
-.btn_dinoland:focus{
-    background-color: #ff6b6b;
-    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 );
-}
-
-.btn_dinoland:hover{
-    background-color: #e15252;;
-}
-
-#btn_social{
+#recursos{
+    margin-top: 10px;
     position: absolute;
-    left: 91%;
-    top: 83%;
-    width: 90px;
-    height: 90px;
-    border-radius: 100%;
-    background-color: #65c3df;
-    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 );
+    left: 88%;
 }
-
-#btn_social:hover{
-    background-color: #5aaec7;
-}*/
 
 .recurs{
-    position: absolute;
-    cursor: pointer;
     height: 45px;
-    left: 88%;
+    margin-top: 7px;
+    cursor: pointer;
 }
 
 .recursos:hover{
     opacity: 0.8;
 }
 
-#recurs1{
-    top: 5%;
-}
-#recurs2{
-    top: 12%;
-}
-#recurs3{
-    top: 19%;
-}
-#recurs4{
-    top: 24.15%;
-}
-
-#btn_medals{
-    position: absolute;
-    top: 40%;
-    left: 95%;
-    height: 70px;
-    width: 108px;
-    border-radius: 60px;
-    background-color: #f8cb00;
-    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 ); 
-}
-
-#btn_medals:hover{
-    background-color: #dab200; 
-}
-
-
-.img_recurso{
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    top: 15%;
-    left: 2%;
-}
-
 #user{
     position: absolute;
-    top: 5%;
-    left: 4%;
+    top: 4%;
+    left: 3%;
+}
+
+#user img{
     height: 70px;
-    width: 150px;
-    
 }
 
 #img_perfil{
@@ -416,34 +333,12 @@ html,body{
     position: absolute;
 }
 
-#sidebar_medals{
-    background-color: #8ad3e6;
-    /*margin-top: 10%;*/
-    height: 50%;
-    z-index: 2;
-    margin-left: 100%;
-}
-
 #btn_desplegar{
     position: absolute;
     top: 40%;
     z-index: -2;
-    left: 85%;
-    height: 60px;
-    border-bottom-right-radius: 60px;
-    border-top-right-radius: 60px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    background-color: #f8cb00;
-    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 );
-}
-
-#btn_desplegar i{
-    padding-left: 30px;
-}
-
-#btn_desplegar:hover{
-    background-color: #dab200; 
+    left: 92%;
+    height: 55px;
 }
 
 #btn_plegar{
@@ -451,24 +346,9 @@ html,body{
     position: absolute;
     top: 40%;
     z-index: -2;
-    left: 100%;
-    height: 60px;
-    border-bottom-right-radius: 60px;
-    border-top-right-radius: 60px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    background-color: #f8cb00;
-    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 );
+    left: 92%;
+    height: 55px;
 }
-
-#btn_plegar i{
-    padding-left: 30px;
-}
-
-#btn_plegar:hover{
-    background-color: #dab200; 
-}
-
 
 .sidebar1 {
     background: #F17153;

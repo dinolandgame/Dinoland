@@ -9,34 +9,25 @@ Juego.prototype = {
     this.world.setBounds(-150, -100, 1600, 998); //fem que el mon sigui mes gran que el canvas
     var ground = this.add.sprite(-150, -100, 'mapa'); //coloquem el mapa a la posicio indicada. El punt 0 ,0 és l'origen
 
-    clan1 = this.add.sprite(550,400,'clan1');
-    bar1 = this.add.sprite(350,400,'bar1');
-        bar1.scale.setTo(0.3,0.3);
-        clan1.scale.setTo(0.3,0.3);
+    clan1 = this.add.sprite(200,430,'clan1');
+    bar1 = this.add.sprite(330,490,'bar1');
+    magatzem1 = this.add.image(670,270,'magatzem1');
+    hotel1 = this.add.image(170,270,'hotel1');
+    laboratori1 = this.add.image(1000,270,'laboratori1');
+
+    bar1.scale.setTo(0.20,0.20);
+    clan1.scale.setTo(0.20,0.20);
+    magatzem1.scale.setTo(0.15,0.15);
+    hotel1.scale.setTo(0.15,0.15);
+    laboratori1.scale.setTo(0.15,0.15);
 
     
-    bar1.animations.add('run');
-    bar1.animations.play('run', 10, true);
-    bar1.inputEnabled = true;
-    bar1.input.pixelPerfectOver = true;
-    bar1.input.pixelPerfectClick = true;
-    bar1.input.useHandCursor = true;
-    bar1.events.onInputOver.add(hover,this);
-    bar1.events.onInputOut.add(hoverOff,this);
-    bar1.events.onInputDown.add(clicar,this);
+    afegirPropietatsSprite(bar1);
+    afegirPropietatsSprite(clan1);
+    afegirPropietatsImatge(magatzem1);
+    afegirPropietatsSprite(hotel1);
+    afegirPropietatsSprite(laboratori1);
 
-    clan1.animations.add('run');
-    clan1.animations.play('run', 10, true);
-    clan1.inputEnabled = true;
-    clan1.input.pixelPerfectOver = true;
-    clan1.input.pixelPerfectClick = true;
-    clan1.input.useHandCursor = true;
-    clan1.events.onInputOver.add(hover,this);
-    clan1.events.onInputOut.add(hoverOff,this);
-    clan1.events.onInputDown.add(clicar,this);
-
-    
-    
     },
     
 
@@ -45,6 +36,28 @@ Juego.prototype = {
         move_camera_by_pointer(this.input.pointer1);
 
     }
+}
+
+function afegirPropietatsSprite(edifici){
+    edifici.animations.add('run');
+    edifici.animations.play('run', 10, true);
+    edifici.inputEnabled = true;
+    edifici.input.pixelPerfectOver = true;
+    edifici.input.pixelPerfectClick = true;
+    edifici.input.useHandCursor = true;
+    edifici.events.onInputOver.add(hover,this);
+    edifici.events.onInputOut.add(hoverOff,this);
+    edifici.events.onInputDown.add(clicar,this);
+}
+
+function afegirPropietatsImatge(edifici){
+    edifici.inputEnabled = true;
+    edifici.input.pixelPerfectOver = true;
+    edifici.input.pixelPerfectClick = true;
+    edifici.input.useHandCursor = true;
+    edifici.events.onInputOver.add(hover,this);
+    edifici.events.onInputOut.add(hoverOff,this);
+    edifici.events.onInputDown.add(clicar,this);
 }
 
 function hover(edifici){
