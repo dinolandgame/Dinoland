@@ -17,7 +17,7 @@ Meteor.methods({
                       energia:20,
                       suministros:50,
                       visitantes:10,
-                      edificio:[1,2,3]}); 
+                      edificio:[1,101]}); 
        
        /*{
     _id:1,
@@ -38,9 +38,57 @@ Meteor.methods({
   },
  update_part(obj1,obj2){
       user= Meteor.userId();
-      Partida.update({ _id:user, edificio: obj1 } , { $set: { "edificio.$" : obj2 } } )
+      Partida.update({ _id:user, edificio: obj1 } , { $set: { "edificio.$" : obj2 } } );
 
-  }
+  }/*,
+    update(){
+    console.log("subir nivel");
+            //console.log(this);
+            Edifici = Edificio.find({nom:this.nom,}).fetch();//busco los edicios; falta saber que edificio es el seleccionado
+            
+            EdificiUp = Edificio.find({nom:Edifici.nom,nivel:(Edifici.nivel+1)}).fetch();
+            console.log(Edifici.key);
+            //EdificiUp = Edifici.find({});
+            if(EdificiUp != null){
+                
+            Meteor.call('update_part', Edifici._id,EdificiUp._id);
+                    
+            Edifici.key.destroy();
+            EdificiUp.key = game.add.sprite(EdificiUp.posicionX,EdificiUp.posicionY,EdificiUp.key);
+            EdificiUp.key.scale.setTo(EdificiUp.escalaX,EdificiUp.escalaY);
+                
+                alert("se ha subido de nivel");
+            
+            }else{
+                console.log("aquet edifici ja esta en el seu maxim nivell");
+            }
+    }/*,
+    creando_casas(){
+        user= Meteor.userId();     
+
+            var mi_partida = Partida.find({_id:user}).fetch();//obtengo un array de las partida del usuario siempre sera 1 por user
+            var edificios = Edificio.find().fetch(); //obtengo un array con todos los edificios
+
+
+            edificios.forEach(function(edif){//recorremos la coleccion Edifcios 
+
+                //console.log("Title of post " + edif._id); 
+                mi_partida.forEach(function (partida) {//recorremos la coleccion Partida buscada por id del usuari
+
+                misedificiosEnPartida = partida.edificio;//se crea un array con los id de edificios
+                    for(var i= 0; i<=misedificiosEnPartida.length; i++){//bucle para los edificios en array de partida
+                        if(edif._id==misedificiosEnPartida[i]){//si coincide con los edificios del array de partida
+                            console.log("Title of post " + edif.key);
+
+                        //añadimos el objeto de phaser  con su posicion y su scala tambien sus propiedades  
+                        edif.key = game.add.sprite(edif.posicionX,edif.posicionY,edif.key); 
+                        edif.key.scale.setTo(edif.escalaX,edif.escalaY);
+                        afegirPropietatsSprite(edif.key);
+                        }   
+                    }                                    
+                });            
+            });
+    }*/
   
 
 });

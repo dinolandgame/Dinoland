@@ -34,7 +34,9 @@ Router.configure({
   notFoundTemplate: 'notFoundTemplate',
   loadingTemplate: 'loading',
   waitOn: function(){
-  	return Meteor.subscribe('partida');
+  	
+      return [Meteor.subscribe('partida'),
+               Meteor.subscribe('edificio')];
   }
 		
 });

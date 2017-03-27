@@ -71,11 +71,8 @@ if(Meteor.isClient){
 
     Template.game.helpers({
 		partida: function(){
-
 			return Partida.find({});
 		},
-
-
 		edifi: function(id){
 			return Edificio.find({_id:id});
 		},
