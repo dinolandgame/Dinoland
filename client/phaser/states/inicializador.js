@@ -7,7 +7,7 @@ Inicializador = function(game){
 Inicializador.prototype = {
     init: function() {
         // Se configura la escalabilidad del canvas
-        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        this.scale.scaleMode = Phaser.ScaleManager.SCALE_USER;
         this.scale.pageAlignHorizontally = true;
         this.scale.pageAlignVertically = true;
     },

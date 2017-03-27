@@ -9,8 +9,9 @@ Template.header.events({
 
 "click a#home":function(event,template){
 		event.preventDefault();
-
+        
 		Router.go('/');
+        /*$('body').css({"overflow":"auto"});*/
 		},
 
 "click a#proyecto":function(event,template){
@@ -21,8 +22,10 @@ Template.header.events({
 
 "click a#juego":function(event,template){
 		event.preventDefault();
-         //game = new Phaser.Game(1400, 800, Phaser.CANVAS, 'dinosaur');
+        
+        /*$('body').css({"overflow": "hidden"});*/
 		Router.go('game');
+    //location.reload();
 		}
 
 });

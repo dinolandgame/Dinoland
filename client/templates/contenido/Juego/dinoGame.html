@@ -1,9 +1,9 @@
 <template name="dinoGame">
 
 	<div id="sidebar" class="col-sm-2 sidebar1">
-   <button id="btn_desplegar" class="btn pmd-ripple-effect btn-primary pmd-z-depth btn_dinoland" type="button"><i class="material-icons md-light pmd-md">person</i></button>        
-   
-     <button id="btn_plegar" class="btn pmd-ripple-effect btn-primary pmd-z-depth btn_dinoland" type="button"><i class="material-icons md-light pmd-md">person</i></button>   
+    <img id="btn_desplegar" src="images/ui/desplegar.png">
+    <img id="btn_plegar" src="images/ui/plegar.png">
+  
     <div class="profile-header-container">   
         <div class="profile-header-img">
             <img class="img-circle" src="images/foto_perfil.jpg">
@@ -31,25 +31,34 @@
     <div>
         <div class="left-navigation">
             <ul class="list">
-                <h5><strong>PERFIL</strong></h5>
-                <li><i class="ionicons ion-ios-person"></i>  Mi parque</li>
+                <li><i class="ionicons ion-ios-person"></i>  Mi muro</li>
                 <li><i class="ionicons ion-ios-search-strong"></i>  Expediciones</li>
                 <li><i class="fa fa-envelope-o"></i> Mensajes</li>
-                <li><i class="fa fa-shopping-cart"></i> Mejoras</li>
-                <li><i class="fa fa-bar-chart"></i> Estadísticas</li>
-                <li><a href="{{pathFor 'principal'}}" role="button" id="home" class="navegacio"><span class="glyphicon glyphicon-home"></span>&nbsp;Salir</a><i class="ionicons ion-log-out"></i> Salir</li>
+                <li><i class="fa fa-shopping-cart"></i> Tienda</li>
+                <li><i class="fa fa-bar-chart"></i> Logros</li>
+                <li><a href="{{pathFor 'principal'}}" role="button" id="home" class="log-out"><span class="glyphicon glyphicon-home"></span>&nbsp;Salir</a><i class="ionicons ion-log-out"></i></li>
             </ul>
         </div>
     </div>
 </div>
 
-<button id="btn_expediciones" data-target="#pop_expediciones" data-toggle="modal" class="btn pmd-ripple-effect btn-primary pmd-z-depth btn_dinoland" type="button"><i class="material-icons md-light pmd-md">search</i><p>EXPEDICIONES</p></button>
- 
-<button id="btn_tienda" data-target="#pop_tienda" data-toggle="modal" class="btn pmd-ripple-effect btn-primary pmd-z-depth btn_dinoland" type="button"><i class="material-icons md-light pmd-md">shopping_cart</i><p>TIENDA</p></button>
- 
-<button id="btn_social" data-target="#pop_social" data-toggle="modal" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button"><i class="material-icons md-light pmd-md">group</i><p>SOCIAL</p></button>
- 
-<button id="btn_medals" data-target="#pop_medals" data-toggle="modal" class="btn pmd-ripple-effect btn-primary pmd-z-depth btn_dinoland" type="button"><i class="material-icons md-light pmd-md">poll</i></button>
+<!-- Botons -->
+<img src="images/ui/tienda.png" id="btn-tienda" data-target="#pop_tienda" data-toggle="modal">
+<img src="images/ui/expediciones.png" id="btn-expediciones" data-target="#pop_expediciones" data-toggle="modal">
+<img src="images/ui/social.png" id="btn-social" data-target="#pop_social" data-toggle="modal">
+<img src="images/ui/sound.png" id="btn-sound">
+
+<!-- Recursos -->
+<div id="recursos">
+    <img src="images/ui/recurs2.png" class="recurs" data-target="#pop_tienda" data-toggle="modal">
+    <img src="images/ui/recurs2.png" class="recurs" data-target="#pop_tienda" data-toggle="modal">
+    <img src="images/ui/recurs3.png" class="recurs" data-target="#pop_tienda" data-toggle="modal">
+</div>
+
+<!-- Usari -->
+<div id="user">
+    <img src="images/ui/user.png">
+</div>
  
 
 <!-- POP EXPEDICIONES -->
@@ -121,7 +130,7 @@
 			 <p class="descripcio_modal_edifici">El sintentizador de alimentos genera comida para los Dinosaurios del parque. Ojo, el T-REX come mucho! </p> 
 			</div>
 			<div class="pmd-modal-action">
-			    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal_edifici">SUBIR NIVEL
+			    <button id="subirlvl" type="button" class="btn pmd-ripple-effect btn-default btn_modal_edifici">SUBIR NIVEL
 			    </button>
 			    
 			    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal_edifici">RECOGER ALIMENTO
@@ -134,29 +143,7 @@
 		</div>
 	</div>
 </div>
-
-<div id="recurs1" class="recursos" data-target="#pop_tienda" data-toggle="modal">
-    <img class="img_recurso" src="images/amber1.png">
-</div>
-
-<div id="recurs2" class="recursos" data-target="#pop_tienda" data-toggle="modal">
-    <img class="img_recurso" src="images/amber2.png">
-</div>
-
-<div id="recurs3" class="recursos" data-target="#pop_tienda" data-toggle="modal">
-    <img class="img_recurso" src="images/amber3.png">
-</div>
-
-<div id="recurs4" class="recursos" data-target="#pop_tienda" data-toggle="modal">
-    <img class="img_recurso" src="images/amber4.png">
-</div>
-
-
-
-<div id="sidebar_medals">
-    
-</div>
-
+<!--
 <div id="user">
     <div id="img_perfil">
         
@@ -164,7 +151,7 @@
    <div id="progress_exp">
             
    </div>
-</div>
+</div>-->
 
      <div id="dinosaur">
          {{dino}}
