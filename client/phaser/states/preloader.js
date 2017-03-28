@@ -6,24 +6,11 @@ Preloader = function(game){
  
 Preloader.prototype = {
     preload: function(){
-        // Nuestro sprite de fondo se llama fondo y como lo hemos cargado
-        // anteriormente y le hemos dado una key 'fondo', ya podemos llamarlo
-        // como parte de nuestro objeto Phaser.Game
-        // Se hace esto antes de que se empiece a cargar ningún asset del juego
-        // puesto que interesa mostralo en la pantalla junto con la barra de carga
-        //this.fondo = this.add.sprite(this.game.world.centerX, this.game.world.centerY);
-        //this.fondo.anchor.setTo(0.5);
-        fondo = this.add.image(0,0,'fondo');
         
-        text = this.add.text(15, 10, 'Insertando en la isla', {fill: '#fff'});
-        
-        //Se añade el sprite que se cargó en el inicializador
-        this.preloadBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY + 128, 'preloadbar');
-        
-        this.preloadBar.anchor.setTo(0.5);
-        // Mediante está función del loader de Phaser (objeto load), el sprite que se use como barra
-        //de carga irá apareciendo a medida que se van cargando los archivos.
-        this.load.setPreloadSprite(this.preloadBar);
+        //Sprite preloader, que saldrá antes que se carguen todos los assets
+        island = this.add.sprite(400, 80,'island_preloader');
+        island.animations.add('run');
+        island.animations.play('run', 10, true);
         
         // ***********  ASSETS DEL JUEGO A CARGAR *******************//
         //this.load.audio('myMusic', ['path/1.mp3', 'path/1.ogg']);
@@ -40,7 +27,7 @@ Preloader.prototype = {
         this.load.spritesheet('hotel1', '../images/hotel1.png', 535.666666, 296.5, 6);
         this.load.spritesheet('laboratori1', '../images/laboratori1.png', 204.9, 228, 23);
         this.load.image('magatzem1', '../images/magatzem1.png');
-        this.load.image('cuartel1', '../images/cuartel1.png');
+        this.load.spritesheet('cuartel1', '../images/cuartel1.png', 458.4, 354, 21);
         this.load.image('habitats1', '../images/habitats1.png');
         this.load.spritesheet('energia1', '../images/energia1.png', 180.25, 259.333333, 11);
         this.load.spritesheet('port1', '../images/port1.png', 478.5, 438.3, 13);
@@ -60,8 +47,7 @@ Preloader.prototype = {
         // Si en algún momento el loader acabó su trabajo, ya puede empezar el juego
         if(this.ready === true) 
         {
-            text.text= "Loading finished";
-            this.time.events.add(Phaser.Timer.SECOND * 2, empezar, this);              
+            this.time.events.add(Phaser.Timer.SECOND * 4, empezar, this);              
         } 
     },
     
