@@ -42,21 +42,25 @@ Template.dinoGame.events({
         Router.go('game');
     },
 
-    "click #subirlvl": function(){
-            console.log("subir nivel");
+    "click #subirlvl": function(event,template){
+            event.preventDefault();
+            //Meteor.call('update');//marca error des de server error [500]
+        
+        console.log("subir nivel");
             //console.log(this);
-            EdificiUp = Edificio.findOne({nom:this.nom,nivel:(this.nivel+1)});
+            Edifici = Edificio.findOne({key:quinedifici});//busco los edicios; falta saber que edificio es el seleccionado
+            
+            EdificiUp = Edificio.findOne({nom:Edifici.nom,nivel:(Edifici.nivel+1)});
             
             //EdificiUp = Edifici.find({});
             if(EdificiUp != null){
-                //console.log(EdificiUp);
-
-                /*Partida.update(
-                   { _id:Meteor.user()._id, edificio: this.id },
-                   { $set: { "edificio.$" : EdificiUp } }
-                )*/
-                    Meteor.call('update_part', Edifici._id,EdificiUp._id);
-                    //console.log(this._id+" -- "+ EdificiUp._id);
+            console.log(Edifici.key);
+            Meteor.call('update_part', Edifici._id,EdificiUp._id);
+                    
+            phaserEdifici.destroy();
+            EdificiUp.key = game.add.sprite(EdificiUp.posicionX,EdificiUp.posicionY,EdificiUp.key);
+            EdificiUp.key.scale.setTo(EdificiUp.escalaX,EdificiUp.escalaY);
+                
                 alert("se ha subido de nivel");
             
             }else{
@@ -64,10 +68,8 @@ Template.dinoGame.events({
             }
 
             $('.modal').modal('hide');
-            clan1.destroy();
-            clan2 = game.add.sprite(550,400,'clan2');
-            clan2.scale.setTo(0.3,0.3);
-
+           
+           
         },
         
  }); 

@@ -38,7 +38,7 @@ Preloader.prototype = {
         this.load.spritesheet('clan2', '../images/clan2.png', 653, 605, 14);
         this.load.spritesheet('clan3', '../images/clan3.png', 653, 605, 14);
         this.load.spritesheet('hotel1', '../images/hotel1.png', 1786, 989, 6);
-        this.load.spritesheet('laboratori1', '../images/laboratori.png', 683, 760, 23);
+        this.load.spritesheet('laboratori1', '../images/laboratori1.png', 683, 760, 23);
         this.load.image('magatzem1', '../images/magatzem1.png');
         
         // La siguiente función se ejecuta una vez se dispara el evento del loader de Phaser de que
