@@ -1,1 +1,434 @@
-/* CSS declarations go here */
+.navbar-header a img{
+    height: 45px;
+}
+
+body {
+    background-image: url("../images/fondo_2.jpg");
+	background-repeat: repeat;
+	background-color: #bddfec;
+}
+
+#contingut_home{
+  margin-top: 80px;
+}
+.navbar-brand{
+	padding: 4px 18px 4px 18px;
+	height: 45px;
+}
+
+.navbar-default{
+	background-color: #368844;
+	border-color: #368844;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
+	background-color: #205f2a;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{
+	background-color: #205f2a;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{
+background-color: #205f2a;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{
+	background-color: #205f2a;
+}
+
+/*FOOTER*/
+
+.footer-bs {
+    background-color: #3c3d41;
+	padding: 30px 40px;
+	margin-top: 50px;
+	color: rgba(255,255,255,1.00);
+	position: absolute;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 6px;
+}
+.footer-bs .footer-brand, .footer-bs .footer-nav, .footer-bs .footer-social, .footer-bs .footer-ns { padding:10px 25px; }
+.footer-bs .footer-nav, .footer-bs .footer-social, .footer-bs .footer-ns { border-color: transparent; }
+.footer-bs .footer-brand h2 { margin:0px 0px 10px; }
+.footer-bs .footer-brand p { font-size:12px; color:rgba(255,255,255,0.70); }
+
+.footer-bs .footer-nav ul.pages { list-style:none; padding:0px; }
+.footer-bs .footer-nav ul.pages li { padding:5px 0px;}
+.footer-bs .footer-nav ul.pages a { color:rgba(255,255,255,1.00); font-weight:bold; text-transform:uppercase; }
+.footer-bs .footer-nav ul.pages a:hover { color:rgba(255,255,255,0.80); text-decoration:none; }
+.footer-bs .footer-nav h4 {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	margin-bottom:10px;
+}
+
+.footer-bs .footer-nav ul.list { list-style:none; padding:0px; }
+.footer-bs .footer-nav ul.list li { padding:5px 0px;}
+.footer-bs .footer-nav ul.list a { color:rgba(255,255,255,0.80); }
+.footer-bs .footer-nav ul.list a:hover { color:rgba(255,255,255,0.60); text-decoration:none; }
+
+.footer-bs .footer-social ul { list-style:none; padding:0px; }
+.footer-bs .footer-social h4 {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+.footer-bs .footer-social li { padding:5px 4px;}
+.footer-bs .footer-social a { color:rgba(255,255,255,1.00);}
+.footer-bs .footer-social a:hover { color:rgba(255,255,255,0.80); text-decoration:none; }
+
+.footer-bs .footer-ns h4 {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	margin-bottom:10px;
+}
+.footer-bs .footer-ns p { font-size:12px; color:rgba(255,255,255,0.70); }
+
+@media (min-width: 768px) {
+	.footer-bs .footer-nav, .footer-bs .footer-social, .footer-bs .footer-ns { border-left:solid 1px rgba(255,255,255,0.10); }
+}
+
+.video{
+	text-align: center;
+	width: 100%;
+}
+
+.video iframe{
+	margin: 0 auto;
+	display: inline-block;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.btn-default{
+	background-color: #368844;
+	border-color: #368844;
+}
+
+.btn-default:hover{
+	background-color: #205f2a;
+	border-color: #205f2a;
+}
+
+.form-registre{
+    margin-top: 80px;
+}
+
+.contingut{
+    background-color: aliceblue;
+    border-radius: 20px;
+    border: 13px solid green;
+}
+
+
+/* cambiar formato de error*/
+input.error{
+	background-color:rgb(255, 223, 137);
+}
+
+.error{
+	color: #ED2B05;
+  font-size:0.8em;
+}
+
+
+/****************************************************/
+/****************************************************/
+/****************************************************/
+/****************************************************/
+/****************************************************/
+/************************PAGE MASTER Juego CSS****************************/
+/****************************************************/
+/****************************************************/
+/****************************************************/
+/****************************************************/
+/****************************************************/
+
+canvas{
+    overflow: hidden;
+}
+
+html,body{
+   /* width: 100%;
+    height: 100%;
+    background-color: #2d862d;*/
+    font-family: 'roboto';
+}
+.pop{
+    width: 80%; 
+}
+
+.pop_content{
+    height: 500px; 
+}
+
+.border{
+    border-radius: 10px; 
+}
+
+#btn-tienda{
+    cursor: pointer;
+    position: absolute;
+    left: 16%;
+    top: 90%;
+    height: 50px;
+}
+
+#btn-expediciones{
+    cursor: pointer;
+    position: absolute;
+    left: 3%;
+    top: 90%;
+    height: 50px;
+}
+
+#btn-social{
+    cursor: pointer;
+    position: absolute;
+    left: 93%;
+    top: 86%;
+    height: 80px;
+}
+
+#btn-sound{
+    cursor: pointer;
+    position: absolute;
+    left: 96%;
+    top: 30%;
+    height: 40px;
+}
+
+#recursos{
+    margin-top: 10px;
+    position: absolute;
+    left: 88%;
+}
+
+.recurs{
+    height: 45px;
+    margin-top: 7px;
+    cursor: pointer;
+}
+
+.recursos:hover{
+    opacity: 0.8;
+}
+
+#user{
+    position: absolute;
+    top: 4%;
+    left: 3%;
+}
+
+#user img{
+    height: 70px;
+}
+
+#img_perfil{
+    border-radius: 100%;
+    background-image: url(../images/foto_perfil.jpg);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    z-index: 7;
+    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 );
+}
+
+#progress_exp{
+    border-radius: 20px;
+    background-color: #a48ad4;
+    box-shadow: 3px 2px 12px 0px rgb( 0, 1, 2 );
+    position: absolute;
+    cursor: pointer;
+    width: 150px;
+    height: 30px;
+    left: 20%;
+    top: 30%;
+    z-index: 6;
+}
+
+/********* MODALS NORMALS *************/
+
+.modal-content{
+    background-color: #333645;
+}
+.header_modal{
+    background-color: #a48ad4;
+    height: 40px;
+    width: 20%;
+    border-radius: 30px;
+    margin-left: 40%;
+}
+
+.header_modal h2{
+    color: white;
+    text-align: center;
+    padding-top: 9px;
+}
+
+#contingut_modal{
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    margin-top:  20px;
+    height: 86%;
+}
+
+.modal-body{
+    padding: 0 25px;
+}
+
+/********* MODALS EDIFICI ***************/
+
+.header_modal_edifici{
+    background-color: #a48ad4;
+    height: 40px;
+    width: 60%;
+    border-radius: 30px;
+    margin-left: 20%;
+}
+
+.header_modal_edifici h2{
+    color: white;
+    text-align: center;
+    padding-top: 9px;
+}
+
+.descripcio_modal_edifici{
+    color: white;
+}
+
+.btn_modal_edifici{
+    background-color: #4285f4;
+    border-radius: 20px;
+    color: white;
+    padding-left: 20px!important;
+    padding-right: 20px!important;
+}
+
+.close{
+    color: white;
+    opacity: 0.7;
+}
+
+.close:hover{
+    color: white;
+    opacity: 1;
+}
+
+/************SIDEBAR********************/
+
+#sidebar{
+    background-color: #8ad3e6;
+    height: 100%;
+    z-index: 2;
+    margin-left: -16.666666667%;
+    position: absolute;
+}
+
+#btn_desplegar{
+    position: absolute;
+    top: 40%;
+    z-index: -2;
+    left: 92%;
+    height: 55px;
+}
+
+#btn_plegar{
+    display: none;
+    position: absolute;
+    top: 40%;
+    z-index: -2;
+    left: 92%;
+    height: 55px;
+}
+
+.sidebar1 {
+    background: #F17153;
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#008868, #01a982);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#008868, #01a982);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#008868, #01a982);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#008868, #01a982);
+    /* Standard syntax */
+    padding: 0px;
+    min-height: 100%;
+}
+
+.sombra_sidebar{
+    -webkit-box-shadow: 9px 2px 8px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 9px 2px 8px -4px rgba(0,0,0,0.75);
+    box-shadow: 9px 2px 8px -4px rgba(0,0,0,0.75);
+}
+/*.logo {
+max-height: 130px;
+}
+.logo>img {
+margin-top: 30px;
+padding: 3px;
+border: 3px solid white;
+border-radius: 100%;
+}*/
+.list {
+    color: #fff;
+    list-style: none;
+    padding-left: 0px;
+}
+
+.list> li, h5 {
+    padding: 5px 0px 5px 40px;
+    cursor: pointer;
+}
+.list>li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-left: 5px solid white;
+    color: white;
+    padding-left: 35px;
+}
+
+.log-out{
+    color: white;
+    text-decoration: none;
+}
+
+.log-out:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.main-content{
+    text-align:center;
+}
+
+/*-------------IMATGE PERFIL-----------------------*/
+.profile-header-container{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.profile-header-img {
+    padding: 54px;
+    padding-bottom: 20px;
+}
+
+.profile-header-img > img.img-circle {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #51D2B7;
+}
+
+.profile-header {
+    margin-top: 43px;
+}
+
+
