@@ -31,22 +31,22 @@ Preloader.prototype = {
         //this.load.audio('m1', '/audio/1.mp3');
         this.load.image('mapa', '../images/mapa_buit.png');
     
-        this.load.spritesheet('bar1', '../images/bar1.png', 608, 535, 10);
-        this.load.spritesheet('bar2', '../images/bar2.png', 600, 595, 10);
-        this.load.spritesheet('bar3', '../images/bar3.png', 725, 564, 10);
-        this.load.spritesheet('clan1', '../images/clan1.png', 653, 605, 14);
-        this.load.spritesheet('clan2', '../images/clan2.png', 722, 595, 14);
-        this.load.spritesheet('clan3', '../images/clan3.png', 735, 602, 14);
-        this.load.spritesheet('hotel1', '../images/hotel1.png', 1786, 989, 6);
-        this.load.spritesheet('laboratori1', '../images/laboratori1.png', 683, 760, 23);
+        this.load.spritesheet('bar1', '../images/bar1.png', 182.4, 160.5, 10);
+        this.load.spritesheet('bar2', '../images/bar2.png', 180, 178.5, 10);
+        this.load.spritesheet('bar3', '../images/bar3.png', 217.5, 169.2, 10);
+        this.load.spritesheet('clan1', '../images/clan1.png', 195.9, 181.5, 14);
+        this.load.spritesheet('clan2', '../images/clan2.png', 216.6, 178.5, 14);
+        this.load.spritesheet('clan3', '../images/clan3.png', 220.5, 180.6, 14);
+        this.load.spritesheet('hotel1', '../images/hotel1.png', 535.666666, 296.5, 6);
+        this.load.spritesheet('laboratori1', '../images/laboratori1.png', 204.9, 228, 23);
         this.load.image('magatzem1', '../images/magatzem1.png');
         this.load.image('cuartel1', '../images/cuartel1.png');
         this.load.image('habitats1', '../images/habitats1.png');
-        this.load.spritesheet('energia1', '../images/energia1.png', 601, 864, 11);
-        this.load.spritesheet('port1', '../images/port1.png', 1595, 1461, 13);
-        this.load.spritesheet('trade1', '../images/trade1.png', 1190, 717, 83);
-        this.load.spritesheet('seguretat1', '../images/seguretat1.png', 1004, 714, 8);
-        this.load.spritesheet('sintetizador1', '../images/sintetizador1.png', 1265, 1385, 12);
+        this.load.spritesheet('energia1', '../images/energia1.png', 180.25, 259.333333, 11);
+        this.load.spritesheet('port1', '../images/port1.png', 478.5, 438.3, 13);
+        this.load.spritesheet('trade1', '../images/trade1.png', 357, 215.1, 83);
+        this.load.spritesheet('seguretat1', '../images/seguretat1.png', 301.2, 214.2, 8);
+        this.load.spritesheet('sintetizador1', '../images/sintetizador1.png', 379.5, 415.5, 12);
         
         // La siguiente función se ejecuta una vez se dispara el evento del loader de Phaser de que
         // se ha finalizado la carga de todos los assets
