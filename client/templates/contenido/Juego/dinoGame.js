@@ -56,8 +56,9 @@ Template.dinoGame.events({
             //EdificiUp = Edifici.find({});
             if(EdificiUp != null){
             console.log(Edifici.key);
-            Meteor.call('update_part', Edifici._id,EdificiUp._id);
-                    
+            //Meteor.call('update_part', EdificiUp.tiempoConstruccion,EdificiUp,Edifici._id,phaserEdifici,game);
+
+
             phaserEdifici.destroy();
             game.state.restart();
             //EdificiUp.key = game.add.sprite(EdificiUp.posicionX,EdificiUp.posicionY,EdificiUp.key);
