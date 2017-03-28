@@ -55,6 +55,34 @@ Juego.prototype = {
     afegirPropietatsSprite(hotel1);
     afegirPropietatsSprite(laboratori1);*/ 
 
+    /*energia1 = this.add.sprite(750,50,'energia1');
+    energia1.scale.setTo(0.25,0.25);
+    afegirPropietatsSprite(energia1);
+
+    port1 = this.add.sprite(730,430,'port1');
+    port1.scale.setTo(0.20,0.20);
+    afegirPropietatsSprite(port1);
+
+    trade1 = this.add.sprite(1050,450,'trade1');
+    trade1.scale.setTo(0.20,0.20);
+    afegirPropietatsSprite(trade1);
+
+    seguretat1 = this.add.sprite(920,340,'seguretat1');
+    seguretat1.scale.setTo(0.20,0.20);
+    afegirPropietatsSprite(seguretat1);
+
+    sintetizador1 = this.add.sprite(1000,160,'sintetizador1');
+    sintetizador1.scale.setTo(0.15,0.15);
+    afegirPropietatsSprite(sintetizador1);
+
+    cuartel1 = this.add.sprite(450,80,'cuartel1');
+    cuartel1.scale.setTo(0.20,0.20);
+    afegirPropietatsSprite(cuartel1);
+
+    habitats1 = this.add.sprite(430,330,'habitats1');
+    habitats1.scale.setTo(0.15,0.15);
+    afegirPropietatsSprite(habitats1);*/
+
     },
     
 
