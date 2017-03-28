@@ -49,16 +49,72 @@
 <img src="images/ui/sound.png" id="btn-sound">
 
 <!-- Recursos -->
-<div id="recursos">
-    <img src="images/ui/recurs2.png" class="recurs" data-target="#pop_tienda" data-toggle="modal">
-    <img src="images/ui/recurs2.png" class="recurs" data-target="#pop_tienda" data-toggle="modal">
-    <img src="images/ui/recurs3.png" class="recurs" data-target="#pop_tienda" data-toggle="modal">
-</div>
+       
+      
+       {{#each partida}}
+        
+<div id="divRecursos">
+           <!--dinero-->
+            <div class="boton">
+            <div class="row">
+                <img class="recurso-img" src="images/coin.png">
+                <img class="recurso-plus" src="images/plus.png">
+            <div class="container-recurso">
+                <p class="dinobuton-text">{{dinero}}</p>
+            </div>
+        </div>
+        </div>
+        
+        <!--energia-->
+    
+        <div class="boton">
+            <div class="row">
+                <img class="recurso-img" src="images/coin.png">
+                <img class="recurso-plus" src="images/plus.png">
+            <div class="container-recurso">
+                <p class="dinobuton-text">{{energia}}</p>
+            </div>
+        </div>
+        </div>
 
-<!-- Usari -->
-<div id="user">
-    <img src="images/ui/user.png">
+        <!--suministros-->
+        
+        <div class="boton">
+            <div class="row">
+                <img class="recurso-img" src="images/coin.png">
+                <img class="recurso-plus" src="images/plus.png">
+            <div class="container-recurso">
+                <p class="dinobuton-text">{{suministros}}</p>
+            </div>
+        </div>
+        </div>
+        
+        <!--visitantes-->
+        
+        <div class="boton">
+            <div class="row">
+                <img class="recurso-img" src="images/coin.png">
+                <img class="recurso-plus" src="images/plus.png">
+            <div class="container-recurso">
+                <p class="dinobuton-text">{{visitantes}}</p>
+            </div>
+        </div>
+        </div>
+
 </div>
+{{/each}}
+<!-- Usari -->
+   <div id="divUsuario">
+           <div class="boton">
+        <div class="row">
+            <img class="recurso-img" src="images/user-profile.png">
+            <div class="container-username">
+                <p class="dinobuton-text">{{currentUser.username}}</p>
+            </div>
+        </div>
+    </div>
+   </div>
+
  
 
 <!-- POP EXPEDICIONES -->
