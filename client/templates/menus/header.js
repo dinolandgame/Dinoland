@@ -25,6 +25,7 @@ Template.header.events({
         
         /*$('body').css({"overflow": "hidden"});*/
 		Router.go('game');
+    
     //location.reload();
 		}
 

@@ -26,6 +26,7 @@ Template.dinoGame.events({
 			Router.go('/');
             /*$('canvas').remove();
             $('body').css("overflow","auto");*/
+        location.reload();
 	},
 
     "click #user":function(event,template){
@@ -58,8 +59,10 @@ Template.dinoGame.events({
             Meteor.call('update_part', Edifici._id,EdificiUp._id);
                     
             phaserEdifici.destroy();
-            EdificiUp.key = game.add.sprite(EdificiUp.posicionX,EdificiUp.posicionY,EdificiUp.key);
-            EdificiUp.key.scale.setTo(EdificiUp.escalaX,EdificiUp.escalaY);
+            game.state.restart();
+            //EdificiUp.key = game.add.sprite(EdificiUp.posicionX,EdificiUp.posicionY,EdificiUp.key);
+            //EdificiUp.key.scale.setTo(EdificiUp.escalaX,EdificiUp.escalaY);
+            
                 
                 alert("se ha subido de nivel");
             
