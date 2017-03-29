@@ -77,3 +77,11 @@ Template.dinoGame.events({
         
  }); 
 
+    Template.dinoGame.helpers({
+		partida: function(){
+			return Partida.find({});
+		}, 
+        usuario: function(){
+            
+        }
+    });
