@@ -15,7 +15,7 @@ Juego.prototype = {
         var mi_partida = Partida.find({_id:user}).fetch();//obtengo un array de las partida del usuario siempre sera 1 por user
         var edificios = Edificio.find().fetch(); //obtengo un array con todos los edificios
         
-/*
+
         edificios.forEach(function(edif){//recorremos la coleccion Edifcios 
             
             //console.log("Title of post " + edif._id); 
@@ -36,7 +36,7 @@ Juego.prototype = {
             });            
         });
         
-      */  
+    /*
     clan1 = this.add.sprite(200,430,'clan1');
     bar1 = this.add.sprite(330,490,'bar1');
     magatzem1 = this.add.image(670,270,'magatzem1');
@@ -81,7 +81,7 @@ Juego.prototype = {
 
     habitats1 = this.add.sprite(430,330,'habitats1');
     habitats1.scale.setTo(0.50,0.50);
-    afegirPropietatsSprite(habitats1);
+    afegirPropietatsSprite(habitats1);*/
 
     },
     
