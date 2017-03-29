@@ -36,51 +36,51 @@ Juego.prototype = {
             });            
         });
         
-        
-    /*clan1 = this.add.sprite(200,430,'clan1');
+    /*
+    clan1 = this.add.sprite(200,430,'clan1');
     bar1 = this.add.sprite(330,490,'bar1');
     magatzem1 = this.add.image(670,270,'magatzem1');
     hotel1 = this.add.image(170,270,'hotel1');
-    laboratori1 = this.add.image(1000,270,'laboratori1');
+    laboratori1 = this.add.image(800,150,'laboratori1');
     
-    bar1.scale.setTo(0.20,0.20);
-    clan1.scale.setTo(0.20,0.20);
-    magatzem1.scale.setTo(0.15,0.15);
-    hotel1.scale.setTo(0.15,0.15);
-    laboratori1.scale.setTo(0.15,0.15); 
+    bar1.scale.setTo(0.60,0.60);
+    clan1.scale.setTo(0.60,0.60);
+    magatzem1.scale.setTo(0.50,0.50);
+    hotel1.scale.setTo(0.50,0.50);
+    laboratori1.scale.setTo(0.70,0.70); 
     
     afegirPropietatsSprite(bar1);
     afegirPropietatsSprite(clan1);
-    afegirPropietatsImatge(magatzem1);
+    afegirPropietatsSprite(magatzem1);
     afegirPropietatsSprite(hotel1);
-    afegirPropietatsSprite(laboratori1);*/ 
+    afegirPropietatsSprite(laboratori1);
 
-    /*energia1 = this.add.sprite(750,50,'energia1');
-    energia1.scale.setTo(0.25,0.25);
+    energia1 = this.add.sprite(750,50,'energia1');
+    energia1.scale.setTo(0.60,0.60);
     afegirPropietatsSprite(energia1);
 
     port1 = this.add.sprite(730,430,'port1');
-    port1.scale.setTo(0.20,0.20);
+    port1.scale.setTo(0.60,0.60);
     afegirPropietatsSprite(port1);
 
     trade1 = this.add.sprite(1050,450,'trade1');
-    trade1.scale.setTo(0.20,0.20);
+    trade1.scale.setTo(0.60,0.60);
     afegirPropietatsSprite(trade1);
 
     seguretat1 = this.add.sprite(920,340,'seguretat1');
-    seguretat1.scale.setTo(0.20,0.20);
+    seguretat1.scale.setTo(0.60,0.60);
     afegirPropietatsSprite(seguretat1);
 
     sintetizador1 = this.add.sprite(1000,160,'sintetizador1');
-    sintetizador1.scale.setTo(0.15,0.15);
+    sintetizador1.scale.setTo(0.50,0.50);
     afegirPropietatsSprite(sintetizador1);
 
     cuartel1 = this.add.sprite(450,80,'cuartel1');
-    cuartel1.scale.setTo(0.20,0.20);
+    cuartel1.scale.setTo(0.60,0.60);
     afegirPropietatsSprite(cuartel1);
 
     habitats1 = this.add.sprite(430,330,'habitats1');
-    habitats1.scale.setTo(0.15,0.15);
+    habitats1.scale.setTo(0.50,0.50);
     afegirPropietatsSprite(habitats1);*/
 
     },

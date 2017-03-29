@@ -12,12 +12,10 @@ Inicializador.prototype = {
         this.scale.pageAlignVertically = true;
     },
    preload: function() {
-       this.load.image('preloadbar', '../images/spinner.gif');
-       this.load.image('fondo', '../images/island_gif.gif');
+       this.load.spritesheet('island_preloader', '../images/island_preloader.png', 500, 500, 121);
    },
   create: function(){
-       this.stage.backgroundColor = '#00b0be';
-       
+       this.stage.backgroundColor = '#00b0be';    
   },
   update: function(){
       this.state.start('Preloader');
