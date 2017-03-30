@@ -50,21 +50,7 @@ if(Meteor.isClient){
 					
 					
 
-			}/*,
-        "onload body":function(event,template){
-            game = new Phaser.Game(1400, 800, Phaser.CANVAS, 'dinosaur');
-        }/*,
-
-		"click a.ejemplo":function(event, template){
-			event.preventDefault();
-
-			edificiSelec = $('.ejemplo').data('edificio');
-			alert("hola" + edificiSelec);
-			Session.set("sesionKey",edificiSelec);
-			alert("hola" + edificiSelec);
-			
-		}*/
-
+			}
 
 
 	});

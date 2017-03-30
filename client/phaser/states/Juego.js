@@ -35,7 +35,15 @@ Juego.prototype = {
                 }                                    
             });            
         });
-        
+        const cursor = Partida.find({_id:user});
+        const cambiar_nivel = cursor.observeChanges({
+            changed(id,fields){
+                console.log(fields);
+                if(fields.hasOwnProperty('edificio')){
+                    game.state.restart();
+                }
+            }
+        });
         
     /*clan1 = this.add.sprite(200,430,'clan1');
     bar1 = this.add.sprite(330,490,'bar1');
@@ -131,6 +139,11 @@ function clicar(edifici){
     $('#nom_edifici').text(quinedifici); 
     //obtenerDatos(quinedifici);  
     
+}
+
+function destruir(){
+    phaserEdifici.destroy();  
+    game.state.restart();
 }
 
 

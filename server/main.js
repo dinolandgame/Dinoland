@@ -36,59 +36,75 @@ Meteor.methods({
 
     Partida.update({_id:user},{ $inc:{dinero:1}});
   },
- update_part(obj1,obj2){
+ /*update_part(obj1,obj2){
       user= Meteor.userId();
       Partida.update({ _id:user, edificio: obj1 } , { $set: { "edificio.$" : obj2 } } );
 
-  }/*,
-    update(){
-    console.log("subir nivel");
-            //console.log(this);
-            Edifici = Edificio.find({nom:this.nom,}).fetch();//busco los edicios; falta saber que edificio es el seleccionado
+  },*/
+ update_part(quinedifici){
+    Edifici = Edificio.findOne({key:quinedifici});//busco los edicios; falta saber que edificio es el seleccionado
             
-            EdificiUp = Edificio.find({nom:Edifici.nom,nivel:(Edifici.nivel+1)}).fetch();
-            console.log(Edifici.key);
-            //EdificiUp = Edifici.find({});
-            if(EdificiUp != null){
-                
-            Meteor.call('update_part', Edifici._id,EdificiUp._id);
-                    
-            Edifici.key.destroy();
-            EdificiUp.key = game.add.sprite(EdificiUp.posicionX,EdificiUp.posicionY,EdificiUp.key);
-            EdificiUp.key.scale.setTo(EdificiUp.escalaX,EdificiUp.escalaY);
-                
-                alert("se ha subido de nivel");
+    EdificiUp = Edificio.findOne({nom:Edifici.nom,nivel:(Edifici.nivel+1)});
+   
+    user = Meteor.userId();
+    var data = new Date();
+    data.setSeconds(data.getSeconds()+Edifici.tiempoConstruccion);
+      
+      //console.log("id_usuari: "+ user +", edifici: "+ edifici._id);
+      //console.log("eldifi que obtindra el objecte partida: NOm: "+ EdificiUp.nom + ",nivel: "+ EdificiUp.nivel);
+
+      //console.log("user: " + user + ", edifici ac: "+ edifici.id + ", "+  EdificiUp.id);
+
+    if(EdificiUp != null){
+        //console.log(EdificiUp);
+    SyncedCron.start();
+
+    SyncedCron.add({
+        name: user +"_"+EdificiUp.nom+"_"+EdificiUp.nivel,
+        schedule: function(parser) {
+        
+            console.log("ha entrat a la data");
+            console.log(parser.recur().on(data).fullDate());
+    
+        return parser.recur().on(data).fullDate();
+        },
+        
+        job: function() {
+            console.log("ha entrat en el job");
+        
+
+            Partida.update(
+               { _id:user, edificio: Edifici._id },
+               { $set: { "edificio.$" : EdificiUp._id } }
+            );
             
-            }else{
-                console.log("aquet edifici ja esta en el seu maxim nivell");
-            }
-    }/*,
-    creando_casas(){
-        user= Meteor.userId();     
+            /*Partida.update(
+               { _id:"zC27EwRQnrHgcuZz8", edificio: 1 },
+               { $set: { "edificio.$" : 2} }
+            );*/
 
-            var mi_partida = Partida.find({_id:user}).fetch();//obtengo un array de las partida del usuario siempre sera 1 por user
-            var edificios = Edificio.find().fetch(); //obtengo un array con todos los edificios
+            console.log("edifici modificat");
+           
+            
+        }  
+          
+    });
+    }
+    else{
+        
+        console.log("aquet edifici ja esta en el seu maxim nivell");
+            
+    }
+        //SyncedCron.remove(user+"_"+EdificiUp.nom+"_"+EdificiUp.nivel);
+        //return user+"_"+EdificiUp.nom+"_"+EdificiUp.nivel;
+      // result = true; 
 
+        //phaserEdifici.destroy();
+        //game.state.restart();
+     
 
-            edificios.forEach(function(edif){//recorremos la coleccion Edifcios 
+  }
 
-                //console.log("Title of post " + edif._id); 
-                mi_partida.forEach(function (partida) {//recorremos la coleccion Partida buscada por id del usuari
-
-                misedificiosEnPartida = partida.edificio;//se crea un array con los id de edificios
-                    for(var i= 0; i<=misedificiosEnPartida.length; i++){//bucle para los edificios en array de partida
-                        if(edif._id==misedificiosEnPartida[i]){//si coincide con los edificios del array de partida
-                            console.log("Title of post " + edif.key);
-
-                        //añadimos el objeto de phaser  con su posicion y su scala tambien sus propiedades  
-                        edif.key = game.add.sprite(edif.posicionX,edif.posicionY,edif.key); 
-                        edif.key.scale.setTo(edif.escalaX,edif.escalaY);
-                        afegirPropietatsSprite(edif.key);
-                        }   
-                    }                                    
-                });            
-            });
-    }*/
   
 
 });
