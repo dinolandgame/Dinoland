@@ -48,7 +48,7 @@ Template.dinoGame.events({
         
             console.log("subir nivel");
             
-
+            Edifici = Edificio.findOne({key:quinedifici});//busco los edicios; el edificio seleccionado es quinedifici
             
             Meteor.call('update_part',Edifici.key);        
                 
@@ -66,11 +66,10 @@ Template.dinoGame.events({
         
  }); 
 
-    Template.dinoGame.helpers({
-		partida: function(){
-			return Partida.find({});
-		}, 
-        usuario: function(){
-            
-        }
-    });
+Template.dinoGame.helpers({
+    partida:function(){
+        return Partida.find({});
+        
+    }
+})
+
