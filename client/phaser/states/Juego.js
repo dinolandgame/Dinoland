@@ -141,12 +141,6 @@ function clicar(edifici){
     
 }
 
-function destruir(){
-    phaserEdifici.destroy();  
-    game.state.restart();
-}
-
-
 var o_mcamera;
 
 function update() {
