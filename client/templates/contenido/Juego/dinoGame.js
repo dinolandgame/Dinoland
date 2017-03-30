@@ -58,8 +58,8 @@ Template.dinoGame.events({
             console.log(Edifici.key);
             Meteor.call('update_part', Edifici._id,EdificiUp._id);
                     
-            phaserEdifici.destroy();
-            game.state.restart();
+            //phaserEdifici.destroy();
+            //game.state.restart();
             //EdificiUp.key = game.add.sprite(EdificiUp.posicionX,EdificiUp.posicionY,EdificiUp.key);
             //EdificiUp.key.scale.setTo(EdificiUp.escalaX,EdificiUp.escalaY);
             
