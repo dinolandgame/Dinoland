@@ -45,35 +45,24 @@ Template.dinoGame.events({
 
     "click #subirlvl": function(event,template){
             event.preventDefault();
-            //Meteor.call('update');//marca error des de server error [500]
         
-        console.log("subir nivel");
-            //console.log(this);
-            Edifici = Edificio.findOne({key:quinedifici});//busco los edicios; falta saber que edificio es el seleccionado
+            console.log("subir nivel");
             
-            EdificiUp = Edificio.findOne({nom:Edifici.nom,nivel:(Edifici.nivel+1)});
+
             
-            //EdificiUp = Edifici.find({});
-            if(EdificiUp != null){
-            console.log(Edifici.key);
-            Meteor.call('update_part', Edifici._id,EdificiUp._id);
-                    
-            //phaserEdifici.destroy();
-            //game.state.restart();
-            //EdificiUp.key = game.add.sprite(EdificiUp.posicionX,EdificiUp.posicionY,EdificiUp.key);
-            //EdificiUp.key.scale.setTo(EdificiUp.escalaX,EdificiUp.escalaY);
-            
+            Meteor.call('update_part',Edifici.key);        
                 
-                alert("se ha subido de nivel");
-            
-            }else{
-                console.log("aquet edifici ja esta en el seu maxim nivell");
-            }
+            alert("se ha subido de nivel");
 
             $('.modal').modal('hide');
-           
+                    
            
         },
+     "click #mejorar": function(event,template){
+         
+            phaserEdifici.destroy();
+            game.state.restart();
+          }
         
  }); 
 

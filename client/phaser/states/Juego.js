@@ -35,6 +35,19 @@ Juego.prototype = {
                 }                                    
             });            
         });
+
+        const cursor = Partida.find({_id:user});
+        const cambiar_nivel = cursor.observeChanges({
+            changed(id,fields){
+                console.log(fields);
+                if(fields.hasOwnProperty('edificio')){
+                    game.state.restart();
+                }
+            }
+        });
+        
+    /*clan1 = this.add.sprite(200,430,'clan1');
+=======
         const cursor =Partida.find({_id:user});
         const cambiar_nivel=cursor.observeChanges({
             changed(id,fields){
@@ -44,7 +57,7 @@ Juego.prototype = {
         }                                  
     }});
     /*
-    clan1 = this.add.sprite(200,430,'clan1');
+    clan1 = this.add.sprite(200,430,'clan1
     bar1 = this.add.sprite(330,490,'bar1');
     magatzem1 = this.add.image(670,270,'magatzem1');
     hotel1 = this.add.image(170,270,'hotel1');
@@ -139,7 +152,6 @@ function clicar(edifici){
     //obtenerDatos(quinedifici);  
     
 }
-
 
 var o_mcamera;
 
