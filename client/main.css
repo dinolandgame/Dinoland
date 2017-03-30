@@ -431,4 +431,83 @@ border-radius: 100%;
     margin-top: 43px;
 }
 
+/*******************Recursos e icono de perfil de usuario***********************/
 
+@font-face { font-family: Skranji; src: url('../fonts/Skranji-Bold.ttf'); } 
+
+.boton{
+    background-image: -moz-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    padding-top: 7px;
+    width: 212px;
+    height: 49px;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    -moz-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    margin-top: 20px;
+    margin-left: 50px;
+
+   
+}
+#divRecursos{
+    position:absolute;
+    left:75%;
+}
+
+#divUsuario{
+    position:absolute;
+    right:80%;
+}
+
+.dinobuton-text {
+    font-size: 25px;
+    font-family: "Skranji";
+    color: rgb( 255, 255, 255 );
+    font-weight: bold;
+    text-shadow: 1px 2px 3px rgb( 0, 0, 0 )
+
+}
+
+.container-recurso{
+    display: block;
+    margin-left: 62px;
+    background-image: -moz-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
+    border-radius: 10px;
+    width: 116px;
+    height: 35px;
+}
+
+.container-username{
+    text-align: center;
+    display: block;
+    margin-left: 62px;
+    background-image: -moz-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
+    border-radius: 10px;
+    width: 153px;
+    height: 35px;
+}
+
+.recurso-plus{
+   display: block;
+    position: relative;
+    left: 54%;
+    float: left;
+}
+
+.recurso-plus:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.recurso-img{
+    float: left;
+    margin-top: -17px;
+    margin-left: -10px;
+}
+/***********************************************************************/
