@@ -51,7 +51,23 @@ Template.dinoGame.events({
             Edifici = Edificio.findOne({key:quinedifici});//busco los edicios; falta saber que edificio es el seleccionado
             EdificiUp = Edificio.findOne({nom:Edifici.nom,nivel:(Edifici.nivel+1)});
             
+<<<<<<< HEAD
             Meteor.call('update_part',Edifici.key);        
+=======
+            //EdificiUp = Edifici.find({});
+            if(EdificiUp != null){
+            console.log(Edifici.key);
+            //Meteor.call('update_part', EdificiUp.tiempoConstruccion,EdificiUp,Edifici._id,phaserEdifici,game);
+
+
+            phaserEdifici.destroy();
+            game.state.restart();
+            //EdificiUp.key = game.add.sprite(EdificiUp.posicionX,EdificiUp.posicionY,EdificiUp.key);
+            //EdificiUp.key.scale.setTo(EdificiUp.escalaX,EdificiUp.escalaY);
+            
+                
+                alert("se ha subido de nivel");
+>>>>>>> origin/Dinoland-12
             
             //phaserEdifici.destroy();
             //game.state.restart();

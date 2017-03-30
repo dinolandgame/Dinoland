@@ -36,9 +36,68 @@ Meteor.methods({
 
     Partida.update({_id:user},{ $inc:{dinero:1}});
   },
+<<<<<<< HEAD
  /*update_part(obj1,obj2){
       user= Meteor.userId();
       Partida.update({ _id:user, edificio: obj1 } , { $set: { "edificio.$" : obj2 } } );
+=======
+ update_part(tiempo, EdificiUp, edificiid,phaserEdifici,game){
+      var result = false;
+      user = Meteor.userId();
+      var data = new Date();
+      data.setSeconds(data.getSeconds()+tiempo);
+      //console.log(data.toString());
+      //EdificiUp = Edificio.findOne({nom:edifici.nom,nivel:(edifici.nivel+1)});
+      //console.log("id_usuari: "+ user +", edifici: "+ edifici._id);
+      //console.log("eldifi que obtindra el objecte partida: NOm: "+ EdificiUp.nom + ",nivel: "+ EdificiUp.nivel);
+
+      //console.log("user: " + user + ", edifici ac: "+ edifici.id + ", "+  EdificiUp.id);
+
+
+      SyncedCron.start();
+
+      SyncedCron.add({
+      name: user +"_"+EdificiUp.nom+"_"+EdificiUp.nivel,
+      schedule: function(parser) {
+        
+        console.log("ha entrat a la data");
+        console.log(parser.recur().on(data).fullDate());
+        return parser.recur().on(data).fullDate();
+      },
+      job: function() {
+        console.log("ha entrat en el job");
+        if(EdificiUp != null){
+        //console.log(EdificiUp);
+
+        Partida.update(
+           { _id:user, edificio: edificiid },
+           { $set: { "edificio.$" : EdificiUp._id } }
+        );
+
+        /*Partida.update(
+           { _id:"zC27EwRQnrHgcuZz8", edificio: 1 },
+           { $set: { "edificio.$" : 3} }
+        );*/
+
+        console.log("edifici modificat");
+        //Meteor.call('update_part', this._id,EdificiUp._id);
+        //console.log(this._id+" -- "+ EdificiUp._id);
+        }else{
+          console.log("auet edifici ja esta en el seu maxim nivell");
+        }
+        //SyncedCron.remove(user+"_"+EdificiUp.nom+"_"+EdificiUp.nivel);
+        //return user+"_"+EdificiUp.nom+"_"+EdificiUp.nivel;
+      // result = true; 
+
+        //phaserEdifici.destroy();
+        //game.state.restart();
+      }
+      });
+   
+    //return result;
+
+
+>>>>>>> origin/Dinoland-12
 
   },*/
  update_part(quinedifici){
@@ -133,7 +192,20 @@ Accounts.emailTemplates.verifyEmail = {
   }
 };
 
+SyncedCron.start();
 
+    /*SyncedCron.add({
+        name: 'Run in 20 seconds only once',
+        schedule: function(parser) {
+            // parser is a later.parse object
+            return parser.text('every 1 seconds');
+        },
+        job: function() {
+            // do something important here
+            console.log("aixo es un missatge de mostra");
+            //SyncedCron.remove('Run in 20 seconds only once');
+        }
+    });*/
 
 });
 
