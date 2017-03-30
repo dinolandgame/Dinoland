@@ -36,71 +36,106 @@ Meteor.methods({
 
     Partida.update({_id:user},{ $inc:{dinero:1}});
   },
- 
-  update_part(quinedifici){
-    Edifici = Edificio.findOne({key:quinedifici});//busco los edicios; falta saber que edificio es el seleccionado
-            
-    EdificiUp = Edificio.findOne({nom:Edifici.nom,nivel:(Edifici.nivel+1)});
-   
-    user = Meteor.userId();
-    var data = new Date();
-    data.setSeconds(data.getSeconds()+Edifici.tiempoConstruccion);
-      
+ update_part(tiempo,EdificiUp,edificiid){
+     // user= Meteor.userId();
+      //Partida.update({ _id:user, edificio: obj1 } , { $set: { "edificio.$" : obj2 } } );
+
+      var result = false;
+      user = Meteor.userId();
+      var data = new Date();
+      data.setSeconds(data.getSeconds()+tiempo);
+      //console.log(data.toString());
+      //EdificiUp = Edificio.findOne({nom:edifici.nom,nivel:(edifici.nivel+1)});
       //console.log("id_usuari: "+ user +", edifici: "+ edifici._id);
       //console.log("eldifi que obtindra el objecte partida: NOm: "+ EdificiUp.nom + ",nivel: "+ EdificiUp.nivel);
 
       //console.log("user: " + user + ", edifici ac: "+ edifici.id + ", "+  EdificiUp.id);
 
-    if(EdificiUp != null){
-        //console.log(EdificiUp);
-    SyncedCron.start();
 
-    SyncedCron.add({
-        name: user +"_"+EdificiUp.nom+"_"+EdificiUp.nivel,
-        schedule: function(parser) {
+      SyncedCron.start();
+
+      SyncedCron.add({
+      name: user +"_"+EdificiUp.nom+"_"+EdificiUp.nivel,
+      schedule: function(parser) {
         
-            console.log("ha entrat a la data");
-            console.log(parser.recur().on(data).fullDate());
-    
+        console.log("ha entrat a la data");
+        console.log(parser.recur().on(data).fullDate());
         return parser.recur().on(data).fullDate();
-        },
-        
-        job: function() {
-            console.log("ha entrat en el job");
-        
+      },
+      job: function() {
+        console.log("ha entrat en el job");
+        if(EdificiUp != null){
+        Partida.update(
+           { _id:user, edificio: edificiid },
+           { $set: { "edificio.$" : EdificiUp._id } }
+        );
 
-            Partida.update(
-               { _id:user, edificio: Edifici._id },
-               { $set: { "edificio.$" : EdificiUp._id } }
-            );
-            
-            /*Partida.update(
-               { _id:"zC27EwRQnrHgcuZz8", edificio: 1 },
-               { $set: { "edificio.$" : 2} }
-            );*/
-
-            console.log("edifici modificat");
-           
-            
-        }  
-          
-    });
-    }
-    else{
-        
-        console.log("aquet edifici ja esta en el seu maxim nivell");
-            
-    }
+        console.log("edifici modificat");
+        //Meteor.call('update_part', this._id,EdificiUp._id);
+        //console.log(this._id+" -- "+ EdificiUp._id);
+        }else{
+          console.log("auet edifici ja esta en el seu maxim nivell");
+        }
         //SyncedCron.remove(user+"_"+EdificiUp.nom+"_"+EdificiUp.nivel);
         //return user+"_"+EdificiUp.nom+"_"+EdificiUp.nivel;
       // result = true; 
 
         //phaserEdifici.destroy();
         //game.state.restart();
-     
+      }
+      });
+   
+    //return result;
 
-  }
+  }/*,
+    update(){
+    console.log("subir nivel");
+            //console.log(this);
+            Edifici = Edificio.find({nom:this.nom,}).fetch();//busco los edicios; falta saber que edificio es el seleccionado
+            
+            EdificiUp = Edificio.find({nom:Edifici.nom,nivel:(Edifici.nivel+1)}).fetch();
+            console.log(Edifici.key);
+            //EdificiUp = Edifici.find({});
+            if(EdificiUp != null){
+                
+            Meteor.call('update_part', Edifici._id,EdificiUp._id);
+                    
+            Edifici.key.destroy();
+            EdificiUp.key = game.add.sprite(EdificiUp.posicionX,EdificiUp.posicionY,EdificiUp.key);
+            EdificiUp.key.scale.setTo(EdificiUp.escalaX,EdificiUp.escalaY);
+                
+                alert("se ha subido de nivel");
+            
+            }else{
+                console.log("aquet edifici ja esta en el seu maxim nivell");
+            }
+    }/*,
+    creando_casas(){
+        user= Meteor.userId();     
 
+            var mi_partida = Partida.find({_id:user}).fetch();//obtengo un array de las partida del usuario siempre sera 1 por user
+            var edificios = Edificio.find().fetch(); //obtengo un array con todos los edificios
+
+
+            edificios.forEach(function(edif){//recorremos la coleccion Edifcios 
+
+                //console.log("Title of post " + edif._id); 
+                mi_partida.forEach(function (partida) {//recorremos la coleccion Partida buscada por id del usuari
+
+                misedificiosEnPartida = partida.edificio;//se crea un array con los id de edificios
+                    for(var i= 0; i<=misedificiosEnPartida.length; i++){//bucle para los edificios en array de partida
+                        if(edif._id==misedificiosEnPartida[i]){//si coincide con los edificios del array de partida
+                            console.log("Title of post " + edif.key);
+
+                        //añadimos el objeto de phaser  con su posicion y su scala tambien sus propiedades  
+                        edif.key = game.add.sprite(edif.posicionX,edif.posicionY,edif.key); 
+                        edif.key.scale.setTo(edif.escalaX,edif.escalaY);
+                        afegirPropietatsSprite(edif.key);
+                        }   
+                    }                                    
+                });            
+            });
+    }*/
   
 
 });
@@ -129,20 +164,7 @@ Accounts.emailTemplates.verifyEmail = {
   }
 };
 
-SyncedCron.start();
 
-    /*SyncedCron.add({
-        name: 'Run in 20 seconds only once',
-        schedule: function(parser) {
-            // parser is a later.parse object
-            return parser.text('every 1 seconds');
-        },
-        job: function() {
-            // do something important here
-            console.log("aixo es un missatge de mostra");
-            //SyncedCron.remove('Run in 20 seconds only once');
-        }
-    });*/
 
 });
 
