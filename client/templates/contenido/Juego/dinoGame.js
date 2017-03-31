@@ -1,3 +1,5 @@
+//Eventos
+
 Template.dinoGame.events({
 
     "click #btn_desplegar":function(event,template){
@@ -66,10 +68,22 @@ Template.dinoGame.events({
         
  }); 
 
+//Helpers
 Template.dinoGame.helpers({
     partida:function(){
         return Partida.find({});
         
+    },
+    edificios: function(){
+         var variable=Session.get('key');
+       //console.log("Edificio:" + quinedifici);
+       console.log("variable:" + variable);
+        return Edificio.find({key: variable});
     }
-})
+});
+
+
+
+
+
 
