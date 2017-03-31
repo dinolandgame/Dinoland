@@ -1,5 +1,6 @@
 Preloader = function(game){
     this.ready = false;
+
     var text;
     var fondo;
 };
@@ -42,12 +43,13 @@ Preloader.prototype = {
     loadComplete: function(){
         // Se acabaron de cargar todos los recursos/ assets del juego
        this.ready = true;
+
     },
     update: function(){
         // Si en algún momento el loader acabó su trabajo, ya puede empezar el juego
         if(this.ready === true) 
         {
-            this.time.events.add(Phaser.Timer.SECOND * 4, empezar, this);              
+            this.time.events.add(Phaser.Timer.SECOND * 3, empezar, this);              
         } 
     },
     
