@@ -37,21 +37,19 @@ Meteor.methods({
     Partida.update({_id:user},{ $inc:{dinero:1}});
   },
  
-  update_part(quinedifici){
-    Edifici = Edificio.findOne({key:quinedifici});//busco los edicios; falta saber que edificio es el seleccionado
-            
-    EdificiUp = Edificio.findOne({nom:Edifici.nom,nivel:(Edifici.nivel+1)});
+  update_part(EdificiUp,Edifici){
+    
    
     user = Meteor.userId();
     var data = new Date();
-    data.setSeconds(data.getSeconds()+Edifici.tiempoConstruccion);
+    data.setSeconds(data.getSeconds()+EdificiUp.tiempoConstruccion);
       
       //console.log("id_usuari: "+ user +", edifici: "+ edifici._id);
       //console.log("eldifi que obtindra el objecte partida: NOm: "+ EdificiUp.nom + ",nivel: "+ EdificiUp.nivel);
 
       //console.log("user: " + user + ", edifici ac: "+ edifici.id + ", "+  EdificiUp.id);
 
-    if(EdificiUp != null){
+    
         //console.log(EdificiUp);
     SyncedCron.start();
 
@@ -60,18 +58,19 @@ Meteor.methods({
         schedule: function(parser) {
         
             console.log("ha entrat a la data");
-            console.log(parser.recur().on(data).fullDate());
-    
-        return parser.recur().on(data).fullDate();
+            //console.log(parser.recur().on(data).fullDate());
+            return parser.recur().on(data).fullDate();
         },
         
         job: function() {
+           
             console.log("ha entrat en el job");
         
 
             Partida.update(
                { _id:user, edificio: Edifici._id },
                { $set: { "edificio.$" : EdificiUp._id } }
+                
             );
             
             /*Partida.update(
@@ -79,30 +78,11 @@ Meteor.methods({
                { $set: { "edificio.$" : 2} }
             );*/
 
-            console.log("edifici modificat");
-           
-            
+            console.log("edifici modificat");            
         }  
           
     });
     }
-    else{
-        
-        console.log("aquet edifici ja esta en el seu maxim nivell");
-            
-    }
-        //SyncedCron.remove(user+"_"+EdificiUp.nom+"_"+EdificiUp.nivel);
-        //return user+"_"+EdificiUp.nom+"_"+EdificiUp.nivel;
-      // result = true; 
-
-        //phaserEdifici.destroy();
-        //game.state.restart();
-     
-
-  }
-
-  
-
 });
 
 Meteor.startup(() => {

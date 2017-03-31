@@ -46,14 +46,22 @@ Template.dinoGame.events({
     "click #subirlvl": function(event,template){
             event.preventDefault();
         
-            console.log("subir nivel");
+            //console.log("subir nivel");
+            //console.log(quinedifici);
             
             Edifici = Edificio.findOne({key:quinedifici});//busco los edicios; el edificio seleccionado es quinedifici
+            EdificiUp = Edificio.findOne({nom:Edifici.nom,nivel:(Edifici.nivel+1)});
             
-            Meteor.call('update_part',Edifici.key);        
-                
-            alert("se ha subido de nivel");
-
+            if(EdificiUp != null){
+                Meteor.call('update_part',EdificiUp,Edifici); 
+              
+                alert("se ha subido de nivel");
+            }
+            else{
+        
+                console.log("aquet edifici ja esta en el seu maxim nivell");
+            
+            }
             $('.modal').modal('hide');
                     
            
