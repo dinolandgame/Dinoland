@@ -174,36 +174,103 @@ html,body{
     border-radius: 10px; 
 }
 
+
+
+/* BOTONES GENERICOS */
+
+.boton_gui{
+    background-image: -moz-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    padding: 7px 15px 7px 15px;
+    height: 49px;
+    border-radius: 10px;
+    border: none;
+    -webkit-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    -moz-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+}
+
+.boton_gui:hover , .boton_sonido:hover{
+    background-image: none;
+    box-shadow: none;
+    background-color: #fdab1d;
+}
+
+/* BOTON SOCIAL */
+
+.boton_social{
+    cursor: pointer;
+    position: absolute;
+    left: 93%;
+    top: 86%;
+    background-image: -moz-linear-gradient( 90deg, rgb(0,181,22) 0%, rgb(124,225,108) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(0,181,22) 0%, rgb(124,225,108) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(0,181,22) 0%, rgb(124,225,108) 100%);
+    padding: 7px 10px 7px 10px;
+    height: 70px;
+    border-radius: 50px;
+    border: none;
+    -webkit-box-shadow: 2px 2px 2px 1px rgba(4,135,15,0.88);
+    -moz-box-shadow: 2px 2px 2px 1px rgba(4,135,15,0.88);
+    box-shadow: 2px 2px 2px 1px rgba(4,135,15,0.88);
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.boton_social img{
+    width: 50px;
+}
+
+.boton_social:hover{
+    background-image: none;
+    box-shadow: none;
+    background-color: #00bb22;
+}
+
+/* BOTON SONIDO */
+
+.boton_sonido{
+    background-image: -moz-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    padding: 7px 10px 7px 10px;
+    height: 49px;
+    border-radius: 50px;
+    border: none;
+    -webkit-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    -moz-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.boton_sonido img{
+    width: 40px;
+}
+
+
 #btn-tienda{
     cursor: pointer;
     position: absolute;
-    left: 16%;
+    left: 20%;
     top: 90%;
-    height: 50px;
 }
+
 
 #btn-expediciones{
     cursor: pointer;
     position: absolute;
     left: 3%;
     top: 90%;
-    height: 50px;
 }
 
-#btn-social{
-    cursor: pointer;
-    position: absolute;
-    left: 93%;
-    top: 86%;
-    height: 80px;
-}
 
 #btn-sound{
     cursor: pointer;
     position: absolute;
     left: 96%;
     top: 30%;
-    height: 40px;
 }
 
 #recursos{
