@@ -8,6 +8,10 @@ body {
 	background-color: #bddfec;
 }
 
+#content-juego{
+    display: none;
+}
+
 #contingut_home{
   margin-top: 80px;
 }
@@ -447,10 +451,9 @@ border-radius: 100%;
     -moz-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
     box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
     margin-top: 20px;
-    margin-left: 50px;
-
-   
+    margin-left: 50px;   
 }
+
 #divRecursos{
     position:absolute;
     left:75%;
@@ -467,7 +470,6 @@ border-radius: 100%;
     color: rgb( 255, 255, 255 );
     font-weight: bold;
     text-shadow: 1px 2px 3px rgb( 0, 0, 0 )
-
 }
 
 .container-recurso{

@@ -36,6 +36,8 @@ Juego.prototype = {
             });            
         });
 
+        $('#content-juego').show();
+
         const cursor = Partida.find({_id:user});
         const cambiar_nivel = cursor.observeChanges({
             changed(id,fields){
