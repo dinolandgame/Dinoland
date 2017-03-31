@@ -25,7 +25,7 @@ Juego.prototype = {
                 
                 for(var i= 0; i<=misedificiosEnPartida.length; i++){//bucle para los edificios en array de partida
                     if(edif._id==misedificiosEnPartida[i]){//si coincide con los edificios del array de partida
-                        console.log("Title of post " + edif.key);
+                        //console.log("Title of post " + edif.key);
                     
                     //añadimos el objeto de phaser  con su posicion y su scala tambien sus propiedades  
                     edif.key = game.add.sprite(edif.posicionX,edif.posicionY,edif.key); 
@@ -39,7 +39,7 @@ Juego.prototype = {
         const cursor = Partida.find({_id:user});
         const cambiar_nivel = cursor.observeChanges({
             changed(id,fields){
-                console.log(fields);
+                //console.log(fields);
                 if(fields.hasOwnProperty('edificio')){
                     game.state.restart();
                 }
@@ -145,12 +145,43 @@ function hoverOff(edifici){
 
 function clicar(edifici){
    // $.ionSound.play("button_tiny"); 
-    $('#pop_sintetizador').modal('show');
+    //$('#pop_sintetizador').modal('show');
+   
     phaserEdifici= edifici;
     quinedifici = edifici.key;
-    $('#nom_edifici').text(quinedifici); 
-    //obtenerDatos(quinedifici);  
-    
+  
+    Session.set('key', quinedifici);
+    switch (quinedifici) {
+        //Popup normal
+        case 'clan1': case 'clan2': case 'clan3':
+        case 'bar1': case 'bar2': case 'bar3':
+        case 'energia1':
+        case 'sintetizador1':
+        case 'port1':
+        case 'seguretat1':
+        case 'hotel1':
+        case 'magatzem1':
+        $('#pop_edifici').modal('show');
+        break;
+        //Popup tienda
+        case 'trade1':
+        $('#pop_tienda').modal('show');
+        break;
+        //Popup habitats
+        case 'habitats1':
+        $('#pop_habitats').modal('show');
+        break;
+        //Popup laboratorio
+        case 'laboratori1':
+        $('#pop_laboratorio').modal('show');
+        break;
+        //Popup cuartel
+        case 'cuartel1':
+        $('#pop_cuartel').modal('show');
+        break;
+        default:
+        break;
+    }
 }
 
 var o_mcamera;
@@ -174,4 +205,5 @@ function move_camera_by_pointer(o_pointer) {
     }
     if (o_pointer.isUp) { o_mcamera = null; }
 }
+
 

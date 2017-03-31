@@ -99,6 +99,9 @@ Meteor.methods({
         //game.state.restart();
      
 
+  },
+  keyEdificio(quinedifici){
+    return Edificio.findOne({key:quinedifici});
   }
 
   
