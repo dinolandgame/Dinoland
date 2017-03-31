@@ -8,6 +8,10 @@ body {
 	background-color: #bddfec;
 }
 
+#content-juego{
+    display: none;
+}
+
 #contingut_home{
   margin-top: 80px;
 }
@@ -447,10 +451,9 @@ border-radius: 100%;
     -moz-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
     box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
     margin-top: 20px;
-    margin-left: 50px;
-
-   
+    margin-left: 50px;   
 }
+
 #divRecursos{
     position:absolute;
     left:75%;
@@ -467,7 +470,6 @@ border-radius: 100%;
     color: rgb( 255, 255, 255 );
     font-weight: bold;
     text-shadow: 1px 2px 3px rgb( 0, 0, 0 )
-
 }
 
 .container-recurso{
@@ -511,3 +513,175 @@ border-radius: 100%;
     margin-left: -10px;
 }
 /***********************************************************************/
+/********* MODALS GRANS *************/
+
+.pop_gran {
+    width: 80%;
+}
+
+.content_gran {
+    height: 550px;
+}
+
+.header_gran {
+    background-color: #a48ad4;
+    height: 40px;
+    width: 20%;
+    border-radius: 30px;
+    margin-left: 40%;
+}
+
+
+/********** MODALS PETITS ***********/
+
+#contingut_modal {
+    background-color: #3e8c42;
+    border-radius: 10px;
+    margin-top: 20px;
+    height: 86%;
+}
+
+.modal-body {
+    padding: 0 25px;
+}
+
+.header_petit {
+    background-color: #a48ad4;
+    height: 40px;
+    width: 60%;
+    border-radius: 30px;
+    margin-left: 20%;
+}
+
+
+/********** COMU PER TOTS ELS MODALS */
+
+.modal-content {
+    background-color: #333645;
+}
+
+.modal h2 {
+    color: white;
+    text-align: center;
+    padding-top: 9px;
+}
+
+.info_edifici {
+    height: 200px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: justify;
+}
+
+.img_edifici {
+    width: 100%;
+    height: 200px;
+}
+
+.descripcio {
+    color: white;
+    text-align: justify;
+}
+
+.btn_modal {
+    background-color: #4285f4;
+    border-radius: 20px;
+    color: white;
+    padding-left: 20px!important;
+    padding-right: 20px!important;
+}
+
+.close {
+    color: white;
+    opacity: 0.7;
+}
+
+.close:hover {
+    color: white;
+    opacity: 1;
+}
+
+
+/* POP CUARTEL GENERAL */
+
+.img_admin {
+    width: 80%;
+    height: 80px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    
+    right: 10px;
+}
+
+.btn_construir {
+    display: block;
+    margin: auto;
+    height: 25px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+/* POP EXPEDICIONES */
+
+#modal_expe{
+    background-image: url("../images/fondojungl.png");
+    background-size: cover;
+    border-radius: 10px;
+    margin-top: 20px;
+    height: 86%;
+    
+}
+
+.img_tropa {
+    width: 100%;
+    height: 80px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    
+    right: 0px;
+}
+
+
+.lista{
+    margin-bottom: 15px;
+    margin-top: 0px;
+    border-radius: 5px;
+    border-style: outset;
+    background-color: orange; 
+    margin-top: 5px;
+    text-align: center;
+}
+
+.btn_expe {
+    background-color: orange;
+    border-radius: 20px;
+    color: black;  
+    font-weight: bold;
+    margin-top: 5px;   
+    padding-left: 20px!important;
+    padding-right: 20px!important;
+    /* Falta fer que es centri tot el DIV d'alguna manera!!*/
+}
+
+.btn_expe_suma_resta {
+    background-color: orange;
+    border-radius: 20px;
+    color: black;  
+    font-weight: bold;
+    margin-top: 5px;    
+    /* Falta fer que es centri tot el DIV d'alguna manera!!*/
+}
+
+/* POP HABITATS */
+
+/* POP LABORATORIO */
+
+.img_lab {
+    width: 80%;
+    height: 150px;
+    margin-top: 60px;
+    margin-bottom: 10px;
+    
+    right: 10px;
+}
+
