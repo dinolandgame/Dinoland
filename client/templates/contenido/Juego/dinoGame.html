@@ -133,7 +133,9 @@
                 </div>  
             {{/each}}
 			</div>
-			<div class="pmd-modal-media"> <img width="1184" height="666" class="img-responsive" src="images/edificio1.jpg"> </div>
+            {{#each edificios}}
+			<div class="pmd-modal-media"> <img width="1184" height="666" class="img-responsive imagenedi" src={{avatar}}> </div>
+            {{/each}}
 			<div class="modal-body">
             {{#each edificios}}
 			 <p class="descripcio_modal_edifici">{{descripcion}}</p> 
@@ -141,13 +143,7 @@
 			</div>
 			<div class="pmd-modal-action">
 			    <button id="subirlvl" type="button" class="btn pmd-ripple-effect btn-default btn_modal_edifici">SUBIR NIVEL
-			    </button>
-			    
-			    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal_edifici">RECOGER ALIMENTO
-			    </button>
-			    
-			    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal_edifici">GENERAR ALIMENTO
-			    </button>				
+			    </button>			
 			</div>           
 		</div>
 	</div>
@@ -377,7 +373,9 @@
                             </div>
 
                             <div class="col-sm-5">
-                                <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img_edifici">
+                            {{#each edificios}}
+                                <img src={{avatar}} class="img-responsive img_edifici">
+                            {{/each}}
                             </div>
                         </div>
                         <div class="row">
@@ -451,7 +449,9 @@
                             </div>
 
                             <div class="col-sm-5">
-                                <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img_edifici">
+                            {{#each edificios}}
+                                <img src={{avatar}} class="img-responsive img_edifici">
+                            {{/each}}
                             </div>
                         </div>
                         <div class="row">
@@ -477,61 +477,7 @@
         </div>
     </div>
 
-    <!-- POP CAMPAMENTO-->
-
-    <div tabindex="-1" class="modal fade" id="pop_campamento" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog pop_gran">
-            <div class="modal-content border">
-                <div class="modal-body content_gran">
-                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                    {{ #each edificios }}
-                    <div class="header_gran">
-                        <h2>{{ nom }}</h2>
-                    </div>
-                    {{ /each }}
-                    <div id="contingut_modal">
-                        <div class="row info_edifici">
-                            <div class="col-sm-5 col-sm-offset-1">
-                            {{ #each edificios }}
-                                <p class="descripcio">{{ descripcion }}</p>
-                                <button type="button" class="btn pmd-ripple-effect btn-default btn_modal">SUBIR NIVEL
-                                </button>
-                            {{ /each }}
-                            </div>
-
-                            <div class="col-sm-5">
-                                <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img_edifici">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-2 col-sm-offset-2">
-                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab"></a>
-
-                            </div>
-
-                            <div class="col-sm-2">
-                                <img src="images/lider1.png" class="img_lab">
-
-                            </div>
-
-                            <div class="col-sm-2">
-                                <img src="images/lider1.png" class="img_lab">
-
-                            </div>
-
-                            <div class="col-sm-2">
-                                <img src="images/lider1.png" class="img_lab">
-
-                            </div>
-                        </div>                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- POP HABITATS -->
-
+   
 
     <!-- POP SOCIAL -->
     <div tabindex="-1" class="modal fade" id="pop_social" style="display: none;" aria-hidden="true">
