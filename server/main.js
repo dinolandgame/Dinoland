@@ -83,29 +83,7 @@ Meteor.methods({
           
     });
     }
-<<<<<<< HEAD
-=======
-    else{
-        
-        console.log("aquet edifici ja esta en el seu maxim nivell");
-            
-    }
-        //SyncedCron.remove(user+"_"+EdificiUp.nom+"_"+EdificiUp.nivel);
-        //return user+"_"+EdificiUp.nom+"_"+EdificiUp.nivel;
-      // result = true; 
 
-        //phaserEdifici.destroy();
-        //game.state.restart();
-     
-
-  },
-  keyEdificio(quinedifici){
-    return Edificio.findOne({key:quinedifici});
-  }
-
-  
-
->>>>>>> origin/master
 });
 
 Meteor.startup(() => {
