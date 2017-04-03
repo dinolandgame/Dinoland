@@ -51,12 +51,12 @@
         <p class="dinobuton-text">Expediciones</p>
 </button>
 
-<button class="boton_social" data-target="#pop_social" data-toggle="modal">
-        <img class="btn-icon" src="images/icon-social.png">
+<button id="btn-social" data-target="#pop_social" data-toggle="modal">
+        <img class="btn-icon" src="images/ui/icon-social.png">
 </button>
 
-<button id="btn-sound" class="boton_sonido">
-        <img class="btn-icon" src="images/sound.png">
+<button id="btn-sound">
+        <img class="btn-icon" src="images/ui/sound.png">
 </button>
 
 
@@ -68,48 +68,48 @@
         
 <div id="divRecursos">
            <!--dinero-->
-            <div class="boton">
+        <div class="boton btn-recurso">
             <div class="row">
                 <img class="recurso-img" src="images/coin.png">
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso">
-                <p class="dinobuton-text">{{dinero}}</p>
+                <p class="dinobuton-text recurso-text">{{dinero}}</p>
             </div>
         </div>
         </div>
         
         <!--energia-->
     
-        <div class="boton">
+        <div class="boton btn-recurso">
             <div class="row">
                 <img class="recurso-img" src="images/coin.png">
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso">
-                <p class="dinobuton-text">{{energia}}</p>
+                <p class="dinobuton-text recurso-text">{{energia}}</p>
             </div>
         </div>
         </div>
 
         <!--suministros-->
         
-        <div class="boton">
+        <div class="boton btn-recurso">
             <div class="row">
                 <img class="recurso-img" src="images/coin.png">
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso">
-                <p class="dinobuton-text">{{suministros}}</p>
+                <p class="dinobuton-text recurso-text">{{suministros}}</p>
             </div>
         </div>
         </div>
         
         <!--visitantes-->
         
-        <div class="boton">
+        <div class="boton btn-recurso">
             <div class="row">
                 <img class="recurso-img" src="images/coin.png">
                 <img class="recurso-plus" src="images/plus.png">
-            <div class="container-recurso">
-                <p class="dinobuton-text">{{visitantes}}</p>
+            <div class="container-recurso recurso-text">
+                <p class="dinobuton-text recurso-text">{{visitantes}}</p>
             </div>
         </div>
         </div>
@@ -120,7 +120,7 @@
    <div id="divUsuario">
            <div class="boton">
         <div class="row">
-            <img class="recurso-img" src="images/user-profile.png">
+            <img class="user-img" src="images/user-profile.png">
             <div class="container-username">
                 <p class="dinobuton-text">{{currentUser.username}}</p>
             </div>

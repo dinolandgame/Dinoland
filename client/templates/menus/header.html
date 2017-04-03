@@ -14,7 +14,9 @@
                     <li><a href="#"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;{{_ "comunity"}}</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-cog"></span>&nbsp;{{_ "help"}}</a></li>
                     <li><a href="#">{{_ "contact"}}</a></li> {{#if currentUser}}
-                    <li><a href="{{pathFor 'game'}}" role="button" id="juego"><span class="glyphicon glyphicon-off"></span>&nbsp;{{_ "game"}} <span class="sr-only">(current)</span></a></li>
+                    <!--<li><a href="{{pathFor 'game'}}" role="button" id="juego"><span class="glyphicon glyphicon-off"></span>&nbsp;{{_ "game"}} <span class="sr-only">(current)</span></a></li>-->
+
+                    <li> {{> i18n_dropdown}} </li>
                     <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;{{_ "user"}}: {{currentUser.username}} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">{{_ "eprof"}}</a></li>
@@ -24,7 +26,7 @@
                             <li><a href="{{pathFor 'principal'}}" id="logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;{{_ "logout"}}</a></li>
                         </ul>
                     </li> {{/if}}
-                    <li> {{> i18n_dropdown}} </li>
+                    
                     <!--
 <li>
 {{> i18n_buttons}}

@@ -1,11 +1,27 @@
-.navbar-header a img{
-    height: 45px;
-}
+@font-face { font-family: Skranji; src: url('../fonts/Skranji-Bold.ttf'); } 
+
 
 body {
     background-image: url("../images/fondo_2.jpg");
 	background-repeat: repeat;
 	background-color: #bddfec;
+    /*font-family: 'roboto';*/
+    font-family: "Skranji";
+}
+
+/* boton jugar indice */
+
+#juego{
+    margin-top: 30px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 30px;
+    height: 53px;
+}
+
+#juego:hover{
+    font-size: 28px;
 }
 
 #content-juego{
@@ -13,8 +29,13 @@ body {
 }
 
 #contingut_home{
-  margin-top: 80px;
+  margin-top: 50px;
 }
+
+.navbar-header a img{
+    height: 45px;
+}
+
 .navbar-brand{
 	padding: 4px 18px 4px 18px;
 	height: 45px;
@@ -23,6 +44,34 @@ body {
 .navbar-default{
 	background-color: #368844;
 	border-color: #368844;
+}
+
+.navbar-default .navbar-nav > li > a{
+    color: white;
+}
+
+.navbar-default .navbar-nav > li > a:hover{
+    color: white;
+}
+
+.navbar-nav > li > .dropdown-menu{
+    background-color: #568836;
+}
+
+.dropdown-menu > li > a{
+    color: white;
+}
+
+.dropdown-menu > li > a:hover{
+    color: white;
+}
+
+.dropdown-menu .divider{
+    background-color: white;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{
+    color: white;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
@@ -156,12 +205,6 @@ canvas{
     overflow: hidden;
 }
 
-html,body{
-   /* width: 100%;
-    height: 100%;
-    background-color: #2d862d;*/
-    font-family: 'roboto';
-}
 .pop{
     width: 80%; 
 }
@@ -175,8 +218,28 @@ html,body{
 }
 
 
+/* BOTONES */
 
-/* BOTONES GENERICOS */
+
+.boton{
+    background-image: -moz-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    padding-top: 7px;
+    width: 212px;
+    height: 49px;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    -moz-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    margin-top: 20px;  
+}
+
+.btn-recurso{
+    width: 150px;
+    height: 33px;
+    padding-top: 4px;
+}
 
 .boton_gui{
     background-image: -moz-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
@@ -191,19 +254,18 @@ html,body{
     box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
 }
 
-.boton_gui:hover , .boton_sonido:hover{
+.boton_gui:hover , #btn-sound:hover, #btn_desplegar:hover, #btn_plegar:hover{
     background-image: none;
     box-shadow: none;
     background-color: #fdab1d;
 }
 
-/* BOTON SOCIAL */
 
-.boton_social{
+#btn-social{
     cursor: pointer;
     position: absolute;
-    left: 93%;
-    top: 86%;
+    left: 89%;
+    top: 79%;
     background-image: -moz-linear-gradient( 90deg, rgb(0,181,22) 0%, rgb(124,225,108) 100%);
     background-image: -webkit-linear-gradient( 90deg, rgb(0,181,22) 0%, rgb(124,225,108) 100%);
     background-image: -ms-linear-gradient( 90deg, rgb(0,181,22) 0%, rgb(124,225,108) 100%);
@@ -218,35 +280,36 @@ html,body{
     margin-left: 50px;
 }
 
-.boton_social img{
+#btn-social img{
     width: 50px;
 }
 
-.boton_social:hover{
+#btn-social:hover{
     background-image: none;
     box-shadow: none;
     background-color: #00bb22;
 }
 
-/* BOTON SONIDO */
 
-.boton_sonido{
+#btn-sound{
     background-image: -moz-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
     background-image: -webkit-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
     background-image: -ms-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
-    padding: 7px 10px 7px 10px;
-    height: 49px;
+    padding: 0px 10px 0px 10px;
+    height: 38px;
     border-radius: 50px;
     border: none;
     -webkit-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
     -moz-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
     box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
-    margin-top: 50px;
-    margin-left: 50px;
+    cursor: pointer;
+    position: absolute;
+    left: 95%;
+    top: 34%;
 }
 
-.boton_sonido img{
-    width: 40px;
+#btn-sound img{
+    width: 20px;
 }
 
 
@@ -265,13 +328,6 @@ html,body{
     top: 90%;
 }
 
-
-#btn-sound{
-    cursor: pointer;
-    position: absolute;
-    left: 96%;
-    top: 30%;
-}
 
 #recursos{
     margin-top: 10px;
@@ -405,20 +461,38 @@ html,body{
 }
 
 #btn_desplegar{
+     background-image: -moz-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    -webkit-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    -moz-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
     position: absolute;
     top: 40%;
     z-index: -2;
-    left: 92%;
-    height: 55px;
+    left: 97%;
+    height: 44px;
 }
 
 #btn_plegar{
+     background-image: -moz-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    -webkit-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    -moz-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
     display: none;
     position: absolute;
     top: 40%;
     z-index: -2;
-    left: 92%;
-    height: 55px;
+    left: 97%;
+    height: 44px;
 }
 
 .sidebar1 {
@@ -504,39 +578,27 @@ border-radius: 100%;
 
 /*******************Recursos e icono de perfil de usuario***********************/
 
-@font-face { font-family: Skranji; src: url('../fonts/Skranji-Bold.ttf'); } 
-
-.boton{
-    background-image: -moz-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
-    background-image: -webkit-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
-    background-image: -ms-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
-    padding-top: 7px;
-    width: 212px;
-    height: 49px;
-    border-radius: 10px;
-    -webkit-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
-    -moz-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
-    box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
-    margin-top: 20px;
-    margin-left: 50px;   
-}
-
 #divRecursos{
     position:absolute;
-    left:75%;
+    left:87%;
 }
 
 #divUsuario{
     position:absolute;
-    right:80%;
+    right:81%;
 }
 
 .dinobuton-text {
-    font-size: 25px;
+    margin-bottom: 0px;
+    font-size: 21px;
     font-family: "Skranji";
     color: rgb( 255, 255, 255 );
     font-weight: bold;
     text-shadow: 1px 2px 3px rgb( 0, 0, 0 )
+}
+
+.recurso-text{
+    font-size: 18px;
 }
 
 .container-recurso{
@@ -545,12 +607,13 @@ border-radius: 100%;
     background-image: -moz-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
     background-image: -webkit-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
     background-image: -ms-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
-    border-radius: 10px;
-    width: 116px;
-    height: 35px;
+    border-radius: 7px;
+    width: 72px;
+    height: 25px;
 }
 
 .container-username{
+    padding-top: 3px;
     text-align: center;
     display: block;
     margin-left: 62px;
@@ -565,8 +628,9 @@ border-radius: 100%;
 .recurso-plus{
    display: block;
     position: relative;
-    left: 54%;
+    left: 48%;
     float: left;
+    height: 25px;
 }
 
 .recurso-plus:hover{
@@ -574,10 +638,17 @@ border-radius: 100%;
     cursor: pointer;
 }
 
-.recurso-img{
+.user-img{
     float: left;
     margin-top: -17px;
     margin-left: -10px;
+}
+
+.recurso-img{
+    float: left;
+    height: 45px;
+    margin-top: -10px;
+    margin-left: 8px;
 }
 /***********************************************************************/
 /********* MODALS GRANS *************/
