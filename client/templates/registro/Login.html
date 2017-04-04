@@ -1,6 +1,13 @@
 <template name="Login">
     <div  id="" class="container-fluid">
+
+        {{#if currentUser}}
+        <div class="row">
+                <a href="{{pathFor 'game'}}" role="button" class="boton_gui col-sm-2 col-sm-offset-5" id="juego"><span class="glyphicon glyphicon-on"></span>&nbsp;{{_ "game"}} <span class="sr-only">(current)</span></a>
+        </div>
+        {{/if}}
            <div id="contingut_home" class="contingut col-sm-8 col-sm-offset-2">
+
             <div class="row">
                {{#if currentUser}}
                 <div class="col-sm-12">
