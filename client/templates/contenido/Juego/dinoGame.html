@@ -47,7 +47,7 @@
         <p class="dinobuton-text">Tienda</p>
 </button>
 
-<button id="btn-expediciones" data-target="#pop_tienda" data-toggle="modal" class="boton_gui">
+<button id="btn-expediciones" data-target="#pop_expediciones" data-toggle="modal" class="boton_gui">
         <p class="dinobuton-text">Expediciones</p>
 </button>
 
@@ -354,10 +354,43 @@
                     <div class="header_gran">
                         <h2>TIENDA</h2>
                     </div>
-
+                    {{#each partida}}
                     <div id="contingut_modal">
-                        <p>Contenido aquí</p>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h2>Dinero</h2>
+                                <div class="col-sm-12">
+                                    <div style="text-align: center">
+                                        <img src="images/coin.png" style="width: 100px">
+                                    <div>
+                                        <label class="label label-info center-block" style="font-size: 1.2em; display: block; width: 200px">Tienes: {{dinero}}</label>
+                                        <label class="label label-danger center-block" style="font-size: 1.2em; display: block; width: 200px">Suministros: </label>
+                                    </div>
+                                        <div>
+                                            <input id="dinero" type="text" class="form-control center-block" style="width: 200px">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <h2>Suministros</h2>
+                                <div class="col-sm-12" >
+                                    <div style="text-align: center">
+                                        <img src="images/carne.png" style="width: 100px">
+                                    <div>
+                                        <label class="label label-info center-block" style="font-size: 1.2em; display: block; width: 200px">Tienes: {{suministros}}</label>
+                                        <label class="label label-danger center-block" style="font-size: 1.2em; display: block; width: 200px">Dinero:  </label>
+                                    </div>
+                                    <div>
+                                        <input id="suministros" type="text" class="form-control center-block" style="width: 200px">
+                                    </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    {{/each}}
                 </div>
             </div>
         </div>
