@@ -91,7 +91,7 @@ Template.dinoGame.events({
         var suministrosGanados= introducido*2;
         var suministrosTotales = suministros + suministrosGanados;
 
-        if(introducido!="" && introducido<dinero){
+        if(introducido!="" && introducido<=dinero){
             rellenarDinero(introducido, dineroRestante, suministrosGanados, suministrosTotales);
 
             $('#conDinero').on('click', function(){
@@ -118,7 +118,7 @@ Template.dinoGame.events({
         var suministrosPerdidos= introducido;
         var suministrosRestantes = suministros -introducido;
         var dineroTotal = dinero + dineroGanado;
-        if(introducido!="" && introducido<suministros){
+        if(introducido!="" && introducido<=suministros){
             rellenarSuministros(introducido, suministrosRestantes, dineroGanado, dineroTotal);
 
             $('#conSuministros').on('click', function(){
