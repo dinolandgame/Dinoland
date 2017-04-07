@@ -385,8 +385,57 @@ canvas{
 /********* MODALS NORMALS *************/
 
 .modal-content{
-    background-color: #333645;
+    background-color: #f5e3aa;
+    border-radius: 20px;
+    border: 5px solid #d2a169;
 }
+
+.modal-header{
+    border: none;
+    margin-bottom: 40px;
+}
+
+@media (min-width: 768px){
+    .modal-dialog {
+        width: 800px;
+        margin: 100px auto;
+    }
+}
+
+.modal-header img{
+    display: block;
+    margin: 0 auto;
+    margin-top: -73px;
+}
+
+.modal-desc{
+    background-color: #deb477;
+    border: 3px solid white;
+    border-radius: 10px;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.modal-desc p{
+    margin: 15px;
+}
+
+.modal-img-edif{
+    border: 3px solid white;
+    border-radius: 10px;
+}
+
+.modal h2 {
+    color: white;
+    text-align: center;
+    padding-top: 9px;
+    margin-top: -98px;
+}
+
+
+
+
+
 .header_modal{
     background-color: #a48ad4;
     height: 40px;
@@ -398,7 +447,7 @@ canvas{
 .header_modal h2{
     color: white;
     text-align: center;
-    padding-top: 9px;
+    margin-top: -86px;
 }
 
 #contingut_modal{
@@ -694,15 +743,6 @@ border-radius: 100%;
 
 /********** COMU PER TOTS ELS MODALS */
 
-.modal-content {
-    background-color: #333645;
-}
-
-.modal h2 {
-    color: white;
-    text-align: center;
-    padding-top: 9px;
-}
 
 .info_edifici {
     height: 200px;
