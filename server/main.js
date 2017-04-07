@@ -13,11 +13,11 @@ Meteor.methods({
     
      user= Meteor.userId();
      Partida.insert({_id:user,
-                      dinero:100,
-                      energia:20,
-                      suministros:50,
-                      visitantes:10,
-                      edificio:[1,101]}); 
+                      dinero:1000,
+                      energia:200,
+                      suministros:200,
+                      visitantes:0,
+                      edificio:[]}); 
        
        /*{
     _id:1,
@@ -78,6 +78,51 @@ Meteor.methods({
                { $set: { "edificio.$" : EdificiUp._id } }
                 
             );
+            
+            /*Partida.update(
+               { _id:"zC27EwRQnrHgcuZz8", edificio: 1 },
+               { $set: { "edificio.$" : 2} }
+            );*/
+
+            console.log("edifici modificat");            
+        }  
+          
+    });
+    },
+    //creacion edificios 1er nivel
+    crear_edificio(id){
+    Edifici = Edificio.findOne({_id:id});
+   
+    user = Meteor.userId();
+    var data = new Date();
+    data.setSeconds(data.getSeconds()+Edifici.tiempoConstruccion);
+      
+      //console.log("id_usuari: "+ user +", edifici: "+ edifici._id);
+      //console.log("eldifi que obtindra el objecte partida: NOm: "+ EdificiUp.nom + ",nivel: "+ EdificiUp.nivel);
+
+      //console.log("user: " + user + ", edifici ac: "+ edifici.id + ", "+  EdificiUp.id);
+
+    
+        //console.log(EdificiUp);
+    SyncedCron.start();
+
+    SyncedCron.add({
+        name: user +"_"+Edifici.nom,
+        schedule: function(parser) {
+        
+            console.log("ha entrat a la data");
+            //console.log(parser.recur().on(data).fullDate());
+            return parser.recur().on(data).fullDate();
+        },
+        
+        job: function() {
+           
+            console.log("ha entrat en el job");
+        
+
+            Partida.update({_id:user},{$push:{edificio:id}});
+                
+            
             
             /*Partida.update(
                { _id:"zC27EwRQnrHgcuZz8", edificio: 1 },
