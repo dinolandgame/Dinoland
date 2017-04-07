@@ -283,12 +283,6 @@ Template.dinoGame.helpers({
         }
              }
     }*/
-    },
-
-
-    confi_dinero : function(dinero){
-
-        return Math.round(dinero);
     }
 
 });

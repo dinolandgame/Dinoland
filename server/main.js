@@ -204,11 +204,14 @@ Accounts.emailTemplates.verifyEmail = {
                     //if(num=="1001" || num=="1002" !! num=="1003"){
                      edificio = Edificio.findOne({"_id":num});
                      console.log ("dinocoins: " + edificio.dinoCoins/60 );
-                     dinocoins = edificio.dinoCoins/60;
+                     dinocoins = Math.ceil(edificio.dinoCoins/60);
                      //comida = edificio.comidaDino/60;
-                     suministros = edificio.Suministros/60;
+                     suministros = Math.ceil(edificio.Suministros/60);
+                     console.log("jugador: "+ part._id +" suministros: "+ suministros);
+                     console.log("jugador: "+ part._id +" suministros: "+ dinocoins);
                     //}
                   })
+
 
 
                   Partida.update({_id:part._id},{ $inc:{dinero:dinocoins, suministros:suministros}})

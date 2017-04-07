@@ -73,7 +73,7 @@
                 <img class="recurso-img" src="images/coin.png">
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso">
-                <p class="dinobuton-text">{{confi_dinero dinero}}</p>
+                <p class="dinobuton-text">{{dinero}}</p>
                <!--p class="dinobuton-text recurso-text">{{dinero}}</p>-->
 
             </div>
@@ -100,7 +100,7 @@
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso">
 
-                <p class="dinobuton-text">{{confi_dinero suministros}}</p>
+                <p class="dinobuton-text">{{suministros}}</p>
 
                 <!--<p class="dinobuton-text recurso-text">{{suministros}}</p-->
             </div>
@@ -137,7 +137,7 @@
 
 
 
-<!-- POP EDIFICI -->
+<!-- POP EDIFICI 
 
 <div tabindex="-1" class="modal fade" id="pop_edifici" style="display: none;" aria-hidden="true">
 	<div class="modal-dialog">    
@@ -167,14 +167,12 @@
 		</div>
 	</div>
 </div>
-
+-->
 <!-- POP EDIFICI NOU -->
 
-<button id="btn-nou-modal" data-target="#pop_edifici_nou" data-toggle="modal">
-        POP NUEVO
-</button>
 
-<div tabindex="-1" class="modal fade" id="pop_edifici_nou" style="display: none;" aria-hidden="true">
+
+<div tabindex="-1" class="modal fade" id="pop_edifici" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">    
         <div class="modal-content">
             <div class="modal-header">
@@ -194,18 +192,17 @@
                     <p>{{descripcion}}</p>
                 {{/each}}
                 </div>
-                
+                <!--
                 <div class="col-xs-4 col-xs-offset-1">
                     <img class="modal-img-edif" src="/images/hotel-modal.JPG">
                 </div>
-                
-                <!-- Cuando tengamos las imagenes correctamente, irá este bloque y no el anterior
+                -->
                 {{#each edificios}}
                 <div class="col-xs-4 col-xs-offset-1">
-                    <img class="modal-img-edif img-responsive" src={{avatar}}>
+                    <img class="modal-img-edif img-responsive" src={{avatar}} style="max-width: 300px; max-width:200px">
                 </div>
                 {{/each}}
-                -->
+                
             </div>
 
             <div class="row" style="margin-bottom: 30px; margin-top: 20px;">
