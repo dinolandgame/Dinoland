@@ -82,7 +82,7 @@ Template.dinoGame.events({
         
         $('.prueba').hide();
         
-    }
+    },
     
 
         //Saber cuanto dinero tengo
