@@ -1,5 +1,6 @@
 //Eventos
 
+
 Template.dinoGame.events({
 
     "click #btn_desplegar":function(event,template){
@@ -72,7 +73,16 @@ Template.dinoGame.events({
          
             phaserEdifici.destroy();
             game.state.restart();
-          }
+          },
+    "click .crear":function(event,template){
+       // Partida.update({_id:user},{$set:{edificio:[1001],dinero:100,energia:50,suministros:50,visitantes:0}});
+       Partida.update({_id:user},{$push:{edificio:1001}});
+        Partida.update({_id:user},{$push:{edificiosDes:{$each:[1001,401,501]}}});
+        
+        $('.prueba').hide();
+        
+    }
+    
         
  }); 
 
@@ -85,13 +95,94 @@ Template.dinoGame.helpers({
     edificios: function(){
          var variable=Session.get('key');
        //console.log("Edificio:" + quinedifici);
-       console.log("variable:" + variable);
+       //console.log("variable:" + variable);
         return Edificio.find({key: variable});
+    },
+    edificioTodos: function(){
+        return Edificio.find({nivel: 1});
+    },
+    yaConstruido:function(id){
+        user = Meteor.userId();
+        var cuartel1 = 1001;
+        var cuartel2 = 1002;
+        var cuartel3 = 1003;
+           
+        var edifCuartel = "";
+        var edificiosDesbloqueadosCuartel = "";
+        
+        var mi_partida = Partida.find({_id:user}).fetch();//obtengo un array de las partida del usuario siempre sera 1 por user
+        var misedificiosEnPartida = mi_partida[0].edificio;
+        
+         for(var i = 0; i<misedificiosEnPartida.length; i++){
+             if(cuartel1===misedificiosEnPartida[i]){
+                  edifCuartel = Edificio.findOne({_id:cuartel1});
+                 //console.log("ha entrado en el if 1");
+             }
+             else if(cuartel2===misedificiosEnPartida[i]){
+                  edifCuartel = Edificio.findOne({_id:cuartel2});
+                 //console.log("ha entrado en el if 2");
+             }
+             else if(cuartel3===misedificiosEnPartida[i]){
+                  edifCuartel = Edificio.findOne({_id:cuartel3});
+             }
+         }
+        
+       edificiosDesbloqueadosCuartel =  edifCuartel.desbloquea;
+   
+        
+                /*for(var i = 0; i<edificiosDesbloqueadosCuartel.length; i++){                
+                    //if(id==misedificiosEnPartida[x]){
+                        if(id==edificiosDesbloqueadosCuartel[i]){ 
+                            return true;                    
+                        }                  
+                    }*/
+                    for(var x = 0; x<misedificiosEnPartida.length; x++){
+                            if(id==misedificiosEnPartida[x]){  
+                                return true;
+                            }
+                    }
+            /* for( var x=0; x<misedificiosEnPartida.lenght;x++ ){         
+        
+        for(var i = 0; i<edificiosDesbloqueadosCuartel.length; i++){                
+                if(id==edificiosDesbloqueadosCuartel[i] && id!=misedificiosEnPartida[x]){
+                    
+                    return true;
+                    }
+            else
+                {
+                    for( var x=0; x<misedificiosEnPartida.lenght;x++ ){
+                        
+                        if(id!= misedificiosEnPartida[x]){
+                            return false;
+                        }else{
+                            return true;
+                        }
+                }
+           
+        }
+             }
+    }*/
     }
+
+    
 });
 
 
-
+Template.dinoGame.onRendered(function(){
+    var id=0;
+     $('.crearEdificio').on('dblclick',function(){
+             
+            id = $(this).data('id');
+             console.log(this);
+            //Partida.update({_id:user},{$push:{edificio:id}});
+             Meteor.call('crear_edificio',id);
+             $(this).css({'opacity':'0.95','cursor':'not-allowed'});
+             $('.prueba2').hide();
+            
+        
+     });
+        $('[data-toggle="popover"]').popover(); 
+});
 
 
 

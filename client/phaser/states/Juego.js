@@ -31,12 +31,23 @@ Juego.prototype = {
                     edif.key = game.add.sprite(edif.posicionX,edif.posicionY,edif.key); 
                     edif.key.scale.setTo(edif.escalaX,edif.escalaY);
                     afegirPropietatsSprite(edif.key);
+                        
                     }   
-                }                                    
+                }  
+                
+                
             });            
         });
 
         $('#content-juego').show();
+        
+        //controlamos si no hay edificios en el array de edificios en la coleccion partida
+        if(mi_partida[0].edificio.length===0){
+                    console.log("no tengo edificios");
+                    $('.prueba').show();
+                    
+                }
+        
 
         const cursor = Partida.find({_id:user});
         const cambiar_nivel = cursor.observeChanges({
@@ -180,6 +191,14 @@ function clicar(edifici){
         //Popup cuartel
         case 'cuartel1':
         $('#pop_cuartel').modal('show');
+            var mi_partida = Partida.find({_id:user}).fetch();
+            if(mi_partida[0].edificio.length===1){
+                    console.log("tengo  1 edificio");
+                    $('.prueba2').show();
+                    
+                }
+           
+            
         break;
         default:
         break;

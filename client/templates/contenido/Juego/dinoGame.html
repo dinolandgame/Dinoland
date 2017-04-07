@@ -388,52 +388,62 @@
 
                             <div class="col-sm-5">
                             {{#each edificios}}
-                                <img src={{avatar}} class="img-responsive img_edifici">
+                                <img src={{avatar}} class="img-responsive img_edifici" >
                             {{/each}}
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-2 col-sm-offset-1">
-                                <a data-target="#pop_edificio" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_admin"></a>
-                            </div>
-
-                            <div class="col-sm-2">
-                                <a data-target="#pop_edificio" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_admin"></a>
-                            </div>
-
-                            <div class="col-sm-2">
-                                <a data-target="#pop_edificio" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_admin"></a>
-                            </div>
-
-                            <div class="col-sm-2">
-                                <a data-target="#pop_edificio" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_admin"></a>
-                            </div>
-
-                            <div class="col-sm-2">
-                                <a data-target="#pop_edificio" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_admin"></a>
-                            </div>
+    <!--panel segundo de inicio juego-->                    
+                         <div class="panel panel-default prueba2" style="display:none;position: absolute;left: 5%;top: 35%">
+ 
+                          <div class="panel-body">
+                            DINOLAND CONTINUA CON LA AVENTURA!!
+                            <br>
+                            Necesitaremos un sitio para almacenar nuestros suministros..
+                            <br>
+                            
+                          </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-2 col-sm-offset-1">
-                                <a data-target="#pop_edificio" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_admin"></a>
-                            </div>
+                        
+    <!--fin panel 2 -->
+                        <div class="row" style="margin-left:3%">
+                           
+                               
+                                {{#each edificioTodos}}
+                                  
+                                        {{#if yaConstruido _id}}
+                                        
+<!--
+                                            <div class="col-sm-2">
+                                                <a class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="modal"  type="button"><img src={{avatar}} class="img_admin otro img-circle" style="opacity:0.75;cursor:not-allowed"></a>
+                                            </div>
+-->
+                                            <div class="col-sm-2">
+                                              
+                                              <a href="#" type="button" class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}}><img src={{avatar}} class="img_admin otro img-circle"  style="opacity:0.2;cursor:not-allowed"></a>
+                                            </div>
 
-                            <div class="col-sm-2">
-                               <a data-target="#pop_edificio" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_admin"></a>
-                            </div>
+                                        
+                                            {{else}}
+<!--
+                                            <div class="col-sm-2">
+                                                <a class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="modal"  type="button"><img src={{avatar}} class="img_admin otro img-circle" style="cursor:pointer"></a>
+                                            </div>
+-->
+                                            <div class="col-sm-2">
+                                              
+                                              <a href="#" type="button" class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}}><img src={{avatar}} class="img_admin otro img-circle" style="cursor:pointer"></a>
+                                            </div>
 
-                            <div class="col-sm-2">
-                               <a data-target="#pop_edificio" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_admin"></a>
-                            </div>
-
-                            <div class="col-sm-2">
-                                <a data-target="#pop_edificio" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_admin"></a>
-                            </div>
-
-                            <div class="col-sm-2">
-                                <a data-target="#pop_edificio" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_admin"></a>
-                            </div>
+                                        {{/if}}
+                                        
+                                   
+                                    
+                                {{/each}}
+                                
+                           
                         </div>
+
+                            
                     </div>
                 </div>
             </div>
@@ -511,6 +521,17 @@
         </div>
     </div>
 
+<div class="panel panel-default prueba" style="display:none;position: absolute;left: 40%;top: 40%">
+ 
+  <div class="panel-body">
+    BENVENIDO A DINOLAND!!
+    <br>
+    Aqui empieza tu aventura.. Empecemos por construir nuestro Cuartel
+    <br>
+    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal crear">Edificio Cuartel
+    </button>
+  </div>
+</div>
 
 </div>
 
