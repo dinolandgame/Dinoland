@@ -31,10 +31,10 @@ Meteor.methods({
 }*/
   },
   sumardinero(){
-    user= Meteor.userId();
+    //user= Meteor.userId();
     
 
-    Partida.update({_id:user},{ $inc:{dinero:1}});
+    //Partida.update({_id:user},{ $inc:{dinero:1}});
   },
 
   cambioTienda(dineroRestante, suministrosTotales){
@@ -116,21 +116,82 @@ Accounts.emailTemplates.verifyEmail = {
   }
 };
 
-SyncedCron.start();
 
-    /*SyncedCron.add({
-        name: 'Run in 20 seconds only once',
+
+
+  
+//SyncedCron.start();
+/*    SyncedCron.add({
+        name: 'Run in 20 seconds ',
         schedule: function(parser) {
-            // parser is a later.parse object
-            return parser.text('every 1 seconds');
+            // parser is a later.parse obje
+            return parser.text('every 20 seconds');
         },
         job: function() {
             // do something important here
-            console.log("aixo es un missatge de mostra");
+            console.log("aixo es un missatge de mostra (20)");
             //SyncedCron.remove('Run in 20 seconds only once');
         }
     });*/
 
+
+//SyncedCron.start();
+      SyncedCron.add({
+        name: 'Run in 1 seconds dinocoins',
+        schedule: function(parser) {
+            // parser is a later.parse obje
+            return parser.text('every 1 seconds');
+        },
+        job: function() {
+            // do something important here
+            //console.log("aixo es un missatge de mostra (1)");
+            //SyncedCron.remove('Run in 20 seconds only once');
+            try{
+             // if(Meteor.userId() != null){
+                //user= Meteor.userId();
+                Partida.find().forEach(function(part){
+                  var dinocoins = 0;
+                  //var comida = 0;
+                  var suministros = 0;
+                  //console.log(part.edificio[0],part.edificio[1]);
+                  part.edificio.forEach(function(num){
+                    //console.log(num);
+                    //if(num=="1001" || num=="1002" !! num=="1003"){
+                     edificio = Edificio.findOne({"_id":num});
+                     console.log ("dinocoins: " + edificio.dinoCoins/60 );
+                     dinocoins = edificio.dinoCoins/60;
+                     //comida = edificio.comidaDino/60;
+                     suministros = edificio.Suministros/60;
+                    //}
+                  })
+
+
+                  Partida.update({_id:part._id},{ $inc:{dinero:dinocoins, suministros:suministros}})
+                });
+                
+             // }
+            }catch(e){
+
+              console.log("error: "+e.message);
+            }
+        }
+    });
+
+//SyncedCron.start();
+      SyncedCron.add({
+        name: 'Run in 1 minute',
+        schedule: function(parser) {
+            // parser is a later.parse obje
+            return parser.text('every 1 minute');
+        },
+        job: function() {
+            // do something important here
+            console.log("aixo es un missatge de mostra 1 minute");
+            //SyncedCron.remove('Run in 20 seconds only once');
+        }
+    });
+
+SyncedCron.start();
 });
 
 /*Email.send({

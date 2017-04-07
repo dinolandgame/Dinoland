@@ -204,7 +204,13 @@ Template.dinoGame.helpers({
        //console.log("Edificio:" + quinedifici);
        console.log("variable:" + variable);
         return Edificio.find({key: variable});
+    },
+
+    confi_dinero : function(dinero){
+
+        return Math.round(dinero);
     }
+
 });
 
 
