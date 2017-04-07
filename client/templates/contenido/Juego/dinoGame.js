@@ -283,7 +283,7 @@ Template.dinoGame.helpers({
         }
              }
     }*/
-    }
+    },
 
 
     confi_dinero : function(dinero){
@@ -295,7 +295,7 @@ Template.dinoGame.helpers({
 
 
     
-});
+
 
 
 Template.dinoGame.onRendered(function(){
