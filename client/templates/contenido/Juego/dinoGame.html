@@ -47,7 +47,7 @@
         <p class="dinobuton-text">Tienda</p>
 </button>
 
-<button id="btn-expediciones" data-target="#pop_tienda" data-toggle="modal" class="boton_gui">
+<button id="btn-expediciones" data-target="#pop_expediciones" data-toggle="modal" class="boton_gui">
         <p class="dinobuton-text">Expediciones</p>
 </button>
 
@@ -73,7 +73,9 @@
                 <img class="recurso-img" src="images/coin.png">
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso">
-                <p class="dinobuton-text recurso-text">{{dinero}}</p>
+                <p class="dinobuton-text">{{confi_dinero dinero}}</p>
+               <!--p class="dinobuton-text recurso-text">{{dinero}}</p>-->
+
             </div>
         </div>
         </div>
@@ -97,7 +99,10 @@
                 <img class="recurso-img" src="images/coin.png">
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso">
-                <p class="dinobuton-text recurso-text">{{suministros}}</p>
+
+                <p class="dinobuton-text">{{confi_dinero suministros}}</p>
+
+                <!--<p class="dinobuton-text recurso-text">{{suministros}}</p-->
             </div>
         </div>
         </div>
@@ -354,10 +359,60 @@
                     <div class="header_gran">
                         <h2>TIENDA</h2>
                     </div>
-
+                    {{#each partida}}
                     <div id="contingut_modal">
-                        <p>Contenido aquí</p>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h2>Dinero</h2>
+                                <div class="col-sm-12">
+                                    <div style="text-align: center">
+                                        <img src="images/coin.png" style="width: 100px">
+                                    <div>
+                                        <label id="tienesDinero" class="label label-info center-block" style="font-size: 1.2em; display: block; width: 200px"><img src="images/coin.png" style="width: 30px"><span> Dinero: {{dinero}}</span></label>
+
+                                        <label id="pierdesDinero" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Pierdes:</span></label>
+                                        <label id="teQuedaDinero" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Te queda:</span> </label>
+                                        <label id="ganasSuministros" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Ganas:</span></label>
+                                        <label id="teQuedaSuministros" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Te quedan:</span></label>
+
+                                    </div>
+                                        <div>
+                                            <input id="dinero" type="text" class="form-control center-block" style="width: 200px">
+                                            <br>
+                                            <button id="camDinero" class="btn btn-info">Cambiar</button>
+                                            <button id="conDinero" class="btn btn-info" style="display: none;">Confirmar</button>
+                                            <button id="cancelDinero" class="btn btn-danger" style="display: none;">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <h2>Suministros</h2>
+                                <div class="col-sm-12" >
+                                    <div style="text-align: center">
+                                        <img src="images/carne.png" style="width: 100px">
+                                    <div>
+                                        <label id="tienesSuministros" class="label label-info center-block" style="font-size: 1.2em; display: block; width: 200px"><img src="images/carne.png" style="width: 30px"><span> Suministros: {{suministros}}</span></label>
+
+                                        <label id="pierdesSuministros" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Pierdes:</span></label>
+                                        <label id="QuedaSuministros" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Te queda:</span> </label>
+                                        <label id="ganasDinero" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Ganas:</span></label>
+                                        <label id="QuedaDinero" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Te quedan:</span></label>
+                                    </div>
+                                    <div>
+                                        <input id="suministros" type="text" class="form-control center-block" style="width: 200px">
+                                        <br>
+                                            <button id="camSuministros" class="btn btn-info">Cambiar</button>
+                                            <button id="conSuministros" class="btn btn-info" style="display: none;">Confirmar</button>
+                                            <button id="cancelSuministros" class="btn btn-danger" style="display: none;">Cancelar</button>
+                                    </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    {{/each}}
                 </div>
             </div>
         </div>

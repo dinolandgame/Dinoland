@@ -156,6 +156,7 @@ function hoverOff(edifici){
     edifici.tint = 0xffffff;
 }
 
+
 function clicar(edifici){
    // $.ionSound.play("button_tiny"); 
     //$('#pop_sintetizador').modal('show');
@@ -179,6 +180,8 @@ function clicar(edifici){
         //Popup tienda
         case 'trade1':
         $('#pop_tienda').modal('show');
+        vaciarSuministros();
+        vaciarDinero();
         break;
         //Popup habitats
         case 'habitats1':
@@ -227,4 +230,31 @@ function move_camera_by_pointer(o_pointer) {
     if (o_pointer.isUp) { o_mcamera = null; }
 }
 
+function vaciarDinero(){
+            $('#pierdesDinero, #teQuedaDinero, #ganasSuministros, #teQuedaSuministros').css('display', 'none');
+            $('#dinero, #tienesDinero').css('display', 'block');
+            $('#conDinero, #cancelDinero').css('display', 'none');
+            $('#camDinero').css('display', 'inline-block');
+            //Dinero
+            $('#pierdesDinero span').text("Pierdes: ");
+            $('#teQuedaDinero span').text("Te Queda: ");
+            //Suministros
+            $('#ganasSuministros span').text("Ganas: ");
+            $('#teQuedaSuministros span').text("Te Queda: ");
+            $('#dinero').val("");
+};
+
+function vaciarSuministros(){
+            $('#pierdesSuministros, #QuedaSuministros, #ganasDinero, #QuedaDinero').css('display', 'none');
+            $('#suministros, #tienesSuministros').css('display', 'block');
+            $('#conSuministros, #cancelSuministros').css('display', 'none');
+            $('#camSuministros').css('display', 'inline-block');
+            //Dinero
+            $('#pierdesSuministros span').text("Pierdes: ");
+            $('#QuedaSuministros span').text("Te Queda: ");
+            //Suministros
+            $('#ganasDinero span').text("Ganas: ");
+            $('#QuedaDinero span').text("Te Queda: ");
+            $('#suministros').val("");
+}
 
