@@ -116,7 +116,7 @@
 
 </div>
 {{/each}}
-<!-- Usari -->
+<!-- Usuari -->
    <div id="divUsuario">
            <div class="boton">
         <div class="row">
@@ -161,6 +161,61 @@
 			</div>           
 		</div>
 	</div>
+</div>
+
+<!-- POP EDIFICI NOU -->
+
+<button id="btn-nou-modal" data-target="#pop_edifici_nou" data-toggle="modal">
+        POP NUEVO
+</button>
+
+<div tabindex="-1" class="modal fade" id="pop_edifici_nou" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">    
+        <div class="modal-content">
+            <div class="modal-header">
+
+            {{#each edificios}}
+
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <div class="modal-ribon">
+                    <img src="/images/ribbon.png">
+                    <h2 id="nom_edifici" class="dinobuton-text">{{nom}}</h2>
+                </div> 
+            {{/each}} 
+            </div>
+            <div class="row">
+                <div class="modal-desc col-xs-5 col-xs-offset-1">
+                {{#each edificios}}
+                    <p>{{descripcion}}</p>
+                {{/each}}
+                </div>
+                
+                <div class="col-xs-4 col-xs-offset-1">
+                    <img class="modal-img-edif" src="/images/hotel-modal.JPG">
+                </div>
+                
+                <!-- Cuando tengamos las imagenes correctamente, irá este bloque y no el anterior
+                {{#each edificios}}
+                <div class="col-xs-4 col-xs-offset-1">
+                    <img class="modal-img-edif img-responsive" src={{avatar}}>
+                </div>
+                {{/each}}
+                -->
+            </div>
+
+            <div class="row" style="margin-bottom: 30px; margin-top: 20px;">
+                <div class="col-xs-3 col-xs-offset-1">
+                    <button class="boton_gui" data-target="#pop_tienda" data-toggle="modal">
+                        <p class="dinobuton-text">Subir nivel</p>
+                    </button>
+                </div>
+                
+                <div class="col-xs-5 col-xs-offset-3">
+                        <p class="dinobuton-text">Visitantes: 340/340</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
     <!-- POP EXPEDICIONES -->   
