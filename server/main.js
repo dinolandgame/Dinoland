@@ -36,6 +36,12 @@ Meteor.methods({
 
     //Partida.update({_id:user},{ $inc:{dinero:1}});
   },
+
+  cambioTienda(dineroRestante, suministrosTotales){
+    console.log(suministrosTotales);
+    Partida.update({_id:Meteor.userId()},{$set: {dinero: dineroRestante, suministros: suministrosTotales}});
+    console.log("Ha entrado");
+  },
  
   update_part(EdificiUp,Edifici){
     

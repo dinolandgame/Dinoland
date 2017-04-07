@@ -42,10 +42,24 @@
 </div>
 
 <!-- Botons -->
-<img src="images/ui/tienda.png" id="btn-tienda" data-target="#pop_tienda" data-toggle="modal">
-<img src="images/ui/expediciones.png" id="btn-expediciones" data-target="#pop_expediciones" data-toggle="modal">
-<img src="images/ui/social.png" id="btn-social" data-target="#pop_social" data-toggle="modal">
-<img src="images/ui/sound.png" id="btn-sound">
+
+<button id="btn-tienda" class="boton_gui" data-target="#pop_tienda" data-toggle="modal">
+        <p class="dinobuton-text">Tienda</p>
+</button>
+
+<button id="btn-expediciones" data-target="#pop_expediciones" data-toggle="modal" class="boton_gui">
+        <p class="dinobuton-text">Expediciones</p>
+</button>
+
+<button id="btn-social" data-target="#pop_social" data-toggle="modal">
+        <img class="btn-icon" src="images/ui/icon-social.png">
+</button>
+
+<button id="btn-sound">
+        <img class="btn-icon" src="images/ui/sound.png">
+</button>
+
+
 
 <!-- Recursos -->
        
@@ -54,48 +68,53 @@
         
 <div id="divRecursos">
            <!--dinero-->
-            <div class="boton">
+        <div class="boton btn-recurso">
             <div class="row">
                 <img class="recurso-img" src="images/coin.png">
                 <img class="recurso-plus" src="images/plus.png">
-            <div class="container-recurso">
+            <div class="container-recurso"
                 <p class="dinobuton-text">{{confi_dinero dinero}}</p>
+               <!--p class="dinobuton-text recurso-text">{{dinero}}</p>-->
+
             </div>
         </div>
         </div>
         
         <!--energia-->
     
-        <div class="boton">
+        <div class="boton btn-recurso">
             <div class="row">
                 <img class="recurso-img" src="images/coin.png">
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso">
-                <p class="dinobuton-text">{{energia}}</p>
+                <p class="dinobuton-text recurso-text">{{energia}}</p>
             </div>
         </div>
         </div>
 
         <!--suministros-->
         
-        <div class="boton">
+        <div class="boton btn-recurso">
             <div class="row">
                 <img class="recurso-img" src="images/coin.png">
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso">
+
                 <p class="dinobuton-text">{{confi_dinero suministros}}</p>
+
+                <!--<p class="dinobuton-text recurso-text">{{suministros}}</p
             </div>
         </div>
         </div>
         
         <!--visitantes-->
         
-        <div class="boton">
+        <div class="boton btn-recurso">
             <div class="row">
                 <img class="recurso-img" src="images/coin.png">
                 <img class="recurso-plus" src="images/plus.png">
-            <div class="container-recurso">
-                <p class="dinobuton-text">{{visitantes}}</p>
+            <div class="container-recurso recurso-text">
+                <p class="dinobuton-text recurso-text">{{visitantes}}</p>
             </div>
         </div>
         </div>
@@ -106,7 +125,7 @@
    <div id="divUsuario">
            <div class="boton">
         <div class="row">
-            <img class="recurso-img" src="images/user-profile.png">
+            <img class="user-img" src="images/user-profile.png">
             <div class="container-username">
                 <p class="dinobuton-text">{{currentUser.username}}</p>
             </div>
@@ -133,7 +152,9 @@
                 </div>  
             {{/each}}
 			</div>
-			<div class="pmd-modal-media"> <img width="1184" height="666" class="img-responsive" src="images/edificio1.jpg"> </div>
+            {{#each edificios}}
+			<div class="pmd-modal-media"> <img width="1184" height="666" class="img-responsive imagenedi" src={{avatar}}> </div>
+            {{/each}}
 			<div class="modal-body">
             {{#each edificios}}
 			 <p class="descripcio_modal_edifici">{{descripcion}}</p> 
@@ -141,13 +162,7 @@
 			</div>
 			<div class="pmd-modal-action">
 			    <button id="subirlvl" type="button" class="btn pmd-ripple-effect btn-default btn_modal_edifici">SUBIR NIVEL
-			    </button>
-			    
-			    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal_edifici">RECOGER ALIMENTO
-			    </button>
-			    
-			    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal_edifici">GENERAR ALIMENTO
-			    </button>				
+			    </button>			
 			</div>           
 		</div>
 	</div>
@@ -344,10 +359,60 @@
                     <div class="header_gran">
                         <h2>TIENDA</h2>
                     </div>
-
+                    {{#each partida}}
                     <div id="contingut_modal">
-                        <p>Contenido aquí</p>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h2>Dinero</h2>
+                                <div class="col-sm-12">
+                                    <div style="text-align: center">
+                                        <img src="images/coin.png" style="width: 100px">
+                                    <div>
+                                        <label id="tienesDinero" class="label label-info center-block" style="font-size: 1.2em; display: block; width: 200px"><img src="images/coin.png" style="width: 30px"><span> Dinero: {{dinero}}</span></label>
+
+                                        <label id="pierdesDinero" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Pierdes:</span></label>
+                                        <label id="teQuedaDinero" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Te queda:</span> </label>
+                                        <label id="ganasSuministros" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Ganas:</span></label>
+                                        <label id="teQuedaSuministros" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Te quedan:</span></label>
+
+                                    </div>
+                                        <div>
+                                            <input id="dinero" type="text" class="form-control center-block" style="width: 200px">
+                                            <br>
+                                            <button id="camDinero" class="btn btn-info">Cambiar</button>
+                                            <button id="conDinero" class="btn btn-info" style="display: none;">Confirmar</button>
+                                            <button id="cancelDinero" class="btn btn-danger" style="display: none;">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <h2>Suministros</h2>
+                                <div class="col-sm-12" >
+                                    <div style="text-align: center">
+                                        <img src="images/carne.png" style="width: 100px">
+                                    <div>
+                                        <label id="tienesSuministros" class="label label-info center-block" style="font-size: 1.2em; display: block; width: 200px"><img src="images/carne.png" style="width: 30px"><span> Suministros: {{suministros}}</span></label>
+
+                                        <label id="pierdesSuministros" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Pierdes:</span></label>
+                                        <label id="QuedaSuministros" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Te queda:</span> </label>
+                                        <label id="ganasDinero" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Ganas:</span></label>
+                                        <label id="QuedaDinero" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Te quedan:</span></label>
+                                    </div>
+                                    <div>
+                                        <input id="suministros" type="text" class="form-control center-block" style="width: 200px">
+                                        <br>
+                                            <button id="camSuministros" class="btn btn-info">Cambiar</button>
+                                            <button id="conSuministros" class="btn btn-info" style="display: none;">Confirmar</button>
+                                            <button id="cancelSuministros" class="btn btn-danger" style="display: none;">Cancelar</button>
+                                    </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    {{/each}}
                 </div>
             </div>
         </div>
@@ -377,7 +442,9 @@
                             </div>
 
                             <div class="col-sm-5">
-                                <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img_edifici">
+                            {{#each edificios}}
+                                <img src={{avatar}} class="img-responsive img_edifici">
+                            {{/each}}
                             </div>
                         </div>
                         <div class="row">
@@ -451,7 +518,9 @@
                             </div>
 
                             <div class="col-sm-5">
-                                <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img_edifici">
+                            {{#each edificios}}
+                                <img src={{avatar}} class="img-responsive img_edifici">
+                            {{/each}}
                             </div>
                         </div>
                         <div class="row">
@@ -477,61 +546,7 @@
         </div>
     </div>
 
-    <!-- POP CAMPAMENTO-->
-
-    <div tabindex="-1" class="modal fade" id="pop_campamento" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog pop_gran">
-            <div class="modal-content border">
-                <div class="modal-body content_gran">
-                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                    {{ #each edificios }}
-                    <div class="header_gran">
-                        <h2>{{ nom }}</h2>
-                    </div>
-                    {{ /each }}
-                    <div id="contingut_modal">
-                        <div class="row info_edifici">
-                            <div class="col-sm-5 col-sm-offset-1">
-                            {{ #each edificios }}
-                                <p class="descripcio">{{ descripcion }}</p>
-                                <button type="button" class="btn pmd-ripple-effect btn-default btn_modal">SUBIR NIVEL
-                                </button>
-                            {{ /each }}
-                            </div>
-
-                            <div class="col-sm-5">
-                                <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img_edifici">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-2 col-sm-offset-2">
-                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab"></a>
-
-                            </div>
-
-                            <div class="col-sm-2">
-                                <img src="images/lider1.png" class="img_lab">
-
-                            </div>
-
-                            <div class="col-sm-2">
-                                <img src="images/lider1.png" class="img_lab">
-
-                            </div>
-
-                            <div class="col-sm-2">
-                                <img src="images/lider1.png" class="img_lab">
-
-                            </div>
-                        </div>                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- POP HABITATS -->
-
+   
 
     <!-- POP SOCIAL -->
     <div tabindex="-1" class="modal fade" id="pop_social" style="display: none;" aria-hidden="true">
