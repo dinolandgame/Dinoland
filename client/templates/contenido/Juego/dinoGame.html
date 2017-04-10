@@ -199,7 +199,7 @@
                 -->
                 {{#each edificios}}
                 <div class="col-xs-4 col-xs-offset-1">
-                    <img class="modal-img-edif img-responsive" src={{avatar}} style="max-width: 300px; max-width:200px">
+                    <img class="modal-img-edif img-responsive" src={{avatar}} style="max-width: 200px; max-height:200px;">
                 </div>
                 {{/each}}
                 
@@ -207,7 +207,7 @@
 
             <div class="row" style="margin-bottom: 30px; margin-top: 20px;">
                 <div class="col-xs-3 col-xs-offset-1">
-                    <button class="boton_gui" data-target="#pop_tienda" data-toggle="modal">
+                    <button class="boton_gui" data-toggle="modal">
                         <p class="dinobuton-text">Subir nivel</p>
                     </button>
                 </div>
@@ -336,25 +336,31 @@
         <div class="modal-dialog pop_gran">
             <div class="modal-content border">
                 <div class="modal-body content_gran">
-                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                    {{ #each edificios }}
-                    <div class="header_gran">
-                        <h2>{{ nom }}</h2>
-                    </div>
-                    {{ /each }}
+            <div class="modal-header">
+
+            {{#each edificios}}
+
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <div class="modal-ribon">
+                    <img src="/images/ribbon.png">
+                    <h2 id="nom_edifici" class="dinobuton-text">{{nom}}</h2>
+                </div> 
+            {{/each}} 
+            </div>
                     <div id="contingut_modal">
                          <div class="row info_edifici">
-                            <div class="col-sm-6 col-sm-offset-3">
+                            <div class="modal-desc col-sm-6 col-sm-offset-3">
                             {{ #each edificios }}
-                                <p class="descripcio">{{ descripcion }}</p>
-                                <button type="button" class="btn pmd-ripple-effect btn-default btn_modal">SUBIR NIVEL
-                            </button>
+                                <p>{{ descripcion }}</p>
+
                             {{ /each }}
                             </div>
+                            <div id="boton-habitats">
+                                <button type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui">
+                                <p class="dinobuton-text">Subir nivel</p>
+                            </button>
+                            </div>
                         </div>
-                        
-                        
-                        
                         <div class="row">
                             <div class="col-sm-4">
                                 <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img_edifici">
@@ -365,8 +371,8 @@
                                  <div class="header_gran">
                                     <h1>0/10</h1>
                                 </div>
-                                <button type="button" class="btn pmd-ripple-effect btn-default btn_modal">SUBIR NIVEL
-                                </button>
+                                <div>
+                                </div>
                             </div> 
                             <div class="col-sm-4">
                                 <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img_edifici">
@@ -377,8 +383,6 @@
                                 <div class="header_gran">
                                     <h1>0/10</h1>
                                 </div>
-                                <button type="button" class="btn pmd-ripple-effect btn-default btn_modal">SUBIR NIVEL
-                                </button>
                             </div> 
                             <div class="col-sm-4">
                                 <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img_edifici">
@@ -389,8 +393,6 @@
                                  <div class="header_gran">
                                     <h1>0/10</h1>
                                 </div>
-                                <button type="button" class="btn pmd-ripple-effect btn-default btn_modal">SUBIR NIVEL
-                                </button>
                             </div> 
                         </div>
                         
@@ -476,26 +478,33 @@
         <div class="modal-dialog pop_gran">
             <div class="modal-content border">
                 <div class="modal-body content_gran">
-                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                    {{ #each edificios }}
-                    <div class="header_gran">
+            <div class="modal-header">
 
-                        <h2>{{ nom }}</h2>
-                    </div>
-                    {{ /each }}
+            {{#each edificios}}
+
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <div class="modal-ribon">
+                    <img src="/images/ribbon.png">
+                    <h2 id="nom_edifici" class="dinobuton-text">{{nom}}</h2>
+                </div> 
+            {{/each}} 
+            </div>
                     <div id="contingut_modal">
                         <div class="row info_edifici">
-                            <div class="col-sm-5 col-sm-offset-1">
+                            <div class="modal-desc col-sm-5 col-sm-offset-2">
                             {{ #each edificios }}
-                                <p class="descripcio">{{ descripcion }}</p>
-                                <button type="button" class="btn pmd-ripple-effect btn-default btn_modal">SUBIR NIVEL
-                            </button>
+                                <p >{{ descripcion }}</p>
                             {{ /each }}
-                            </div>
 
-                            <div class="col-sm-5">
+                            </div>
+                            <div id="btn-cuartel">
+                                <button type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui">
+                                <p class="dinobuton-text">Subir nivel</p>
+                                </button>
+                            </div>
+                            <div class="col-sm-4">
                             {{#each edificios}}
-                                <img src={{avatar}} class="img-responsive img_edifici" >
+                                <img src={{avatar}} class="img-responsive img_edifici modal-img-edif" >
                             {{/each}}
                             </div>
                         </div>
@@ -512,8 +521,7 @@
                         </div>
                         
     <!--fin panel 2 -->
-                        <div class="row" style="margin-left:3%">
-                           
+                        <div id="edif-cuartel" class="row" style="margin-left:3%">
                                
                                 {{#each edificioTodos}}
                                   
@@ -525,8 +533,8 @@
                                             </div>
 -->
                                             <div class="col-sm-2">
-                                              
-                                              <a href="#" type="button" class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}}><img src={{avatar}} class="img_admin otro img-circle"  style="opacity:0.2;cursor:not-allowed"></a>
+                                              <a href="#" type="button" class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}}><img src={{avatar}} class="img_admin otro img-circle modal-img-edif"  style="opacity:0.2;cursor:not-allowed"></a>
+                                              <p id="edif-nombre">{{nom}}</p>
                                             </div>
 
                                         
@@ -536,9 +544,9 @@
                                                 <a class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="modal"  type="button"><img src={{avatar}} class="img_admin otro img-circle" style="cursor:pointer"></a>
                                             </div>
 -->
-                                            <div class="col-sm-2">
-                                              
-                                              <a href="#" type="button" class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}}><img src={{avatar}} class="img_admin otro img-circle" style="cursor:pointer"></a>
+                                            <div class="col-sm-2">  
+                                              <a href="#" type="button" class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}}><img src={{avatar}} class="img_admin otro img-circle modal-img-edif" style="cursor:pointer"></a>
+                                              <p id="edif-nombre">{{nom}}</p>
                                             </div>
 
                                         {{/if}}
@@ -563,43 +571,55 @@
         <div class="modal-dialog pop_gran">
             <div class="modal-content border">
                 <div class="modal-body content_gran">
-                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                    {{ #each edificios }}
-                    <div class="header_gran">
-                        <h2>{{ nom }}</h2>
-                    </div>
-                    {{ /each }}
+                               <div class="modal-header">
+
+            {{#each edificios}}
+
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <div class="modal-ribon">
+                    <img src="/images/ribbon.png">
+                    <h2 id="nom_edifici" class="dinobuton-text">{{nom}}</h2>
+                </div> 
+            {{/each}} 
+            </div>
                     <div id="contingut_modal">
                         <div class="row info_edifici">
-                            <div class="col-sm-5 col-sm-offset-1">
+                            <div class="modal-desc col-sm-5 col-sm-offset-2">
                             {{ #each edificios }}
-                                <p class="descripcio">{{ descripcion }}</p>
-                                <button type="button" class="btn pmd-ripple-effect btn-default btn_modal">SUBIR NIVEL
-                                </button>
+                                <p>{{ descripcion }}</p>
                             {{ /each }}
                             </div>
-
+                                <div class="modal-botones">
+                                    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui">
+                                    <p class="dinobuton-text">Subir nivel</p>
+                                </button>
+                                </div>
                             <div class="col-sm-5">
                             {{#each edificios}}
-                                <img src={{avatar}} class="img-responsive img_edifici">
+                                <img src={{avatar}} class="img-responsive img_edifici modal-img-edif">
                             {{/each}}
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row edif-lab">
                             <div class="col-sm-2 col-sm-offset-1">
-                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab"></a>
+                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab modal-img-edif"></a>
+                                <p id="edif-nombre">Seguridad</p>
                             </div>
                             <div class="col-sm-2">
-                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab"></a>
+                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab modal-img-edif"></a>
+                                <p id="edif-nombre">Habitats</p>
                             </div>
                             <div class="col-sm-2">
-                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab"></a>
+                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab modal-img-edif"></a>
+                                <p id="edif-nombre">RRPP</p>
                             </div>
                             <div class="col-sm-2">
-                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab"></a>
+                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab modal-img-edif"></a>
+                                <p id="edif-nombre">Logistica</p>
                             </div>
                             <div class="col-sm-2">
-                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab"></a>
+                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab modal-img-edif"></a>
+                                <p id="edif-nombre">Liderazgo</p>
                             </div>
                         </div>                        
                     </div>
