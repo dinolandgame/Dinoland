@@ -17,3 +17,9 @@ Meteor.publish('dinosaurios', function(){
 Meteor.publish('expediciones', function(){
     return Expedicion.find({usuario: this.userId});
 });
+Meteor.publish('lideres', function(){
+	return Lider.find();
+});
+Meteor.publish('terrenos', function(){
+	return Zona.find();
+});

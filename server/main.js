@@ -17,7 +17,8 @@ Meteor.methods({
                       energia:200,
                       suministros:200,
                       visitantes:0,
-                      edificio:[]}); 
+                      edificio:[],
+                        desbloqueados:[]}); 
        
        /*{
     _id:1,
@@ -73,16 +74,15 @@ Meteor.methods({
             console.log("ha entrat en el job");
         
 
-            Partida.update(
-               { _id:user, edificio: Edifici._id },
-               { $set: { "edificio.$" : EdificiUp._id } }
-                
-            );
+            Partida.update({ _id:user, edificio: Edifici._id },{ $set: { "edificio.$" : EdificiUp._id}});
             
-            /*Partida.update(
-               { _id:"zC27EwRQnrHgcuZz8", edificio: 1 },
-               { $set: { "edificio.$" : 2} }
-            );*/
+            
+            if(EdificiUp.key=="cuartel2"){
+                        Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
+                    }
+                    else if(EdificiUp.key=="cuartel3"){
+                        Partida.update({_id:user},{$push:{desbloqueados:{$each:[EdificiUp.desbloquea]}}});
+                    }
 
             console.log("edifici modificat");            
         }  
@@ -416,33 +416,52 @@ Accounts.emailTemplates.verifyEmail = {
             return parser.text('every 50 seconds');
         },
         job: function() {
-            // do something important here
+                     // do something important here
             //console.log("aixo es un missatge de mostra (1)");
             //SyncedCron.remove('Run in 20 seconds only once');
             try{
              // if(Meteor.userId() != null){
                 //user= Meteor.userId();
-                Partida.find().forEach(function(part){
-                  var dinocoins = 0;
-                  //var comida = 0;
-                  var suministros = 0;
-                  //console.log(part.edificio[0],part.edificio[1]);
+                Partida.find().forEach(function(part){  
+                  var sum_maxim = 240;
+                  var coins_maxim = 1800;
+
+                  var dinero = part.dinero;
+                  var suministros = part.suministros;
+                  var almacen = 0;
                   part.edificio.forEach(function(num){
-                    //console.log(num);
-                    //if(num=="1001" || num=="1002" !! num=="1003"){
-                     edificio = Edificio.findOne({"_id":num});
-                     console.log ("dinocoins: " + edificio.dinoCoins/60 );
-                     dinocoins = Math.ceil(edificio.dinoCoins/60);
-                     //comida = edificio.comidaDino/60;
-                     suministros = Math.ceil(edificio.Suministros/60);
-                     console.log("jugador: "+ part._id +" suministros: "+ suministros);
-                     console.log("jugador: "+ part._id +" suministros: "+ dinocoins);
-                    //}
-                  })
+                    
+                    var edificio  = Edificio.findOne({"_id":num});
+
+                    if(num==401 || num==402 || num==403){
+                      almacen = num;
+                    }
+
+                    dinero += Math.ceil(edificio.dinoCoins/60);
+                    suministros += Math.ceil(edificio.Suministros/60);
+
+                  });
+                  
 
 
+                  if(almacen > 400){
+                    var edif_almacen  = Edificio.findOne({"_id":almacen});
+                    sum_maxim = edif_almacen.max_sum;
+                    coins_maxim = edif_almacen.max_dinocoins;
+                  }
 
-                  Partida.update({_id:part._id},{ $inc:{dinero:dinocoins, suministros:suministros}})
+                  if(suministros > sum_maxim){
+                    suministros = sum_maxim;
+                  }
+
+
+                  if(dinero > coins_maxim){
+                    dinero = coins_maxim;
+                  }
+
+                  Partida.update({_id:part._id},{$set:{dinero:dinero, suministros:suministros}})
+
+
                 });
                 
              // }
