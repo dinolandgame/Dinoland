@@ -800,23 +800,21 @@ border-radius: 100%;
 }
 
 /* POP EXPEDICIONES */
-
+/*
 #modal_expe{
-    background-image: url("../images/fondojungl.png");
-    background-size: cover;
+    
     border-radius: 10px;
     margin-top: 20px;
-    height: 86%;
+    height: 100%;
     
-}
+}*/
 
 .img_tropa {
-    width: 100%;
-    height: 80px;
-    margin-top: 20px;
-    margin-bottom: 0px;
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
     
-    right: 0px;
 }
 
 
@@ -831,6 +829,8 @@ border-radius: 100%;
 }
 
 .btn_expe {
+    display: block;
+    margin: 0 auto;
     background-color: orange;
     border-radius: 20px;
     color: black;  
@@ -838,10 +838,9 @@ border-radius: 100%;
     margin-top: 5px;   
     padding-left: 20px!important;
     padding-right: 20px!important;
-    /* Falta fer que es centri tot el DIV d'alguna manera!!*/
 }
 
-.btn_expe_suma_resta {
+/*.btn_expe_suma_resta {
     background-color: orange;
     border-radius: 20px;
     color: black;  

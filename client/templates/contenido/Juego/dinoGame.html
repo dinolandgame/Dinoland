@@ -225,102 +225,102 @@
         <div class="modal-dialog pop_gran">
             <div class="modal-content border">
                 <div class="modal-body content_gran">
-                    <div class="header_gran">
-                        <h2>EXPEDICIONES</h2>
-                    </div>
+                    <div class="modal-header">
 
-                    <div id="modal_expe">
-                        <div class="col-sm-12">
+                        {{#each edificios}}
+
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                            <div class="modal-ribon">
+                                <img src="/images/ribbon.png">
+                                <h2 id="nom_edifici" class="dinobuton-text">{{nom}}</h2>
+                            </div> 
+                        {{/each}} 
+                        </div>
+
+                    <div id="contingut_modal">
+                        <div class="row">
                             <div class="col-sm-9">
                                 <div class="row">
-                                    <div class="col-sm-2 col-sm-offset-3">
-                                        <img src="images/lider1.png" class="img_tropa">
-                                        <button type="button" class="btn pmd-ripple-effect btn-default btn_expe">Comandante
-                                        </button>
+                                    <div class="col-sm-3 col-sm-offset-1">
+                                        <img class="img_tropa" data-tipo="lider" data-nombre="Científica" src="images/expediciones/cientifica.png">
+                                        
                                     </div> 
-                                    <div class="col-sm-2">
-                                        <img src="images/lider1.png" class="img_tropa">
-                                        <button type="button" class="btn pmd-ripple-effect btn-default btn_expe">Explorador
-                                        </button>
+                                    <div class="col-sm-3">
+                                        <img class="img_tropa" data-tipo="lider" data-nombre="Jefe Explorador" src="images/expediciones/jefe.png">                                       
                                     </div> 
-                                    <div class="col-sm-2">
-                                        <img src="images/lider1.png" class="img_tropa">
-                                        <button type="button" class="btn pmd-ripple-effect btn-default btn_expe">CIENTÍFICA
-                                        </button>
+                                    <div class="col-sm-3">
+                                        <img class="img_tropa" data-tipo="lider" data-nombre="Comandante" src="images/expediciones/comandante.png">                                        
                                     </div> 
                                 </div>
                                 <div class="row">
-                                     <div class="col-sm-12">
-                                <div class="col-sm-2 col-sm-offset-1">
-                                    <img src="images/lider1.png" class="img_tropa">
-                                    <button type="button" class="btn-default btn_expe_suma_resta">+</button>
-                                    <button type="button" class="btn-default btn_expe_suma_resta">-</button>
-                                    
-                                </div>
-                                <div class="col-sm-2">
-                                    <img src="images/lider1.png" class="img_tropa">
-                                    <button type="button" class="btn-default btn_expe_suma_resta">+</button>
-                                    <button type="button" class="btn-default btn_expe_suma_resta">-</button>                                    
-                                </div>
-                                <div class="col-sm-2">
-                                    <img src="images/lider1.png" class="img_tropa">
-                                    <button type="button" class="btn-default btn_expe_suma_resta">+</button>
-                                    <button type="button" class="btn-default btn_expe_suma_resta">-</button>                                
-                                </div>
-                                <div class="col-sm-2">
-                                    <img src="images/lider1.png" class="img_tropa">
-                                    <button type="button" class="btn-default btn_expe_suma_resta">+</button>
-                                    <button type="button" class="btn-default btn_expe_suma_resta">-</button>                                  
-                                </div>
-                                <div class="col-sm-2">
-                                    <img src="images/lider1.png" class="img_tropa">
-                                    <button type="button" class="btn-default btn_expe_suma_resta">+</button>
-                                    <button type="button" class="btn-default btn_expe_suma_resta">-</button>                                   
-                                </div>
-                            </div>
+                                    <div class="col-sm-2 col-sm-offset-1" data-nombre="Soldado con rifle sónico" data-tipo="rifle" data-efectividad=10 data-salud=10 data-slots=2 data-costedc=100 data-costesum=100>
+                                        <img class="img_tropa" src="images/expediciones/rifle_sonico.png">
+                                        <button data-efecto = "sumar">+</button>
+                                        <button data-efecto = "restar">-</button>
+                                    </div>
+
+                                    <div class="col-sm-2" data-nombre="Soldado con lanzaredes" data-tipo="lanzarredes" data-efectividad=5 data-salud=20 data-slots=3 data-costedc=150 data-costesum=150>
+                                        <img class="img_tropa" src="images/expediciones/lanzaredes.png">
+                                        <button data-efecto = "sumar">+</button>
+                                        <button data-efecto = "restar">-</button>
+                                    </div>
+
+                                    <div class="col-sm-2" data-nombre="JEEP" data-tipo="jeep" data-efectividad=50 data-salud=30 data-slots=10 data-costedc=300 data-costesum=300>
+                                        <img class="img_tropa" src="images/expediciones/jeep.png">
+                                        <button data-efecto = "sumar">+</button>
+                                        <button data-efecto = "restar">-</button>
+                                    </div>
+
+                                    <div class="col-sm-2" data-nombre="Soldado con exotraje" data-tipo="exotraje" data-efectividad=30 data-salud=20 data-slots=6 data-costedc=275 data-costesum=200>
+                                        <img class="img_tropa" src="images/expediciones/exotraje.png">
+                                        <button data-efecto = "sumar">+</button>
+                                        <button data-efecto = "restar">-</button>
+                                    </div>
+
+                                    <div class="col-sm-2" data-nombre="Doctor de campo" data-tipo="doctor" data-efectividad=5 data-salud=40 data-slots=5 data-costedc=200 data-costesum=200>
+                                        <img class="img_tropa" src="images/expediciones/doctor.png">
+                                        <button data-efecto = "sumar">+</button>
+                                        <button data-efecto = "restar">-</button>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-2 col-sm-offset-3">
-                                        <img src="images/lider1.png" class="img_tropa">
-                                        <button type="button" class="btn pmd-ripple-effect btn-default btn_expe">Bosque
-                                        </button>                                 
-                            </div>
-                            <div class="col-sm-2">
-                                <img src="images/lider1.png" class="img_tropa">
-                                <button type="button" class="btn pmd-ripple-effect btn-default btn_expe">Montañas
-                                </button>                               
-                            </div>
-                            <div class="col-sm-2">
-                                <img src="images/lider1.png" class="img_tropa">
-                                <button type="button" class="btn pmd-ripple-effect btn-default btn_expe">Costa
-                                </button>                                
-                            </div>
+                                        <img class="img_tropa" src="images/expediciones/playa.png" data-tipo="zona" data-nombre="playa">                                                                      
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <img class="img_tropa" src="images/expediciones/monta%C3%B1as.png" data-tipo="zona" data-nombre="montañas">                                                                      
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <img class="img_tropa" src="images/expediciones/selva.png" data-tipo="zona" data-nombre="selva">                                
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="row">
                                     <div class="lista">
-                                        <h1>LIDER</h1>
-                                        <p>Comandante</p>
+                                        <h3>CAPACIDAD</h3>
+                                        <p id="slots">0/30</p>
                                     </div>
                                     <div class="lista">
-                                        <h1>TROPAS</h1>
-                                        <ul>
-                                            <li>5x Soldados con rifle sonico</li>
-                                            <li>2x Soldados con lanzaredes</li>
-                                            <li>1x Jeep de exploracion</li>
-                                            <li>0x Soldados con exotraje</li>
-                                            <li>0x Médicos de campo</li>
-                                        </ul>
+                                        <h3>LÍDER</h3>
+                                        <p id="liderEXP"></p>
+                                    </div>
+                                    <div id="resumen" class="lista">
+                                        <h3>EQUIPO</h3>
+                                        <p data-tipo="rifle"><span id="total-rifle">0</span>x Soldado con rifle sónico</p>
+                                        <p data-tipo="lanzarredes"><span id="total-lanzaredes">0</span>x Soldado con lanzaredes</p>
+                                        <p data-tipo="jeep"><span id="total-jeep">0</span>x jeep</p>
+                                        <p data-tipo="exotraje"><span id="total-exotraje">0</span>x Soldado con exotraje</p>
+                                        <p data-tipo="doctor"><span id="total-doctor">0</span>x Doctor de campo</p>
                                     </div>
                                     <div class="lista">
-                                        <h1>DESTINO</h1>
-                                        <p>Colinas</p>
+                                        <h3>LUGAR</h3>
+                                        <p id="lugarEXP"></p>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal">ENVIAR EXPEDICION
-                                    </button>
+                                    <button id="enviarEXP" style="display: none;">ENVIAR EXPEDICIÓN</button>
+                                    
                                 </div>
                             </div>
                         </div>
