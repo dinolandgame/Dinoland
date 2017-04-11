@@ -349,13 +349,14 @@
             </div>
                     <div id="contingut_modal">
                          <div class="row info_edifici">
-                            <div class="modal-desc col-sm-6 col-sm-offset-3">
+                            <div class="modal-desc col-sm-6 col-sm-offset-3 modal-desc-habitats">
                             {{ #each edificios }}
                                 <p>{{ descripcion }}</p>
-
                             {{ /each }}
                             </div>
-                            <div id="boton-habitats">
+                        </div>
+                        <div class="row">
+                            <div id="boton-habitats" class="col-sm-12 center-block">
                                 <button type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui">
                                 <p class="dinobuton-text">Subir nivel</p>
                             </button>
@@ -363,37 +364,47 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img_edifici">
-                                <div class="header_gran">
-                                    <h1>Bosques</h1>
+                                <div class="div-habitat">
+                                    <div class="modal-desc-noP">
+                                        <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
+
+                                    <div class="header_gran" style="text-align: center">
+                                        <p>Volador</p>
+                                    </div>
+                                        <p>En este habitat podras tener controlados a tus raptores y T-rex.</p>
+                                        <p class="dinobuton-text" style="text-align: center">0/10</p>
+                                    </div>
+                                                                       
                                 </div>
-                                <p>En este habitat podras tener controlados a tus raptores y T-rex.</p>
-                                 <div class="header_gran">
-                                    <h1>0/10</h1>
-                                </div>
-                                <div>
+                            </div>  
+                            <div class="col-sm-4">
+                                <div class="div-habitat">
+                                    <div class="modal-desc-noP">
+                                        <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
+
+                                    <div class="header_gran" style="text-align: center">
+                                        <p>Aquatico</p>
+                                    </div>
+                                        <p>En este habitat podras tener controlados a tus raptores y T-rex.</p>
+                                        <p class="dinobuton-text" style="text-align: center">0/10</p>
+                                    </div>
+                                                                       
                                 </div>
                             </div> 
                             <div class="col-sm-4">
-                                <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img_edifici">
-                                <div class="header_gran">
-                                    <h1>Bosques</h1>
+                                <div class="div-habitat">
+                                    <div class="modal-desc-noP">
+                                        <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
+
+                                    <div class="header_gran" style="text-align: center">
+                                        <p>Terrestre</p>
+                                    </div>
+                                        <p>En este habitat podras tener controlados a tus raptores y T-rex.</p>
+                                        <p class="dinobuton-text" style="text-align: center">0/10</p>
+                                    </div>
+                                                                       
                                 </div>
-                                <p>En este habitat podras tener controlados a tus raptores y T-rex.</p>
-                                <div class="header_gran">
-                                    <h1>0/10</h1>
-                                </div>
-                            </div> 
-                            <div class="col-sm-4">
-                                <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img_edifici">
-                                <div class="header_gran">
-                                    <h1>Bosques</h1>
-                                </div>
-                                <p>En este habitat podras tener controlados a tus raptores y T-rex.</p>
-                                 <div class="header_gran">
-                                    <h1>0/10</h1>
-                                </div>
-                            </div> 
+                            </div>  
                         </div>
                         
                     </div>
@@ -409,56 +420,96 @@
         <div class="modal-dialog pop_gran">
             <div class="modal-content border">
                 <div class="modal-body content_gran">
-                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                    <div class="header_gran">
-                        <h2>TIENDA</h2>
+                    <div class="modal-header">
+                        {{#each edificios}}
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                            <div class="modal-ribon">
+                                <img src="/images/ribbon.png">
+                                <h2 id="nom_edifici" class="dinobuton-text">{{nom}}</h2>
+                            </div> 
+                        {{/each}} 
                     </div>
                     {{#each partida}}
                     <div id="contingut_modal">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-4 col-sm-offset-1 modal-desc">
                                 <h2>Dinero</h2>
                                 <div class="col-sm-12">
                                     <div style="text-align: center">
-                                        <img src="images/coin.png" style="width: 100px">
-                                    <div>
-                                        <label id="tienesDinero" class="label label-info center-block" style="font-size: 1.2em; display: block; width: 200px"><img src="images/coin.png" style="width: 30px"><span> Dinero: {{dinero}}</span></label>
-
-                                        <label id="pierdesDinero" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Pierdes:</span></label>
-                                        <label id="teQuedaDinero" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Te queda:</span> </label>
-                                        <label id="ganasSuministros" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Ganas:</span></label>
-                                        <label id="teQuedaSuministros" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Te quedan:</span></label>
-
+                                        <img src="images/coin.png" style="width: 80px">
+                                    <div class="row">
+                                    <div class="label-rojo modal-desc-shadow resumenDinero">
+                                        <label id="pierdesDinero" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Pierdes:</span></label>
+                                        <label id="teQuedaDinero" class="label  center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Te queda:</span> </label>
                                     </div>
-                                        <div>
+                                        <label id="tienesDinero" class="label modal-desc-shadow label-naranja center-block" style="font-size: 1.2em; display: block; width: 200px; border-radius: 10px"><img src="images/coin.png" style="width: 30px"><span> Dinero: {{dinero}}</span></label>
+
+                                    <div class="label-verde modal-desc-shadow resumenDinero">
+                                        <label id="ganasSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Ganas:</span></label>
+                                        <label id="teQuedaSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Te quedan:</span></label>
+                                    </div>
+                                        
+                                    </div>
+                                        <div class="btn-trade">
                                             <input id="dinero" type="text" class="form-control center-block" style="width: 200px">
                                             <br>
-                                            <button id="camDinero" class="btn btn-info">Cambiar</button>
-                                            <button id="conDinero" class="btn btn-info" style="display: none;">Confirmar</button>
-                                            <button id="cancelDinero" class="btn btn-danger" style="display: none;">Cancelar</button>
+                                            <div class="col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <button id="camDinero" class="boton-gui-trade" ><p class="dinobuton-text-trade">Cambiar</p></button>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-trade">
+                                                    <div class="col-sm-6 col-botones">
+                                                        <button id="conDinero" class="boton-gui-trade-ok" style="display: none;"><p class="dinobuton-text-trade">Confirmar</p></button>
+                                            
+                                                    </div>
+                                                    <div class="col-sm-6 col-botones">
+                                                        <button id="cancelDinero" class="boton-gui-trade-cancel" style="display: none;"><p class="dinobuton-text-trade">Cancelar</p></button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4 col-sm-offset-2 modal-desc">
                                 <h2>Suministros</h2>
                                 <div class="col-sm-12" >
                                     <div style="text-align: center">
-                                        <img src="images/carne.png" style="width: 100px">
-                                    <div>
-                                        <label id="tienesSuministros" class="label label-info center-block" style="font-size: 1.2em; display: block; width: 200px"><img src="images/carne.png" style="width: 30px"><span> Suministros: {{suministros}}</span></label>
+                                        <img src="images/carne.png" style="width: 80px">
+                                    <div class="row">
+                                        <label id="tienesSuministros" class="label modal-desc-shadow label-naranja center-block" style="font-size: 1.2em; display: block; width: 200px; border-radius: 10px"><img src="images/carne.png" style="width: 30px;" ><span> Suministros: {{suministros}}</span></label>
 
-                                        <label id="pierdesSuministros" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Pierdes:</span></label>
-                                        <label id="QuedaSuministros" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Te queda:</span> </label>
-                                        <label id="ganasDinero" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Ganas:</span></label>
-                                        <label id="QuedaDinero" class="label label-danger center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Te quedan:</span></label>
+                                        <div class="label-rojo modal-desc-shadow resumenSuministros">
+                                            <label id="pierdesSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Pierdes:</span></label>
+                                            <label id="QuedaSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Te queda:</span> </label>
+                                        </div>
+                                        <div class="label-verde modal-desc-shadow resumenSuministros">
+                                            <label id="ganasDinero" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Ganas:</span></label>
+                                            <label id="QuedaDinero" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Te quedan:</span></label>
+                                        </div>
+                                        
                                     </div>
-                                    <div>
+                                    <div class="btn-trade">
                                         <input id="suministros" type="text" class="form-control center-block" style="width: 200px">
                                         <br>
-                                            <button id="camSuministros" class="btn btn-info">Cambiar</button>
-                                            <button id="conSuministros" class="btn btn-info" style="display: none;">Confirmar</button>
-                                            <button id="cancelSuministros" class="btn btn-danger" style="display: none;">Cancelar</button>
+                                            <div class="col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <button id="camSuministros" class="boton-gui-trade" ><p class="dinobuton-text-trade">Cambiar</p></button>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-trade">
+                                                    <div class="col-sm-6 col-botones">
+                                                        <button id="conSuministros" class="boton-gui-trade-ok" style="display: none;"><p class="dinobuton-text-trade">Confirmar</p></button>
+                                            
+                                                    </div>
+                                                    <div class="col-sm-6 col-botones">
+                                                        <button id="cancelSuministros" class="boton-gui-trade-cancel" style="display: none;"><p class="dinobuton-text-trade">Cancelar</p></button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     </div>
                                     </div>
                                     

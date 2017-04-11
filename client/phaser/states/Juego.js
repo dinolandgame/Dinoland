@@ -242,6 +242,7 @@ function vaciarDinero(){
             $('#ganasSuministros span').text("Ganas: ");
             $('#teQuedaSuministros span').text("Te Queda: ");
             $('#dinero').val("");
+            $('.resumenDinero').css('display', 'none');
 };
 
 function vaciarSuministros(){
@@ -256,5 +257,6 @@ function vaciarSuministros(){
             $('#ganasDinero span').text("Ganas: ");
             $('#QuedaDinero span').text("Te Queda: ");
             $('#suministros').val("");
-}
+            $('.resumenSuministros').css('display', 'none');
+};
 

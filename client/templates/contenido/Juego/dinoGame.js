@@ -164,6 +164,7 @@ function rellenarDinero(introducido, dineroRestante, suministrosGanados, suminis
             //Suministros
             $('#ganasSuministros span').text("Ganas: " + suministrosGanados);
             $('#teQuedaSuministros span').text("Te Queda: " + suministrosTotales);
+            $('.resumenDinero').css('display', 'block');
 };
 
 function rellenarSuministros(introducido, suministroRestante, dineroGanado, dineroTotal){
@@ -177,6 +178,7 @@ function rellenarSuministros(introducido, suministroRestante, dineroGanado, dine
             //Suministros
             $('#ganasDinero span').text("Ganas: " + dineroGanado);
             $('#QuedaDinero span').text("Te Queda: " + dineroTotal);
+            $('.resumenSuministros').css('display', 'block');
 };
 function vaciarDinero(){
             $('#pierdesDinero, #teQuedaDinero, #ganasSuministros, #teQuedaSuministros').css('display', 'none');
@@ -190,6 +192,7 @@ function vaciarDinero(){
             $('#ganasSuministros span').text("Ganas: ");
             $('#teQuedaSuministros span').text("Te Queda: ");
             $('#dinero').val("");
+            $('.resumenDinero').css('display', 'none');
 };
 
 function vaciarSuministros(){
@@ -204,6 +207,7 @@ function vaciarSuministros(){
             $('#ganasDinero span').text("Ganas: ");
             $('#QuedaDinero span').text("Te Queda: ");
             $('#suministros').val("");
+            $('.resumenSuministros').css('display', 'none');
 }
 
 //Helpers
