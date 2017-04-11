@@ -207,7 +207,7 @@
 
             <div class="row" style="margin-bottom: 30px; margin-top: 20px;">
                 <div class="col-xs-3 col-xs-offset-1">
-                    <button class="boton_gui" data-target="#pop_tienda" data-toggle="modal">
+                    <button class="boton_gui" id="subirlvl" data-toggle="modal">
                         <p class="dinobuton-text">Subir nivel</p>
                     </button>
                 </div>
@@ -582,6 +582,8 @@
                             <div class="col-sm-5">
                             {{#each edificios}}
                                 <img src={{avatar}} class="img-responsive img_edifici">
+                                <button type="button" class="btn pmd-ripple-effect btn-default btn_modal">investigar
+                                </button>
                             {{/each}}
                             </div>
                         </div>
