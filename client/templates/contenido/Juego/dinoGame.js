@@ -533,15 +533,21 @@ Template.dinoGame.helpers({
 
     tropas: function(){
        return Tropa.find({});
+    },
+
+    lideres: function(){
+        return Lider.find({});
+    },
+
+    terrenos: function(){
+        return Zona.find({});
     }
 
 });
 
 
-    
 
-
-/* ON RENDERES ES COMO EL DOCUMENT(READY)
+/* ON RENDERES ES COMO EL DOCUMENT(READY) */
 Template.dinoGame.onRendered(function(){
 
     /* VARIABLES GLOBALES PARA EXPEDICIONES */

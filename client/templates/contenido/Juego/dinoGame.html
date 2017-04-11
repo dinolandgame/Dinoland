@@ -247,16 +247,13 @@
                         <div class="row">
                             <div class="col-sm-9">
                                 <div class="row">
-                                    <div class="col-sm-3 col-sm-offset-1">
-                                        <img class="img_tropa" data-tipo="lider" data-nombre="Científica" src="images/expediciones/cientifica.png">
-                                        
-                                    </div> 
+                                <div class="col-sm-1"></div>
+                                {{#each lideres}}
                                     <div class="col-sm-3">
-                                        <img class="img_tropa" data-tipo="lider" data-nombre="Jefe Explorador" src="images/expediciones/jefe.png">                                       
+                                        <img class="img_tropa" data-tipo="{{tipo}}" data-nombre="{{nombre}}" src="{{avatar}}">
                                     </div> 
-                                    <div class="col-sm-3">
-                                        <img class="img_tropa" data-tipo="lider" data-nombre="Comandante" src="images/expediciones/comandante.png">                                        
-                                    </div> 
+                                {{/each}}
+
                                 </div>
                                 <div class="row">
                                 <div class="col-sm-1"></div>
@@ -269,15 +266,12 @@
                                 {{/each}}
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-2 col-sm-offset-3">
-                                        <img class="img_tropa" src="images/expediciones/playa.png" data-tipo="zona" data-nombre="playa">                                                                      
-                                    </div>
+                                <div class="col-sm-3"></div>
+                                {{#each terrenos}}
                                     <div class="col-sm-2">
-                                        <img class="img_tropa" src="images/expediciones/monta%C3%B1as.png" data-tipo="zona" data-nombre="montañas">                                                                      
+                                        <img class="img_tropa" src="{{avatar}}" data-tipo="{{tipo}}" data-nombre="{{nombre}}">                                                                      
                                     </div>
-                                    <div class="col-sm-2">
-                                        <img class="img_tropa" src="images/expediciones/selva.png" data-tipo="zona" data-nombre="selva">                                
-                                    </div>
+                                {{/each}}
                                 </div>
                             </div>
                             <div class="col-sm-3">

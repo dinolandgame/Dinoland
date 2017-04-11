@@ -37,7 +37,9 @@ Router.configure({
   	
       return [Meteor.subscribe('partida'),
                Meteor.subscribe('edificio'),
-               Meteor.subscribe('tropas')];
+               Meteor.subscribe('tropas'),
+               Meteor.subscribe('lideres'),
+               Meteor.subscribe('terrenos')];
   }
 		
 });
