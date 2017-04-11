@@ -62,7 +62,7 @@ Template.dinoGame.events({
         
          console.log(cuartel);
             
-            if(EdificiUp != null && Edifici.nivel<cuartel){
+            if(EdificiUp != null && Edifici.nivel<=cuartel){
                 Meteor.call('update_part',EdificiUp,Edifici); 
               //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados
                     
@@ -571,14 +571,17 @@ Template.dinoGame.onRendered(function(){
     /* FIN VARIABLES GLOBALES PARA EXPEDICIONES */
 
     /* ESTO PODRIA IR EN EVENTOS NORMALES, USANDO EL event.target en vez del this*/
-    var id=0;
-     $('.crearEdificio').on('dblclick',function(){
+    
+     $('.crearEdificio').on('dblclick',function(event){
+         var id=0;
+         event.preventDefault();
              alert("se esta contruyendo");
             id = $(this).data('id');
              console.log(this);
             //Partida.update({_id:user},{$push:{edificio:id}});
              Meteor.call('crear_edificio',id);
-             $(this).css({'opacity':'0.95','cursor':'not-allowed'});
+             $(this).addClass('no-seleccionable');
+         
              $('.prueba2').hide();
             
         
