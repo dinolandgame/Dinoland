@@ -3,6 +3,7 @@
 
 body {
     background-image: url("../images/fondo_2.jpg");
+    background-size: cover;
 	background-repeat: repeat;
 	background-color: #bddfec;
     /*font-family: 'roboto';*/
