@@ -174,7 +174,25 @@ Template.dinoGame.events({
             totalSAL += salud;
             totalSLOTS += slots;
             totalDC += costeDC;
+
+                /* Si tenemos el bono, nos ahorramos un 15% en dinocoins*/
+                if(bono_logistica == true){
+                    totalDC = Math.ceil(totalDC - ((totalDC / 100) * 15));
+                }
+
+                else{
+                    totalDC = totalDC;
+                }
             totalSUM += costeSUM;
+
+                /* Si tenemos el bono, nos ahorramos un 15% en suministros */
+                if(bono_logistica == true){
+                    totalSUM = Math.ceil(totalSUM - ((totalSUM / 100) * 15));
+                }
+
+                else{
+                    totalSUM = totalSUM;
+                }
 
             //aumentamos en 1 la tropa seleccionada
             switch(tipo){
@@ -200,10 +218,34 @@ Template.dinoGame.events({
             if(totalSLOTS < 0) {totalSLOTS = 0;}
 
             totalDC -= costeDC;
-            if(totalDC < 0) {totalDC = 0;}
+            if(totalDC < 0) {
+                totalDC = 0;
+            }
+
+            else{
+                if(bono_logistica == true){
+                    totalDC = Math.ceil(totalDC - ((totalDC / 100) * 15));
+                }
+
+                else{
+                    totalDC = totalDC;
+                }
+            }
 
             totalSUM -= costeSUM;
-            if(totalSUM < 0) {totalSUM = 0;}
+            if(totalSUM < 0) {
+                totalSUM = 0;
+            }
+
+            else{
+                if(bono_logistica == true){
+                    totalSUM = Math.ceil(totalSUM - ((totalSUM / 100) * 15));
+                }
+
+                else{
+                    totalSUM = totalSUM;
+                }
+            }
 
             ////restamos 1 a la tropa seleccionada a no ser que sea zero (no admitimos valores repetidos)
             switch(tipo){
@@ -225,7 +267,7 @@ Template.dinoGame.events({
         }
 
         //Seteamos los textos de los totales
-        $("#slots").text(totalSLOTS + "/30");
+        $("#slots").text(totalSLOTS + "/" + capacidad);
         $("#efectividad").text(totalEFEC);
         $("#salud").text(totalSAL);
         $("#costeDC").text(totalDC);
@@ -242,7 +284,7 @@ Template.dinoGame.events({
         buttons_sum_res(); 
 
         //Si los slots estan llenos (en nuestro caso si hay 29 o 30), lo ponemos en rojo
-        if(totalSLOTS > 28){
+        if(totalSLOTS > (capacidad -2)){
             $("#slots").css("color", "red");
         }
 
@@ -357,11 +399,11 @@ function hideRestar(){
 
 //funcion que comprueba si se ha seleccionado todo lo necesario para enviar la expedición
 function showBtnEnviar(){
-    if($("#slots").textContent != "0/30" && liderSelected == true && mapSelected == true){
+    if(totalSLOTS > 0 && liderSelected == true && mapSelected == true){
         $("#enviarEXP").show();
     }
     
-    else if($("#slots").textContent == "0/30" || liderSelected == false || mapSelected == false){
+    else if(totalSLOTS == 0 || liderSelected == false || mapSelected == false){
         $("#enviarEXP").hide();
     }
 };
@@ -376,7 +418,7 @@ function buttons_sum_res(){
         if(quantitatInt == 0){
             hideRestar();
 
-            if((30 - totalSLOTS) >= $("div[data-tipo="+tipusTropa+"]").data("slots")){
+            if((capacidad - totalSLOTS) >= $("div[data-tipo="+tipusTropa+"]").data("slots")){
                 showSumar();
             }
             else{
@@ -387,7 +429,7 @@ function buttons_sum_res(){
         else if(quantitatInt > 0){
             showRestar();
 
-            if((30 - totalSLOTS) < $("div[data-tipo="+tipusTropa+"]").data("slots")){
+            if((capacidad - totalSLOTS) < $("div[data-tipo="+tipusTropa+"]").data("slots")){
                 hideSumar();
             }
             else{
@@ -401,7 +443,7 @@ function buttons_sum_res(){
         $("button[data-efecto='restar']").hide();
     }
 
-    if(totalSLOTS > 28){
+    if(totalSLOTS > (capacidad - 2)){
         $("button[data-efecto='sumar']").hide();
     }    
 
@@ -498,19 +540,33 @@ Template.dinoGame.helpers({
 Template.dinoGame.onRendered(function(){
 
     /* VARIABLES GLOBALES PARA EXPEDICIONES */
-    totalDC = 0;
-    totalSUM = 0;
-    totalEFEC = 0;
-    totalSAL = 0;
-    totalSLOTS = 0;
-    total_lanzarredes = 0;
-    total_rifle = 0;
-    total_jeep = 0;
-    total_doctor = 0;
-    total_exotraje = 0;
-    liderSelected = false;
-    mapSelected = false;
-    teamSelected = false;
+    
+    bono_liderazgo = true; /* Aumenta en 10 la variable capacidad*/
+
+    if(bono_liderazgo == false){
+        capacidad = 30;
+    }
+
+    else{
+        capacidad = 40;
+    }
+
+    $("#slots").text("0/" + capacidad);
+
+    bono_logistica = false; /* Ahorra un 15% en dinocoins y suministros */
+    totalDC = 0;            /* Total coste Dinocoins */
+    totalSUM = 0;           /* Total coste Suministros */
+    totalEFEC = 0;          /* Total efectividad */
+    totalSAL = 0;           /* Total salud */
+    totalSLOTS = 0;         /* Total slots gastados*/
+    total_lanzarredes = 0;  /* Total tropas lanzarredes */
+    total_rifle = 0;        /* Total tropas rifle */
+    total_jeep = 0;         /* Total tropas jeep */
+    total_doctor = 0;       /* Total tropas doctor */
+    total_exotraje = 0;     /* Total tropas exotraje */
+    liderSelected = false;  /* Boolean para saber si has seleccionado líder*/
+    mapSelected = false;    /* Boolean para saber si has seleccionado el mapa */
+    
     /* FIN VARIABLES GLOBALES PARA EXPEDICIONES */
 
     /* ESTO PODRIA IR EN EVENTOS NORMALES, USANDO EL event.target en vez del this*/
