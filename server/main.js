@@ -73,16 +73,16 @@ Meteor.methods({
             console.log("ha entrat en el job");
         
 
-            Partida.update(
-               { _id:user, edificio: Edifici._id },
-               { $set: { "edificio.$" : EdificiUp._id } }
-                
-            );
+            Partida.update({ _id:user, edificio: Edifici._id },{ $set: { "edificio.$" : EdificiUp._id}});
             
-            /*Partida.update(
-               { _id:"zC27EwRQnrHgcuZz8", edificio: 1 },
-               { $set: { "edificio.$" : 2} }
-            );*/
+            
+            //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados
+            /*if(EdificiUp.key==cuartel2){
+                Partida.update({_id:user},{$push:{desbloqueados:{$each:[601,701,801,1101]}}});
+            }
+            else if(EdificiUp.key==cuartel3){
+                Partida.update({_id:user},{$push:{desbloqueados:{$each:[1,101,201,301]}}});
+            }*/
 
             console.log("edifici modificat");            
         }  

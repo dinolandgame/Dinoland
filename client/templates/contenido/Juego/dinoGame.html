@@ -517,28 +517,29 @@
                                
                                 {{#each edificioTodos}}
                                   
-                                        {{#if yaConstruido _id}}
+                                        {{#if yaConstruido _id}}<!-- si es TRUE
                                         
-<!--
+
                                             <div class="col-sm-2">
                                                 <a class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="modal"  type="button"><img src={{avatar}} class="img_admin otro img-circle" style="opacity:0.75;cursor:not-allowed"></a>
                                             </div>
 -->
-                                            <div class="col-sm-2">
-                                              
-                                              <a href="#" type="button" class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}}><img src={{avatar}} class="img_admin otro img-circle"  style="opacity:0.2;cursor:not-allowed"></a>
-                                            </div>
+                                               
+                                                <div class="col-sm-2">
 
+                                                  <a href="#" type="button" class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}}><img src={{avatar}} class="img_admin otro img-circle"  style="cursor:pointer"></a>
+                                                </div>
+                                                
                                         
-                                            {{else}}
-<!--
+                                            {{else}}<!--si no es TRUE
+
                                             <div class="col-sm-2">
                                                 <a class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="modal"  type="button"><img src={{avatar}} class="img_admin otro img-circle" style="cursor:pointer"></a>
                                             </div>
 -->
                                             <div class="col-sm-2">
                                               
-                                              <a href="#" type="button" class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}}><img src={{avatar}} class="img_admin otro img-circle" style="cursor:pointer"></a>
+                                              <a href="#" type="button" class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}}><img src={{avatar}} class="img_admin otro img-circle" style="opacity:0.2;cursor:not-allowed"></a>
                                             </div>
 
                                         {{/if}}
