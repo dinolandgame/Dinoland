@@ -182,26 +182,20 @@ Template.dinoGame.events({
             totalEFEC += efectividad;
             totalSAL += salud;
             totalSLOTS += slots;
+            
+            /* Si tenemos el bono, nos ahorramos un 15% en dinocoins*/
+            if(bono_logistica == true){
+                costeDC = Math.ceil(costeDC - ((costeDC / 100) * 15));
+            }
+            
             totalDC += costeDC;
 
-                /* Si tenemos el bono, nos ahorramos un 15% en dinocoins*/
-                if(bono_logistica == true){
-                    totalDC = Math.ceil(totalDC - ((totalDC / 100) * 15));
-                }
-
-                else{
-                    totalDC = totalDC;
-                }
+            
+            /* Si tenemos el bono, nos ahorramos un 15% en suministros */
+            if(bono_logistica == true){
+                costeSUM = Math.ceil(costeSUM - ((costeSUM / 100) * 15));
+            }
             totalSUM += costeSUM;
-
-                /* Si tenemos el bono, nos ahorramos un 15% en suministros */
-                if(bono_logistica == true){
-                    totalSUM = Math.ceil(totalSUM - ((totalSUM / 100) * 15));
-                }
-
-                else{
-                    totalSUM = totalSUM;
-                }
 
             //aumentamos en 1 la tropa seleccionada
             switch(tipo){
@@ -226,34 +220,22 @@ Template.dinoGame.events({
             totalSLOTS -= slots;
             if(totalSLOTS < 0) {totalSLOTS = 0;}
 
+            if(bono_logistica == true){
+                costeDC = Math.ceil(costeDC - ((costeDC / 100) * 15));
+            }
+            
             totalDC -= costeDC;
             if(totalDC < 0) {
                 totalDC = 0;
             }
-
-            else{
-                if(bono_logistica == true){
-                    totalDC = Math.ceil(totalDC - ((totalDC / 100) * 15));
-                }
-
-                else{
-                    totalDC = totalDC;
-                }
+            
+            if(bono_logistica == true){
+                costeSUM = Math.ceil(costeSUM - ((costeSUM / 100) * 15));
             }
 
             totalSUM -= costeSUM;
             if(totalSUM < 0) {
                 totalSUM = 0;
-            }
-
-            else{
-                if(bono_logistica == true){
-                    totalSUM = Math.ceil(totalSUM - ((totalSUM / 100) * 15));
-                }
-
-                else{
-                    totalSUM = totalSUM;
-                }
             }
 
             ////restamos 1 a la tropa seleccionada a no ser que sea zero (no admitimos valores repetidos)
