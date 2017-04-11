@@ -161,7 +161,40 @@ Template.dinoGame.events({
     /****************** FIN EVENTOS TIENDA *********************************************/
 
     /****************** EVENTOS EXPEDICIONES *******************************************/
-
+ // Acción de mandar una expedición
+    "click #enviarexpedicion":function(event,template){
+        event.preventDefault();
+        // Se crea un documento con los datos de la expedición y se guarda en la BD 
+        user = Meteor.userId();
+        var data = new Date();
+        var stringData = data.toString();
+        var idexp = user + data.getTime().toString();
+        var terreno = "acuatico";
+        Expedicion.insert({_id:idexp,
+                            usuario: user, 
+                            terreno: terreno,
+                            lider: "cientifica",
+                            jeep: "true",
+                            lanzaredes: "true",
+                            efectividad: 150,
+                            salud: 150,
+                            miembros: 15,
+                            coste_dinocoins: 1500,
+                            coste_suministros: 1500,
+                            finalizada: "false",
+                            fecha_creacion: stringData,
+                            fecha_finalizacion: "",
+                            resultados:[]
+                            });
+        Meteor.call('enviar_expedicion', idexp, terreno);
+         
+    },
+    
+     "click #mejorar": function(event,template){
+         
+            phaserEdifici.destroy();
+            game.state.restart();
+          },
     "click div[data-tipo] button": function(event, template){
         event.preventDefault();
         //obtenemos datos de los datas
