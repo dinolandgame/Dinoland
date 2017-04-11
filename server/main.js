@@ -133,9 +133,237 @@ Meteor.methods({
         }  
           
     });
+    },
+    
+     //LÓGICA PARA LA RESOLUCIÓN DE UNA EXPEDICIÓN
+    enviar_expedicion(id_expedicion, terreno){
+    
+    // primera versión sólo recibe terreno como parámetro
+    // futura versión recibirá la id a una expedición pendiente de resolución en la tabla expediciones
+    
+    var zona = Terreno.findOne({tipo:terreno});
+    
+    // debug func
+    console.log("Terreno " + zona.tipo + ", tarda " + zona.tiempoexpedicion);    
+    
+    user = Meteor.userId();
+    var data = new Date();
+    data.setSeconds(data.getSeconds()+zona.tiempoexpedicion);
+      
+      
+    SyncedCron.start();
+
+    SyncedCron.add({
+        // el name se cambiará incluyendo la id de la expedición
+        // por ahora se incluye el numero de segundos desde Enero 1 1970 como identificación
+        name: user +"_"+zona.nombre + "_" + data.getTime().toString(),
+        schedule: function(parser) {
+        
+            console.log("ha entrado en la expedicion");
+            //console.log(parser.recur().on(data).fullDate());
+            return parser.recur().on(data).fullDate();
+        },
+        
+        job: function(id) {
+           
+            var expedicion_en_curso = Expedicion.findOne({_id: id_expedicion});
+            console.log("id expedición: " + expedicion_en_curso._id);
+            console.log("resolucion de la expedicion");
+            var report = "";
+            
+            // FASE PREPARACIÓN
+            
+            // líder
+            var bono_comandante = false;
+            var bono_cientifica = false;
+            var bono_jefeexplorador = false;
+            // elección lider
+            var lider = expedicion_en_curso.lider;
+            switch(lider) {
+                case "cientifica":
+                    bono_cientifica = true;
+                    break;
+                case "comandante":
+                    bono_comandante = true;
+                    break;
+                default:
+                    bono_jefeexplorador = true;
+            }
+            // logística
+            var bono_jeep = expedicion_en_curso.jeep;
+            var bono_lanzarredes = expedicion_en_curso.lanzaredes;
+            var cantidad_miembros = expedicion_en_curso.miembros;
+            // FASE DE EXPLORACIÓN
+                       
+            // Se realiza una tirada de exploración
+            var tirada = getRndInteger(1, 100);
+            console.log("Exploracion. Tirada: " + tirada);
+            
+            // Se obtiene todos los tipos de dinosaurios que se pueden encontrar en ese habitat
+            dinosaurios_disponibles = Dinosaurio.find({habitat: zona.tipo}).fetch();
+            dinosaurio_especial = Dinosaurio.findOne({habitat: "especial"});
+            
+            // debug
+            for (xyz=0; xyz < dinosaurios_disponibles.length; xyz++){
+                
+                console.log("Dino : " + dinosaurios_disponibles[xyz].nombre);
+            }
+            var longitud = dinosaurios_disponibles.push(dinosaurio_especial);
+            console.log("longitud: " + longitud);
+            var encuentro = getRndInteger(0, longitud-1);
+            console.log("rnd encuentro: " + encuentro);
+            var dinosaurio_rastreado = dinosaurios_disponibles[encuentro];
+            console.log("dino rastreado: " + dinosaurio_rastreado.nombre);
+            report += "La expedición rastreó marcas de " + dinosaurio_rastreado.nombre;
+             // BONOS EXPLORACION
+            if (bono_jeep=="true"){
+                tirada += 30;
+                console.log("jeep : " + tirada);
+            }
+            
+            if (dinosaurio_rastreado.habitat=="especial" && bono_cientifica=="true"){ 
+                tirada += 30;
+                console.log("cientifica : " + tirada);
+            }
+            
+            tirada += cantidad_miembros*2;
+            console.log("bono_cantidad : " + tirada);
+            
+            // Resolución de la fase exploración
+           
+            console.log("tirada modificada: " + tirada);
+            var dificultad = 100 - dinosaurio_rastreado.encuentro;
+            if (tirada >= dificultad){
+                // Se ha encontrado dinosaurios
+                var cantidad = Math.ceil((tirada - dificultad)/10);
+                console.log("Se ha encontrado " + cantidad + " "  + dinosaurio_rastreado.nombre);
+                report+=" Se encontró una manada de " + cantidad + " "  + dinosaurio_rastreado.nombre;
+            }
+            
+            // FASE DE CAPTURA
+            
+            var efectividad = expedicion_en_curso.efectividad;
+            var salud = expedicion_en_curso.salud;
+            console.log("efectividad: " + efectividad + " salud " + salud);
+            
+            var peligrosidad = dinosaurio_rastreado.ferocidad * cantidad;
+            console.log("Peligrosidad = " + peligrosidad);
+            
+            // tirada de captura
+            tirada = getRndInteger(1, 100);
+            console.log("Tirada de captura = " + tirada);
+            if (dinosaurio_rastreado.habitat=="aereo" && bono_lanzarredes=="true"){ 
+                tirada += 30;
+                console.log("lanzarredes : " + tirada);
+            }
+            var margen = salud - peligrosidad;
+            if (margen < 0){
+                // la expedición no está capacitada para ese encuentro y recibe malus
+                tirada += margen;
+            }else{
+                // la expedición está bien equipada para la cacería
+                tirada*=1.5;
+            }
+            capturas = tirada / dinosaurio_rastreado.ferocidad;
+            console.log("capturas = " + capturas);
+            // si el lider es un jefe explorador se mejora la cantidad de capturas
+            if(bono_jefeexplorador=="true"){
+                // que nunca puede exceder la cantidad de la manada localizada
+                var capturas_bonus = capturas + capturas*1.5;
+                if (capturas_bonus > cantidad){
+                    capturas = cantidad;
+                }else{
+                    capturas *= capturas*1.5;
+                }
+                console.log("capturas con jefe = " + capturas);
+            }
+            capturas_final = Math.floor(capturas);
+            if (capturas_final <= 0){
+                console.log(" Las presas escaparon. No se ha podido capturar ningun ejemplar.");
+                report+=" Desafortunadamente las presas escaparon. No se ha podido capturar ningun ejemplar.";
+            }else{
+                console.log(" Se ha capturado " + capturas_final + " " + dinosaurio_rastreado.nombre);
+                report+="La expedición consiguió capturar " + capturas_final + " " + dinosaurio_rastreado.nombre;
+            }
+            
+            // FASE DE RESOLUCIÖN 
+            
+            
+            // Busqueda de recursos
+            // Los recursos encontrados serán proporcionales a los costes de expedición 
+            var coste_dinocoins = expedicion_en_curso.coste_dinocoins;
+            var coste_suministros= expedicion_en_curso.coste_suministros;
+            
+            var dinocoins_extra = 0;
+            var suministros_extra =0;
+            var ambar_extra = 0;
+            
+            tirada = getRndInteger(1, 100);
+            var aleatorio = getRndInteger(1, 100);
+            if (bono_comandante=="true"){
+                tirada += 20;
+            }
+            
+            if (tirada <= 20){
+                //nada
+                console.log("La expedición no reporta ningún beneficio");
+                report+=" Adicionalmente no se encontró ningún recurso útil.";
+            }else if(tirada <= 40){
+                // dinocoins
+                dinocoins_extra += (coste_dinocoins/100) * aleatorio;
+                console.log("La expedición reporta beneficios por valor de " + dinocoins_extra + " dinocoins");
+                report+=" Adicionalmente la expedición reporta beneficios por valor de " + dinocoins_extra + " dinocoins";
+            }else if(tirada <= 60){
+                // suministros
+                suministros_extra += (coste_suministros/100) * aleatorio;
+                console.log("La expedición ha encontrado recursos equivalentes a  " + suministros_extra + " suministros");
+                report+=" Adicionalmente la expedición ha encontrado recursos equivalentes a  " + suministros_extra + " suministros";
+            }else if(tirada <=90){
+                // dinocoins y suministros
+                dinocoins_extra += (coste_dinocoins/100) * aleatorio;
+                aleatorio = getRndInteger(1, 100);
+                suministros_extra += (coste_suministros/100) * aleatorio;
+                console.log("La expedición encuentra recursos variados que reportan " + dinocoins_extra + " dinocoins y " + suministros_extra + " suministros" );
+                report+=" Adicionalmente la expedición encontró recursos variados que reportan " + dinocoins_extra + " dinocoins y " + suministros_extra + " suministros";
+            }else{
+                // AMBAR!!!
+                aleatorio = getRndInteger(1, 3);
+                ambar_extra += (coste_dinocoins/100) * aleatorio;
+                console.log("La expedición está de suerte y ha encontrado un yacimiento de ambar. Obtienes " + ambar_extra + " ambar!");
+                report+=" Adicionalmente la expedición está de suerte y ha encontrado un yacimiento de ambar. Obtienes " + ambar_extra + " ambar!";
+            }
+            
+            
+            //Update de la expedición en la BD
+            data = new Date();
+            var fecha_fin = data.toString();
+            Expedicion.update({_id: id_expedicion},{$set:{finalizada:"true", 
+                                                          fecha_finalizacion:fecha_fin,
+                                                          resultados:[
+                                                              {report: report},
+                                                              {dinocoins_extra: dinocoins_extra},
+                                                              {suministros_extra: suministros_extra},
+                                                              {ambar_extra: ambar_extra},
+                                                              {dinosaurio: dinosaurio_rastreado.nombre},
+                                                              {ejemplares: capturas_final}
+                                                          ]}});
+                
+            /*Partida.update(
+               { _id:"zC27EwRQnrHgcuZz8", edificio: 1 },
+               { $set: { "edificio.$" : 2} }
+            );*/
+
+                    
+        }  
+          
+    });
     }
 
 });
+
+
+
+
 
 Meteor.startup(() => {
   // code to run on server at startup
@@ -185,7 +413,7 @@ Accounts.emailTemplates.verifyEmail = {
         name: 'Run in 1 seconds dinocoins',
         schedule: function(parser) {
             // parser is a later.parse obje
-            return parser.text('every 1 seconds');
+            return parser.text('every 50 seconds');
         },
         job: function() {
             // do something important here
@@ -242,6 +470,10 @@ Accounts.emailTemplates.verifyEmail = {
 SyncedCron.start();
 });
 
+
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min) ) + min;
+} 
 /*Email.send({
 	to: "xvicente2000@gmail.com",
   from: "dinolandgame@gmail.com",
