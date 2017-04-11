@@ -207,7 +207,7 @@
 
             <div class="row" style="margin-bottom: 30px; margin-top: 20px;">
                 <div class="col-xs-3 col-xs-offset-1">
-                    <button class="boton_gui" data-target="#pop_tienda" data-toggle="modal">
+                    <button class="boton_gui" id="subirlvl" data-toggle="modal">
                         <p class="dinobuton-text">Subir nivel</p>
                     </button>
                 </div>
@@ -488,7 +488,7 @@
                             <div class="col-sm-5 col-sm-offset-1">
                             {{ #each edificios }}
                                 <p class="descripcio">{{ descripcion }}</p>
-                                <button type="button" class="btn pmd-ripple-effect btn-default btn_modal">SUBIR NIVEL
+                                <button type="button" id="subirlvl" class="btn pmd-ripple-effect btn-default btn_modal">SUBIR NIVEL
                             </button>
                             {{ /each }}
                             </div>
@@ -517,28 +517,29 @@
                                
                                 {{#each edificioTodos}}
                                   
-                                        {{#if yaConstruido _id}}
+                                        {{#if yaConstruido _id}}<!-- si es TRUE
                                         
-<!--
+
                                             <div class="col-sm-2">
                                                 <a class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="modal"  type="button"><img src={{avatar}} class="img_admin otro img-circle" style="opacity:0.75;cursor:not-allowed"></a>
                                             </div>
 -->
-                                            <div class="col-sm-2">
-                                              
-                                              <a href="#" type="button" class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}}><img src={{avatar}} class="img_admin otro img-circle"  style="opacity:0.2;cursor:not-allowed"></a>
-                                            </div>
+                                               
+                                                <div class="col-sm-2">
 
+                                                  <a href="#" type="button" class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}}><img src={{avatar}} class="img_admin otro img-circle"  style="cursor:pointer"></a>
+                                                </div>
+                                                
                                         
-                                            {{else}}
-<!--
+                                            {{else}}<!--si no es TRUE
+
                                             <div class="col-sm-2">
                                                 <a class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="modal"  type="button"><img src={{avatar}} class="img_admin otro img-circle" style="cursor:pointer"></a>
                                             </div>
 -->
                                             <div class="col-sm-2">
                                               
-                                              <a href="#" type="button" class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}}><img src={{avatar}} class="img_admin otro img-circle" style="cursor:pointer"></a>
+                                              <a href="#" type="button" class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}}><img src={{avatar}} class="img_admin otro img-circle" style="opacity:0.2;cursor:not-allowed"></a>
                                             </div>
 
                                         {{/if}}
