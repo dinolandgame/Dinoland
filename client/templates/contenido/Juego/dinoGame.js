@@ -541,7 +541,7 @@ Template.dinoGame.onRendered(function(){
 
     /* VARIABLES GLOBALES PARA EXPEDICIONES */
     
-    bono_liderazgo = true; /* Aumenta en 10 la variable capacidad*/
+    bono_liderazgo = false; /* Aumenta en 10 la variable capacidad*/
 
     if(bono_liderazgo == false){
         capacidad = 30;
