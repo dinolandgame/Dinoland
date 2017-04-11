@@ -162,7 +162,7 @@ Template.dinoGame.events({
 
     /****************** EVENTOS EXPEDICIONES *******************************************/
  // Acción de mandar una expedición
-    "click #enviarexpedicion":function(event,template){
+    "click #enviarEXP":function(event,template){
         event.preventDefault();
         // Se crea un documento con los datos de la expedición y se guarda en la BD 
         user = Meteor.userId();
@@ -573,7 +573,7 @@ Template.dinoGame.helpers({
     },
 
     terrenos: function(){
-        return Zona.find({});
+        return Terreno.find({});
     }
 
 });

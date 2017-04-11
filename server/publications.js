@@ -6,20 +6,20 @@ Meteor.publish('edificio', function(){
 	return Edificio.find();
 });
 Meteor.publish('terrenos', function(){
-	return Terrenos.find();
+	return Terreno.find();
 });
 Meteor.publish('tropas', function(){
-	return Tropas.find();
+	return Tropa.find();
 });
 Meteor.publish('dinosaurios', function(){
-	return Dinosaurios.find();
+	return Dinosaurio.find();
 });
-Meteor.publish('expediciones', function(){
+Meteor.publish('expedicion', function(){
     return Expedicion.find({usuario: this.userId});
 });
 Meteor.publish('lideres', function(){
 	return Lider.find();
 });
-Meteor.publish('terrenos', function(){
-	return Zona.find();
-});
+Meteor.publish('investigacion',function(){
+	return Investigacion.find();
+})

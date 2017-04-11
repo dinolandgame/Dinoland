@@ -39,7 +39,10 @@ Router.configure({
                Meteor.subscribe('edificio'),
                Meteor.subscribe('tropas'),
                Meteor.subscribe('lideres'),
-               Meteor.subscribe('terrenos')];
+               Meteor.subscribe('terrenos'),
+               Meteor.subscribe('dinosaurios'),
+               Meteor.subscribe('expedicion'),
+               Meteor.subscribe('investigacion')];
   }
 		
 });
