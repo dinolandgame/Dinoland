@@ -17,7 +17,8 @@ Meteor.methods({
                       energia:200,
                       suministros:200,
                       visitantes:0,
-                      edificio:[]}); 
+                      edificio:[],
+                        desbloqueados:[]}); 
        
        /*{
     _id:1,
@@ -73,16 +74,15 @@ Meteor.methods({
             console.log("ha entrat en el job");
         
 
-            Partida.update(
-               { _id:user, edificio: Edifici._id },
-               { $set: { "edificio.$" : EdificiUp._id } }
-                
-            );
+            Partida.update({ _id:user, edificio: Edifici._id },{ $set: { "edificio.$" : EdificiUp._id}});
             
-            /*Partida.update(
-               { _id:"zC27EwRQnrHgcuZz8", edificio: 1 },
-               { $set: { "edificio.$" : 2} }
-            );*/
+            
+            if(EdificiUp.key=="cuartel2"){
+                        Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
+                    }
+                    else if(EdificiUp.key=="cuartel3"){
+                        Partida.update({_id:user},{$push:{desbloqueados:{$each:[EdificiUp.desbloquea]}}});
+                    }
 
             console.log("edifici modificat");            
         }  
@@ -185,7 +185,7 @@ Accounts.emailTemplates.verifyEmail = {
         name: 'Run in 1 seconds dinocoins',
         schedule: function(parser) {
             // parser is a later.parse obje
-            return parser.text('every 1 seconds');
+            return parser.text('every 50 seconds');
         },
         job: function() {
                      // do something important here
