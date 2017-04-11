@@ -6,3 +6,7 @@ Meteor.publish('edificio', function(){
 	return Edificio.find();
 });
 
+Meteor.publish('tropas', function(){
+	return Tropa.find();
+});
+

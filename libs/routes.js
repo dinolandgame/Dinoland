@@ -36,7 +36,8 @@ Router.configure({
   waitOn: function(){
   	
       return [Meteor.subscribe('partida'),
-               Meteor.subscribe('edificio')];
+               Meteor.subscribe('edificio'),
+               Meteor.subscribe('tropas')];
   }
 		
 });

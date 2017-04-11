@@ -259,35 +259,14 @@
                                     </div> 
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-2 col-sm-offset-1" data-nombre="Soldado con rifle sónico" data-tipo="rifle" data-efectividad=10 data-salud=10 data-slots=2 data-costedc=100 data-costesum=100>
-                                        <img class="img_tropa" src="images/expediciones/rifle_sonico.png">
+                                <div class="col-sm-1"></div>
+                                {{#each tropas}}
+                                    <div class="col-sm-2" data-nombre={{nombre}} data-tipo="{{tipo}}" data-efectividad={{efectividad}} data-salud={{salud}} data-slots={{slots}} data-costedc={{dinocoins}} data-costesum={{suministros}}>
+                                        <img class="img_tropa" src="{{avatar}}">
                                         <button data-efecto = "sumar">+</button>
                                         <button data-efecto = "restar">-</button>
                                     </div>
-
-                                    <div class="col-sm-2" data-nombre="Soldado con lanzaredes" data-tipo="lanzarredes" data-efectividad=5 data-salud=20 data-slots=3 data-costedc=150 data-costesum=150>
-                                        <img class="img_tropa" src="images/expediciones/lanzaredes.png">
-                                        <button data-efecto = "sumar">+</button>
-                                        <button data-efecto = "restar">-</button>
-                                    </div>
-
-                                    <div class="col-sm-2" data-nombre="JEEP" data-tipo="jeep" data-efectividad=50 data-salud=30 data-slots=10 data-costedc=300 data-costesum=300>
-                                        <img class="img_tropa" src="images/expediciones/jeep.png">
-                                        <button data-efecto = "sumar">+</button>
-                                        <button data-efecto = "restar">-</button>
-                                    </div>
-
-                                    <div class="col-sm-2" data-nombre="Soldado con exotraje" data-tipo="exotraje" data-efectividad=30 data-salud=20 data-slots=6 data-costedc=275 data-costesum=200>
-                                        <img class="img_tropa" src="images/expediciones/exotraje.png">
-                                        <button data-efecto = "sumar">+</button>
-                                        <button data-efecto = "restar">-</button>
-                                    </div>
-
-                                    <div class="col-sm-2" data-nombre="Doctor de campo" data-tipo="doctor" data-efectividad=5 data-salud=40 data-slots=5 data-costedc=200 data-costesum=200>
-                                        <img class="img_tropa" src="images/expediciones/doctor.png">
-                                        <button data-efecto = "sumar">+</button>
-                                        <button data-efecto = "restar">-</button>
-                                    </div>
+                                {{/each}}
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-2 col-sm-offset-3">

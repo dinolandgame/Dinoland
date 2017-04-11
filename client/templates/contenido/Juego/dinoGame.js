@@ -529,6 +529,10 @@ Template.dinoGame.helpers({
                 } 
                     
             }   
+    },
+
+    tropas: function(){
+       return Tropa.find({});
     }
 
 });
@@ -537,7 +541,7 @@ Template.dinoGame.helpers({
     
 
 
-
+/* ON RENDERES ES COMO EL DOCUMENT(READY)
 Template.dinoGame.onRendered(function(){
 
     /* VARIABLES GLOBALES PARA EXPEDICIONES */
