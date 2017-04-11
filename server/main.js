@@ -17,7 +17,8 @@ Meteor.methods({
                       energia:200,
                       suministros:200,
                       visitantes:0,
-                      edificio:[]}); 
+                      edificio:[],
+                        desbloqueados:[]}); 
        
        /*{
     _id:1,
@@ -73,16 +74,15 @@ Meteor.methods({
             console.log("ha entrat en el job");
         
 
-            Partida.update(
-               { _id:user, edificio: Edifici._id },
-               { $set: { "edificio.$" : EdificiUp._id } }
-                
-            );
+            Partida.update({ _id:user, edificio: Edifici._id },{ $set: { "edificio.$" : EdificiUp._id}});
             
-            /*Partida.update(
-               { _id:"zC27EwRQnrHgcuZz8", edificio: 1 },
-               { $set: { "edificio.$" : 2} }
-            );*/
+            
+            if(EdificiUp.key=="cuartel2"){
+                        Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
+                    }
+                    else if(EdificiUp.key=="cuartel3"){
+                        Partida.update({_id:user},{$push:{desbloqueados:{$each:[EdificiUp.desbloquea]}}});
+                    }
 
             console.log("edifici modificat");            
         }  
@@ -204,11 +204,11 @@ Accounts.emailTemplates.verifyEmail = {
                     //if(num=="1001" || num=="1002" !! num=="1003"){
                      edificio = Edificio.findOne({"_id":num});
                      console.log ("dinocoins: " + edificio.dinoCoins/60 );
-                     dinocoins = Math.ceil(edificio.dinoCoins/60);
+                     dinocoins += Math.ceil(edificio.dinoCoins/60);
                      //comida = edificio.comidaDino/60;
-                     suministros = Math.ceil(edificio.Suministros/60);
-                     console.log("jugador: "+ part._id +" suministros: "+ suministros);
-                     console.log("jugador: "+ part._id +" suministros: "+ dinocoins);
+                     suministros += Math.ceil(edificio.Suministros/60);
+                     //console.log("jugador: "+ part._id +" suministros: "+ suministros);
+                     //console.log("jugador: "+ part._id +" suministros: "+ dinocoins);
                     //}
                   })
 
