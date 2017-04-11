@@ -62,7 +62,7 @@ Template.dinoGame.events({
         
          console.log(cuartel);
             
-            if(EdificiUp != null && Edifici.nivel<=cuartel){
+            if(EdificiUp != null && Edifici.nivel<cuartel){
                 Meteor.call('update_part',EdificiUp,Edifici); 
               //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados
                     
