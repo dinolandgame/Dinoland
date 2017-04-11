@@ -55,15 +55,23 @@ Template.dinoGame.events({
             Edifici = Edificio.findOne({key:quinedifici});//busco los edicios; el edificio seleccionado es quinedifici
             EdificiUp = Edificio.findOne({nom:Edifici.nom,nivel:(Edifici.nivel+1)});
             
-            if(EdificiUp != null){
+            var edifCuartel ="";
+            var mi_partida = Partida.find({_id:user}).fetch();//obtengo un objeto partida en forma de array
+        
+        var cuartel = mi_partida[0].edificio[0].toString().substring(3,4);//controlamos que edicifios hay en la partida
+        
+         console.log(cuartel);
+            
+            if(EdificiUp != null && Edifici.nivel<=cuartel){
                 Meteor.call('update_part',EdificiUp,Edifici); 
-              
+              //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados
+                    
                 alert("se ha subido de nivel");
             }
             else{
         
                 console.log("aquet edifici ja esta en el seu maxim nivell");
-            
+                alert("no deja");
             }
             $('.modal').modal('hide');
                     
@@ -79,7 +87,7 @@ Template.dinoGame.events({
         pero faltaria controlar cuando se sube de nivel el cuartel (mencionado en la linea.229 
         ************/
         
-        //Partida.update({_id:user},{$push:{desbloqueados:{$each:[401,501,901,1001]}}});
+        Partida.update({_id:user},{$push:{desbloqueados:{$each:[401,501,901,1001]}}});
         
         $('.prueba').hide();
         

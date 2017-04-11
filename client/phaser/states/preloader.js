@@ -29,6 +29,7 @@ Preloader.prototype = {
         this.load.spritesheet('laboratori1', '../images/laboratori1.png', 204.9, 228, 23);
         this.load.image('magatzem1', '../images/magatzem1.png');
         this.load.spritesheet('cuartel1', '../images/cuartel1.png', 458.4, 354, 21);
+         this.load.spritesheet('cuartel2', '../images/cuartel1.png', 460, 354, 21);
         this.load.image('habitats1', '../images/habitats1.png');
         this.load.spritesheet('energia1', '../images/energia1.png', 180.25, 259.333333, 11);
         this.load.spritesheet('port1', '../images/port1.png', 478.5, 438.3, 13);
