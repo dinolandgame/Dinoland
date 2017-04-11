@@ -185,7 +185,7 @@ Accounts.emailTemplates.verifyEmail = {
         name: 'Run in 1 seconds dinocoins',
         schedule: function(parser) {
             // parser is a later.parse obje
-            return parser.text('every 1 seconds');
+            return parser.text('every 50 seconds');
         },
         job: function() {
             // do something important here
