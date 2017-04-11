@@ -55,30 +55,39 @@ Template.dinoGame.events({
             Edifici = Edificio.findOne({key:quinedifici});//busco los edicios; el edificio seleccionado es quinedifici
             EdificiUp = Edificio.findOne({nom:Edifici.nom,nivel:(Edifici.nivel+1)});
             
-            if(EdificiUp != null){
+            var edifCuartel ="";
+            var mi_partida = Partida.find({_id:user}).fetch();//obtengo un objeto partida en forma de array
+        
+        var cuartel = mi_partida[0].edificio[0].toString().substring(3,4);//controlamos que edicifios hay en la partida
+        
+         console.log(cuartel);
+            
+            if(EdificiUp != null && Edifici.nivel<=cuartel){
                 Meteor.call('update_part',EdificiUp,Edifici); 
-              
+              //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados
+                    
                 alert("se ha subido de nivel");
             }
             else{
         
                 console.log("aquet edifici ja esta en el seu maxim nivell");
-            
+                alert("no deja");
             }
             $('.modal').modal('hide');
                     
            
         },
-     "click #mejorar": function(event,template){
-         
-            phaserEdifici.destroy();
-            game.state.restart();
-          },
 
     "click .crear":function(event,template){
-       // Partida.update({_id:user},{$set:{edificio:[1001],dinero:100,energia:50,suministros:50,visitantes:0}});
+       
        Partida.update({_id:user},{$push:{edificio:1001}});
-        //Partida.update({_id:user},{$push:{edificiosDes:{$each:[1001,401,501]}}});
+        
+        /********
+        aqui podemos modificar la partida con los edifciios desbloqueados por el primer cuartel 
+        pero faltaria controlar cuando se sube de nivel el cuartel (mencionado en la linea.229 
+        ************/
+        
+        Partida.update({_id:user},{$push:{desbloqueados:{$each:[401,501,901,1001]}}});
         
         $('.prueba').hide();
         
@@ -334,6 +343,7 @@ function rellenarDinero(introducido, dineroRestante, suministrosGanados, suminis
             //Suministros
             $('#ganasSuministros span').text("Ganas: " + suministrosGanados);
             $('#teQuedaSuministros span').text("Te Queda: " + suministrosTotales);
+            $('.resumenDinero').css('display', 'block');
 };
 
 function rellenarSuministros(introducido, suministroRestante, dineroGanado, dineroTotal){
@@ -347,6 +357,7 @@ function rellenarSuministros(introducido, suministroRestante, dineroGanado, dine
             //Suministros
             $('#ganasDinero span').text("Ganas: " + dineroGanado);
             $('#QuedaDinero span').text("Te Queda: " + dineroTotal);
+            $('.resumenSuministros').css('display', 'block');
 };
 function vaciarDinero(){
             $('#pierdesDinero, #teQuedaDinero, #ganasSuministros, #teQuedaSuministros').css('display', 'none');
@@ -360,6 +371,7 @@ function vaciarDinero(){
             $('#ganasSuministros span').text("Ganas: ");
             $('#teQuedaSuministros span').text("Te Queda: ");
             $('#dinero').val("");
+            $('.resumenDinero').css('display', 'none');
 };
 
 function vaciarSuministros(){
@@ -374,6 +386,8 @@ function vaciarSuministros(){
             $('#ganasDinero span').text("Ganas: ");
             $('#QuedaDinero span').text("Te Queda: ");
             $('#suministros').val("");
+            $('.resumenSuministros').css('display', 'none');
+
 };
 
 /**************************** FIN FUNCIONES TIENDA *****************************************/
@@ -451,6 +465,7 @@ function buttons_sum_res(){
 
 /**************************** FIN FUNCIONES EXPEDICIONES ***************************************/
 
+
 //Helpers
 Template.dinoGame.helpers({
     partida:function(){
@@ -467,17 +482,27 @@ Template.dinoGame.helpers({
     edificioTodos: function(){
         return Edificio.find({nivel: 1});
     },
-    yaConstruido:function(id){
+    
+    //funcion de desbloqueo de edificios
+    //falta controlar cuando sube de nivel el cuartel general como hacer un update en la coleccion
+    // Partida para modificar el array de desbloqueados segun los edificios que desbloquea el edificio cuartel en ese momento
+    // Esta funcion controla tanto los desbloqueados y los que aun no se pueden desbloquear.
+    yaConstruido:function(id){ 
         user = Meteor.userId();
+        //definimos los id de cada cuartel nosotros los sabemos
         var cuartel1 = 1001;
         var cuartel2 = 1002;
         var cuartel3 = 1003;
-           
+        
+        
+        //varaible para el actual cuartel   
         var edifCuartel = "";
+        //array para los edificios desbloqueados que proporcionoa dicho cuartel
         var edificiosDesbloqueadosCuartel = "";
         
-        var mi_partida = Partida.find({_id:user}).fetch();//obtengo un array de las partida del usuario siempre sera 1 por user
-        var misedificiosEnPartida = mi_partida[0].edificio;
+        var mi_partida = Partida.find({_id:user}).fetch();//obtengo un objeto partida en forma de array
+        
+        var misedificiosEnPartida = mi_partida[0].edificio;//controlamos que edicifios hay en la partida
         
          for(var i = 0; i<misedificiosEnPartida.length; i++){
              if(cuartel1===misedificiosEnPartida[i]){
@@ -493,41 +518,35 @@ Template.dinoGame.helpers({
              }
          }
         
+        
+        //array de edificios desbloqueados por el cuartel actual
        edificiosDesbloqueadosCuartel =  edifCuartel.desbloquea;
-   
         
-                /*for(var i = 0; i<edificiosDesbloqueadosCuartel.length; i++){                
-                    //if(id==misedificiosEnPartida[x]){
-                        if(id==edificiosDesbloqueadosCuartel[i]){ 
-                            return true;                    
-                        }                  
-                    }*/
-                    for(var x = 0; x<misedificiosEnPartida.length; x++){
-                            if(id==misedificiosEnPartida[x]){  
-                                return true;
-                            }
-                    }
-            /* for( var x=0; x<misedificiosEnPartida.lenght;x++ ){         
-        
-        for(var i = 0; i<edificiosDesbloqueadosCuartel.length; i++){                
-                if(id==edificiosDesbloqueadosCuartel[i] && id!=misedificiosEnPartida[x]){
-                    
-                    return true;
-                    }
-            else
-                {
-                    for( var x=0; x<misedificiosEnPartida.lenght;x++ ){
-                        
-                        if(id!= misedificiosEnPartida[x]){
-                            return false;
-                        }else{
-                            return true;
-                        }
-                }
-           
+        //recorremos dicho array de los edificios en nuestra partida
+        for(var x = 0; x<misedificiosEnPartida.length; x++){  
+                //si coincide con el id del edificio lo quitaremos del array de desbloqueados 
+                //porque ya ha sido desbloqueado del todo
+                if(id==misedificiosEnPartida[x]){
+                        Partida.update({_id:user},{$pull:{desbloqueados:id}});         
+                }  
         }
-             }
-    }*/
+        
+        //volvemos a controlar el objeto Partida en un array
+        partidilla = Partida.find({_id:user}).fetch();
+        
+        //controlamos los edifcios que quedan por desbloquear
+        edificiosQueFaltanDesbloquear =  partidilla[0].desbloqueados;
+             
+        
+        //recorremos el array
+            for(var i = 0; i<edificiosQueFaltanDesbloquear.length; i++){                
+                 
+                //si el id coincide devolvemos true
+                if(id==edificiosQueFaltanDesbloquear[i]){                   
+                        return true;            
+                } 
+                    
+            }   
     }
 
 });
@@ -572,7 +591,7 @@ Template.dinoGame.onRendered(function(){
     /* ESTO PODRIA IR EN EVENTOS NORMALES, USANDO EL event.target en vez del this*/
     var id=0;
      $('.crearEdificio').on('dblclick',function(){
-             
+             alert("se esta contruyendo");
             id = $(this).data('id');
              console.log(this);
             //Partida.update({_id:user},{$push:{edificio:id}});
