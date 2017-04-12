@@ -73,7 +73,7 @@
                 <img class="recurso-img" src="images/coin.png">
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso">
-                <p class="dinobuton-text">{{dinero}}</p>
+                <p class="dinobuton-text dinobuton-text-size">{{dinero}}</p>
                <!--p class="dinobuton-text recurso-text">{{dinero}}</p>-->
 
             </div>
@@ -87,7 +87,7 @@
                 <img class="recurso-img" src="images/coin.png">
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso">
-                <p class="dinobuton-text recurso-text">{{energia}}</p>
+                <p class="dinobuton-text recurso-text dinobuton-text-size">{{energia}}</p>
             </div>
         </div>
         </div>
@@ -100,7 +100,7 @@
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso">
 
-                <p class="dinobuton-text">{{suministros}}</p>
+                <p class="dinobuton-text dinobuton-text-size">{{suministros}}</p>
 
                 <!--<p class="dinobuton-text recurso-text">{{suministros}}</p-->
             </div>
@@ -114,7 +114,7 @@
                 <img class="recurso-img" src="images/coin.png">
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso recurso-text">
-                <p class="dinobuton-text recurso-text">{{visitantes}}</p>
+                <p class="dinobuton-text recurso-text dinobuton-text-size">{{visitantes}}</p>
             </div>
         </div>
         </div>
@@ -127,7 +127,7 @@
         <div class="row">
             <img class="user-img" src="images/user-profile.png">
             <div class="container-username">
-                <p class="dinobuton-text">{{currentUser.username}}</p>
+                <p class="dinobuton-text dinobuton-text-size">{{currentUser.username}}</p>
             </div>
         </div>
     </div>
@@ -135,42 +135,7 @@
 
  
 
-
-
-<!-- POP EDIFICI 
-
-<div tabindex="-1" class="modal fade" id="pop_edifici" style="display: none;" aria-hidden="true">
-	<div class="modal-dialog">    
-		<div class="modal-content">
-			<div class="modal-header">
-            
-            {{#each edificios}}
-                
-				<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-				<div class="header_modal_edifici">
-                    <h2 id="nom_edifici">{{nom}}</h2>
-                </div>  
-            {{/each}}
-			</div>
-            {{#each edificios}}
-			<div class="pmd-modal-media"> <img width="1184" height="666" class="img-responsive imagenedi" src={{avatar}}> </div>
-            {{/each}}
-			<div class="modal-body">
-            {{#each edificios}}
-			 <p class="descripcio_modal_edifici">{{descripcion}}</p> 
-             {{/each}}
-			</div>
-			<div class="pmd-modal-action">
-			    <button id="subirlvl" type="button" class="btn pmd-ripple-effect btn-default btn_modal_edifici">SUBIR NIVEL
-			    </button>			
-			</div>           
-		</div>
-	</div>
-</div>
--->
-<!-- POP EDIFICI NOU -->
-
-
+<!-- POP EDIFICI-->
 
 <div tabindex="-1" class="modal fade" id="pop_edifici" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">    
@@ -182,7 +147,7 @@
                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
                 <div class="modal-ribon">
                     <img src="/images/ribbon.png">
-                    <h2 id="nom_edifici" class="dinobuton-text">{{nom}}</h2>
+                    <h2 id="nom_edifici" class="dinobuton-text dinobuton-text-size">{{nom}}</h2>
                 </div> 
             {{/each}} 
             </div>
@@ -219,7 +184,7 @@
                 </div>
                 
                 <div class="col-xs-5 col-xs-offset-3">
-                        <p class="dinobuton-text">Visitantes: 340/340</p>
+                        <p class="dinobuton-text dinobuton-text-size">Visitantes: 340/340</p>
                 </div>
             </div>
         </div>
@@ -227,90 +192,79 @@
 </div>
 
     <!-- POP EXPEDICIONES -->   
+
     <div tabindex="-1" class="modal fade" id="pop_expediciones" style="display: none;" aria-hidden="true">
         <div class="modal-dialog pop_gran">
             <div class="modal-content border">
-                <div class="modal-body content_gran">
+                <div class="modal-body content-expediciones">
                     <div class="modal-header">
-
-                        {{#each edificios}}
-
                             <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
                             <div class="modal-ribon">
                                 <img src="/images/ribbon.png">
-                                <h2 id="nom_edifici" class="dinobuton-text">{{nom}}</h2>
+                                <h2 id="nom_edifici" class="dinobuton-text">Expediciones</h2>
                             </div> 
-                        {{/each}} 
-                        </div>
-
+                    </div>
                     <div id="contingut_modal">
                         <div class="row">
-                            <div class="col-sm-9">
-                                <div class="row">
-                                <div class="col-sm-1"></div>
-                                {{#each lideres}}
-                                    <div class="col-sm-3">
-                                        <img class="img_tropa" data-tipo="{{tipo}}" data-nombre="{{nombre}}" src="{{avatar}}">
-                                    </div> 
-                                {{/each}}
-
-                                </div>
-                                <div class="row">
-                                <div class="col-sm-1"></div>
-                                {{#each tropas}}
-                                    <div class="col-sm-2" data-nombre={{nombre}} data-tipo="{{tipo}}" data-efectividad={{efectividad}} data-salud={{salud}} data-slots={{slots}} data-costedc={{dinocoins}} data-costesum={{suministros}}>
-                                        <img class="img_tropa" src="{{avatar}}">
-                                        <button data-efecto = "sumar">+</button>
-                                        <button data-efecto = "restar">-</button>
+                            <div id="menu-soldados" class="col-sm-8">
+                <!--Lideres-->
+                                <div class="row modal-desc-exp">
+                                    <div  class="col-sm-1 "></div>
+                                        {{#each lideres}}
+                                            <div class="col-sm-3">
+                                                <img class="img_tropa modal-img-edif" data-tipo="{{tipo}}" data-nombre="{{nombre}}" src="{{avatar}}">
+                                            </div> 
+                                        {{/each}}
                                     </div>
-                                {{/each}}
+                <!--Tropas-->
+                                <div class="row modal-desc-tropa">
+                                    <div class="col-sm-1"></div>
+                                    {{#each tropas}}
+                                        <div class="col-sm-2 tropa" data-nombre={{nombre}} data-tipo="{{tipo}}" data-efectividad={{efectividad}} data-salud={{salud}} data-slots={{slots}} data-costedc={{dinocoins}} data-costesum={{suministros}}>
+                                            <img class="img_tropa modal-img-edif" src="{{avatar}}">
+                                            <button data-efecto = "sumar" class="boton-gui-exp-ok">+</button>
+                                            <button data-efecto = "restar" class="boton-gui-exp-cancel">-</button>
+                                        </div>
+                                    {{/each}}
                                 </div>
-                                <div class="row">
-                                <div class="col-sm-3"></div>
+                <!--Terrenos-->
+                                <div class="row modal-desc-exp">
+                                <div class="col-sm-1"></div>
                                 {{#each terrenos}}
-                                    <div class="col-sm-2">
-                                        <img class="img_tropa" src="{{avatar}}" data-tipo="{{tipo}}" data-nombre="{{nombre}}">                                                                      
+                                    <div class="col-sm-3">
+                                        <img class="img_tropa modal-img-edif" src="{{avatar}}" data-tipo="{{tipo}}" data-nombre="{{nombre}}">                   
                                     </div>
                                 {{/each}}
                                 </div>
                             </div>
+                <!--Resumen-->
                             <div class="col-sm-3">
                                 <div class="row">
-                                    <div class="lista">
-                                        <h4>CAPACIDAD</h4>
-                                        <p id="slots"></p>
-                                        <h4>EFECTIVIDAD TOTAL</h4>
-                                        <p id="efectividad">0</p>
-                                        <h4>SALUD TOTAL</h4>
-                                        <p id="salud">0</p>
-                                        <h4>COSTE TOTAL DINOCOINS</h4>
-                                        <p id="costeDC">0</p>
-                                        <h4>COSTE TOTAL SUMINISTROS</h4>
-                                        <p id="costeSUM">0</p>
+                                    <div id="stats-exp" class="modal-desc-resumen-exp">
+                                        <h6>CAPACIDAD: <p id="slots" class="inline"></p></h6>
+                                        <h6>EFECTIVIDAD TOTAL:  <p id="efectividad" class="inline">0</p></h6>
+                                        <h6>SALUD TOTAL: <p id="salud" class="inline">0</p></h6>
+                                        <h6>COSTE TOTAL DINOCOINS: <p id="costeDC" class="inline">0</p></h6>
+                                        <h6>COSTE TOTAL SUMINISTROS: <p id="costeSUM" class="inline">0</p></h6>
                                     </div>
-                                    <div class="lista">
-                                        <h3>LÍDER</h3>
-                                        <p id="liderEXP"></p>
+                <!--Lider-->
+                                   
+                <!--Equipo-->
+                                   <div id="resumen" class="modal-desc-resumen-exp">
+                                        <h4>LÍDER: <p id="liderEXP" class="inline">Ninguno</p></h4>
+                                        <p data-tipo="rifle" class="block">Soldado con rifle sónico: <span id="total-rifle">0</span></p>
+                                        <p data-tipo="lanzarredes" class="block">Soldado con lanzaredes: <span id="total-lanzaredes">0</span></p>
+                                        <p data-tipo="exotraje" class="block">Soldado con exotraje: <span id="total-exotraje">0</span></p>
+                                        <p data-tipo="doctor" class="block">Doctor de campo: <span id="total-doctor">0</span></p>
+                                        <p data-tipo="jeep" class="block">jeep: <span id="total-jeep">0</span></p>
+                                        <h4>LUGAR: <p id="lugarEXP" class="inline">Ninguno</p></h4>
                                     </div>
-                                    <div id="resumen" class="lista">
-                                        <h3>EQUIPO</h3>
-                                        <p data-tipo="rifle"><span id="total-rifle">0</span>x Soldado con rifle sónico</p>
-                                        <p data-tipo="lanzarredes"><span id="total-lanzaredes">0</span>x Soldado con lanzaredes</p>
-                                        <p data-tipo="jeep"><span id="total-jeep">0</span>x jeep</p>
-                                        <p data-tipo="exotraje"><span id="total-exotraje">0</span>x Soldado con exotraje</p>
-                                        <p data-tipo="doctor"><span id="total-doctor">0</span>x Doctor de campo</p>
-                                    </div>
-                                    <div class="lista">
-                                        <h3>LUGAR</h3>
-                                        <p id="lugarEXP"></p>
-                                    </div>
+                <!--Lugar-->
+                                   
                                 </div>
-                                <div class="row">
-                                    
-
-                                    <button id="enviarEXP" style="display: none;">ENVIAR EXPEDICIÓN</button>
-                                    
-
+                <!--Enviar-->
+                                <div class="row" style="text-align: center;">
+                                    <button id="enviarEXP" style="display: none;" class="boton_gui"><p class="dinobuton-text">ENVIAR</p></button>
                                 </div>
                             </div>
                         </div>
@@ -404,20 +358,18 @@
     </div>
     
     
-    
     <!-- POP TIENDA -->
+
     <div tabindex="-1" class="modal fade" id="pop_tienda" style="display: none;" aria-hidden="true">
         <div class="modal-dialog pop_gran">
             <div class="modal-content border">
                 <div class="modal-body content_gran">
                     <div class="modal-header">
-                        {{#each edificios}}
                             <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
                             <div class="modal-ribon">
                                 <img src="/images/ribbon.png">
-                                <h2 id="nom_edifici" class="dinobuton-text">{{nom}}</h2>
+                                <h2 id="nom_edifici" class="dinobuton-text">Trade Center</h2>
                             </div> 
-                        {{/each}} 
                     </div>
                     {{#each partida}}
                     <div id="contingut_modal">
@@ -513,7 +465,7 @@
         </div>
     </div>
 
-    <!-- POP CUARTEL GENERAL -->
+<!-- POP CUARTEL GENERAL -->
 
     <div tabindex="-1" class="modal fade" id="pop_cuartel" style="display: none;" aria-hidden="true">
         <div class="modal-dialog pop_gran">
