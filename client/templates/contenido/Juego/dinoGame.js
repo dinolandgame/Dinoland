@@ -61,6 +61,7 @@ Template.dinoGame.events({
         var cuartel = mi_partida[0].edificio[0].toString().substring(3,4);//controlamos que edicifios hay en la partida)
         
          console.log(cuartel);
+
          //console.log(EdificiUp);    
          //console.log(mi_partida); 
          console.log((mi_partida[0].energia > EdificiUp.consumoEnergia)+" ||| "+(mi_partida[0].suministros > EdificiUp.costeSuministros)+ "  ||| " +(mi_partida[0].dinero >EdificiUp.costeDinocoins));
@@ -71,7 +72,8 @@ Template.dinoGame.events({
                 var energia = mi_partida[0].energia - EdificiUp.consumoEnergia;
 
 
-                Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }})
+                Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }});
+
                 Meteor.call('update_part',EdificiUp,Edifici); 
               //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados
                     
@@ -639,9 +641,11 @@ Template.dinoGame.onRendered(function(){
     /* FIN VARIABLES GLOBALES PARA EXPEDICIONES */
 
     /* ESTO PODRIA IR EN EVENTOS NORMALES, USANDO EL event.target en vez del this*/
-    var id=0;
-    $('.crearEdificio').on('dblclick',function(){
 
+   
+    $('.crearEdificio').on('dblclick',function(event){
+       var id=0;
+        event.preventDefault();
         id = $(this).data('id'); // obtengo el id del edifici
         var edificiCrear = Edificio.findOne({_id:id});   // obtengo el objecte del edifici que es vol crear         
         var mi_partida = Partida.findOne({_id:user});// obtengo el objecte de partida
@@ -656,14 +660,14 @@ Template.dinoGame.onRendered(function(){
 
                 Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }})
 
-
              alert("se esta contruyendo");
            
              console.log(this);
             //Partida.update({_id:user},{$push:{edificio:id}});
 
              Meteor.call('crear_edificio',id);
-             $(this).css({'opacity':'0.95','cursor':'not-allowed'});
+             $(this).addClass('no-seleccionable');
+         
              $('.prueba2').hide();
         }else{
 

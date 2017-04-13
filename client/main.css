@@ -1078,3 +1078,13 @@ border-radius: 100%;
 #dinero{
     margin-top: 30px;
 }
+
+.seleccionable {
+	cursor:pointer;
+}
+
+.no-seleccionable{
+    opacity:0.15;
+   pointer-events:none;
+    cursor:not-allowed;
+}
