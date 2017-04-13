@@ -39,11 +39,14 @@ Juego.prototype = {
             });            
         });
 
-        /* MUSICA EN EL JUEGO */
+        /* MUSICA EN EL JUEGO*/
         music = game.add.audio('wizball');
         music.play();
 
+        /* EFECTOS SONIDO */
         tinny = game.add.audio('tinny');
+        droplet = game.add.audio('droplet');
+        snap = game.add.audio('snap');
 
 
         $('#content-juego').show();
@@ -165,8 +168,7 @@ function hoverOff(edifici){
 
 
 function clicar(edifici){
-   // $.ionSound.play("button_tiny"); 
-    //$('#pop_sintetizador').modal('show');
+    tinny.play();
    
     phaserEdifici= edifici;
     quinedifici = edifici.key;

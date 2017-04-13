@@ -16,6 +16,8 @@ Preloader.prototype = {
         // ***********  ASSETS DEL JUEGO A CARGAR *******************//
         this.load.audio('wizball', ['/sounds/oedipus_wizball_highscore.mp3', '/sounds/oedipus_wizball_highscore.ogg']);
         this.load.audio('tinny', ['/sounds/button_tiny.mp3', '/sounds/button_tiny.ogg']);
+        this.load.audio('droplet', ['/sounds/water_droplet.mp3', '/sounds/water_droplet.ogg']);
+        this.load.audio('snap', ['/sounds/snap.mp3', '/sounds/snap.ogg']);
 
 
         this.load.image('mapa', '../images/mapa_buit.png');
