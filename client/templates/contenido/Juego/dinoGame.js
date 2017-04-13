@@ -439,17 +439,11 @@ Template.dinoGame.events({
 "click #btn-sound": function(){
     droplet.play();
     if(cont_sonido % 2 == 0){
-         music.mute = true;
-         tinny.mute = true;
-         droplet.mute = true;
-         snap.mute = true;
+        game.sound.mute = true;
         $("#btn-sound img").attr("src","/images/ui/mute.png");
     }
     else{
-        music.mute = false;
-        tinny.mute = false;
-         droplet.mute = false;
-         snap.mute = false;
+        game.sound.mute = false;
         $("#btn-sound img").attr("src","/images/ui/sound.png");
     }
     
