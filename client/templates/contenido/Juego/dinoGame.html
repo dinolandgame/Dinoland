@@ -472,7 +472,7 @@
     <div tabindex="-1" class="modal fade" id="pop_cuartel" style="display: none;" aria-hidden="true">
         <div class="modal-dialog pop_gran">
             <div class="modal-content border">
-                <div class="modal-body content_gran">
+                <div class="modal-body content-gran-cuartel">
             <div class="modal-header">
 
             {{#each edificios}}
@@ -485,21 +485,30 @@
             {{/each}} 
             </div>
                     <div id="contingut_modal">
-                        <div class="row info_edifici">
+                        <div class="row info-edifici-cuartel">
                             <div class="modal-desc col-sm-5 col-sm-offset-2">
                             {{ #each edificios }}
-                                <p >{{ descripcion }}</p>
+                                <p id="desc-cuartel">{{ descripcion }}</p>
                             {{ /each }}
 
                             </div>
+                            
                             <div id="btn-cuartel">
-                                <button type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui" id="subirlvl">
+                                <button  type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui btn-lvlup-cuartel" id="subirlvl">
                                 <p class="dinobuton-text">Subir nivel</p>
                                 </button>
+                                <button  type="button" data-id="" class="btn pmd-ripple-effect btn-default btn_modal boton_gui btn-lvlup-cuartel crearEdificio" id="subirlvl">
+                                <p class="dinobuton-text">Construir</p>
+                                </button>
+                            </div>
+                            <div id="div-costes">
+                                <p>Consumo Energia: <span id="span-energia"></span></p>
+                                <p>Coste Suministros: <span id="span-suministros"></span></p>
+                                <p>Coste DinoCoins: <span id="span-dinocoins"></span></p>
                             </div>
                             <div class="col-sm-4">
                             {{#each edificios}}
-                                <img src={{avatar}} class="img-responsive img_edifici modal-img-edif" >
+                                <img id="img-cuartel" src={{avatar}} class="img-responsive img_edifici modal-img-edif" >
                             {{/each}}
                             </div>
                         </div>
@@ -519,49 +528,26 @@
                         <div id="edif-cuartel" class="row" style="margin-left:3%">
                                
                                 {{#each edificioTodos}}
-                                  
-                                        {{#if yaConstruido _id}}<!-- si es TRUE
-                                        
-
-                                            <div class="col-sm-2">
-                                                <a class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="modal"  type="button"><img src={{avatar}} class="img_admin otro img-circle" style="opacity:0.75;cursor:not-allowed"></a>
-                                            </div>
--->
-
-
-                                               
+                                    {{#if cuartel _id  1001}}
+                                            <div class="col-sm-2 div-cuartel" data-divID={{_id}}>
+                                                      <a href="#" type="button" class="seleccionable" data-id={{_id}} data-target="#pop_edificio"><img src={{avatar}} class="img_admin modal-img-edif"></a>
+                                                      <p id="edif-nombre">{{nom}}</p>
+                                                    </div>
+                                        {{else}}
+                                            {{#if yaConstruido _id}}
+                                                    <div class="col-sm-2 div-edificio" data-divID={{_id}}>
+                                                      <a href="#" type="button" class="seleccionable" data-id={{_id}} data-target="#pop_edificio"><img src={{avatar}} class="img_admin modal-img-edif"></a>
+                                                      <p id="edif-nombre">{{nom}}</p>
+                                                    </div>
+                                            {{else}}
                                                 <div class="col-sm-2">
-                                                  <a href="#" type="button" class="crearEdificio seleccionable" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}}><img src={{avatar}} class="img_admin modal-img-edif"></a>
-                                                  <p id="edif-nombre">{{nom}}</p>
+                                                  <a href="#" type="button" class="no-seleccionable" data-id={{_id}} data-target="#pop_edificio"><img src={{avatar}} class="img_admin modal-img-edif"></a>
+                                                 <p id="edif-nombre">{{nom}}</p>
                                                 </div>
-                                                
-                                        
-                                            {{else}}<!--si no es TRUE
-
-                                            <div class="col-sm-2">
-                                                <a class="crearEdificio" data-id={{_id}} data-target="#pop_edificio" data-toggle="modal"  type="button"><img src={{avatar}} class="img_admin otro img-circle" style="cursor:pointer"></a>
-                                            </div>
--->
-
-                                            
-                                              
-
-                                            <div class="col-sm-2">
-                                              
-                                              <a href="#" type="button" class="crearEdificio no-seleccionable" data-id={{_id}} data-target="#pop_edificio" data-toggle="popover" title="Costes" data-content={{costeConstrucion}} ><img src={{avatar}} class="img_admin modal-img-edif"></a>
-                                             <p id="edif-nombre">{{nom}}</p>
-                                            </div>
-
+                                            {{/if}}
                                         {{/if}}
-                                        
-                                   
-                                    
                                 {{/each}}
-                                
-                           
-                        </div>
-
-                            
+                        </div> 
                     </div>
                 </div>
             </div>

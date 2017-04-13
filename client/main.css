@@ -756,6 +756,10 @@ border-radius: 100%;
     height: 520px;
 }
 
+.content-gran-cuartel{
+    height: 600px;
+}
+
 .content-expediciones {
     /**height:550px;*l*/
     height: 580px;
@@ -801,6 +805,12 @@ border-radius: 100%;
     padding-bottom: 20px;
     text-align: justify;
 }
+.info-edifici-cuartel {
+    height: 260px;
+    /*padding-top: 20px;*/
+    padding-bottom: 20px;
+    text-align: justify;
+}
 
 .img_edifici {
     /*width: 100%;
@@ -841,6 +851,7 @@ border-radius: 100%;
 }
 
 /* POP CUARTEL GENERAL */
+
 #edif-nombre{
     height: 4em;
     width: 102px;
@@ -858,7 +869,7 @@ border-radius: 100%;
 
 }
 .img_admin {
-    width: 80%;
+    width: 102px;
     height: 80px;
     /*margin-top: 20px;
     margin-bottom: 25px;*/
@@ -877,6 +888,8 @@ border-radius: 100%;
     margin-top: 5px;
     margin-bottom: 20px;
 }
+
+
 
 /* POP EXPEDICIONES */
 
@@ -1210,6 +1223,7 @@ border-radius: 100%;
 .text-color-white{
     color:rgba(245,237,170,1);
 }
+
 .seleccionable {
 	cursor:pointer;
 }
@@ -1218,4 +1232,15 @@ border-radius: 100%;
     opacity:0.15;
    pointer-events:none;
     cursor:not-allowed;
+}
+
+#div-costes{
+    display: block;
+    position: fixed;
+    left: 400px;
+    top: 200px;
+}
+
+.crearEdificio{
+    display: none;
 }
