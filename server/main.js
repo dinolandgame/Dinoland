@@ -245,9 +245,8 @@ Meteor.methods({
                 var cantidad = Math.ceil((tirada - dificultad)/10);
                 console.log("Se ha encontrado " + cantidad + " "  + dinosaurio_rastreado.nombre);
                 report+=" Se encontró una manada de " + cantidad + " "  + dinosaurio_rastreado.nombre;
-            }
-            
-            // FASE DE CAPTURA
+                
+                // FASE DE CAPTURA
             
             var efectividad = expedicion_en_curso.efectividad;
             var salud = expedicion_en_curso.salud;
@@ -272,15 +271,22 @@ Meteor.methods({
                 tirada*=1.5;
             }
             capturas = tirada / dinosaurio_rastreado.ferocidad;
+            if (capturas > cantidad){
+                capturas = cantidad;
+            }
             console.log("capturas = " + capturas);
             // si el lider es un jefe explorador se mejora la cantidad de capturas
             if(bono_jefeexplorador==true){
                 // que nunca puede exceder la cantidad de la manada localizada
-                var capturas_bonus = capturas + capturas*1.5;
-                if (capturas_bonus > cantidad){
-                    capturas = cantidad;
+                if(capturas < 0){
+                    capturas += 1.5;
                 }else{
-                    capturas *= capturas*1.5;
+                   var capturas_bonus = capturas + capturas*1.5;
+                    if (capturas_bonus > cantidad){
+                        capturas = cantidad;
+                    }else{
+                        capturas += capturas*1.5;
+                    } 
                 }
                 console.log("capturas con jefe = " + capturas);
             }
@@ -292,6 +298,12 @@ Meteor.methods({
                 console.log(" Se ha capturado " + capturas_final + " " + dinosaurio_rastreado.nombre);
                 report+="La expedición consiguió capturar " + capturas_final + " " + dinosaurio_rastreado.nombre;
             }
+        }else{
+            capturas_final = 0;
+             report+= " Pero no se logró encontrar una manada.";
+        }
+            
+            
             
             // FASE DE RESOLUCIÖN 
             

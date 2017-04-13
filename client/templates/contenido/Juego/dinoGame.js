@@ -179,7 +179,16 @@ Template.dinoGame.events({
  // Acción de mandar una expedición
     "click #enviarEXP":function(event,template){
         event.preventDefault();
-        // Se crea un documento con los datos de la expedición y se guarda en la BD 
+        // Se crea un documento con los datos de la expedición y se guarda en la BD
+        var mi_partida = Partida.findOne({_id:user});//obtengo la partidaq dle jugador
+        console.log((mi_partida.dinero > costeDC) + "||||" + (mi_partida.suministros > costeSUM));
+        if(mi_partida.dinero > costeDC && mi_partida.suministros > costeSUM){
+        var dinero = mi_partida.dinero - costeDC;
+        var suministros = mi_partida.suministros - costeSUM;
+        Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros}})
+        }else{
+            alert("te faltan recursos");
+        }
         user = Meteor.userId();
         var data = new Date();
         var stringData = data.toString();
@@ -351,19 +360,6 @@ Template.dinoGame.events({
         showBtnEnviar();
     },
 
-    //restar los recursos cuando envias un espedicion
-    "click #enviarEXP": function(){
-
-         var mi_partida = Partida.findOne({_id:user});//obtengo la partidaq dle jugador
-         if(mi_partida.dinero > costeDC && mi_partida.suministros > costeSUM){
-         var dinero = mi_partida.dinero - costeDC;
-         var suministros = mi_partida.suministros - costeSUM;
-         Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros}})
-         }else{
-            alert("te faltan recursos");
-
-         }
-    },
 
     //Cuando hacemos click en el lider lo seleccionamos y lo añadimos a la lista
     "click img[data-tipo = 'lider']": function(event,template){
