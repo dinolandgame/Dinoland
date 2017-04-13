@@ -368,6 +368,7 @@ Template.dinoGame.events({
       
     /*****************EVENTOS INVESTIGACIONES ****************************************/
     
+
     "click a#investiga": function(event, template){
         event.preventDefault();
         var $this = $(event.target);
@@ -377,6 +378,37 @@ Template.dinoGame.events({
         Meteor.call('hacerinvestigacion',investigacionId);
         
         console.log("voy a acabar esta funcion con el crhon");
+},
+
+    "click a#expedicion": function(event, template){
+
+
+        //id = $(this).data('id'); // obtengo el id del edifici
+        console.log(this);
+       // var investigacion = Investigacion.findOne({_id:this._id});   // obtengo el objecte del edifici que es vol crear         
+       var mi_partida = Partida.findOne({_id:user});// obtengo el objecte de partida
+
+
+        if(mi_partida.dinero > this.coste_DinoCoins && mi_partida.suministros > this.coste_Suministro){
+            
+            var dinero = mi_partida.dinero - this.coste_DinoCoins;
+            var suministros = mi_partida.suministros - this.coste_Suministro;
+            
+            Partida.update({_id:user},{$set:{dinero:dinero,suministros:suministros}});
+
+            event.preventDefault();
+            var $this = $(event.target);
+            
+            var investigacionId = $($this).data('investigar');
+            
+            Meteor.call('hacerinvestigacion',investigacionId,bono_logistica);
+            
+            console.log("voy a acabar esta funcion con el crhon");
+        }else{
+
+            alert("faltan recursos");
+        }
+>>>>>>> origin/Dinoland-35
         
     }
     
