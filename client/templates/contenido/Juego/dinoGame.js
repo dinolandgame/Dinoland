@@ -4,18 +4,18 @@
 Template.dinoGame.events({
 
     "click #btn_desplegar":function(event,template){
+        snap.play();
 		event.preventDefault();
 		$('#btn_desplegar').hide();
         $('#user').fadeOut(500);
-        //$.ionSound.play("snap");
         $('#sidebar').addClass("sombra_sidebar");
         $('#sidebar').animate({"left": "16.66666667%"}, "slow"); 
         $('#btn_plegar').show();
 	},
 
     "click #btn_plegar":function(event,template){
+        snap.play();
 		event.preventDefault();
-		//$.ionSound.play("snap");
         $('#btn_plegar').hide();
         $('#sidebar').animate({"left": "0%"}, "slow");
         $('#sidebar').removeClass("sombra_sidebar");
@@ -24,6 +24,7 @@ Template.dinoGame.events({
 	},
 
     "click a#home":function(event,template){
+        snap.play();
 			event.preventDefault();
            
 			Router.go('/');
@@ -33,10 +34,10 @@ Template.dinoGame.events({
 	},
 
     "click #user":function(event,template){
+        snap.play();
         event.preventDefault();
         $('#btn_desplegar').hide();
         $('#user').fadeOut(500);
-       // $.ionSound.play("snap");
         $('#sidebar').addClass("sombra_sidebar");
         $('#sidebar').animate({"left": "16.66666667%"}, "slow"); 
         $('#btn_plegar').show();
@@ -47,6 +48,7 @@ Template.dinoGame.events({
     },
 
     "click #subirlvl": function(event,template){
+        snap.play();
             event.preventDefault();
         
             //console.log("subir nivel");
@@ -117,6 +119,7 @@ Template.dinoGame.events({
         //Hacer un update de partida
         //1 moneda vale 2 suministros
     "click #camDinero" : function(event, template){
+        snap.play();
         event.preventDefault();
         var partida = Partida.findOne({_id:Meteor.userId()} );
         //Dinero
@@ -132,15 +135,18 @@ Template.dinoGame.events({
             rellenarDinero(introducido, dineroRestante, suministrosGanados, suministrosTotales);
 
             $('#conDinero').on('click', function(){
+                snap.play();
                 vaciarDinero();
                 Meteor.call('cambioTienda', dineroRestante, suministrosTotales);
             });
             $('#cancelDinero').on('click', function(){
+                snap.play();
                 vaciarDinero();
             });
         }
     },    
     "click #camSuministros" : function(event, template){
+        snap.play();
         event.preventDefault();
         var partida = Partida.findOne({_id:Meteor.userId()} );
         //Dinero
@@ -168,6 +174,7 @@ Template.dinoGame.events({
         }
     },
     "click #btn-tienda": function(event, template){
+        tinny.play();
         event.preventDefault();
         vaciarSuministros();
         vaciarDinero();
@@ -223,6 +230,7 @@ Template.dinoGame.events({
          
     },
     "click div[data-tipo] button": function(event, template){
+        droplet.play();
         event.preventDefault();
         //obtenemos datos de los datas
         efecto = $(event.target).data("efecto");
@@ -363,6 +371,7 @@ Template.dinoGame.events({
 
     //Cuando hacemos click en el lider lo seleccionamos y lo añadimos a la lista
     "click img[data-tipo = 'lider']": function(event,template){
+        snap.play();
         event.preventDefault();
          nombreLider = $(event.target).data("nombre");
         $("#liderEXP").text(nombreLider);
@@ -373,7 +382,8 @@ Template.dinoGame.events({
     },
 
     //Cuando hacemos click en la zona lo seleccionamos y lo añadimos a la lista
-    "click img[data-tipo = 'zona']": function(event,template){    
+    "click img[data-tipo = 'zona']": function(event,template){   
+        snap.play(); 
         event.preventDefault();
         nombreZona = $(event.target).data("nombre");
         tipoZona = $(event.target).data("terreno");
@@ -419,6 +429,31 @@ Template.dinoGame.events({
             }, 'slow');
     },
 
+/********************* FIN EVENTOS EXPEDICIONES *************************************/
+    
+/********************* EVENTOS SONIDOS *********************************************/
+
+"click #btn-sound": function(){
+    droplet.play();
+    if(cont_sonido % 2 == 0){
+         music.mute = true;
+         tinny.mute = true;
+         droplet.mute = true;
+         snap.mute = true;
+        $("#btn-sound img").attr("src","/images/ui/mute.png");
+    }
+
+    else{
+        music.mute = false;
+        tinny.mute = false;
+         droplet.mute = false;
+         snap.mute = false;
+        $("#btn-sound img").attr("src","/images/ui/sound.png");
+    }
+    
+    cont_sonido++;
+},    
+
 
 /********************* FIN EVENTOS EXPEDICIONES *************************************/
       
@@ -463,14 +498,11 @@ Template.dinoGame.events({
         }else{
 
             alert("faltan recursos");
-        }
-
-        
+        } 
     }
     
-    
-    
     /*****************FIN EVENTOS INVESTIGACIONES*****************************************/
+
  }); 
 
 /************************ FUNCIONES TIENDA ********************************************/
@@ -711,6 +743,9 @@ Template.dinoGame.helpers({
 
 /* ON RENDERES ES COMO EL DOCUMENT(READY) */
 Template.dinoGame.onRendered(function(){
+
+
+    cont_sonido = 0;//Variable para controlar el sonido y el mute
 
     /* VARIABLES GLOBALES PARA EXPEDICIONES */
     
