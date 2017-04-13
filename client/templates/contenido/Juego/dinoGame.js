@@ -65,7 +65,7 @@ Template.dinoGame.events({
          //console.log(EdificiUp);    
          //console.log(mi_partida); 
          console.log((mi_partida[0].energia > EdificiUp.consumoEnergia)+" ||| "+(mi_partida[0].suministros > EdificiUp.costeSuministros)+ "  ||| " +(mi_partida[0].dinero >EdificiUp.costeDinocoins));
-            if(EdificiUp != null && Edifici.nivel<cuartel && mi_partida[0].energia > EdificiUp.consumoEnergia  && mi_partida[0].suministros > EdificiUp.costeSuministros && mi_partida[0].dinero > EdificiUp.costeDinocoins ){
+            if(EdificiUp != null && Edifici.nivel<=cuartel && mi_partida[0].energia > EdificiUp.consumoEnergia  && mi_partida[0].suministros > EdificiUp.costeSuministros && mi_partida[0].dinero > EdificiUp.costeDinocoins ){
                 
                 var dinero = mi_partida[0].dinero - EdificiUp.costeDinocoins;
                 var suministros = mi_partida[0].suministros - EdificiUp.costeSuministros;
@@ -374,6 +374,7 @@ Template.dinoGame.events({
             'height': '100px',
             'border-color':'black'
         }, 'slow');
+        $(event.target).css('cursor', 'pointer');
     },
     "mouseleave .mouse-efect":function(event, template){
         $(event.target).animate({
@@ -384,10 +385,43 @@ Template.dinoGame.events({
 
             
             }, 'slow');
-    }
+    },
 
 /********************* FIN EVENTOS EXPEDICIONES *************************************/
-        
+
+/**********************EVENTOS CUARTEL GENERAL***************************************/
+    "click .div-edificio":function(event, template){
+        console.log(this.avatar);
+        console.log(this.descripcion);
+        $('#img-cuartel').attr("src", this.avatar);
+        $('#desc-cuartel').text(this.descripcion);
+        $('.btn-lvlup-cuartel').css('display', 'none');
+        $('#div-costes').css('display', 'block');
+        $('#span-energia').text(this.consumoEnergia);
+        $('#span-suministros').text(this.costeSuministros);
+        $('#span-dinocoins').text(this.costeDinocoins);
+        $('.crearEdificio').data('id', this._id);
+        $('.crearEdificio').css('display', 'block');
+    },
+    "mouseenter .modal-img-edif":function(event,template){
+        $(event.target).css({
+            'box-shadow':'2px 2px 2px 1px rgba(180,97,0,0.88)',
+            'border-color': 'black',
+        });
+
+   },
+
+    "mouseleave .modal-img-edif":function(event,template){
+        $(event.target).css({'box-shadow':'none','border-color': 'white',});
+    },
+
+    "click .div-cuartel": function(event, template){
+        $('.btn-lvlup-cuartel').css('display', 'block');
+        $('.crearEdificio').css('display', 'none');
+        $('#img-cuartel').attr("src", this.avatar);
+        $('#desc-cuartel').text(this.descripcion);
+        $('#div-costes').css('display', 'none');
+    }
  }); 
 
 /************************ FUNCIONES TIENDA ********************************************/
@@ -619,6 +653,19 @@ Template.dinoGame.helpers({
 
     terrenos: function(){
         return Terreno.find({});
+    },
+    cuartel: function(num1, num2){
+        /*var bol=false;
+        if(num1==num2){
+            bol=true;
+        }
+        return bol;*/
+
+        if(num1==num2){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 });
@@ -661,10 +708,12 @@ Template.dinoGame.onRendered(function(){
     /* ESTO PODRIA IR EN EVENTOS NORMALES, USANDO EL event.target en vez del this*/
 
    
-    $('.crearEdificio').on('dblclick',function(event){
+    $('.crearEdificio').on('click',function(event){
        var id=0;
         event.preventDefault();
-        id = $(this).data('id'); // obtengo el id del edifici
+        id = $(this).data('id');
+        $(this).data('id', "0");
+         // obtengo el id del edifici
         var edificiCrear = Edificio.findOne({_id:id});   // obtengo el objecte del edifici que es vol crear         
         var mi_partida = Partida.findOne({_id:user});// obtengo el objecte de partida
 
@@ -684,7 +733,7 @@ Template.dinoGame.onRendered(function(){
             //Partida.update({_id:user},{$push:{edificio:id}});
 
              Meteor.call('crear_edificio',id);
-             $(this).addClass('no-seleccionable');
+             $('[data-id='+ id + ']').addClass('no-seleccionable');
          
              $('.prueba2').hide();
         }else{
