@@ -14,9 +14,10 @@ Preloader.prototype = {
         island.animations.play('run', 10, true);
         
         // ***********  ASSETS DEL JUEGO A CARGAR *******************//
-        //this.load.audio('myMusic', ['path/1.mp3', 'path/1.ogg']);
-        //this.load.audio('myMusic', 'path/1.wav');
-        //this.load.audio('m1', '/audio/1.mp3');
+        this.load.audio('wizball', ['/sounds/oedipus_wizball_highscore.mp3', '/sounds/oedipus_wizball_highscore.ogg']);
+        this.load.audio('tinny', ['/sounds/button_tinny.mp3', '/sounds/button_tinny.ogg']);
+
+
         this.load.image('mapa', '../images/mapa_buit.png');
     
         this.load.spritesheet('bar1', '../images/bar1.png', 182.4, 160.5, 10);
@@ -29,7 +30,7 @@ Preloader.prototype = {
         this.load.spritesheet('laboratori1', '../images/laboratori1.png', 204.9, 228, 23);
         this.load.image('magatzem1', '../images/magatzem1.png');
         this.load.spritesheet('cuartel1', '../images/cuartel1.png', 458.4, 354, 21);
-         this.load.spritesheet('cuartel2', '../images/cuartel1.png', 460, 354, 21);
+        this.load.spritesheet('cuartel2', '../images/cuartel1.png', 460, 354, 21);
         this.load.image('habitats1', '../images/habitats1.png');
         this.load.spritesheet('energia1', '../images/energia1.png', 180.25, 259.333333, 11);
         this.load.spritesheet('port1', '../images/port1.png', 478.5, 438.3, 13);

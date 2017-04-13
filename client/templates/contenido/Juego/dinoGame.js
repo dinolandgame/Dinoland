@@ -218,6 +218,7 @@ Template.dinoGame.events({
             game.state.restart();
           },
     "click div[data-tipo] button": function(event, template){
+        tinny.play();
         event.preventDefault();
         //obtenemos datos de los datas
         efecto = $(event.target).data("efecto");
@@ -394,10 +395,27 @@ Template.dinoGame.events({
 
             
             }, 'slow');
-    }
+    },
 
 /********************* FIN EVENTOS EXPEDICIONES *************************************/
-        
+    
+/********************* EVENTOS SONIDOS *********************************************/
+
+"click #btn-sound": function(){
+    if(cont_sonido % 2 == 0){
+         music.mute = true;
+        $("#btn-sound img").attr("src","/images/ui/mute.png");
+    }
+
+    else{
+        music.mute = false;
+        $("#btn-sound img").attr("src","/images/ui/sound.png");
+    }
+    
+    cont_sonido++;
+}    
+
+
  }); 
 
 /************************ FUNCIONES TIENDA ********************************************/
@@ -637,6 +655,9 @@ Template.dinoGame.helpers({
 
 /* ON RENDERES ES COMO EL DOCUMENT(READY) */
 Template.dinoGame.onRendered(function(){
+
+
+    cont_sonido = 0;//Variable para controlar el sonido y el mute
 
     /* VARIABLES GLOBALES PARA EXPEDICIONES */
     
