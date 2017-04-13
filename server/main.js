@@ -17,8 +17,14 @@ Meteor.methods({
                       energia:200,
                       suministros:200,
                       visitantes:0,
-                      edificio:[],
-                        desbloqueados:[]}); 
+                     bono_seguridad:false,
+                     bono_logistica:false,
+                     bono_liderazgo:30,
+                     bono_habitats:false,
+                     bono_rrpp:false,
+                     edificio:[],
+                    desbloqueados:[]}); 
+      
        
        /*{
     _id:1,
@@ -362,9 +368,9 @@ Meteor.methods({
     
     /**************************************CHRON INVESTIGACIONES ****************************************/
     //creacion edificios 1er nivel
-    hacerinvestigacion(id,bono){
+    hacerinvestigacion(id){
     Investigacio = Investigacion.findOne({_id:id});
-   
+    
     user = Meteor.userId();
     var data = new Date();
     data.setSeconds(data.getSeconds()+Investigacio.tiempo_Min);
@@ -383,7 +389,7 @@ Meteor.methods({
         schedule: function(parser) {
         
             console.log("ha entrat a la data");
-             console.log(bono);
+             
             //console.log(parser.recur().on(data).fullDate());
             return parser.recur().on(data).fullDate();
         },
@@ -397,8 +403,9 @@ Meteor.methods({
                     
                     console.log("investigacio acabada!!");
                 }else if(Investigacio._id==5){
-                    
-                }(Investigacio._id);
+                    Partida.update({_id:user},{$inc:{bono_liderazgo:10}});
+                    console.log("investigacio acabada!!");
+                }
            
             
             console.log("investigacio acabada!!");

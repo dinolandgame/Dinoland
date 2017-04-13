@@ -189,12 +189,6 @@ Template.dinoGame.events({
         Meteor.call('enviar_expedicion', idexp, terreno);
          
     },
-    
-     "click #mejorar": function(event,template){
-         
-            phaserEdifici.destroy();
-            game.state.restart();
-          },
     "click div[data-tipo] button": function(event, template){
         event.preventDefault();
         //obtenemos datos de los datas
@@ -206,7 +200,18 @@ Template.dinoGame.events({
         costeDC = $(event.target).closest("div").data("costedc");
         costeSUM = $(event.target).closest("div").data("costesum");
         tipo = $(event.target).closest("div").data("tipo");
-
+        
+        misBonos = []; 
+        /******** mis bonos tienen controlados los bonos 
+        de la partida del jugador con la funcion de comprobar Bonos
+            misBonos[0] = seguridad;
+            misBonos[1] = habitats;
+            misBonos[2] = rrpp;
+            misBonos[3] =logistica;
+            misBonos[4] = liderazgo;
+        
+        ********/
+        misBonos = comprobarBonos();
 
         //Si hemos cliqueado en un boton de sumar
         if(efecto == "sumar"){
@@ -217,7 +222,9 @@ Template.dinoGame.events({
             totalSLOTS += slots;
             
             /* Si tenemos el bono, nos ahorramos un 15% en dinocoins*/
-            if(bono_logistica == true){
+            
+            
+            if(misBonos[3] == true){
                 costeDC = Math.ceil(costeDC - ((costeDC / 100) * 15));
             }
             
@@ -225,7 +232,7 @@ Template.dinoGame.events({
 
             
             /* Si tenemos el bono, nos ahorramos un 15% en suministros */
-            if(bono_logistica == true){
+            if(misBonos[3] == true){
                 costeSUM = Math.ceil(costeSUM - ((costeSUM / 100) * 15));
             }
             totalSUM += costeSUM;
@@ -253,7 +260,7 @@ Template.dinoGame.events({
             totalSLOTS -= slots;
             if(totalSLOTS < 0) {totalSLOTS = 0;}
 
-            if(bono_logistica == true){
+            if(misBonos[3] == true){
                 costeDC = Math.ceil(costeDC - ((costeDC / 100) * 15));
             }
             
@@ -262,7 +269,7 @@ Template.dinoGame.events({
                 totalDC = 0;
             }
             
-            if(bono_logistica == true){
+            if(misBonos[3] == true){
                 costeSUM = Math.ceil(costeSUM - ((costeSUM / 100) * 15));
             }
 
@@ -291,7 +298,8 @@ Template.dinoGame.events({
         }
 
         //Seteamos los textos de los totales
-        $("#slots").text(totalSLOTS + "/" + capacidad);
+        
+        $("#slots").text(totalSLOTS + "/" + misBonos[4]);
         $("#efectividad").text(totalEFEC);
         $("#salud").text(totalSAL);
         $("#costeDC").text(totalDC);
@@ -308,7 +316,7 @@ Template.dinoGame.events({
         buttons_sum_res(); 
 
         //Si los slots estan llenos (en nuestro caso si hay 29 o 30), lo ponemos en rojo
-        if(totalSLOTS > (capacidad -2)){
+        if(totalSLOTS > (misBonos[4] -2)){
             $("#slots").css("color", "red");
         }
 
@@ -340,18 +348,33 @@ Template.dinoGame.events({
         mapSelected = true;
         showBtnEnviar();
     },
+    "click #btn-expediciones": function(){
+        misBonos = []; 
+        /******** mis bonos tienen controlados los bonos 
+        de la partida del jugador con la funcion de comprobar Bonos
+            misBonos[0] = seguridad;
+            misBonos[1] = habitats;
+            misBonos[2] = rrpp;
+            misBonos[3] =logistica;
+            misBonos[4] = liderazgo;
+        
+        ********/
+        misBonos = comprobarBonos();
+
+    $("#slots").text("0/" + misBonos[4]);
+    },
 
 /********************* FIN EVENTOS EXPEDICIONES *************************************/
       
     /*****************EVENTOS INVESTIGACIONES ****************************************/
     
-    "click a#expedicion": function(event, template){
+    "click a#investiga": function(event, template){
         event.preventDefault();
         var $this = $(event.target);
         
         var investigacionId = $($this).data('investigar');
         
-        Meteor.call('hacerinvestigacion',investigacionId,bono_logistica);
+        Meteor.call('hacerinvestigacion',investigacionId);
         
         console.log("voy a acabar esta funcion con el crhon");
         
@@ -464,7 +487,7 @@ function buttons_sum_res(){
         if(quantitatInt == 0){
             hideRestar();
 
-            if((capacidad - totalSLOTS) >= $("div[data-tipo="+tipusTropa+"]").data("slots")){
+            if((misBonos[4] - totalSLOTS) >= $("div[data-tipo="+tipusTropa+"]").data("slots")){
                 showSumar();
             }
             else{
@@ -475,7 +498,7 @@ function buttons_sum_res(){
         else if(quantitatInt > 0){
             showRestar();
 
-            if((capacidad - totalSLOTS) < $("div[data-tipo="+tipusTropa+"]").data("slots")){
+            if((misBonos[4] - totalSLOTS) < $("div[data-tipo="+tipusTropa+"]").data("slots")){
                 hideSumar();
             }
             else{
@@ -489,7 +512,7 @@ function buttons_sum_res(){
         $("button[data-efecto='restar']").hide();
     }
 
-    if(totalSLOTS > (capacidad - 2)){
+    if(totalSLOTS > (misBonos[4] - 2)){
         $("button[data-efecto='sumar']").hide();
     }    
 
@@ -598,26 +621,16 @@ Template.dinoGame.helpers({
 
 });
 
-
-
 /* ON RENDERES ES COMO EL DOCUMENT(READY) */
 Template.dinoGame.onRendered(function(){
 
     /* VARIABLES GLOBALES PARA EXPEDICIONES */
     
-    bono_liderazgo = false; /* Aumenta en 10 la variable capacidad*/
-
-    if(bono_liderazgo == false){
-        capacidad = 30;
-    }
-
-    else{
-        capacidad = 40;
-    }
+     /* Aumenta en 10 la variable capacidad*/
+    
+    
     user = Meteor.userId();
-    $("#slots").text("0/" + capacidad);
-    var mi_partida = Partida.find({_id:user}).fetch();//obtengo un objeto partida en forma de array
-    bono_logistica = mi_partida[0].bono_logistica; /* Ahorra un 15% en dinocoins y suministros */
+
     totalDC = 0;            /* Total coste Dinocoins */
     totalSUM = 0;           /* Total coste Suministros */
     totalEFEC = 0;          /* Total efectividad */
@@ -653,18 +666,27 @@ Template.dinoGame.onRendered(function(){
         buttons_sum_res(); 
     
     
-    //misma funcion que hay en el phaser pero para controlar los cambios de la propiedad del bono
-    //tendria que ser dinamico
-    const cursor = Partida.find({_id:user});
-        const cambiar_booleanos = cursor.observeChanges({
-            changed(id,fields){
-                //console.log(fields);
-                if(fields.hasOwnProperty('bono_logistica')){
-                    //location.reload();
-                }
-            }
-        });
+    
 });
+
+function comprobarPartida(){
+    mi_partida = Partida.find({_id:user}).fetch();
+}
+
+function comprobarBonos(){
+    Bonos = [];
+    comprobarPartida();
+    
+    Bonos.push(mi_partida[0].bono_seguridad);
+    Bonos.push(mi_partida[0].bono_habitats);
+    Bonos.push(mi_partida[0].bono_rrpp);
+    Bonos.push(mi_partida[0].bono_logistica);
+    Bonos.push(mi_partida[0].bono_liderazgo);
+    
+    
+    return Bonos;
+}
+
 
 
 
