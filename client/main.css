@@ -758,7 +758,7 @@ border-radius: 100%;
 
 .content-expediciones {
     /**height:550px;*l*/
-    height: 550px;
+    height: 580px;
 }
 
 .header_gran {
@@ -914,12 +914,12 @@ border-radius: 100%;
 }
 
 .selected{
-    -webkit-box-shadow: 2px 2px 2px 1px rgba(253,168,26,0.88);
-    -moz-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
-    box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
-    width: 100px;
-    height: 100px;
-    border-color:black;
+    -webkit-box-shadow: 2px 2px 2px 1px rgba(253,168,26,0.88)!important;
+    -moz-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88)!important;
+    box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88)!important;
+    width: 100px!important;
+    height: 100px!important;
+    border-color:black!important;
     /*border-color: rgb(253,168,26);*/
 
 }
@@ -931,13 +931,14 @@ border-radius: 100%;
     text-align: justify;
     margin-bottom: 20px;
     overflow: hidden;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     margin-right: 8.666%;
     margin-left: 6.66%;
     -webkit-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
     -moz-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
     box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    height: 140px;
 }
 
 .modal-desc-resumen-exp{
@@ -963,8 +964,8 @@ border-radius: 100%;
     text-align: justify;
     margin-bottom: 20px;
     overflow: hidden;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     margin-right: 8.666%;
     margin-left: 6.66%;
     -webkit-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
@@ -994,6 +995,8 @@ border-radius: 100%;
     box-shadow: 2px 2px 2px 1px rgba(73,101,0,0.88);
     font-size: 15px;
     margin-top: 10px;
+    position: inherit;
+    left: 20px;
 }
 
 .boton-gui-exp-ok:hover{
@@ -1017,6 +1020,8 @@ border-radius: 100%;
     box-shadow: 2px 2px 2px 1px rgba(150,77,0,0.88);
     font-size: 15px;
     margin-top: 10px;
+    position: inherit;
+    right: -20px;
 }
 
 .boton-gui-exp-cancel:hover{
@@ -1199,4 +1204,8 @@ border-radius: 100%;
 
 .inline{
     display: inline;
+}
+
+.text-color-white{
+    color:rgba(245,237,170,1);
 }

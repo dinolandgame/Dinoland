@@ -313,7 +313,7 @@ Template.dinoGame.events({
         }
 
         else{
-            $("#slots").css("color", "black");
+            $("#slots").css("color", "rgba(245,237,170,1)");
         }
 
         showBtnEnviar();
@@ -339,6 +339,24 @@ Template.dinoGame.events({
         $(event.target).addClass("selected");
         mapSelected = true;
         showBtnEnviar();
+    },
+    "mouseenter .mouse-efect": function(event, template){
+        $(event.target).animate({
+            'box-shadow': '2px 2px 2px 1px rgba(253,168,26,0.88)',
+            'width': '100px',
+            'height': '100px',
+            'border-color':'black'
+        }, 'slow');
+    },
+    "mouseleave .mouse-efect":function(event, template){
+        $(event.target).animate({
+            'box-shadow': '2px 2px 2px 1px rgba(253,168,26,0.88)',
+            'width': '80px',
+            'height': '80px',
+            'border-color':'white'
+
+            
+            }, 'slow');
     }
 
 /********************* FIN EVENTOS EXPEDICIONES *************************************/
