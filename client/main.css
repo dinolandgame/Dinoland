@@ -1198,6 +1198,7 @@ border-radius: 100%;
     margin-top: 30px;
 }
 
+
 .block{
     display: block;
 }
@@ -1208,4 +1209,13 @@ border-radius: 100%;
 
 .text-color-white{
     color:rgba(245,237,170,1);
+
+.seleccionable {
+	cursor:pointer;
+}
+
+.no-seleccionable{
+    opacity:0.15;
+   pointer-events:none;
+    cursor:not-allowed;
 }
