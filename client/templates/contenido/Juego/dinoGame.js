@@ -62,10 +62,11 @@ Template.dinoGame.events({
         
          console.log(cuartel);
 
+
          //console.log(EdificiUp);    
          //console.log(mi_partida); 
          console.log((mi_partida[0].energia > EdificiUp.consumoEnergia)+" ||| "+(mi_partida[0].suministros > EdificiUp.costeSuministros)+ "  ||| " +(mi_partida[0].dinero >EdificiUp.costeDinocoins));
-            if(EdificiUp != null && Edifici.nivel<cuartel && mi_partida[0].energia > EdificiUp.consumoEnergia  && mi_partida[0].suministros > EdificiUp.costeSuministros && mi_partida[0].dinero > EdificiUp.costeDinocoins ){
+            if(EdificiUp != null && Edifici.nivel<=cuartel && mi_partida[0].energia > EdificiUp.consumoEnergia  && mi_partida[0].suministros > EdificiUp.costeSuministros && mi_partida[0].dinero > EdificiUp.costeDinocoins ){
                 
                 var dinero = mi_partida[0].dinero - EdificiUp.costeDinocoins;
                 var suministros = mi_partida[0].suministros - EdificiUp.costeSuministros;
@@ -73,6 +74,7 @@ Template.dinoGame.events({
 
 
                 Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }});
+
 
                 Meteor.call('update_part',EdificiUp,Edifici); 
               //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados
@@ -211,12 +213,6 @@ Template.dinoGame.events({
         Meteor.call('enviar_expedicion', idexp, tipoZona);
          
     },
-    
-     "click #mejorar": function(event,template){
-         
-            phaserEdifici.destroy();
-            game.state.restart();
-          },
     "click div[data-tipo] button": function(event, template){
         event.preventDefault();
         //obtenemos datos de los datas
@@ -228,7 +224,18 @@ Template.dinoGame.events({
         costeDC = $(event.target).closest("div").data("costedc");
         costeSUM = $(event.target).closest("div").data("costesum");
         tipo = $(event.target).closest("div").data("tipo");
-
+        
+        misBonos = []; 
+        /******** mis bonos tienen controlados los bonos 
+        de la partida del jugador con la funcion de comprobar Bonos
+            misBonos[0] = seguridad;
+            misBonos[1] = habitats;
+            misBonos[2] = rrpp;
+            misBonos[3] =logistica;
+            misBonos[4] = liderazgo;
+        
+        ********/
+        misBonos = comprobarBonos();
 
         //Si hemos cliqueado en un boton de sumar
         if(efecto == "sumar"){
@@ -239,7 +246,9 @@ Template.dinoGame.events({
             totalSLOTS += slots;
             
             /* Si tenemos el bono, nos ahorramos un 15% en dinocoins*/
-            if(bono_logistica == true){
+            
+            
+            if(misBonos[3] == true){
                 costeDC = Math.ceil(costeDC - ((costeDC / 100) * 15));
             }
             
@@ -247,7 +256,7 @@ Template.dinoGame.events({
 
             
             /* Si tenemos el bono, nos ahorramos un 15% en suministros */
-            if(bono_logistica == true){
+            if(misBonos[3] == true){
                 costeSUM = Math.ceil(costeSUM - ((costeSUM / 100) * 15));
             }
             totalSUM += costeSUM;
@@ -275,7 +284,7 @@ Template.dinoGame.events({
             totalSLOTS -= slots;
             if(totalSLOTS < 0) {totalSLOTS = 0;}
 
-            if(bono_logistica == true){
+            if(misBonos[3] == true){
                 costeDC = Math.ceil(costeDC - ((costeDC / 100) * 15));
             }
             
@@ -284,7 +293,7 @@ Template.dinoGame.events({
                 totalDC = 0;
             }
             
-            if(bono_logistica == true){
+            if(misBonos[3] == true){
                 costeSUM = Math.ceil(costeSUM - ((costeSUM / 100) * 15));
             }
 
@@ -313,7 +322,8 @@ Template.dinoGame.events({
         }
 
         //Seteamos los textos de los totales
-        $("#slots").text(totalSLOTS + "/" + capacidad);
+        
+        $("#slots").text(totalSLOTS + "/" + misBonos[4]);
         $("#efectividad").text(totalEFEC);
         $("#salud").text(totalSAL);
         $("#costeDC").text(totalDC);
@@ -330,7 +340,7 @@ Template.dinoGame.events({
         buttons_sum_res(); 
 
         //Si los slots estan llenos (en nuestro caso si hay 29 o 30), lo ponemos en rojo
-        if(totalSLOTS > (capacidad -2)){
+        if(totalSLOTS > (misBonos[4] -2)){
             $("#slots").css("color", "red");
         }
 
@@ -377,6 +387,23 @@ Template.dinoGame.events({
         mapSelected = true;
         showBtnEnviar();
     },
+
+    "click #btn-expediciones": function(){
+        misBonos = []; 
+        /******** mis bonos tienen controlados los bonos 
+        de la partida del jugador con la funcion de comprobar Bonos
+            misBonos[0] = seguridad;
+            misBonos[1] = habitats;
+            misBonos[2] = rrpp;
+            misBonos[3] =logistica;
+            misBonos[4] = liderazgo;
+        
+        ********/
+        misBonos = comprobarBonos();
+
+    $("#slots").text("0/" + misBonos[4]);
+    },
+
     "mouseenter .mouse-efect": function(event, template){
         $(event.target).animate({
             'box-shadow': '2px 2px 2px 1px rgba(253,168,26,0.88)',
@@ -394,10 +421,60 @@ Template.dinoGame.events({
 
             
             }, 'slow');
-    }
+    },
+
 
 /********************* FIN EVENTOS EXPEDICIONES *************************************/
+      
+    /*****************EVENTOS INVESTIGACIONES ****************************************/
+    
+
+    "click a#investiga": function(event, template){
+        event.preventDefault();
+        var $this = $(event.target);
         
+        var investigacionId = $($this).data('investigar');
+        
+        Meteor.call('hacerinvestigacion',investigacionId);
+        
+        console.log("voy a acabar esta funcion con el crhon");
+},
+
+    "click a#expedicion": function(event, template){
+
+
+        //id = $(this).data('id'); // obtengo el id del edifici
+        console.log(this);
+       // var investigacion = Investigacion.findOne({_id:this._id});   // obtengo el objecte del edifici que es vol crear         
+       var mi_partida = Partida.findOne({_id:user});// obtengo el objecte de partida
+
+
+        if(mi_partida.dinero > this.coste_DinoCoins && mi_partida.suministros > this.coste_Suministro){
+            
+            var dinero = mi_partida.dinero - this.coste_DinoCoins;
+            var suministros = mi_partida.suministros - this.coste_Suministro;
+            
+            Partida.update({_id:user},{$set:{dinero:dinero,suministros:suministros}});
+
+            event.preventDefault();
+            var $this = $(event.target);
+            
+            var investigacionId = $($this).data('investigar');
+            
+            Meteor.call('hacerinvestigacion',investigacionId,bono_logistica);
+            
+            console.log("voy a acabar esta funcion con el crhon");
+        }else{
+
+            alert("faltan recursos");
+        }
+
+        
+    }
+    
+    
+    
+    /*****************FIN EVENTOS INVESTIGACIONES*****************************************/
  }); 
 
 /************************ FUNCIONES TIENDA ********************************************/
@@ -502,7 +579,7 @@ function buttons_sum_res(){
         if(quantitatInt == 0){
             hideRestar();
 
-            if((capacidad - totalSLOTS) >= $("div[data-tipo="+tipusTropa+"]").data("slots")){
+            if((misBonos[4] - totalSLOTS) >= $("div[data-tipo="+tipusTropa+"]").data("slots")){
                 showSumar();
             }
             else{
@@ -513,7 +590,7 @@ function buttons_sum_res(){
         else if(quantitatInt > 0){
             showRestar();
 
-            if((capacidad - totalSLOTS) < $("div[data-tipo="+tipusTropa+"]").data("slots")){
+            if((misBonos[4] - totalSLOTS) < $("div[data-tipo="+tipusTropa+"]").data("slots")){
                 hideSumar();
             }
             else{
@@ -527,7 +604,7 @@ function buttons_sum_res(){
         $("button[data-efecto='restar']").hide();
     }
 
-    if(totalSLOTS > (capacidad - 2)){
+    if(totalSLOTS > (misBonos[4] - 2)){
         $("button[data-efecto='sumar']").hide();
     }    
 
@@ -629,30 +706,23 @@ Template.dinoGame.helpers({
 
     terrenos: function(){
         return Terreno.find({});
+    },
+    investigaciones: function(){
+        return Investigacion.find({});
     }
 
 });
-
-
 
 /* ON RENDERES ES COMO EL DOCUMENT(READY) */
 Template.dinoGame.onRendered(function(){
 
     /* VARIABLES GLOBALES PARA EXPEDICIONES */
     
-    bono_liderazgo = false; /* Aumenta en 10 la variable capacidad*/
+     /* Aumenta en 10 la variable capacidad*/
+    
+    
+    user = Meteor.userId();
 
-    if(bono_liderazgo == false){
-        capacidad = 30;
-    }
-
-    else{
-        capacidad = 40;
-    }
-
-    $("#slots").text("0/" + capacidad);
-
-    bono_logistica = false; /* Ahorra un 15% en dinocoins y suministros */
     totalDC = 0;            /* Total coste Dinocoins */
     totalSUM = 0;           /* Total coste Suministros */
     totalEFEC = 0;          /* Total efectividad */
@@ -710,8 +780,27 @@ Template.dinoGame.onRendered(function(){
         /* EXPEDICIONES */
         //la primera carga comprobamos los botones de sumar y restar para cada tropa
         buttons_sum_res(); 
-        
+
 });
+
+function comprobarPartida(){
+    mi_partida = Partida.find({_id:user}).fetch();
+}
+
+function comprobarBonos(){
+    Bonos = [];
+    comprobarPartida();
+    
+    Bonos.push(mi_partida[0].bono_seguridad);
+    Bonos.push(mi_partida[0].bono_habitats);
+    Bonos.push(mi_partida[0].bono_rrpp);
+    Bonos.push(mi_partida[0].bono_logistica);
+    Bonos.push(mi_partida[0].bono_liderazgo);
+    
+    
+    return Bonos;
+}
+
 
 
 
