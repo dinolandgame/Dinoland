@@ -599,33 +599,22 @@
                                 </div>
                             <div class="col-sm-5">
                             {{#each edificios}}
-
+                                
                                 <img src={{avatar}} class="img-responsive img_edifici modal-img-edif">
 
                             {{/each}}
                             </div>
                         </div>
                         <div class="row edif-lab">
-                            <div class="col-sm-2 col-sm-offset-1">
-                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab modal-img-edif"></a>
-                                <p id="edif-nombre">Seguridad</p>
-                            </div>
-                            <div class="col-sm-2">
-                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab modal-img-edif"></a>
-                                <p id="edif-nombre">Habitats</p>
-                            </div>
-                            <div class="col-sm-2">
-                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab modal-img-edif"></a>
-                                <p id="edif-nombre">RRPP</p>
-                            </div>
-                            <div class="col-sm-2">
-                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab modal-img-edif"></a>
-                                <p id="edif-nombre">Logistica</p>
-                            </div>
-                            <div class="col-sm-2">
-                                <a data-target="#pop_investigacion" data-toggle="modal" type="button"><img src="images/lider1.png" class="img_lab modal-img-edif"></a>
-                                <p id="edif-nombre">Liderazgo</p>
-                            </div>
+                           {{#each investigaciones}}
+                              
+                               <div class="col-sm-2">
+                                  <a id="investiga" data-target="#pop_investigacion" href="#" type="button"  data-toggle="modal"><img src="images/lider1.png" class="img_lab modal-img-edif" data-investigar={{_id}}  style="cursor:pointer"></a>
+                                  <p id="edif-nombre">{{nom}}</p>
+                                </div>
+                                
+                            {{/each}}
+                           
                         </div>                        
                     </div>
                 </div>

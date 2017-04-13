@@ -201,7 +201,7 @@ function clicar(edifici){
         $('#pop_laboratorio').modal('show');
         break;
         //Popup cuartel
-        case 'cuartel1': case 'cuartel2':
+        case 'cuartel1': case 'cuartel2': case 'cuartel3':
         $('#pop_cuartel').modal('show');
             var mi_partida = Partida.find({_id:user}).fetch();
             if(mi_partida[0].edificio.length===1){
