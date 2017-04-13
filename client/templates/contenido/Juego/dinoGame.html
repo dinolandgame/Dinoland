@@ -230,9 +230,11 @@
                 <!--Terrenos-->
                                 <div class="row modal-desc-exp">
                                 <div class="col-sm-1"></div>
-                                {{#each terrenos}}
+                                {{#each terrenos}}                                                                                 
+
                                     <div class="col-sm-3">
-                                        <img class="img_tropa modal-img-edif mouse-efect" src="{{avatar}}" data-tipo="{{tipo}}" data-nombre="{{nombre}}">                   
+                                        <img class="img_tropa modal-img-edif mouse-efect" src="{{avatar}}" data-tipo="{{tipo}}" data-nombre="{{nombre}}" data-terreno="{{tipo_terreno}}">                   
+
                                     </div>
                                 {{/each}}
                                 </div>

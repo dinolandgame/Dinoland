@@ -182,24 +182,33 @@ Template.dinoGame.events({
         var data = new Date();
         var stringData = data.toString();
         var idexp = user + data.getTime().toString();
-        var terreno = "acuatico";
+        var miembros_total = total_rifle + total_lanzarredes + total_jeep + total_exotraje + total_doctor;
+        var bono_lanzarredes = "false";
+        var bono_jeep = "false";
+        if (total_lanzarredes > 0){
+            bono_lanzarredes = "true";
+        }
+        if (total_jeep > 0){
+            bono_jeep = "true";
+        }
         Expedicion.insert({_id:idexp,
-                            usuario: user, 
-                            terreno: terreno,
-                            lider: "cientifica",
-                            jeep: "true",
-                            lanzaredes: "true",
-                            efectividad: 150,
-                            salud: 150,
-                            miembros: 15,
-                            coste_dinocoins: 1500,
-                            coste_suministros: 1500,
+                            usuario: user,
+                            area: nombreZona,
+                            terreno: tipoZona,
+                            lider: nombreLider,
+                            jeep: bono_jeep,
+                            lanzaredes: bono_lanzarredes,
+                            efectividad: totalEFEC,
+                            salud: totalSAL,
+                            miembros: miembros_total,
+                            coste_dinocoins: totalDC,
+                            coste_suministros: totalSUM,
                             finalizada: "false",
                             fecha_creacion: stringData,
                             fecha_finalizacion: "",
                             resultados:[]
                             });
-        Meteor.call('enviar_expedicion', idexp, terreno);
+        Meteor.call('enviar_expedicion', idexp, tipoZona);
          
     },
     
@@ -361,6 +370,7 @@ Template.dinoGame.events({
     "click img[data-tipo = 'zona']": function(event,template){    
         event.preventDefault();
         nombreZona = $(event.target).data("nombre");
+        tipoZona = $(event.target).data("terreno");
         $("#lugarEXP").text(nombreZona);
         $("img[data-tipo = 'zona']").removeClass("selected");
         $(event.target).addClass("selected");
