@@ -146,11 +146,11 @@ Meteor.methods({
     
     // primera versión sólo recibe terreno como parámetro
     // futura versión recibirá la id a una expedición pendiente de resolución en la tabla expediciones
-    
-    var zona = Terreno.findOne({tipo:terreno});
+    console.log("Zona: " + terreno);
+    var zona = Terreno.findOne({tipo_terreno:terreno});
     
     // debug func
-    console.log("Terreno " + zona.tipo + ", tarda " + zona.tiempoexpedicion);    
+    console.log("Terreno " + zona.tipo_terreno + ", tarda " + zona.tiempoexpedicion);    
     
     user = Meteor.userId();
     var data = new Date();
@@ -185,6 +185,7 @@ Meteor.methods({
             var bono_jefeexplorador = false;
             // elección lider
             var lider = expedicion_en_curso.lider;
+            console.log("lider: " + lider);
             switch(lider) {
                 case "cientifica":
                     bono_cientifica = true;
@@ -206,7 +207,7 @@ Meteor.methods({
             console.log("Exploracion. Tirada: " + tirada);
             
             // Se obtiene todos los tipos de dinosaurios que se pueden encontrar en ese habitat
-            dinosaurios_disponibles = Dinosaurio.find({habitat: zona.tipo}).fetch();
+            dinosaurios_disponibles = Dinosaurio.find({habitat: zona.tipo_terreno}).fetch();
             dinosaurio_especial = Dinosaurio.findOne({habitat: "especial"});
             
             // debug
@@ -227,7 +228,7 @@ Meteor.methods({
                 console.log("jeep : " + tirada);
             }
             
-            if (dinosaurio_rastreado.habitat=="especial" && bono_cientifica=="true"){ 
+            if (dinosaurio_rastreado.habitat=="especial" && bono_cientifica==true){ 
                 tirada += 30;
                 console.log("cientifica : " + tirada);
             }
@@ -251,7 +252,7 @@ Meteor.methods({
             var efectividad = expedicion_en_curso.efectividad;
             var salud = expedicion_en_curso.salud;
             console.log("efectividad: " + efectividad + " salud " + salud);
-            
+            console.log("ferocidad dino " + dinosaurio_rastreado.ferocidad);
             var peligrosidad = dinosaurio_rastreado.ferocidad * cantidad;
             console.log("Peligrosidad = " + peligrosidad);
             
@@ -273,7 +274,7 @@ Meteor.methods({
             capturas = tirada / dinosaurio_rastreado.ferocidad;
             console.log("capturas = " + capturas);
             // si el lider es un jefe explorador se mejora la cantidad de capturas
-            if(bono_jefeexplorador=="true"){
+            if(bono_jefeexplorador==true){
                 // que nunca puede exceder la cantidad de la manada localizada
                 var capturas_bonus = capturas + capturas*1.5;
                 if (capturas_bonus > cantidad){
@@ -306,7 +307,7 @@ Meteor.methods({
             
             tirada = getRndInteger(1, 100);
             var aleatorio = getRndInteger(1, 100);
-            if (bono_comandante=="true"){
+            if (bono_comandante==true){
                 tirada += 20;
             }
             
@@ -353,13 +354,12 @@ Meteor.methods({
                                                               {dinosaurio: dinosaurio_rastreado.nombre},
                                                               {ejemplares: capturas_final}
                                                           ]}});
-                
-            /*Partida.update(
-               { _id:"zC27EwRQnrHgcuZz8", edificio: 1 },
-               { $set: { "edificio.$" : 2} }
-            );*/
-
-                    
+            var partida_jugador = Partida.findOne({_id:user});
+            var dinocoins = partida_jugador.dinero;
+            var suministros = partida_jugador.suministros;
+            dinocoins += dinocoins_extra;
+            suministros += suministros_extra;
+            Partida.update({_id:user},{$set: {dinero: dinocoins, suministros: suministros}});
         }  
           
     });

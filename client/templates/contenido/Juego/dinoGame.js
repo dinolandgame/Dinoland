@@ -58,11 +58,24 @@ Template.dinoGame.events({
             var edifCuartel ="";
             var mi_partida = Partida.find({_id:user}).fetch();//obtengo un objeto partida en forma de array
         
-        var cuartel = mi_partida[0].edificio[0].toString().substring(3,4);//controlamos que edicifios hay en la partida
+        var cuartel = mi_partida[0].edificio[0].toString().substring(3,4);//controlamos que edicifios hay en la partida)
         
          console.log(cuartel);
-            
-            if(EdificiUp != null && Edifici.nivel<=cuartel){
+
+
+         //console.log(EdificiUp);    
+         //console.log(mi_partida); 
+         console.log((mi_partida[0].energia > EdificiUp.consumoEnergia)+" ||| "+(mi_partida[0].suministros > EdificiUp.costeSuministros)+ "  ||| " +(mi_partida[0].dinero >EdificiUp.costeDinocoins));
+            if(EdificiUp != null && Edifici.nivel<=cuartel && mi_partida[0].energia > EdificiUp.consumoEnergia  && mi_partida[0].suministros > EdificiUp.costeSuministros && mi_partida[0].dinero > EdificiUp.costeDinocoins ){
+                
+                var dinero = mi_partida[0].dinero - EdificiUp.costeDinocoins;
+                var suministros = mi_partida[0].suministros - EdificiUp.costeSuministros;
+                var energia = mi_partida[0].energia - EdificiUp.consumoEnergia;
+
+
+                Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }});
+
+
                 Meteor.call('update_part',EdificiUp,Edifici); 
               //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados
                     
@@ -70,13 +83,15 @@ Template.dinoGame.events({
             }
             else{
         
-                console.log("aquet edifici ja esta en el seu maxim nivell");
+                console.log("aquet edifici ja esta en el seu maxim nivell o be no hi han recursos suficients");
                 alert("no deja");
             }
             $('.modal').modal('hide');
                     
            
         },
+
+
 
     "click .crear":function(event,template){
        
@@ -169,24 +184,33 @@ Template.dinoGame.events({
         var data = new Date();
         var stringData = data.toString();
         var idexp = user + data.getTime().toString();
-        var terreno = "acuatico";
+        var miembros_total = total_rifle + total_lanzarredes + total_jeep + total_exotraje + total_doctor;
+        var bono_lanzarredes = "false";
+        var bono_jeep = "false";
+        if (total_lanzarredes > 0){
+            bono_lanzarredes = "true";
+        }
+        if (total_jeep > 0){
+            bono_jeep = "true";
+        }
         Expedicion.insert({_id:idexp,
-                            usuario: user, 
-                            terreno: terreno,
-                            lider: "cientifica",
-                            jeep: "true",
-                            lanzaredes: "true",
-                            efectividad: 150,
-                            salud: 150,
-                            miembros: 15,
-                            coste_dinocoins: 1500,
-                            coste_suministros: 1500,
+                            usuario: user,
+                            area: nombreZona,
+                            terreno: tipoZona,
+                            lider: nombreLider,
+                            jeep: bono_jeep,
+                            lanzaredes: bono_lanzarredes,
+                            efectividad: totalEFEC,
+                            salud: totalSAL,
+                            miembros: miembros_total,
+                            coste_dinocoins: totalDC,
+                            coste_suministros: totalSUM,
                             finalizada: "false",
                             fecha_creacion: stringData,
                             fecha_finalizacion: "",
                             resultados:[]
                             });
-        Meteor.call('enviar_expedicion', idexp, terreno);
+        Meteor.call('enviar_expedicion', idexp, tipoZona);
          
     },
     "click div[data-tipo] button": function(event, template){
@@ -321,10 +345,24 @@ Template.dinoGame.events({
         }
 
         else{
-            $("#slots").css("color", "black");
+            $("#slots").css("color", "rgba(245,237,170,1)");
         }
 
         showBtnEnviar();
+    },
+
+    //restar los recursos cuando envias un espedicion
+    "click #enviarEXP": function(){
+
+         var mi_partida = Partida.findOne({_id:user});//obtengo la partidaq dle jugador
+         if(mi_partida.dinero > costeDC && mi_partida.suministros > costeSUM){
+         var dinero = mi_partida.dinero - costeDC;
+         var suministros = mi_partida.suministros - costeSUM;
+         Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros}})
+         }else{
+            alert("te faltan recursos");
+
+         }
     },
 
     //Cuando hacemos click en el lider lo seleccionamos y lo añadimos a la lista
@@ -342,12 +380,14 @@ Template.dinoGame.events({
     "click img[data-tipo = 'zona']": function(event,template){    
         event.preventDefault();
         nombreZona = $(event.target).data("nombre");
+        tipoZona = $(event.target).data("terreno");
         $("#lugarEXP").text(nombreZona);
         $("img[data-tipo = 'zona']").removeClass("selected");
         $(event.target).addClass("selected");
         mapSelected = true;
         showBtnEnviar();
     },
+
     "click #btn-expediciones": function(){
         misBonos = []; 
         /******** mis bonos tienen controlados los bonos 
@@ -363,6 +403,26 @@ Template.dinoGame.events({
 
     $("#slots").text("0/" + misBonos[4]);
     },
+
+    "mouseenter .mouse-efect": function(event, template){
+        $(event.target).animate({
+            'box-shadow': '2px 2px 2px 1px rgba(253,168,26,0.88)',
+            'width': '100px',
+            'height': '100px',
+            'border-color':'black'
+        }, 'slow');
+    },
+    "mouseleave .mouse-efect":function(event, template){
+        $(event.target).animate({
+            'box-shadow': '2px 2px 2px 1px rgba(253,168,26,0.88)',
+            'width': '80px',
+            'height': '80px',
+            'border-color':'white'
+
+            
+            }, 'slow');
+    },
+
 
 /********************* FIN EVENTOS EXPEDICIONES *************************************/
       
@@ -408,7 +468,7 @@ Template.dinoGame.events({
 
             alert("faltan recursos");
         }
->>>>>>> origin/Dinoland-35
+
         
     }
     
@@ -679,26 +739,48 @@ Template.dinoGame.onRendered(function(){
     /* FIN VARIABLES GLOBALES PARA EXPEDICIONES */
 
     /* ESTO PODRIA IR EN EVENTOS NORMALES, USANDO EL event.target en vez del this*/
-    var id=0;
-     $('.crearEdificio').on('dblclick',function(){
+
+   
+    $('.crearEdificio').on('dblclick',function(event){
+       var id=0;
+        event.preventDefault();
+        id = $(this).data('id'); // obtengo el id del edifici
+        var edificiCrear = Edificio.findOne({_id:id});   // obtengo el objecte del edifici que es vol crear         
+        var mi_partida = Partida.findOne({_id:user});// obtengo el objecte de partida
+
+         
+        if( mi_partida.energia > edificiCrear.consumoEnergia  && mi_partida.suministros > edificiCrear.costeSuministros && mi_partida.dinero > edificiCrear.costeDinocoins ){
+                
+                var dinero = mi_partida.dinero - edificiCrear.costeDinocoins;
+                var suministros = mi_partida.suministros - edificiCrear.costeSuministros;
+                var energia = mi_partida.energia - edificiCrear.consumoEnergia;
+
+
+                Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }})
+
              alert("se esta contruyendo");
-            id = $(this).data('id');
+           
              console.log(this);
             //Partida.update({_id:user},{$push:{edificio:id}});
+
              Meteor.call('crear_edificio',id);
-             $(this).css({'opacity':'0.95','cursor':'not-allowed'});
+             $(this).addClass('no-seleccionable');
+         
              $('.prueba2').hide();
+        }else{
+
+        alert("falten recursos");
+
+        }
             
         
-     });
+    });
         $('[data-toggle="popover"]').popover(); 
 
         /* EXPEDICIONES */
         //la primera carga comprobamos los botones de sumar y restar para cada tropa
         buttons_sum_res(); 
-    
-    
-    
+
 });
 
 function comprobarPartida(){
