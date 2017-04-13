@@ -80,9 +80,9 @@ Meteor.methods({
             if(EdificiUp.key=="cuartel2"){
                         Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
                     }
-                    else if(EdificiUp.key=="cuartel3"){
-                        Partida.update({_id:user},{$push:{desbloqueados:{$each:[EdificiUp.desbloquea]}}});
-                    }
+         if(EdificiUp.key=="cuartel3"){
+            Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
+        }
 
             console.log("edifici modificat");            
         }  
@@ -357,6 +357,54 @@ Meteor.methods({
         }  
           
     });
+    },
+    
+    
+    /**************************************CHRON INVESTIGACIONES ****************************************/
+    //creacion edificios 1er nivel
+    hacerinvestigacion(id,bono){
+    Investigacio = Investigacion.findOne({_id:id});
+   
+    user = Meteor.userId();
+    var data = new Date();
+    data.setSeconds(data.getSeconds()+Investigacio.tiempo_Min);
+      
+      //console.log("id_usuari: "+ user +", edifici: "+ edifici._id);
+      //console.log("eldifi que obtindra el objecte partida: NOm: "+ EdificiUp.nom + ",nivel: "+ EdificiUp.nivel);
+
+      //console.log("user: " + user + ", edifici ac: "+ edifici.id + ", "+  EdificiUp.id);
+
+    
+        //console.log(EdificiUp);
+    SyncedCron.start();
+
+    SyncedCron.add({
+        name: user +"_"+Investigacio.nom,
+        schedule: function(parser) {
+        
+            console.log("ha entrat a la data");
+             console.log(bono);
+            //console.log(parser.recur().on(data).fullDate());
+            return parser.recur().on(data).fullDate();
+        },
+        
+        job: function() {
+           
+            console.log("ha entrat en el job");
+        
+            if(Investigacio._id==4){
+                    Partida.update({_id:user},{$set:{bono_logistica:true}});
+                    
+                    console.log("investigacio acabada!!");
+                }else if(Investigacio._id==5){
+                    
+                }(Investigacio._id);
+           
+            
+            console.log("investigacio acabada!!");
+        }  
+          
+    });
     }
 
 });
@@ -409,7 +457,7 @@ Accounts.emailTemplates.verifyEmail = {
 
 
 //SyncedCron.start();
-      SyncedCron.add({
+     /* SyncedCron.add({
         name: 'Run in 1 seconds dinocoins',
         schedule: function(parser) {
             // parser is a later.parse obje
@@ -486,13 +534,18 @@ Accounts.emailTemplates.verifyEmail = {
         }
     });
 
-SyncedCron.start();
+SyncedCron.start();*/
 });
 
 
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min) ) + min;
 } 
+
+
+    
+            
+
 /*Email.send({
 	to: "xvicente2000@gmail.com",
   from: "dinolandgame@gmail.com",

@@ -62,7 +62,7 @@ Template.dinoGame.events({
         
          console.log(cuartel);
             
-            if(EdificiUp != null && Edifici.nivel<cuartel){
+            if(EdificiUp != null && Edifici.nivel<=cuartel){
                 Meteor.call('update_part',EdificiUp,Edifici); 
               //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados
                     
@@ -339,10 +339,27 @@ Template.dinoGame.events({
         $(event.target).addClass("selected");
         mapSelected = true;
         showBtnEnviar();
-    }
+    },
 
 /********************* FIN EVENTOS EXPEDICIONES *************************************/
+      
+    /*****************EVENTOS INVESTIGACIONES ****************************************/
+    
+    "click a#expedicion": function(event, template){
+        event.preventDefault();
+        var $this = $(event.target);
         
+        var investigacionId = $($this).data('investigar');
+        
+        Meteor.call('hacerinvestigacion',investigacionId,bono_logistica);
+        
+        console.log("voy a acabar esta funcion con el crhon");
+        
+    }
+    
+    
+    
+    /*****************FIN EVENTOS INVESTIGACIONES*****************************************/
  }); 
 
 /************************ FUNCIONES TIENDA ********************************************/
@@ -574,6 +591,9 @@ Template.dinoGame.helpers({
 
     terrenos: function(){
         return Terreno.find({});
+    },
+    investigaciones: function(){
+        return Investigacion.find({});
     }
 
 });
@@ -594,10 +614,10 @@ Template.dinoGame.onRendered(function(){
     else{
         capacidad = 40;
     }
-
+    user = Meteor.userId();
     $("#slots").text("0/" + capacidad);
-
-    bono_logistica = false; /* Ahorra un 15% en dinocoins y suministros */
+    var mi_partida = Partida.find({_id:user}).fetch();//obtengo un objeto partida en forma de array
+    bono_logistica = mi_partida[0].bono_logistica; /* Ahorra un 15% en dinocoins y suministros */
     totalDC = 0;            /* Total coste Dinocoins */
     totalSUM = 0;           /* Total coste Suministros */
     totalEFEC = 0;          /* Total efectividad */
@@ -631,6 +651,19 @@ Template.dinoGame.onRendered(function(){
         /* EXPEDICIONES */
         //la primera carga comprobamos los botones de sumar y restar para cada tropa
         buttons_sum_res(); 
+    
+    
+    //misma funcion que hay en el phaser pero para controlar los cambios de la propiedad del bono
+    //tendria que ser dinamico
+    const cursor = Partida.find({_id:user});
+        const cambiar_booleanos = cursor.observeChanges({
+            changed(id,fields){
+                //console.log(fields);
+                if(fields.hasOwnProperty('bono_logistica')){
+                    //location.reload();
+                }
+            }
+        });
 });
 
 
