@@ -58,11 +58,22 @@ Template.dinoGame.events({
             var edifCuartel ="";
             var mi_partida = Partida.find({_id:user}).fetch();//obtengo un objeto partida en forma de array
         
-        var cuartel = mi_partida[0].edificio[0].toString().substring(3,4);//controlamos que edicifios hay en la partida
+        var cuartel = mi_partida[0].edificio[0].toString().substring(3,4);//controlamos que edicifios hay en la partida)
         
          console.log(cuartel);
-            
-            if(EdificiUp != null && Edifici.nivel<=cuartel){
+
+         //console.log(EdificiUp);    
+         //console.log(mi_partida); 
+         console.log((mi_partida[0].energia > EdificiUp.consumoEnergia)+" ||| "+(mi_partida[0].suministros > EdificiUp.costeSuministros)+ "  ||| " +(mi_partida[0].dinero >EdificiUp.costeDinocoins));
+            if(EdificiUp != null && Edifici.nivel<cuartel && mi_partida[0].energia > EdificiUp.consumoEnergia  && mi_partida[0].suministros > EdificiUp.costeSuministros && mi_partida[0].dinero > EdificiUp.costeDinocoins ){
+                
+                var dinero = mi_partida[0].dinero - EdificiUp.costeDinocoins;
+                var suministros = mi_partida[0].suministros - EdificiUp.costeSuministros;
+                var energia = mi_partida[0].energia - EdificiUp.consumoEnergia;
+
+
+                Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }});
+
                 Meteor.call('update_part',EdificiUp,Edifici); 
               //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados
                     
@@ -70,13 +81,15 @@ Template.dinoGame.events({
             }
             else{
         
-                console.log("aquet edifici ja esta en el seu maxim nivell");
+                console.log("aquet edifici ja esta en el seu maxim nivell o be no hi han recursos suficients");
                 alert("no deja");
             }
             $('.modal').modal('hide');
                     
            
         },
+
+
 
     "click .crear":function(event,template){
        
@@ -161,7 +174,40 @@ Template.dinoGame.events({
     /****************** FIN EVENTOS TIENDA *********************************************/
 
     /****************** EVENTOS EXPEDICIONES *******************************************/
-
+ // Acción de mandar una expedición
+    "click #enviarEXP":function(event,template){
+        event.preventDefault();
+        // Se crea un documento con los datos de la expedición y se guarda en la BD 
+        user = Meteor.userId();
+        var data = new Date();
+        var stringData = data.toString();
+        var idexp = user + data.getTime().toString();
+        var terreno = "acuatico";
+        Expedicion.insert({_id:idexp,
+                            usuario: user, 
+                            terreno: terreno,
+                            lider: "cientifica",
+                            jeep: "true",
+                            lanzaredes: "true",
+                            efectividad: 150,
+                            salud: 150,
+                            miembros: 15,
+                            coste_dinocoins: 1500,
+                            coste_suministros: 1500,
+                            finalizada: "false",
+                            fecha_creacion: stringData,
+                            fecha_finalizacion: "",
+                            resultados:[]
+                            });
+        Meteor.call('enviar_expedicion', idexp, terreno);
+         
+    },
+    
+     "click #mejorar": function(event,template){
+         
+            phaserEdifici.destroy();
+            game.state.restart();
+          },
     "click div[data-tipo] button": function(event, template){
         event.preventDefault();
         //obtenemos datos de los datas
@@ -284,6 +330,20 @@ Template.dinoGame.events({
         }
 
         showBtnEnviar();
+    },
+
+    //restar los recursos cuando envias un espedicion
+    "click #enviarEXP": function(){
+
+         var mi_partida = Partida.findOne({_id:user});//obtengo la partidaq dle jugador
+         if(mi_partida.dinero > costeDC && mi_partida.suministros > costeSUM){
+         var dinero = mi_partida.dinero - costeDC;
+         var suministros = mi_partida.suministros - costeSUM;
+         Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros}})
+         }else{
+            alert("te faltan recursos");
+
+         }
     },
 
     //Cuando hacemos click en el lider lo seleccionamos y lo añadimos a la lista
@@ -529,15 +589,25 @@ Template.dinoGame.helpers({
                 } 
                     
             }   
+    },
+
+    tropas: function(){
+       return Tropa.find({});
+    },
+
+    lideres: function(){
+        return Lider.find({});
+    },
+
+    terrenos: function(){
+        return Terreno.find({});
     }
 
 });
 
 
-    
 
-
-
+/* ON RENDERES ES COMO EL DOCUMENT(READY) */
 Template.dinoGame.onRendered(function(){
 
     /* VARIABLES GLOBALES PARA EXPEDICIONES */
@@ -571,26 +641,48 @@ Template.dinoGame.onRendered(function(){
     /* FIN VARIABLES GLOBALES PARA EXPEDICIONES */
 
     /* ESTO PODRIA IR EN EVENTOS NORMALES, USANDO EL event.target en vez del this*/
-    
-     $('.crearEdificio').on('dblclick',function(event){
-         var id=0;
-         event.preventDefault();
+
+   
+    $('.crearEdificio').on('dblclick',function(event){
+       var id=0;
+        event.preventDefault();
+        id = $(this).data('id'); // obtengo el id del edifici
+        var edificiCrear = Edificio.findOne({_id:id});   // obtengo el objecte del edifici que es vol crear         
+        var mi_partida = Partida.findOne({_id:user});// obtengo el objecte de partida
+
+         
+        if( mi_partida.energia > edificiCrear.consumoEnergia  && mi_partida.suministros > edificiCrear.costeSuministros && mi_partida.dinero > edificiCrear.costeDinocoins ){
+                
+                var dinero = mi_partida.dinero - edificiCrear.costeDinocoins;
+                var suministros = mi_partida.suministros - edificiCrear.costeSuministros;
+                var energia = mi_partida.energia - edificiCrear.consumoEnergia;
+
+
+                Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }})
+
              alert("se esta contruyendo");
-            id = $(this).data('id');
+           
              console.log(this);
             //Partida.update({_id:user},{$push:{edificio:id}});
+
              Meteor.call('crear_edificio',id);
              $(this).addClass('no-seleccionable');
          
              $('.prueba2').hide();
+        }else{
+
+        alert("falten recursos");
+
+        }
             
         
-     });
+    });
         $('[data-toggle="popover"]').popover(); 
 
         /* EXPEDICIONES */
         //la primera carga comprobamos los botones de sumar y restar para cada tropa
         buttons_sum_res(); 
+        
 });
 
 
