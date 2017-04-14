@@ -469,7 +469,20 @@ Template.dinoGame.events({
         $('.crearEdificio').data('id', this._id);
         $('.crearEdificio').css('display', 'block');
     },
-    "mouseenter .modal-img-edif":function(event,template){
+    "click .div-laboratorio":function(event, template){
+        $('#img-laboratorio').attr("src", this.avatar);
+        $('#desc-laboratorio').text(this.descripcion);
+        $('.btn-lvlup-laboratorio').css('display', 'none');
+        $('#div-bono').css('display', 'block');
+        $('#span-bono').text(this.bonus);
+        console.log("this id: " + this._id);
+        $('#investiga').data('id', this._id);
+        $('#btn-investiga').css('display', 'block');
+
+
+    },
+
+    "mouseenter .modal-img-edif-cuartel":function(event,template){
         $(event.target).css({
             'box-shadow':'2px 2px 2px 1px rgba(180,97,0,0.88)',
             'border-color': 'black',
@@ -477,7 +490,7 @@ Template.dinoGame.events({
 
    },
 
-    "mouseleave .modal-img-edif":function(event,template){
+    "mouseleave .modal-img-edif-cuartel":function(event,template){
         $(event.target).css({'box-shadow':'none','border-color': 'white',});
     },
 
@@ -493,12 +506,11 @@ Template.dinoGame.events({
     /*****************EVENTOS INVESTIGACIONES ****************************************/
     
 
-    "click a#investiga": function(event, template){
+    "click #investiga": function(event, template){
         event.preventDefault();
         var $this = $(event.target);
-        
-        var investigacionId = $($this).data('investigar');
-        
+        var investigacionId = $($this).data('id');
+        console.log("investigacioId: "+investigacionId);
         Meteor.call('hacerinvestigacion',investigacionId);
         
         console.log("voy a acabar esta funcion con el crhon");
@@ -785,6 +797,18 @@ Template.dinoGame.helpers({
 
     investigaciones: function(){
         return Investigacion.find({});
+
+    },
+    investdesbloc: function(id){
+        var mi_partida = Partida.find({_id:user}).fetch();
+        var misBonosEnPartida = mi_partida[0].bonos_desbloqueados;
+
+        for( var i= 0 ; i<misBonosEnPartida.length; i++){
+
+            if(id==misBonosEnPartida[i]){
+                return true;
+            }
+        }
 
     }
 
