@@ -309,48 +309,23 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-4">
-                                <div class="div-habitat">
-                                    <div class="modal-desc-noP">
-                                        <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
 
-                                    <div class="header_gran" style="text-align: center">
-                                        <p>Volador</p>
-                                    </div>
-                                        <p>En este habitat podras tener controlados a tus raptores y T-rex.</p>
-                                        <p class="dinobuton-text" style="text-align: center">0/10</p>
-                                    </div>
-                                                                       
-                                </div>
-                            </div>  
-                            <div class="col-sm-4">
-                                <div class="div-habitat">
-                                    <div class="modal-desc-noP">
-                                        <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
+                            {{ #each habitats }}
+                                <div class="col-sm-4">
+                                    <div class="div-habitat">
+                                        <div class="modal-desc-noP">
+                                            <img src="{{avatar}}" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
 
-                                    <div class="header_gran" style="text-align: center">
-                                        <p>Aquatico</p>
+                                        <div class="header_gran" style="text-align: center">
+                                            <p>{{tipo_terreno}}</p>
+                                        </div>
+                                            <p>{{descripcion}}</p>
+                                            <p class="dinobuton-text" style="text-align: center">{{mostrar_num_dinoss tipo_terreno }}/{{max_dinosaurios}}</p>
+                                        </div>
+                                                                           
                                     </div>
-                                        <p>En este habitat podras tener controlados a tus raptores y T-rex.</p>
-                                        <p class="dinobuton-text" style="text-align: center">0/10</p>
-                                    </div>
-                                                                       
-                                </div>
-                            </div> 
-                            <div class="col-sm-4">
-                                <div class="div-habitat">
-                                    <div class="modal-desc-noP">
-                                        <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
-
-                                    <div class="header_gran" style="text-align: center">
-                                        <p>Terrestre</p>
-                                    </div>
-                                        <p>En este habitat podras tener controlados a tus raptores y T-rex.</p>
-                                        <p class="dinobuton-text" style="text-align: center">0/10</p>
-                                    </div>
-                                                                       
-                                </div>
-                            </div>  
+                                </div>  
+                            {{ /each }}
                         </div>
                         
                     </div>
