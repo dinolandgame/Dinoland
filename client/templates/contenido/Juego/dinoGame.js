@@ -176,40 +176,52 @@ Template.dinoGame.events({
     /****************** EVENTOS EXPEDICIONES *******************************************/
  // Acción de mandar una expedición
     "click #enviarEXP":function(event,template){
-        event.preventDefault();
-        // Se crea un documento con los datos de la expedición y se guarda en la BD 
-        user = Meteor.userId();
-        var data = new Date();
-        var stringData = data.toString();
-        var idexp = user + data.getTime().toString();
-        var miembros_total = total_rifle + total_lanzarredes + total_jeep + total_exotraje + total_doctor;
-        var bono_lanzarredes = "false";
-        var bono_jeep = "false";
-        if (total_lanzarredes > 0){
-            bono_lanzarredes = "true";
-        }
-        if (total_jeep > 0){
-            bono_jeep = "true";
-        }
-        Expedicion.insert({_id:idexp,
-                            usuario: user,
-                            area: nombreZona,
-                            terreno: tipoZona,
-                            lider: nombreLider,
-                            jeep: bono_jeep,
-                            lanzaredes: bono_lanzarredes,
-                            efectividad: totalEFEC,
-                            salud: totalSAL,
-                            miembros: miembros_total,
-                            coste_dinocoins: totalDC,
-                            coste_suministros: totalSUM,
-                            finalizada: "false",
-                            fecha_creacion: stringData,
-                            fecha_finalizacion: "",
-                            resultados:[]
-                            });
-        Meteor.call('enviar_expedicion', idexp, tipoZona);
-         
+
+
+         var mi_partida = Partida.findOne({_id:user});//obtengo la partidaq dle jugador
+         console.log("dinero jugador: " + mi_partida.dinero +"dinero costedC"+ totalDC );
+         console.log("sum jugador: " + mi_partida.suministros +"sum costesum"+ totalSUM );
+         if(mi_partida.dinero > totalDC && mi_partida.suministros > totalSUM){
+            var dinero = mi_partida.dinero - totalDC;
+            var suministros = mi_partida.suministros - totalSUM;
+            Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros}})
+            event.preventDefault();
+            // Se crea un documento con los datos de la expedición y se guarda en la BD 
+            user = Meteor.userId();
+            var data = new Date();
+            var stringData = data.toString();
+            var idexp = user + data.getTime().toString();
+            var miembros_total = total_rifle + total_lanzarredes + total_jeep + total_exotraje + total_doctor;
+            var bono_lanzarredes = "false";
+            var bono_jeep = "false";
+            if (total_lanzarredes > 0){
+                bono_lanzarredes = "true";
+            }
+            if (total_jeep > 0){
+                bono_jeep = "true";
+            }
+            Expedicion.insert({_id:idexp,
+                                usuario: user,
+                                area: nombreZona,
+                                terreno: tipoZona,
+                                lider: nombreLider,
+                                jeep: bono_jeep,
+                                lanzaredes: bono_lanzarredes,
+                                efectividad: totalEFEC,
+                                salud: totalSAL,
+                                miembros: miembros_total,
+                                coste_dinocoins: totalDC,
+                                coste_suministros: totalSUM,
+                                finalizada: "false",
+                                fecha_creacion: stringData,
+                                fecha_finalizacion: "",
+                                resultados:[]
+                                });
+            Meteor.call('enviar_expedicion', idexp, tipoZona);
+         }else{
+            alert("te faltan recursos");
+
+         }
     },
     
      "click #mejorar": function(event,template){
@@ -341,20 +353,7 @@ Template.dinoGame.events({
         showBtnEnviar();
     },
 
-    //restar los recursos cuando envias un espedicion
-    "click #enviarEXP": function(){
-
-         var mi_partida = Partida.findOne({_id:user});//obtengo la partidaq dle jugador
-         if(mi_partida.dinero > costeDC && mi_partida.suministros > costeSUM){
-         var dinero = mi_partida.dinero - costeDC;
-         var suministros = mi_partida.suministros - costeSUM;
-         Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros}})
-         }else{
-            alert("te faltan recursos");
-
-         }
-    },
-
+    
     //Cuando hacemos click en el lider lo seleccionamos y lo añadimos a la lista
     "click img[data-tipo = 'lider']": function(event,template){
         event.preventDefault();
