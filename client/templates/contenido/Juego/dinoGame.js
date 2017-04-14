@@ -225,12 +225,22 @@ Template.dinoGame.events({
                                 resultados:[]
                                 });
             Meteor.call('enviar_expedicion', idexp, tipoZona);
+
+            resetExpedicion();
+
+
          }else{
             alert("te faltan recursos");
 
          }
     },
+
+    "click #resetEXP": function(event, template){
+        resetExpedicion();
+    },
+
     "click div[data-tipo] button": function(event, template){
+        $("#resetEXP").fadeIn();
         droplet.play();
         event.preventDefault();
         //obtenemos datos de los datas
@@ -373,6 +383,7 @@ Template.dinoGame.events({
     //Cuando hacemos click en el lider lo seleccionamos y lo añadimos a la lista
     "click img[data-tipo = 'lider']": function(event,template){
         snap.play();
+        $("#resetEXP").fadeIn();
         event.preventDefault();
          nombreLider = $(event.target).data("nombre");
         $("#liderEXP").text(nombreLider);
@@ -385,6 +396,7 @@ Template.dinoGame.events({
     //Cuando hacemos click en la zona lo seleccionamos y lo añadimos a la lista
     "click img[data-tipo = 'zona']": function(event,template){   
         snap.play(); 
+        $("#resetEXP").fadeIn();
         event.preventDefault();
         nombreZona = $(event.target).data("nombre");
         tipoZona = $(event.target).data("terreno");
@@ -634,6 +646,37 @@ function vaciarSuministros(){
 
 /**************************** FUNCIONES EXPEDICIONES ***************************************/
 
+function resetExpedicion(){
+    totalDC = 0;            /* Total coste Dinocoins */
+    totalSUM = 0;           /* Total coste Suministros */
+    totalEFEC = 0;          /* Total efectividad */
+    totalSAL = 0;           /* Total salud */
+    totalSLOTS = 0;         /* Total slots gastados*/
+    total_lanzarredes = 0;  /* Total tropas lanzarredes */
+    total_rifle = 0;        /* Total tropas rifle */
+    total_jeep = 0;         /* Total tropas jeep */
+    total_doctor = 0;       /* Total tropas doctor */
+    total_exotraje = 0;     /* Total tropas exotraje */
+    liderSelected = false;  /* Boolean para saber si has seleccionado líder*/
+    mapSelected = false;    /* Boolean para saber si has seleccionado el mapa */
+
+    buttons_sum_res()
+    $("#slots").text("0/" + misBonos[4]);
+    $("#slots").css({"color": "rgba(245,237,170,1)"})
+    $("#efectividad").text(totalEFEC);
+    $("#salud").text(totalSAL);
+    $("#costeDC").text(totalDC);
+    $("#costeSUM").text(totalSUM);
+    $("#liderEXP").text("Ninguno");
+    $("#lugarEXP").text("Ninguno");
+    $("#resumen p[data-tipo]").each(function(){
+        $(this).children().text("0");
+    });
+    $(".img_tropa").removeClass("selected");
+    $("#resetEXP").fadeOut();
+    $("#enviarEXP").fadeOut();
+}
+
 /* FUNCIONES QUE OCULTAN O MUESTRAN LOS BOTONES SUMAR Y RESTAR DE LA TROPA TRATADA*/
 function showSumar(){
     $("div[data-tipo="+tipusTropa + "] button[data-efecto='sumar']").show();
@@ -654,11 +697,11 @@ function hideRestar(){
 //funcion que comprueba si se ha seleccionado todo lo necesario para enviar la expedición
 function showBtnEnviar(){
     if(totalSLOTS > 0 && liderSelected == true && mapSelected == true){
-        $("#enviarEXP").show();
+        $("#enviarEXP").fadeIn();
     }
     
     else if(totalSLOTS == 0 || liderSelected == false || mapSelected == false){
-        $("#enviarEXP").hide();
+        $("#enviarEXP").fadeOut();
     }
 };
 
@@ -711,12 +754,56 @@ Template.dinoGame.helpers({
     partida:function(){
         return Partida.find({});
         
+    }, 
+    //buscamos la quantidad de dinosaurios que hay por areaa
+    mostrar_num_dinoss:function(nom_area){
+        //obtenemos la partida de jugador
+        mi_partida = Partida.findOne({_id:Meteor.userId()});
+        var num_dino=0;
+        //recorremos el array de dinos de partida
+        mi_partida.dinos.forEach(function(dino){
+            //obtenemos el dinosssssss
+            var dino_act = Dinosaurio.findOne({_id:dino.id});
+            //miramos si el dino es de la area que le pasamos 
+            if(dino_act.habitat == nom_area ){
+                //si es le sumamos la cantidad
+                num_dino += dino.cantidad;
+            }
+
+            //obtenemos la cantidad de Tyrannosaurus rex
+            if(nom_area== "terrestre" && dino_act.nombre== "Tyrannosaurus rex" ){
+                num_dino +=dino.cantidad;
+            }
+            
+        });
+        console.log(num_dino);
+        return num_dino;
     },
+    max_dinosaurios:function(){
+        var max_cap = 0 
+        //obtenemos la partida
+        var mi_partida = Partida.findOne({_id:Meteor.userId()});
+        //recorremos el array de edificios i comprovamos nivel de habitat 
+        mi_partida.edificio.forEach(function(edif){
+            switch(edif)
+            {   //guardamos la capacidad de dinos que puede tener el habitat segun su nivel
+                case 1101: max_cap = Edificio.findOne({_id:edif}).capacidadDino; break;
+                case 1102: max_cap = Edificio.findOne({_id:edif}).capacidadDino; break;
+                case 1103: max_cap = Edificio.findOne({_id:edif}).capacidadDino; break;
+            }
+        });
+        
+        return max_cap;
+    },
+
     edificios: function(){
          var variable=Session.get('key');
        //console.log("Edificio:" + quinedifici);
        //console.log("variable:" + variable);
         return Edificio.find({key: variable});
+    },
+    habitats: function(){
+        return Terreno.find({});
     },
 
     edificioslvl1: function(){
@@ -839,13 +926,11 @@ Template.dinoGame.helpers({
 /* ON RENDERES ES COMO EL DOCUMENT(READY) */
 Template.dinoGame.onRendered(function(){
 
+    comprobarNotificaciones();
 
     cont_sonido = 0;//Variable para controlar el sonido y el mute
 
-    /* VARIABLES GLOBALES PARA EXPEDICIONES */
-    
-     /* Aumenta en 10 la variable capacidad*/
-    
+    /* VARIABLES GLOBALES PARA EXPEDICIONES */   
     
     user = Meteor.userId();
 
@@ -900,8 +985,6 @@ Template.dinoGame.onRendered(function(){
         alert("falten recursos");
 
         }
-            
-        
     });
         $('[data-toggle="popover"]').popover(); 
 
@@ -909,7 +992,20 @@ Template.dinoGame.onRendered(function(){
         //la primera carga comprobamos los botones de sumar y restar para cada tropa
         buttons_sum_res(); 
 
+
 });
+
+function comprobarNotificaciones(){
+    /*NOTIFICACIONES */
+
+        var notificaciones = Notificacion.find({usuario:user}).fetch();
+        var cont_notificiaciones = notificaciones.length;
+        $("#text-contador-notis").text(cont_notificiaciones);
+
+        notificaciones.forEach(function(noti){
+            $("#divnotificaciones").append('<p>' + noti.nombre + '</p>');
+        });
+}
 
 function comprobarPartida(){
     mi_partida = Partida.find({_id:user}).fetch();

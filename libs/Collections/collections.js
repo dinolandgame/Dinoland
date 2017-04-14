@@ -6,3 +6,4 @@ Dinosaurio = new Mongo.Collection("dinosaurios");
 Expedicion = new Mongo.Collection("expedicion");
 Lider = new Mongo.Collection("lideres");
 Investigacion = new Mongo.Collection("investigacion");
+Notificacion = new Mongo.Collection("notificaciones");

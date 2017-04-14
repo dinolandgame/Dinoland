@@ -22,4 +22,8 @@ Meteor.publish('lideres', function(){
 });
 Meteor.publish('investigacion',function(){
 	return Investigacion.find();
-})
+});
+
+Meteor.publish('notificaciones',function(){
+	return Notificacion.find({usuario: this.userId});
+});

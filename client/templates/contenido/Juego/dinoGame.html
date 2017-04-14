@@ -33,7 +33,7 @@
                 <li><i class="ionicons ion-ios-person"></i>  Mi muro</li>
                 <li><i class="ionicons ion-ios-search-strong"></i>  Expediciones</li>
                 <li><i class="fa fa-envelope-o"></i> Mensajes</li>
-                <li><i class="fa fa-shopping-cart"></i> Tienda</li>
+                <li><i class="fa fa-shopping-cart"></i> Comercio</li>
                 <li><i class="fa fa-bar-chart"></i> Logros</li>
                 <li><a href="{{pathFor 'principal'}}" role="button" id="home" class="log-out"><span class="glyphicon glyphicon-home"></span>&nbsp;Salir</a><i class="ionicons ion-log-out"></i></li>
             </ul>
@@ -44,7 +44,7 @@
 <!-- Botons -->
 
 <button id="btn-tienda" class="boton_gui" data-target="#pop_tienda" data-toggle="modal">
-        <p class="dinobuton-text">Tienda</p>
+        <p class="dinobuton-text">Comercio</p>
 </button>
 
 <button id="btn-expediciones" data-target="#pop_expediciones" data-toggle="modal" class="boton_gui">
@@ -57,6 +57,10 @@
 
 <button id="btn-sound">
         <img class="btn-icon" src="images/ui/sound.png">
+</button>
+
+<button id="contador-notis" class="boton_gui" data-target="#pop_notificaciones" data-toggle="modal">
+    <p id="text-contador-notis" class="dinobuton-text"></p>
 </button>
 
 
@@ -303,7 +307,8 @@
                                 </div>
                 <!--Enviar-->
                                 <div class="row" style="text-align: center;">
-                                    <button id="enviarEXP" style="display: none;" class="boton_gui"><p class="dinobuton-text">ENVIAR</p></button>
+                                    <button id="resetEXP" style="display: none;" class="boton_gui col-sm-3"><p class="dinobuton-text"><span class="glyphicon glyphicon-trash"></span></p></button>
+                                    <button id="enviarEXP" style="display: none;" class="col-sm-offset-1 boton_gui"><p class="dinobuton-text">ENVIAR</p></button>
                                 </div>
                             </div>
                         </div>
@@ -345,50 +350,31 @@
                                 </button>
                             </div>
                         </div>
+
                         <div id="tipos-habitat" class="row">
-                            <div class="col-sm-4">
-                                <div class="div-habitat">
-                                    <div class="modal-desc-noP">
-                                        <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
+                            {{ #each habitats }}
+                                <div class="col-sm-4">
+                                    <div class="div-habitat">
+                                        <div class="modal-desc-noP">
+                                            <img src="{{avatar}}" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
 
-                                    <div class="header_gran" style="text-align: center">
-                                        <p>Volador</p>
+                                        <div class="header_gran" style="text-align: center">
+                                            <p>{{tipo_terreno}}</p>
+                                        </div>
+                                            <p>{{descripcion}}</p>
+                                            <p class="dinobuton-text" style="text-align: center">{{mostrar_num_dinoss tipo_terreno }}/{{max_dinosaurios}}</p>
+                                        </div>
+                                                                           
                                     </div>
-                                        <p>En este habitat podras tener controlados a tus raptores y T-rex.</p>
-                                        <p class="dinobuton-text" style="text-align: center">0/10</p>
-                                    </div>
+
                                                                        
-                                </div>
+                                
                             </div>  
-                            <div class="col-sm-4">
-                                <div class="div-habitat">
-                                    <div class="modal-desc-noP">
-                                        <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
+                           
 
-                                    <div class="header_gran" style="text-align: center">
-                                        <p>Aquatico</p>
-                                    </div>
-                                        <p>En este habitat podras tener controlados a tus raptores y T-rex.</p>
-                                        <p class="dinobuton-text" style="text-align: center">0/10</p>
-                                    </div>
-                                                                       
-                                </div>
-                            </div> 
-                            <div class="col-sm-4">
-                                <div class="div-habitat">
-                                    <div class="modal-desc-noP">
-                                        <img src="images/38707274-Edificio-de-la-escuela-y-rea-de-juegos-Foto-de-archivo.jpg" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
-
-                                    <div class="header_gran" style="text-align: center">
-                                        <p>Terrestre</p>
-                                    </div>
-                                        <p>En este habitat podras tener controlados a tus raptores y T-rex.</p>
-                                        <p class="dinobuton-text" style="text-align: center">0/10</p>
-                                    </div>
-                                                                       
-                                </div>
-                            </div>  
-                            <div>
+                                </div>  
+                            {{ /each }}
+              <div>
                                 <button id="pasar-pagina" type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui">
                                     <p class="dinobuton-text"><span class="glyphicon glyphicon-menu-right"></span></p>
                                 </button>
@@ -677,6 +663,24 @@
                     </div>
 
                     <div id="contingut_modal">
+                        <p>Contenido aquí</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- POP NOTIFICIACIONES -->
+    <div tabindex="-1" class="modal fade" id="pop_notificaciones" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog pop_gran">
+            <div class="modal-content border">
+                <div class="modal-body content_gran">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <div class="header_gran">
+                        <h2>NOTIFICIACIONES</h2>
+                    </div>
+
+                    <div id="divnotificaciones">
                         <p>Contenido aquí</p>
                     </div>
                 </div>
