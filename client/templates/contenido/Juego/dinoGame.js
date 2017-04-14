@@ -13,6 +13,7 @@ Template.dinoGame.events({
         $('#btn_plegar').show();
 	},
 
+
     "click #btn_plegar":function(event,template){
         snap.play();
 		event.preventDefault();
@@ -68,7 +69,7 @@ Template.dinoGame.events({
          //console.log(EdificiUp);    
          //console.log(mi_partida); 
          console.log((mi_partida[0].energia > EdificiUp.consumoEnergia)+" ||| "+(mi_partida[0].suministros > EdificiUp.costeSuministros)+ "  ||| " +(mi_partida[0].dinero >EdificiUp.costeDinocoins));
-            if(EdificiUp != null && Edifici.nivel<=cuartel && mi_partida[0].energia > EdificiUp.consumoEnergia  && mi_partida[0].suministros > EdificiUp.costeSuministros && mi_partida[0].dinero > EdificiUp.costeDinocoins ){
+            if(EdificiUp != null && Edifici.nivel<=cuartel && mi_partida[0].energia >= EdificiUp.consumoEnergia  && mi_partida[0].suministros >= EdificiUp.costeSuministros && mi_partida[0].dinero >= EdificiUp.costeDinocoins ){
                 
                 var dinero = mi_partida[0].dinero - EdificiUp.costeDinocoins;
                 var suministros = mi_partida[0].suministros - EdificiUp.costeSuministros;
@@ -938,7 +939,7 @@ Template.dinoGame.onRendered(function(){
         var mi_partida = Partida.findOne({_id:user});// obtengo el objecte de partida
 
          
-        if( mi_partida.energia > edificiCrear.consumoEnergia  && mi_partida.suministros > edificiCrear.costeSuministros && mi_partida.dinero > edificiCrear.costeDinocoins ){
+        if( mi_partida.energia >= edificiCrear.consumoEnergia  && mi_partida.suministros >= edificiCrear.costeSuministros && mi_partida.dinero >= edificiCrear.costeDinocoins ){
                 
                 var dinero = mi_partida.dinero - edificiCrear.costeDinocoins;
                 var suministros = mi_partida.suministros - edificiCrear.costeSuministros;
