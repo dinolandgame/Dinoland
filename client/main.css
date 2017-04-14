@@ -307,6 +307,11 @@ canvas{
     font-size: 18px;
 }*/
 
+#resetEXP{
+    background-image: -moz-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(170,26,19) 0%, rgb(246,130,110) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+}
 
 #btn-social{
     cursor: pointer;
