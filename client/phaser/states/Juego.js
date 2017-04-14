@@ -64,6 +64,8 @@ Juego.prototype = {
                 if(fields.hasOwnProperty('edificio')){
                     game.state.restart();
                     bell.play();
+                    comprobarNotificaciones();
+                    $('#pop_notificaciones').modal('show'); 
                 }
             }
         });

@@ -42,7 +42,8 @@ Router.configure({
                Meteor.subscribe('terrenos'),
                Meteor.subscribe('dinosaurios'),
                Meteor.subscribe('expedicion'),
-               Meteor.subscribe('investigacion')];
+               Meteor.subscribe('investigacion'),
+               Meteor.subscribe('notificaciones')];
   }
 		
 });
