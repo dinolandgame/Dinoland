@@ -23,7 +23,16 @@ Meteor.methods({
                      bono_habitats:false,
                      bono_rrpp:false,
                      edificio:[],
-                    desbloqueados:[]}); 
+                     desbloqueados:[],
+                     dinos:[
+                        {id:1,cantidad:0},
+                        {id:2,cantidad:0},
+                        {id:3,cantidad:0},
+                        {id:4,cantidad:0},
+                        {id:5,cantidad:0},
+                        {id:6,cantidad:0},
+                        {id:7,cantidad:0}
+                    ]}); 
       
        
        /*{
