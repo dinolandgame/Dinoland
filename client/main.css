@@ -551,13 +551,37 @@ canvas{
     height: 86%;
 }
 
+#contingut_modal-habitat{
+    background-color: #F5E3AA;
+    border-radius: 10px;
+    /* margin-top: 60px; */
+    height: 430px;
+    padding-top: 20px;
+    overflow: hidden;
+}
+
 #contingut_modal h2{
+    margin-top:0px;
+}
+
+#contingut_modal-habitat h2{
     margin-top:0px;
 }
 .modal-body{
     padding: 0 25px;
 }
 
+#pasar-pagina{
+    position: fixed;
+    top: 200px;
+    right: 100px;
+}
+
+#volver-pagina{
+    position: fixed;
+    top: 200px;
+    left: 100px;
+}
 /********* MODALS EDIFICI ***************/
 
 .header_modal_edifici{
