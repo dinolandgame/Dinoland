@@ -435,6 +435,25 @@ Template.dinoGame.events({
 
 /********************* FIN EVENTOS EXPEDICIONES *************************************/
     
+/**********************EVENTOS HABITATS**********************************************/
+"click #pasar-pagina":function(event, template){
+    $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("position", "relative").animate({"position": "relative","right":'+2000px'}, 800);
+    $('#pasar-pagina').css('display', 'none');
+    $('#volver-pagina').css('display', 'block');
+},
+
+"click #volver-pagina":function(event, template){
+     $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("position", "relative").animate({"position": "relative","right":'0px'}, 800);
+     $('#pasar-pagina').css('display', 'block');
+     $('#volver-pagina').css('display', 'none');
+},
+
+
+
+
+
+/***********************FIN EVENTOS HABITATS*****************************************/
+
 /********************* EVENTOS SONIDOS *********************************************/
 
 "click #btn-sound": function(){
@@ -700,8 +719,11 @@ Template.dinoGame.helpers({
         return Edificio.find({key: variable});
     },
 
-    edificioTodos: function(){
+    edificioslvl1: function(){
         return Edificio.find({nivel: 1});
+    },
+    edificiosTodos:function(){
+        return Edificio.find();
     },
     
     //funcion de desbloqueo de edificios
@@ -781,14 +803,14 @@ Template.dinoGame.helpers({
     terrenos: function(){
         return Terreno.find({});
     },
-    cuartel: function(num1, num2){
+    idEdificio: function(num1, num2){
         /*var bol=false;
         if(num1==num2){
             bol=true;
         }
         return bol;*/
 
-        if(num1==num2){
+        if(num1===num2){
             return true;
         }else{
             return false;

@@ -13,15 +13,19 @@ Meteor.methods({
     
      user= Meteor.userId();
      Partida.insert({_id:user,
-                      dinero:1000,
+                      dinero:100000000,
                       energia:200,
-                      suministros:200,
+                      suministros:2000000000000,
                       visitantes:0,
                      bono_seguridad:false,
                      bono_logistica:false,
                      bono_liderazgo:30,
                      bono_habitats:false,
                      bono_rrpp:false,
+                     max_suministros:240,
+                     max_dinero:1800,
+                     max_visitantes:10,
+                     seguridad:0,
                      edificio:[],
                     desbloqueados:[],
                     bonos_desbloqueados:[],
@@ -140,7 +144,13 @@ Meteor.methods({
         
 
             Partida.update({_id:user},{$push:{edificio:id}});
-                
+            if(Edifici._id==401 || Edifici._id==402 || Edifici._id==403){
+                    Partida.update({_id:user},{$set:{max_suministros:Edifici.max_sum , max_dinero:Edifici.max_dinocoins}});
+            }else if(Edifici._id==301){
+                Partida.update({_id:user}, {$set:{max_visitantes:Edifici.max_visitantes}});
+            }else if(Edifici._id==801){
+                Partida.update({_id:user}, {$set:{seguridad:Edifici.aumento_seguridad}});
+            }
             
             
             /*Partida.update(
@@ -471,22 +481,22 @@ Meteor.methods({
            
             console.log("ha entrat en el job");
             if(Investigacio._id==1){
-                Partida.update({_id:user},{$push:{bonos_desbloqueados:[1]}});
+                Partida.update({_id:user},{$push:{bonos_desbloqueados:1}});
             }
             else if(Investigacio._id==2){
-                Partida.update({_id:user},{$push:{bonos_desbloqueados:[2]}});
+                Partida.update({_id:user},{$push:{bonos_desbloqueados:2}});
             }
             else if(Investigacio._id==3){
-                Partida.update({_id:user},{$push:{bonos_desbloqueados:[3]}});
+                Partida.update({_id:user},{$push:{bonos_desbloqueados:3}});
             }
             else if(Investigacio._id==4){
                     Partida.update({_id:user},{$set:{bono_logistica:true}});
-                     Partida.update({_id:user},{$push:{bonos_desbloqueados:[4]}});
+                     Partida.update({_id:user},{$push:{bonos_desbloqueados:4}});
                     
                     console.log("investigacio acabada!!");
                 }else if(Investigacio._id==5){
                     Partida.update({_id:user},{$inc:{bono_liderazgo:10}});
-                     Partida.update({_id:user},{$push:{bonos_desbloqueados:[5]}});
+                     Partida.update({_id:user},{$push:{bonos_desbloqueados:5}});
                     console.log("investigacio acabada!!");
                 }
            
