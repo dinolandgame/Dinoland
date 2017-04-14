@@ -204,7 +204,7 @@ function clicar(edifici){
         $('#img-laboratorio').attr("src", laboratorio.avatar);
         $('#desc-laboratorio').text(laboratorio.descripcion);
         $('.btn-lvlup-laboratorio').css('display', 'block');
-        $('#investiga').css('display', 'none');
+        $('#btn-investiga').css('display', 'none');
         $('#div-bono').css('display', 'none');
         break;
         //Popup cuartel

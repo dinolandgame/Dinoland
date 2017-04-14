@@ -480,8 +480,10 @@ Template.dinoGame.events({
         $('.btn-lvlup-laboratorio').css('display', 'none');
         $('#div-bono').css('display', 'block');
         $('#span-bono').text(this.bonus);
-        $('#investiga').data('idLab', this._id);
-        $('#investiga').css('display', 'block');
+        console.log("this id: " + this._id);
+        $('#investiga').data('id', this._id);
+        $('#btn-investiga').css('display', 'block');
+
 
     },
 
@@ -509,12 +511,11 @@ Template.dinoGame.events({
     /*****************EVENTOS INVESTIGACIONES ****************************************/
     
 
-    "click a#investiga": function(event, template){
+    "click #investiga": function(event, template){
         event.preventDefault();
         var $this = $(event.target);
-        
-        var investigacionId = $($this).data('investigar');
-        
+        var investigacionId = $($this).data('id');
+        console.log("investigacioId: "+investigacionId);
         Meteor.call('hacerinvestigacion',investigacionId);
         
         console.log("voy a acabar esta funcion con el crhon");
