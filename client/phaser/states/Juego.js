@@ -39,6 +39,14 @@ Juego.prototype = {
             });            
         });
 
+        
+        /* EFECTOS SONIDO */
+        tinny = game.add.audio('tinny');
+        droplet = game.add.audio('droplet');
+        snap = game.add.audio('snap');
+        bell = game.add.audio('bell');
+        
+        
         $('#content-juego').show();
         
         //controlamos si no hay edificios en el array de edificios en la coleccion partida
@@ -55,6 +63,7 @@ Juego.prototype = {
                 //console.log(fields);
                 if(fields.hasOwnProperty('edificio')){
                     game.state.restart();
+                    bell.play();
                 }
             }
         });
@@ -158,8 +167,7 @@ function hoverOff(edifici){
 
 
 function clicar(edifici){
-   // $.ionSound.play("button_tiny"); 
-    //$('#pop_sintetizador').modal('show');
+    tinny.play();
    
     phaserEdifici= edifici;
     quinedifici = edifici.key;
@@ -192,7 +200,7 @@ function clicar(edifici){
         $('#pop_laboratorio').modal('show');
         break;
         //Popup cuartel
-        case 'cuartel1': case 'cuartel2':
+        case 'cuartel1': case 'cuartel2': case 'cuartel3':
         $('#pop_cuartel').modal('show');
             var mi_partida = Partida.find({_id:user}).fetch();
             if(mi_partida[0].edificio.length===1){
