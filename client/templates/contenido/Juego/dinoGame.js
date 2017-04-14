@@ -225,12 +225,22 @@ Template.dinoGame.events({
                                 resultados:[]
                                 });
             Meteor.call('enviar_expedicion', idexp, tipoZona);
+
+            resetExpedicion();
+
+
          }else{
             alert("te faltan recursos");
 
          }
     },
+
+    "click #resetEXP": function(event, template){
+        resetExpedicion();
+    },
+
     "click div[data-tipo] button": function(event, template){
+        $("#resetEXP").fadeIn();
         droplet.play();
         event.preventDefault();
         //obtenemos datos de los datas
@@ -373,6 +383,7 @@ Template.dinoGame.events({
     //Cuando hacemos click en el lider lo seleccionamos y lo añadimos a la lista
     "click img[data-tipo = 'lider']": function(event,template){
         snap.play();
+        $("#resetEXP").fadeIn();
         event.preventDefault();
          nombreLider = $(event.target).data("nombre");
         $("#liderEXP").text(nombreLider);
@@ -385,6 +396,7 @@ Template.dinoGame.events({
     //Cuando hacemos click en la zona lo seleccionamos y lo añadimos a la lista
     "click img[data-tipo = 'zona']": function(event,template){   
         snap.play(); 
+        $("#resetEXP").fadeIn();
         event.preventDefault();
         nombreZona = $(event.target).data("nombre");
         tipoZona = $(event.target).data("terreno");
@@ -469,7 +481,20 @@ Template.dinoGame.events({
         $('.crearEdificio').data('id', this._id);
         $('.crearEdificio').css('display', 'block');
     },
-    "mouseenter .modal-img-edif":function(event,template){
+    "click .div-laboratorio":function(event, template){
+        $('#img-laboratorio').attr("src", this.avatar);
+        $('#desc-laboratorio').text(this.descripcion);
+        $('.btn-lvlup-laboratorio').css('display', 'none');
+        $('#div-bono').css('display', 'block');
+        $('#span-bono').text(this.bonus);
+        console.log("this id: " + this._id);
+        $('#investiga').data('id', this._id);
+        $('#btn-investiga').css('display', 'block');
+
+
+    },
+
+    "mouseenter .modal-img-edif-cuartel":function(event,template){
         $(event.target).css({
             'box-shadow':'2px 2px 2px 1px rgba(180,97,0,0.88)',
             'border-color': 'black',
@@ -477,7 +502,7 @@ Template.dinoGame.events({
 
    },
 
-    "mouseleave .modal-img-edif":function(event,template){
+    "mouseleave .modal-img-edif-cuartel":function(event,template){
         $(event.target).css({'box-shadow':'none','border-color': 'white',});
     },
 
@@ -493,12 +518,11 @@ Template.dinoGame.events({
     /*****************EVENTOS INVESTIGACIONES ****************************************/
     
 
-    "click a#investiga": function(event, template){
+    "click #investiga": function(event, template){
         event.preventDefault();
         var $this = $(event.target);
-        
-        var investigacionId = $($this).data('investigar');
-        
+        var investigacionId = $($this).data('id');
+        console.log("investigacioId: "+investigacionId);
         Meteor.call('hacerinvestigacion',investigacionId);
         
         console.log("voy a acabar esta funcion con el crhon");
@@ -603,6 +627,36 @@ function vaciarSuministros(){
 
 /**************************** FUNCIONES EXPEDICIONES ***************************************/
 
+function resetExpedicion(){
+    totalDC = 0;            /* Total coste Dinocoins */
+    totalSUM = 0;           /* Total coste Suministros */
+    totalEFEC = 0;          /* Total efectividad */
+    totalSAL = 0;           /* Total salud */
+    totalSLOTS = 0;         /* Total slots gastados*/
+    total_lanzarredes = 0;  /* Total tropas lanzarredes */
+    total_rifle = 0;        /* Total tropas rifle */
+    total_jeep = 0;         /* Total tropas jeep */
+    total_doctor = 0;       /* Total tropas doctor */
+    total_exotraje = 0;     /* Total tropas exotraje */
+    liderSelected = false;  /* Boolean para saber si has seleccionado líder*/
+    mapSelected = false;    /* Boolean para saber si has seleccionado el mapa */
+
+    buttons_sum_res()
+    $("#slots").text("0/" + misBonos[4]);
+    $("#slots").css({"color": "rgba(245,237,170,1)"})
+    $("#efectividad").text(totalEFEC);
+    $("#salud").text(totalSAL);
+    $("#costeDC").text(totalDC);
+    $("#costeSUM").text(totalSUM);
+    $("#liderEXP").text("Ninguno");
+    $("#lugarEXP").text("Ninguno");
+    $("#resumen p[data-tipo]").each(function(){
+        $(this).children().text("0");
+    });
+    $(".img_tropa").removeClass("selected");
+    $("#resetEXP").fadeOut();
+}
+
 /* FUNCIONES QUE OCULTAN O MUESTRAN LOS BOTONES SUMAR Y RESTAR DE LA TROPA TRATADA*/
 function showSumar(){
     $("div[data-tipo="+tipusTropa + "] button[data-efecto='sumar']").show();
@@ -623,11 +677,11 @@ function hideRestar(){
 //funcion que comprueba si se ha seleccionado todo lo necesario para enviar la expedición
 function showBtnEnviar(){
     if(totalSLOTS > 0 && liderSelected == true && mapSelected == true){
-        $("#enviarEXP").show();
+        $("#enviarEXP").fadeIn();
     }
     
     else if(totalSLOTS == 0 || liderSelected == false || mapSelected == false){
-        $("#enviarEXP").hide();
+        $("#enviarEXP").fadeOut();
     }
 };
 
@@ -786,6 +840,18 @@ Template.dinoGame.helpers({
     investigaciones: function(){
         return Investigacion.find({});
 
+    },
+    investdesbloc: function(id){
+        var mi_partida = Partida.find({_id:user}).fetch();
+        var misBonosEnPartida = mi_partida[0].bonos_desbloqueados;
+
+        for( var i= 0 ; i<misBonosEnPartida.length; i++){
+
+            if(id==misBonosEnPartida[i]){
+                return true;
+            }
+        }
+
     }
 
 });
@@ -796,10 +862,7 @@ Template.dinoGame.onRendered(function(){
 
     cont_sonido = 0;//Variable para controlar el sonido y el mute
 
-    /* VARIABLES GLOBALES PARA EXPEDICIONES */
-    
-     /* Aumenta en 10 la variable capacidad*/
-    
+    /* VARIABLES GLOBALES PARA EXPEDICIONES */   
     
     user = Meteor.userId();
 
