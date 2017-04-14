@@ -23,7 +23,8 @@ Meteor.methods({
                      bono_habitats:false,
                      bono_rrpp:false,
                      edificio:[],
-                    desbloqueados:[]}); 
+                    desbloqueados:[],
+                    bonos_desbloqueados:[]}); 
       
        
        /*{
@@ -409,13 +410,23 @@ Meteor.methods({
         job: function() {
            
             console.log("ha entrat en el job");
-        
-            if(Investigacio._id==4){
+            if(Investigacio._id==1){
+                Partida.update({_id:user},{$push:{bonos_desbloqueados:[1]}});
+            }
+            else if(Investigacio._id==2){
+                Partida.update({_id:user},{$push:{bonos_desbloqueados:[2]}});
+            }
+            else if(Investigacio._id==3){
+                Partida.update({_id:user},{$push:{bonos_desbloqueados:[3]}});
+            }
+            else if(Investigacio._id==4){
                     Partida.update({_id:user},{$set:{bono_logistica:true}});
+                     Partida.update({_id:user},{$push:{bonos_desbloqueados:[4]}});
                     
                     console.log("investigacio acabada!!");
                 }else if(Investigacio._id==5){
                     Partida.update({_id:user},{$inc:{bono_liderazgo:10}});
+                     Partida.update({_id:user},{$push:{bonos_desbloqueados:[5]}});
                     console.log("investigacio acabada!!");
                 }
            

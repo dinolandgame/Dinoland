@@ -497,7 +497,7 @@
                                 <button  type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui btn-lvlup-cuartel" id="subirlvl">
                                 <p class="dinobuton-text">Subir nivel</p>
                                 </button>
-                                <button  type="button" data-id="" class="btn pmd-ripple-effect btn-default btn_modal boton_gui btn-lvlup-cuartel crearEdificio" id="subirlvl">
+                                <button  type="button" data-id="" class="btn pmd-ripple-effect btn-default btn_modal boton_gui crearEdificio">
                                 <p class="dinobuton-text">Construir</p>
                                 </button>
                             </div>
@@ -508,7 +508,7 @@
                             </div>
                             <div class="col-sm-4">
                             {{#each edificios}}
-                                <img id="img-cuartel" src={{avatar}} class="img-responsive img_edifici modal-img-edif" >
+                                <img id="img-cuartel" src={{avatar}} class="img-responsive img_edifici modal-img-edif-gran" >
                             {{/each}}
                             </div>
                         </div>
@@ -530,18 +530,18 @@
                                 {{#each edificioTodos}}
                                     {{#if cuartel _id  1001}}
                                             <div class="col-sm-2 div-cuartel" data-divID={{_id}}>
-                                                      <a href="#" type="button" class="seleccionable" data-id={{_id}} data-target="#pop_edificio"><img src={{avatar}} class="img_admin modal-img-edif"></a>
+                                                      <a href="#" type="button" class="seleccionable" data-id={{_id}} data-target="#pop_edificio"><img src={{avatar}} class="img_admin modal-img-edif-cuartel"></a>
                                                       <p id="edif-nombre">{{nom}}</p>
                                                     </div>
                                         {{else}}
                                             {{#if yaConstruido _id}}
                                                     <div class="col-sm-2 div-edificio" data-divID={{_id}}>
-                                                      <a href="#" type="button" class="seleccionable" data-id={{_id}} data-target="#pop_edificio"><img src={{avatar}} class="img_admin modal-img-edif"></a>
+                                                      <a href="#" type="button" class="seleccionable" data-id={{_id}} data-target="#pop_edificio"><img src={{avatar}} class="img_admin modal-img-edif-cuartel"></a>
                                                       <p id="edif-nombre">{{nom}}</p>
                                                     </div>
                                             {{else}}
                                                 <div class="col-sm-2">
-                                                  <a href="#" type="button" class="no-seleccionable" data-id={{_id}} data-target="#pop_edificio"><img src={{avatar}} class="img_admin modal-img-edif"></a>
+                                                  <a href="#" type="button" class="no-seleccionable" data-id={{_id}} data-target="#pop_edificio"><img src={{avatar}} class="img_admin modal-img-edif-cuartel"></a>
                                                  <p id="edif-nombre">{{nom}}</p>
                                                 </div>
                                             {{/if}}
@@ -575,30 +575,41 @@
                         <div class="row info_edifici">
                             <div class="modal-desc col-sm-5 col-sm-offset-2">
                             {{ #each edificios }}
-                                <p>{{ descripcion }}</p>
+                                <p id="desc-laboratorio">{{ descripcion }}</p>
                             {{ /each }}
                             </div>
                                 <div class="modal-botones">
-                                    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui" id="subirlvl">
+                                    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui btn-lvlup-laboratorio" id="subirlvl">
                                     <p class="dinobuton-text">Subir nivel</p>
-                                </button>
+                                    </button>
+                                    <button  type="button" data-idLab="" class="btn pmd-ripple-effect btn-default btn_modal boton_gui" id="investiga">
+                                    <p class="dinobuton-text">Investigar</p>
+                                    </button>
+                                </div>
+                                <div id="div-bono">
+                                    <p>Bono: <span id="span-bono"></span></p>
                                 </div>
                             <div class="col-sm-5">
                             {{#each edificios}}
                                 
-                                <img src={{avatar}} class="img-responsive img_edifici modal-img-edif">
+                                <img id="img-laboratorio" src={{avatar}} class="img-responsive img_edifici modal-img-edif-gran">
 
                             {{/each}}
                             </div>
                         </div>
-                        <div class="row edif-lab">
+                        <div id="seccion-investigaciones" class="row edif-lab">
                            {{#each investigaciones}}
-                              
+                              {{#if investdesbloc _id}}
                                <div class="col-sm-2">
-                                  <a id="investiga" data-target="#pop_investigacion" href="#" type="button"  data-toggle="modal"><img src="images/lider1.png" class="img_lab modal-img-edif" data-investigar={{_id}}  style="cursor:pointer"></a>
+                                  <a data-target="#pop_investigacion" href="#" type="button"  data-toggle="modal" class="no-seleccionable"><img src="images/lider1.png" class="img_lab modal-img-edif-cuartel" data-investigar={{_id}}></a>
                                   <p id="edif-nombre">{{nom}}</p>
                                 </div>
-                                
+                                {{else}}
+                                    <div class="col-sm-2 div-laboratorio">
+                                      <a data-target="#pop_investigacion" href="#" type="button"  data-toggle="modal" class="seleccionable"><img src="images/lider1.png" class="img_lab modal-img-edif-cuartel" data-investigar={{_id}}></a>
+                                      <p id="edif-nombre">{{nom}}</p>
+                                    </div>
+                                {{/if}}
                             {{/each}}
                            
                         </div>                        

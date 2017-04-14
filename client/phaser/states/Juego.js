@@ -199,6 +199,13 @@ function clicar(edifici){
         //Popup laboratorio
         case 'laboratori1':
         $('#pop_laboratorio').modal('show');
+        var laboratorio = Edificio.findOne({_id:201});
+        console.log(laboratorio);
+        $('#img-laboratorio').attr("src", laboratorio.avatar);
+        $('#desc-laboratorio').text(laboratorio.descripcion);
+        $('.btn-lvlup-laboratorio').css('display', 'block');
+        $('#investiga').css('display', 'none');
+        $('#div-bono').css('display', 'none');
         break;
         //Popup cuartel
         case 'cuartel1': case 'cuartel2': case 'cuartel3':
