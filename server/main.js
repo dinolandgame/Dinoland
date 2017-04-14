@@ -24,7 +24,17 @@ Meteor.methods({
                      bono_rrpp:false,
                      edificio:[],
                     desbloqueados:[],
-                    bonos_desbloqueados:[]}); 
+                    bonos_desbloqueados:[],
+                    dinos:[
+                        {id:1,cantidad:0},
+                        {id:2,cantidad:0},
+                        {id:3,cantidad:0},
+                        {id:4,cantidad:0},
+                        {id:5,cantidad:0},
+                        {id:6,cantidad:0},
+                        {id:7,cantidad:0}
+                    ]}); 
+
       
        
        /*{
@@ -85,11 +95,13 @@ Meteor.methods({
             
             
             if(EdificiUp.key=="cuartel2"){
-                        Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
-                    }
-         if(EdificiUp.key=="cuartel3"){
-            Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
-        }
+
+                Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
+            }
+            else if(EdificiUp.key=="cuartel3"){
+                Partida.update({_id:user},{$push:{desbloqueados:{$each:[EdificiUp.desbloquea]}}});
+            }
+
 
             console.log("edifici modificat");            
         }  
@@ -370,9 +382,57 @@ Meteor.methods({
             var partida_jugador = Partida.findOne({_id:user});
             var dinocoins = partida_jugador.dinero;
             var suministros = partida_jugador.suministros;
-            dinocoins += dinocoins_extra;
-            suministros += suministros_extra;
+            dinocoins += Math.ceil(dinocoins_extra);
+            suministros += Math.ceil(suministros_extra);
+
+            var sum_maxim = 240;
+            var coins_maxim = 1800;
+            var almacen = 0;
+
+            partida_jugador.edificio.forEach(function(num){    
+                //var edificio  = Edificio.findOne({"_id":num});
+                if(num==401 || num==402 || num==403){
+                      almacen = num;
+                }
+
+            });
+                       
+              if(almacen > 400){
+                var edif_almacen  = Edificio.findOne({"_id":almacen});
+                sum_maxim = edif_almacen.max_sum;
+                coins_maxim = edif_almacen.max_dinocoins;
+              }
+
+              if(suministros > sum_maxim){
+                suministros = sum_maxim;
+              }
+
+
+              if(dinocoins > coins_maxim){
+                dinocoins = coins_maxim;
+              }
+              console.log("dino: "+ dinosaurio_rastreado.nombre + "; cantidad: "+ capturas_final );
             Partida.update({_id:user},{$set: {dinero: dinocoins, suministros: suministros}});
+            if(capturas_final > 0){
+           
+            partida_jugador.dinos.forEach(function(dino){
+                //console.log("ids: " + dino._id + " !!!!!!" +dinosaurio_rastreado._id)
+                if(dino.id==dinosaurio_rastreado._id){
+                    
+                    dino.cantidad +=capturas_final;
+                    //dino_act = dino.cantidad;
+                }
+
+            });
+            console.log(partida_jugador.dinos);
+             var dino_act= partida_jugador.dinos;
+
+
+            
+            Partida.update({_id:user},{$set: {dinos: dino_act }});            
+            //Partida.update({ _id:user, edificio: Edifici._id },{ $set: { "edificio.$" : EdificiUp._id}});
+            }
+
         }  
           
     });
@@ -491,7 +551,7 @@ Accounts.emailTemplates.verifyEmail = {
         name: 'Run in 1 seconds dinocoins',
         schedule: function(parser) {
             // parser is a later.parse obje
-            return parser.text('every 50 seconds');
+            return parser.text('every 2 seconds');
         },
         job: function() {
                      // do something important here

@@ -39,16 +39,14 @@ Juego.prototype = {
             });            
         });
 
-        /* MUSICA EN EL JUEGO*/
-        music = game.add.audio('wizball');
-        music.play();
-
+        
         /* EFECTOS SONIDO */
         tinny = game.add.audio('tinny');
         droplet = game.add.audio('droplet');
         snap = game.add.audio('snap');
-
-
+        bell = game.add.audio('bell');
+        
+        
         $('#content-juego').show();
         
         //controlamos si no hay edificios en el array de edificios en la coleccion partida
@@ -65,6 +63,7 @@ Juego.prototype = {
                 //console.log(fields);
                 if(fields.hasOwnProperty('edificio')){
                     game.state.restart();
+                    bell.play();
                 }
             }
         });
