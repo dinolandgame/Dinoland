@@ -61,6 +61,7 @@ Meteor.methods({
     console.log("Ha entrado");
   },
  
+    // INICIO TAREA DE MEJORA DE UN EDIFICIO (SUBIR NIVEL)
   update_part(EdificiUp,Edifici){
     
    
@@ -102,13 +103,19 @@ Meteor.methods({
                 Partida.update({_id:user},{$push:{desbloqueados:{$each:[EdificiUp.desbloquea]}}});
             }
 
-
+            // Se genera una notificación
+            Notificacion.insert({usuario: user,
+                                 nombre: "mejora edificio",
+                                 descripcion: "Ha finalizado la mejora del " + Edifici.nom + " a nivel " + EdificiUp.nivel
+            });
             console.log("edifici modificat");            
         }  
           
     });
     },
-    //creacion edificios 1er nivel
+    // FIN MEJORA DE UN EDIFICIO
+    
+    //TAREA DE CONSTRUCCIÓN DE UN EDIFICIO
     crear_edificio(id){
     Edifici = Edificio.findOne({_id:id});
    
@@ -141,7 +148,11 @@ Meteor.methods({
 
             Partida.update({_id:user},{$push:{edificio:id}});
                 
-            
+             // Se genera una notificación
+            Notificacion.insert({usuario: user,
+                                 nombre: "construccion edificio",
+                                 descripcion: "Ha finalizado la construcción del " + Edifici.nom
+            });
             
             /*Partida.update(
                { _id:"zC27EwRQnrHgcuZz8", edificio: 1 },
@@ -153,6 +164,7 @@ Meteor.methods({
           
     });
     },
+    // FIN CONSTRUCCIÓN EDIFICIO NUEVO
     
      //LÓGICA PARA LA RESOLUCIÓN DE UNA EXPEDICIÓN
     enviar_expedicion(id_expedicion, terreno){
@@ -379,6 +391,13 @@ Meteor.methods({
                                                               {dinosaurio: dinosaurio_rastreado.nombre},
                                                               {ejemplares: capturas_final}
                                                           ]}});
+            // Se genera una notificación
+            // está incluye un campo con la id_expedicion para poder recuperarla de la BD si interesa por algún motivo (ej: colocar un link a la expedición en la misma label de notificación)
+            Notificacion.insert({usuario: user,
+                                 nombre: "expedición finalizada",
+                                 descripcion: "Ha finalizado la expedición programada a las " + fecha_fin,
+                                 doc_expedicion: id_expedicion
+            });
             var partida_jugador = Partida.findOne({_id:user});
             var dinocoins = partida_jugador.dinero;
             var suministros = partida_jugador.suministros;
@@ -411,10 +430,10 @@ Meteor.methods({
               if(dinocoins > coins_maxim){
                 dinocoins = coins_maxim;
               }
-              console.log("dino: "+ dinosaurio_rastreado.nombre + "; cantidad: "+ capturas_final );
+            console.log("dino: "+ dinosaurio_rastreado.nombre + "; cantidad: "+ capturas_final );
             Partida.update({_id:user},{$set: {dinero: dinocoins, suministros: suministros}});
             if(capturas_final > 0){
-           
+            
             partida_jugador.dinos.forEach(function(dino){
                 //console.log("ids: " + dino._id + " !!!!!!" +dinosaurio_rastreado._id)
                 if(dino.id==dinosaurio_rastreado._id){
@@ -437,10 +456,9 @@ Meteor.methods({
           
     });
     },
-    
+    // FIN EXPEDICIONES
     
     /**************************************CHRON INVESTIGACIONES ****************************************/
-    //creacion edificios 1er nivel
     hacerinvestigacion(id){
     Investigacio = Investigacion.findOne({_id:id});
     
@@ -490,15 +508,19 @@ Meteor.methods({
                     console.log("investigacio acabada!!");
                 }
            
-            
-            console.log("investigacio acabada!!");
+            // Se genera una notificación
+            Notificacion.insert({usuario: user,
+                                 nombre: "investigacion finalizada",
+                                 descripcion: "Ha finalizado investigación de " + Investigacio.nom
+            }); 
+            console.log("investigacion acabada!!");
         }  
           
     });
     }
 
 });
-
+// FIN INVESTIGACIÓN
 
 
 
