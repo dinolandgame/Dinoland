@@ -655,6 +655,7 @@ function resetExpedicion(){
     });
     $(".img_tropa").removeClass("selected");
     $("#resetEXP").fadeOut();
+    $("#enviarEXP").fadeOut();
 }
 
 /* FUNCIONES QUE OCULTAN O MUESTRAN LOS BOTONES SUMAR Y RESTAR DE LA TROPA TRATADA*/
