@@ -655,6 +655,7 @@ function resetExpedicion(){
     });
     $(".img_tropa").removeClass("selected");
     $("#resetEXP").fadeOut();
+    $("#enviarEXP").fadeOut();
 }
 
 /* FUNCIONES QUE OCULTAN O MUESTRAN LOS BOTONES SUMAR Y RESTAR DE LA TROPA TRATADA*/
@@ -903,6 +904,7 @@ Template.dinoGame.helpers({
 /* ON RENDERES ES COMO EL DOCUMENT(READY) */
 Template.dinoGame.onRendered(function(){
 
+    comprobarNotificaciones();
 
     cont_sonido = 0;//Variable para controlar el sonido y el mute
 
@@ -961,8 +963,6 @@ Template.dinoGame.onRendered(function(){
         alert("falten recursos");
 
         }
-            
-        
     });
         $('[data-toggle="popover"]').popover(); 
 
@@ -970,7 +970,20 @@ Template.dinoGame.onRendered(function(){
         //la primera carga comprobamos los botones de sumar y restar para cada tropa
         buttons_sum_res(); 
 
+
 });
+
+function comprobarNotificaciones(){
+    /*NOTIFICACIONES */
+
+        var notificaciones = Notificacion.find({usuario:user}).fetch();
+        var cont_notificiaciones = notificaciones.length;
+        $("#text-contador-notis").text(cont_notificiaciones);
+
+        notificaciones.forEach(function(noti){
+            $("#divnotificaciones").append('<p>' + noti.nombre + '</p>');
+        });
+}
 
 function comprobarPartida(){
     mi_partida = Partida.find({_id:user}).fetch();
