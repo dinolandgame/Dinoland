@@ -734,12 +734,56 @@ Template.dinoGame.helpers({
     partida:function(){
         return Partida.find({});
         
+    }, 
+    //buscamos la quantidad de dinosaurios que hay por areaa
+    mostrar_num_dinoss:function(nom_area){
+        //obtenemos la partida de jugador
+        mi_partida = Partida.findOne({_id:Meteor.userId()});
+        var num_dino=0;
+        //recorremos el array de dinos de partida
+        mi_partida.dinos.forEach(function(dino){
+            //obtenemos el dinosssssss
+            var dino_act = Dinosaurio.findOne({_id:dino.id});
+            //miramos si el dino es de la area que le pasamos 
+            if(dino_act.habitat == nom_area ){
+                //si es le sumamos la cantidad
+                num_dino += dino.cantidad;
+            }
+
+            //obtenemos la cantidad de Tyrannosaurus rex
+            if(nom_area== "terrestre" && dino_act.nombre== "Tyrannosaurus rex" ){
+                num_dino +=dino.cantidad;
+            }
+            
+        });
+        console.log(num_dino);
+        return num_dino;
     },
+    max_dinosaurios:function(){
+        var max_cap = 0 
+        //obtenemos la partida
+        var mi_partida = Partida.findOne({_id:Meteor.userId()});
+        //recorremos el array de edificios i comprovamos nivel de habitat 
+        mi_partida.edificio.forEach(function(edif){
+            switch(edif)
+            {   //guardamos la capacidad de dinos que puede tener el habitat segun su nivel
+                case 1101: max_cap = Edificio.findOne({_id:edif}).capacidadDino; break;
+                case 1102: max_cap = Edificio.findOne({_id:edif}).capacidadDino; break;
+                case 1103: max_cap = Edificio.findOne({_id:edif}).capacidadDino; break;
+            }
+        });
+        
+        return max_cap;
+    },
+
     edificios: function(){
          var variable=Session.get('key');
        //console.log("Edificio:" + quinedifici);
        //console.log("variable:" + variable);
         return Edificio.find({key: variable});
+    },
+    habitats: function(){
+        return Terreno.find({});
     },
 
     edificioTodos: function(){
