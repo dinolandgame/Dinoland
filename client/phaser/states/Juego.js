@@ -65,13 +65,13 @@ Juego.prototype = {
                     game.state.restart();
                     bell.play();
                     comprobarNotificaciones();
-                    $('#pop_notificaciones').modal('show'); 
+                    $(".side-collapse").addClass('open'); 
                 }
 
                 if(fields.hasOwnProperty('expedicion')){
                     bell.play();
                     comprobarNotificaciones();
-                    $('#pop_notificaciones').modal('show');
+                    $(".side-collapse").addClass('open');
                 }
             }
         });
@@ -151,8 +151,8 @@ function comprobarNotificaciones(){
         $("#text-contador-notis").text(cont_notificiaciones);
 
         notificaciones.forEach(function(noti){
-            $("#divnotificaciones").empty();
-            $("#divnotificaciones").append('<li>' + noti.descripcion + '</li>');
+            //$("#divnotificaciones").empty();
+            $("#divnotificaciones").append('<li class="notificacion"><img class="close-noti" src="/images/close.png" alt="close">'+ noti.descripcion +'</li>');
         });
 }
 
