@@ -335,8 +335,8 @@
                         </div> 
                     {{/each}} 
                     </div>
-                    <div id="contingut_modal-habitat">
-                         <div id="resumen-habitat" class="row info_edifici">
+                   <div id="contingut_modal-habitat">
+                        <div id="resumen-habitat" class="row info_edifici">
                             <div class="modal-desc col-sm-6 col-sm-offset-3 modal-desc-habitats">
                             {{ #each edificios }}
                                 <p>{{ descripcion }}</p>
@@ -368,6 +368,29 @@
                          
                             {{ /each }}   
                         </div>
+                        <div id="mostrar_dinos" style="overflow-y:scroll">
+                            {{ #each dinosaurios }}
+                                <div class="  col-lg-11" style="padding-bottom: 7px; margin-left: 113px;">
+                                    <div class="col-lg-3">
+                                        <img src="{{imagen_terreno this}}" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
+                                    </div>
+
+                                    <div class="modal-desc col-sm-4 ">
+                                        <p>{{descripcion}}</p>
+                                    </div>
+
+                                    <div class=" col-sm-2 ">
+                                        <p class="">{{nombre}}</p>
+                                        <p>{{mostrar_dino this}}/{{max_dinosaurios}}</p>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <img src="{{imagen_terreno this}}" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
+                                    </div>
+                                </div>
+                            {{ /each}}
+                        </div>
+
                         <div>
                                 <button id="pasar-pagina" type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui">
                                     <p class="dinobuton-text"><span class="glyphicon glyphicon-menu-right"></span></p>

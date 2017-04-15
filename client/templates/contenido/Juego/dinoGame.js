@@ -450,13 +450,15 @@ Template.dinoGame.events({
     
 /**********************EVENTOS HABITATS**********************************************/
 "click #pasar-pagina":function(event, template){
-    $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("position", "relative").animate({"position": "relative","right":'+2000px'}, 800);
+    //$('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("position", "relative").animate({"position": "relative","right":'+2000px'}, 800);
+    $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("display", "none").animate({"position": "relative","right":'+2000px'}, 800);
+    //$('#mostrar_dinos').css("position", "relative").animate({"position": "relative","right":'-2000px'}, 800);
     $('#pasar-pagina').css('display', 'none');
     $('#volver-pagina').css('display', 'block');
 },
 
 "click #volver-pagina":function(event, template){
-     $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("position", "relative").animate({"position": "relative","right":'0px'}, 800);
+     $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("display", "block").animate({"position": "relative","right":'0px'}, 800);
      $('#pasar-pagina').css('display', 'block');
      $('#volver-pagina').css('display', 'none');
 },
@@ -806,7 +808,28 @@ Template.dinoGame.helpers({
     habitats: function(){
         return Terreno.find({});
     },
+    dinosaurios: function(){
+        return Dinosaurio.find({});
+    },
+    mostrar_dino:function(dino){
+        var quantitat = 0;
+        var mi_partida = Partida.findOne({_id:Meteor.userId()});
+        mi_partida.dinos.forEach(function(di){
+            if(dino._id == di.id){
+                quantitat = di.cantidad;
+            }
+        });
+        return quantitat;
 
+    },
+    imagen_terreno:function(dino){
+        var imagterreno = "";
+        var terreno = Terreno.findOne({tipo_terreno:dino.habitat});
+        if(terreno!=null){
+            imagterreno = terreno.avatar;
+        }
+        return imagterreno;
+    },
     edificioslvl1: function(){
         return Edificio.find({nivel: 1});
     },
@@ -992,6 +1015,8 @@ Template.dinoGame.onRendered(function(){
         /* EXPEDICIONES */
         //la primera carga comprobamos los botones de sumar y restar para cada tropa
         buttons_sum_res(); 
+
+
 
 
 });
