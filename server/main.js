@@ -104,7 +104,7 @@ Meteor.methods({
                 Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
             }
             else if(EdificiUp.key=="cuartel3"){
-                Partida.update({_id:user},{$push:{desbloqueados:{$each:[EdificiUp.desbloquea]}}});
+                Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
             }
 
             // Se genera una notificación
