@@ -576,7 +576,13 @@ Template.dinoGame.events({
 
             alert("faltan recursos");
         } 
+    },
+
+
+    "click button[data-toggle='collapse-side']": function(event,template){
+        $('.side-collapse').toggleClass('open');
     }
+
     
     /*****************FIN EVENTOS INVESTIGACIONES*****************************************/
 
@@ -927,8 +933,10 @@ Template.dinoGame.helpers({
 /* ON RENDERES ES COMO EL DOCUMENT(READY) */
 Template.dinoGame.onRendered(function(){
 
+    /* NOTIFICACIONES */
     comprobarNotificaciones();
 
+    
     cont_sonido = 0;//Variable para controlar el sonido y el mute
 
     /* VARIABLES GLOBALES PARA EXPEDICIONES */   
@@ -1004,7 +1012,9 @@ function comprobarNotificaciones(){
         $("#text-contador-notis").text(cont_notificiaciones);
 
         notificaciones.forEach(function(noti){
-            $("#divnotificaciones").append('<p>' + noti.nombre + '</p>');
+            $("#divnotificaciones").empty();
+            $("#divnotificaciones").append('<li>' + noti.nombre + '</li>');
+            $("#divnotificaciones").append('<li>' + noti.descripcion + '</li>');
         });
 }
 

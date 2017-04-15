@@ -156,7 +156,7 @@ Meteor.methods({
              // Se genera una notificación
             Notificacion.insert({usuario: user,
                                  nombre: "construccion edificio",
-                                 descripcion: "Ha finalizado la construcción del " + Edifici.nom
+                                 descripcion: "Ha finalizado la construcción: " + Edifici.nom
             });
           
             if(Edifici._id==401 || Edifici._id==402 || Edifici._id==403){

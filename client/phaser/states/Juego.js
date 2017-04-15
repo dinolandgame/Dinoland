@@ -67,6 +67,12 @@ Juego.prototype = {
                     comprobarNotificaciones();
                     $('#pop_notificaciones').modal('show'); 
                 }
+
+                if(fields.hasOwnProperty('expedicion')){
+                    bell.play();
+                    comprobarNotificaciones();
+                    $('#pop_notificaciones').modal('show');
+                }
             }
         });
         
@@ -135,6 +141,19 @@ Juego.prototype = {
         move_camera_by_pointer(this.input.pointer1);
 
     }
+}
+
+function comprobarNotificaciones(){
+    /*NOTIFICACIONES */
+
+        var notificaciones = Notificacion.find({usuario:user}).fetch();
+        var cont_notificiaciones = notificaciones.length;
+        $("#text-contador-notis").text(cont_notificiaciones);
+
+        notificaciones.forEach(function(noti){
+            $("#divnotificaciones").empty();
+            $("#divnotificaciones").append('<li>' + noti.descripcion + '</li>');
+        });
 }
 
 function afegirPropietatsSprite(edifici){
