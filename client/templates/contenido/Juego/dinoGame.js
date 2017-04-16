@@ -76,11 +76,18 @@ Template.dinoGame.events({
 
 
                 Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }});
+                
+                
 
-
-                Meteor.call('update_part',EdificiUp,Edifici); 
+               Meteor.call('update_part',EdificiUp,Edifici); 
               //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados
-                    
+                /******
+                *****AQUI HAGO EL CONTANDOR DEL CLLIENTE
+                *****/
+                ahora = new Date().getTime()
+                console.log(ahora);
+                total = ahora+EdificiUp.tiempoConstruccion*1000;
+                contador(total);
                 alert("se ha subido de nivel");
             }
             else{
@@ -643,6 +650,19 @@ function buttons_sum_res(){
         quantitat = $(this).children("span").text();
         quantitatInt = parseInt(quantitat);
         tipusTropa = $(this).data("tipo");
+        
+         misBonos = []; 
+        /******** mis bonos tienen controlados los bonos 
+        de la partida del jugador con la funcion de comprobar Bonos
+            misBonos[0] = seguridad;
+            misBonos[1] = habitats;
+            misBonos[2] = rrpp;
+            misBonos[3] =logistica;
+            misBonos[4] = liderazgo;
+        
+        ********/
+        misBonos = comprobarBonos();
+        
         if(quantitatInt == 0){
             hideRestar();
 
@@ -797,7 +817,26 @@ Template.dinoGame.helpers({
 
 /* ON RENDERES ES COMO EL DOCUMENT(READY) */
 Template.dinoGame.onRendered(function(){
-
+    
+    /**********************
+    aqui deberiamos leer el array de tareas pendientes de la partida del jugador para podel hacer tantos
+    cronometros como tareas se esten haciendo
+    **********************/
+     user = Meteor.userId();
+    partida = Partida.find({_id:user}).fetch();
+    
+    for(var tarea = 0; tarea <partida[0].desbloqueando.length; tarea++){
+        ahora = new Date().getTime();
+        
+        final =  partida[0].desbloqueando[tarea].final;
+        if(ahora<final){
+            var tiempoRestante = final;
+            
+            contador(tiempoRestante);
+        }
+        
+    }
+      
 
     cont_sonido = 0;//Variable para controlar el sonido y el mute
 
@@ -806,7 +845,7 @@ Template.dinoGame.onRendered(function(){
      /* Aumenta en 10 la variable capacidad*/
     
     
-    user = Meteor.userId();
+   
 
     totalDC = 0;            /* Total coste Dinocoins */
     totalSUM = 0;           /* Total coste Suministros */
@@ -888,6 +927,45 @@ function comprobarBonos(){
     return Bonos;
 }
 
+/***************************************
+**********************************
+**********************************
+FUNCION CRONOMETRO DE JAVASCRIPT
+la llamaremos cuando se haga efectiva la creacion de un edificio, el subir nivel edificio,
+y tambien en las investigaciones
 
+/****************************************/
+function contador(tiempo,cont){
+    var countDownDate = tiempo;
+
+// Update the count down every 1 second
+   
+    var x = setInterval(function() {
+    // Get todays date and time
+    var now = new Date().getTime();
+    
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+    
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Output the result in an element with id="demo"
+    
+    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+    
+    // If the count down is over, write some text 
+    if (distance < 0) {
+        clearInterval(x);
+        
+        document.getElementById("demo").innerHTML =0 + "d " + 0 + "h "
+    + 0 + "m " + 0 + "s ";
+    }
+}, 1000);
+}
 
 

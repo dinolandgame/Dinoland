@@ -23,7 +23,8 @@ Meteor.methods({
                      bono_habitats:false,
                      bono_rrpp:false,
                      edificio:[],
-                    desbloqueados:[]}); 
+                    desbloqueados:[],
+                    desbloqueando:[]}); 
       
        
        /*{
@@ -50,6 +51,7 @@ Meteor.methods({
     console.log("Ha entrado");
   },
  
+    //nombre de la llamada al metedo de subir partida desde el cliente Meteor.call
   update_part(EdificiUp,Edifici){
     
    
@@ -84,8 +86,8 @@ Meteor.methods({
             
             
             if(EdificiUp.key=="cuartel2"){
-                        Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
-                    }
+                Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
+            }
          if(EdificiUp.key=="cuartel3"){
             Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
         }
@@ -94,6 +96,7 @@ Meteor.methods({
         }  
           
     });
+      
     },
     //creacion edificios 1er nivel
     crear_edificio(id){
@@ -398,7 +401,7 @@ Meteor.methods({
 
     SyncedCron.add({
         name: user +"_"+Investigacio.nom,
-        schedule: function(parser) {
+        schedule: function(parser){
         
             console.log("ha entrat a la data");
              
