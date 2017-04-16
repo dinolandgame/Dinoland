@@ -1,67 +1,65 @@
 <template name="dinoGame">
 <div id="content-juego">
 	<div id="sidebar" class="col-sm-2 sidebar1">
-    <img id="btn_desplegar" src="images/ui/desplegar.png">
-    <img id="btn_plegar" src="images/ui/plegar.png">
-  
-    <div class="profile-header-container">   
-        <div class="profile-header-img">
-            <img class="img-circle" src="images/foto_perfil.jpg">
-            <!-- cercle voltant -->
-            <div class="rank-label-container">
-                <span class="label label-default rank-label">Usuario 1</span>
+        <img id="btn_desplegar" src="images/ui/desplegar.png">
+        <img id="btn_plegar" src="images/ui/plegar.png">
+      
+        <div class="profile-header-container">   
+            <div class="profile-header-img">
+                <img class="img-circle" src="images/foto_perfil.jpg">
+                <!-- cercle voltant -->
+                <div class="rank-label-container">
+                    <span class="label label-default rank-label">Usuario 1</span>
+                </div>
+            </div>
+            <div class="progress">
+                <div data-percentage="0%" style="width: 20%;" class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+
+            <p class="coins">nivel 8 - 856/900 exp</p>
+            <br>
+            <div class="coins">
+                <i class="ionicons ion-egg"></i>
+            </div>
+            <p class="coins">2,342</p>
+        
+
+        </div> 
+        <br>
+
+        <div>
+            <div class="left-navigation">
+                <ul class="list">
+                    <li><i class="ionicons ion-ios-person"></i>  Mi muro</li>
+                    <li><i class="ionicons ion-ios-search-strong"></i>  Expediciones</li>
+                    <li><i class="fa fa-envelope-o"></i> Mensajes</li>
+                    <li><i class="fa fa-shopping-cart"></i> Comercio</li>
+                    <li><i class="fa fa-bar-chart"></i> Logros</li>
+                    <li><a href="{{pathFor 'principal'}}" role="button" id="home" class="log-out"><span class="glyphicon glyphicon-home"></span>&nbsp;Salir</a><i class="ionicons ion-log-out"></i></li>
+                </ul>
             </div>
         </div>
-        <div class="progress">
-            <div data-percentage="0%" style="width: 20%;" class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-
-        <p class="coins">nivel 8 - 856/900 exp</p>
-        <br>
-        <div class="coins">
-            <i class="ionicons ion-egg"></i>
-        </div>
-        <p class="coins">2,342</p>
-    
-
-    </div> 
-    <br>
-
-    <div>
-        <div class="left-navigation">
-            <ul class="list">
-                <li><i class="ionicons ion-ios-person"></i>  Mi muro</li>
-                <li><i class="ionicons ion-ios-search-strong"></i>  Expediciones</li>
-                <li><i class="fa fa-envelope-o"></i> Mensajes</li>
-                <li><i class="fa fa-shopping-cart"></i> Comercio</li>
-                <li><i class="fa fa-bar-chart"></i> Logros</li>
-                <li><a href="{{pathFor 'principal'}}" role="button" id="home" class="log-out"><span class="glyphicon glyphicon-home"></span>&nbsp;Salir</a><i class="ionicons ion-log-out"></i></li>
-            </ul>
-        </div>
     </div>
-</div>
 
 <!-- Botons -->
 
-<button id="btn-tienda" class="boton_gui" data-target="#pop_tienda" data-toggle="modal">
-        <p class="dinobuton-text">Comercio</p>
-</button>
+    <button id="btn-tienda" class="boton_gui" data-target="#pop_tienda" data-toggle="modal">
+            <p class="dinobuton-text">Comercio</p>
+    </button>
 
-<button id="btn-expediciones" data-target="#pop_expediciones" data-toggle="modal" class="boton_gui">
-        <p class="dinobuton-text">Expediciones</p>
-</button>
+    <button id="btn-expediciones" data-target="#pop_expediciones" data-toggle="modal" class="boton_gui">
+            <p class="dinobuton-text">Expediciones</p>
+    </button>
 
-<button id="btn-social" data-target="#pop_social" data-toggle="modal">
-        <img class="btn-icon" src="images/ui/icon-social.png">
-</button>
+    <button id="btn-social" data-target="#pop_social" data-toggle="modal">
+            <img class="btn-icon" src="images/ui/icon-social.png">
+    </button>
 
-<button id="btn-sound">
-        <img class="btn-icon" src="images/ui/sound.png">
-</button>
+    <button id="btn-sound">
+            <img class="btn-icon" src="images/ui/sound.png">
+    </button>
 
-<button id="contador-notis" class="boton_gui" data-target="#pop_notificaciones" data-toggle="modal">
-    <p id="text-contador-notis" class="dinobuton-text"></p>
-</button>
+    
 
 
 
@@ -624,12 +622,12 @@
                            {{#each investigaciones}}
                               {{#if investdesbloc _id}}
                                <div class="col-sm-2">
-                                  <a data-target="#pop_investigacion" href="#" type="button"  data-toggle="modal" class="no-seleccionable"><img src="images/lider1.png" class="img_lab modal-img-edif-cuartel" data-investigar={{_id}}></a>
+                                  <a data-target="#pop_investigacion" href="#" type="button"  data-toggle="modal" class="no-seleccionable"><img src="{{avatar}}" class="img_lab modal-img-edif-cuartel" data-investigar={{_id}}></a>
                                   <p id="edif-nombre">{{nom}}</p>
                                 </div>
                                 {{else}}
                                     <div class="col-sm-2 div-laboratorio">
-                                      <a data-target="#pop_investigacion" href="#" type="button"  data-toggle="modal" class="seleccionable"><img src="images/lider1.png" class="img_lab modal-img-edif-cuartel" data-investigar={{_id}}></a>
+                                      <a data-target="#pop_investigacion" href="#" type="button"  data-toggle="modal" class="seleccionable"><img src="{{avatar}}" class="img_lab modal-img-edif-cuartel" data-investigar={{_id}}></a>
                                       <p id="edif-nombre">{{nom}}</p>
                                     </div>
                                 {{/if}}
@@ -662,22 +660,25 @@
         </div>
     </div>
 
-    <!-- POP NOTIFICIACIONES -->
-    <div tabindex="-1" class="modal fade" id="pop_notificaciones" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog pop_gran">
-            <div class="modal-content border">
-                <div class="modal-body content_gran">
-                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                    <div class="header_gran">
-                        <h2>NOTIFICIACIONES</h2>
-                    </div>
+    <!-- SIDEBAR NOTIFICACIONES -->
 
-                    <div id="divnotificaciones">
-                        <p>Contenido aquí</p>
-                    </div>
-                </div>
-            </div>
+    <button id="contador-notis" class="boton_gui" data-toggle="collapse-side" data-target=".side-collapse" type="button">
+        <img class="noti-message" src="/images/notification_message.png" alt="close">
+        <p id="text-contador-notis" class="dinobuton-text"></p>
+    </button>
+
+    <div class="side-collapse">
+
+        <div class="side-noti">
+                <img src="/images/ribbon_noti.png">
+                <h4 id="nom_edifici">Avisos</h4>
         </div>
+      <div class="navbar-collapse">
+             
+        <ul id="divnotificaciones" class="nav navbar-nav">
+            <!--Aqui se van añadiendo las notificaciones dinámicamente -->
+        </ul>
+      </div>
     </div>
 
 <div class="panel panel-default prueba" style="display:none;position: absolute;left: 40%;top: 40%">

@@ -548,6 +548,8 @@ Template.dinoGame.events({
         console.log("voy a acabar esta funcion con el crhon");
 },
 
+    /*****************FIN EVENTOS INVESTIGACIONES*****************************************/
+
     "click a#expedicion": function(event, template){
 
 
@@ -576,9 +578,26 @@ Template.dinoGame.events({
 
             alert("faltan recursos");
         } 
+    },
+
+
+    "click button[data-toggle='collapse-side']": function(event,template){
+        $('.side-collapse').toggleClass('open');
+    },
+
+    "click img.close-noti": function(event,template){
+        //comprobarNotificaciones();
+        var notificaciones = Notificacion.find({usuario:user}).fetch();
+        var cont_notificiaciones = notificaciones.length;
+        
+        $("#text-contador-notis").text(cont_notificiaciones);
+        $(event.target).parent().fadeOut();
+        //$(event.target).parent().remove();
+        //falta fer el delete a la BD
     }
+
     
-    /*****************FIN EVENTOS INVESTIGACIONES*****************************************/
+    
 
 
  }); 
@@ -927,8 +946,10 @@ Template.dinoGame.helpers({
 /* ON RENDERES ES COMO EL DOCUMENT(READY) */
 Template.dinoGame.onRendered(function(){
 
+    /* NOTIFICACIONES */
     comprobarNotificaciones();
 
+    
     cont_sonido = 0;//Variable para controlar el sonido y el mute
 
     /* VARIABLES GLOBALES PARA EXPEDICIONES */   
@@ -1004,7 +1025,8 @@ function comprobarNotificaciones(){
         $("#text-contador-notis").text(cont_notificiaciones);
 
         notificaciones.forEach(function(noti){
-            $("#divnotificaciones").append('<p>' + noti.nombre + '</p>');
+            //$("#divnotificaciones").empty();
+            $("#divnotificaciones").append('<li class="notificacion"><img class="close-noti" src="/images/close.png" alt="close">'+ noti.descripcion +'</li>');
         });
 }
 

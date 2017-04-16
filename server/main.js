@@ -156,7 +156,7 @@ Meteor.methods({
              // Se genera una notificación
             Notificacion.insert({usuario: user,
                                  nombre: "construccion edificio",
-                                 descripcion: "Ha finalizado la construcción del " + Edifici.nom
+                                 descripcion: "Ha finalizado la construcción: " + Edifici.nom
             });
           
             if(Edifici._id==401 || Edifici._id==402 || Edifici._id==403){
@@ -409,7 +409,7 @@ Meteor.methods({
             // está incluye un campo con la id_expedicion para poder recuperarla de la BD si interesa por algún motivo (ej: colocar un link a la expedición en la misma label de notificación)
             Notificacion.insert({usuario: user,
                                  nombre: "expedición finalizada",
-                                 descripcion: "Ha finalizado la expedición programada a las " + fecha_fin,
+                                 descripcion: "Ha finalizado la expedición. ¡Buen trabajo!",
                                  doc_expedicion: id_expedicion
             });
             var partida_jugador = Partida.findOne({_id:user});
