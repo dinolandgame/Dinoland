@@ -30,13 +30,13 @@ Meteor.methods({
                     desbloqueados:[],
                     bonos_desbloqueados:[],
                     dinos:[
-                        {id:1,cantidad:0},
-                        {id:2,cantidad:0},
-                        {id:3,cantidad:0},
-                        {id:4,cantidad:0},
-                        {id:5,cantidad:0},
-                        {id:6,cantidad:0},
-                        {id:7,cantidad:0}
+                        [{id:1,cantidad:0}],
+                        [{id:2,cantidad:0}],
+                        [{id:3,cantidad:0}],
+                        [{id:4,cantidad:0}],
+                        [{id:5,cantidad:0}],
+                        [{id:6,cantidad:0}],
+                        [{id:7,cantidad:0}]
                     ]}); 
 
       
@@ -516,7 +516,7 @@ Meteor.methods({
                      Partida.update({_id:user},{$push:{bonos_desbloqueados:4}});
                     
                     console.log("investigacio acabada!!");
-                }else if(Investigacio._id==5){
+            }else if(Investigacio._id==5){
                     Partida.update({_id:user},{$inc:{bono_liderazgo:10}});
                      Partida.update({_id:user},{$push:{bonos_desbloqueados:5}});
                     console.log("investigacio acabada!!");
@@ -661,6 +661,53 @@ Accounts.emailTemplates.verifyEmail = {
     });
 
 SyncedCron.start();*/
+    SyncedCron.start();
+        SyncedCron.add({
+        name: 'Run in 10  seconds ',
+        schedule: function(parser) {
+            // parser is a later.parse obje
+            return parser.text('every 10 seconds');
+        },
+        job: function() {
+            // do something important here
+            console.log("aixo es un missatge de mostra (20)");
+            today = new Date();
+            mi_partida = Partida.find().fetch();
+           console.log(mi_partida[2]);
+            console.log(mi_partida[2]._id);
+                dinos_perdidos = getRndInteger(0,5);
+                dino_perdido =  getRndInteger(0,7);
+                dia = today.getDay();
+                if(bono){
+                    switch(dia){
+                    case 1 : case 5:
+                         //for(var proba=0; proba<=mi_partida.length; proba++){
+                        Partida.update({_id: mi_partida[2]._id, 'dinos._id':'1'},{$set:{"dinos.$.cantidad":1000}});
+                        console.log(Partida.find({_id:mi_partida[2]._id}).fetch());
+                          // Partida.update({"dinos.id":1},{set:{"dinos.cantidad":5}});
+                             console.log("se han perdido " + dinos_perdidos);
+                        //}                                                        
+                        break;
+                    case 2: case 3: 
+
+                        break;
+                    case 4: case 6: 
+
+                        break;
+                    case 7: 
+
+                        break;
+
+                    }
+                }
+                
+            
+            
+            
+            //SyncedCron.remove('Run in 20 seconds only once');
+        }
+    });
+
 });
 
 
