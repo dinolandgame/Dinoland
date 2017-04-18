@@ -454,7 +454,7 @@ Meteor.methods({
                     
                     dino.cantidad +=capturas_final;
                     //dino_act = dino.cantidad;
-                }
+                }  
 
             });
             console.log(partida_jugador.dinos);
@@ -503,12 +503,15 @@ Meteor.methods({
            
             console.log("ha entrat en el job");
             if(Investigacio._id==1){
+                Partida.update({_id:user},{$set:{bono_seguridad:true}});
                 Partida.update({_id:user},{$push:{bonos_desbloqueados:1}});
             }
             else if(Investigacio._id==2){
+                Partida.update({_id:user},{$set:{bono_habitats:true}});
                 Partida.update({_id:user},{$push:{bonos_desbloqueados:2}});
             }
             else if(Investigacio._id==3){
+                Partida.update({_id:user},{$set:{bono_rrpp:true}});
                 Partida.update({_id:user},{$push:{bonos_desbloqueados:3}});
             }
             else if(Investigacio._id==4){
@@ -516,7 +519,7 @@ Meteor.methods({
                      Partida.update({_id:user},{$push:{bonos_desbloqueados:4}});
                     
                     console.log("investigacio acabada!!");
-                }else if(Investigacio._id==5){
+            }else if(Investigacio._id==5){
                     Partida.update({_id:user},{$inc:{bono_liderazgo:10}});
                      Partida.update({_id:user},{$push:{bonos_desbloqueados:5}});
                     console.log("investigacio acabada!!");
@@ -661,6 +664,95 @@ Accounts.emailTemplates.verifyEmail = {
     });
 
 SyncedCron.start();*/
+    
+    //***********LOS DINOS ESCAPAN
+    //************ CRON DE 12 o 24 Horas, por el momento cada 20s
+    //************
+   /* SyncedCron.start();
+        SyncedCron.add({
+        name: 'Run in 20 seconds ',
+        schedule: function(parser) {
+            // parser is a later.parse obje
+            return parser.text('every 20 seconds');
+        },
+        job: function() {
+            
+            var dinos_perdidos = getRndInteger(1,10);//numero aleatorio para saber cantos dinosaurios se han escapado
+            var dino_perdidoId =  getRndInteger(1,7);//numero aleatorio para comparar al id del dinosaurio
+            // do something important here
+            console.log("aixo es un missatge de mostra (666-555-666)CALL ME <3");
+            
+            
+            mi_partida = Partida.find().fetch();//obtenemos una array con todas las partidas
+            console.log("numero de partidas = " + mi_partida.length);
+            console.log("---------1---------");
+           for(var proba = 0; proba<mi_partida.length; proba++){//por cada partida
+                
+                console.log(mi_partida[proba]);
+                console.log("----------2--------");
+                console.log(dino_perdidoId);
+                var array =[]; //array para almacenar los objetos dinosaurios
+                
+                mi_partida[proba].dinos.forEach(function(dino,i){ //por cada partida
+                    console.log("partida: " + proba + " dino " + dino.id);
+                    
+                    if(dino.id==dino_perdidoId){//tipo de dinosaurio escapado escoogido aleatoriamente
+                        var activo=false; //booleano para el bono de seguridad
+                        activo = mi_partida[proba].bono_seguridad; 
+                        if(!activo){//si el bono no esta activado
+                            var restantes = dino.cantidad-dinos_perdidos; //se han escapado los dinosaurios sin bono
+                        
+                            console.log("dinosaurio en la partida " + dino.cantidad);
+                            console.log("dinosaurios perdidos "+dinos_perdidos);  
+                            
+                            //se escapan y ademas evitamos que tengamos dinosaurios negativos
+                            if(restantes<0){
+                                dino.cantidad = 0;
+                            }
+                            else{
+                                dino.cantidad = restantes;//hacemos que los dinosaurios restantes sean los dinosaurios de la partida
+                            }
+                            
+                            console.log("dinosaurios restantes: "+ dino.cantidad);
+                            console.log("---------3---------");
+                        }
+                        
+                        else{//si tenemos bono
+                            var restantes = dino.cantidad-(Math.floor(dinos_perdidos/2));//se escapan dinosaurios -50% la mitad
+                        
+                            console.log("dinosaurio en la partida " + dino.cantidad);
+                            console.log("dinosaurios perdidios sin bono "+dinos_perdidos); 
+                            console.log("dinosaurios perdidios con bono "+(dino.cantidad-restantes));
+                            console.log("bonus bonus");
+
+                             //se escapan y ademas evitamos que tengamos dinosaurios negativos
+                            if(restantes<0){
+                                dino.cantidad = 0;
+                            }
+                            else{
+                                dino.cantidad = restantes;//hacemos que los dinosaurios restantes sean los dinosaurios de la partida
+                            }
+                            console.log("dinosaurios restantes: "+ dino.cantidad);
+                            console.log("---------3---------");
+                        }
+                   
+                    } 
+                    console.log("<<<<<<< top top top >>>>>>>>");
+                    console.log("dinosaurio en la partida " + dino.cantidad);
+                    console.log("<<<<<<< top top top >>>>>>>");
+                    array.push(dino);//por cada dinosaurio lo guardamos en un array
+                    
+                    
+                });
+               
+               //actualizamos el array en la partida; para todas las partidas sera lo mismoS
+                Partida.update({_id:mi_partida[proba]._id},{$set: {dinos: array }});
+            //SyncedCron.remove('Run in 20 seconds only once');
+            }
+    
+        }
+    });*/
+
 });
 
 
