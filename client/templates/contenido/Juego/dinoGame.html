@@ -603,8 +603,8 @@
                                     <button type="button" class="btn_modal boton_gui btn-lvlup-laboratorio" id="subirlvl">
                                     <p class="dinobuton-text">Subir nivel</p>
                                     </button>
-                                    <button id="btn-investiga"  type="button"  class="btn_modal boton_gui" >
-                                        <p id="investiga" class="dinobuton-text" data-id="">Investigar</p>
+                                    <button id="btn-investiga" data-id=""  type="button"  class="btn_modal boton_gui investiga" >
+                                        <p class="dinobuton-text">Investigar</p>
                                     </button>
                                 </div>
                                 <div id="div-bono">
@@ -621,13 +621,13 @@
                         <div id="seccion-investigaciones" class="row edif-lab">
                            {{#each investigaciones}}
                               {{#if investdesbloc _id}}
-                               <div class="col-sm-2">
-                                  <a data-target="#pop_investigacion" href="#" type="button"  data-toggle="modal" class="no-seleccionable"><img src="{{avatar}}" class="img_lab modal-img-edif-cuartel" data-investigar={{_id}}></a>
+                               <div class="col-sm-2" data-divID={{_id}}>
+                                  <a data-target="#pop_investigacion" href="#" type="button"  data-id={{_id}} data-toggle="modal" class="no-seleccionable"><img src="{{avatar}}" class="img_lab modal-img-edif-cuartel"></a>
                                   <p id="edif-nombre">{{nom}}</p>
                                 </div>
                                 {{else}}
-                                    <div class="col-sm-2 div-laboratorio">
-                                      <a data-target="#pop_investigacion" href="#" type="button"  data-toggle="modal" class="seleccionable"><img src="{{avatar}}" class="img_lab modal-img-edif-cuartel" data-investigar={{_id}}></a>
+                                    <div class="col-sm-2 div-laboratorio" data-divID={{_id}}>
+                                      <a data-target="#pop_investigacion" href="#" type="button" data-id={{_id}} data-toggle="modal" class="seleccionable"><img src="{{avatar}}" class="img_lab modal-img-edif-cuartel" ></a>
                                       <p id="edif-nombre">{{nom}}</p>
                                     </div>
                                 {{/if}}
