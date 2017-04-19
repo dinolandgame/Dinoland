@@ -489,6 +489,7 @@ canvas{
     border: 3px solid white;
     border-radius: 10px;
     text-align: justify;
+    height: 286px;
     /*margin-bottom: 20px;*/
 }
 
@@ -557,7 +558,7 @@ canvas{
     /* margin-top: 60px; */
     height: 430px;
     padding-top: 20px;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 #contingut_modal h2{
@@ -574,13 +575,38 @@ canvas{
 #pasar-pagina{
     position: fixed;
     top: 200px;
-    right: 100px;
+    right: 20px;
 }
 
 #volver-pagina{
     position: fixed;
     top: 200px;
-    left: 100px;
+    left: 20px;
+}
+
+#tipoTerrestre{
+    display: none;
+    position: fixed;
+    top: 120px;
+    left:2000px;
+}
+
+#tipoAcuatico{
+    display: none;
+    position: fixed;
+    top: 120px;
+    left:2000px;
+}
+
+#tipoAereo{
+    display: none;
+    position: fixed;
+    top: 120px;
+    left:2000px;
+}
+
+.contador-habitat{
+    height: 60px;
 }
 /********* MODALS EDIFICI ***************/
 
@@ -1343,4 +1369,81 @@ border-radius: 100%;
     position: absolute;
     left: 95%;
     top: 70%;
+}
+
+/* CARTAS */
+
+.carta{
+    border: 5px solid #5E3711;
+    border-radius: 10px;
+    width: 260px;
+    height: 360px;
+    padding-top: 10px;
+    background-color: #DEB477;
+    margin-left: 15px;
+    background-image: -webkit-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
+}
+
+.carta-descripcion{
+    font-size: 0.8em;
+}
+
+.carta-contenedor{
+    border: 2px solid #5E3711;
+    height: 320px;
+    width: 220px;
+    border-radius: 13px;
+    background-color: #DEB477;
+}
+
+.carta-nombre{
+    text-align: center;
+    margin-bottom: 0px;
+    font-family: "Skranji";
+    color: rgb( 255, 255, 255 );
+    font-weight: bold;
+    text-shadow: 1px 2px 3px rgb( 0, 0, 0 );
+    background-image: -webkit-linear-gradient( 90deg, #5E3711 0%, #DEB477 100%);
+    border-radius: 10px;
+    height: 30px;
+    padding-top: 6px;
+}
+
+.carta-img{
+    border: 2px solid #814B17;
+    border-radius: 10px;
+    width: 150px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.carta-habitat{
+    padding-top: 3px;
+    padding-left: 3px;
+    font-size: 0.8em;
+    height: 20px;
+    margin-bottom: 0px;
+    font-family: "Skranji";
+    color: rgb( 255, 255, 255 );
+    font-weight: bold;
+    text-shadow: 1px 2px 3px rgb( 0, 0, 0 );
+    /* background-image: -webkit-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%); */
+    background-image: -webkit-linear-gradient( 90deg, #5E3711 0%, #DEB477 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
+    border-radius: 3px;
+}
+
+.carta-descripcion{
+    padding: 7px;
+    text-align: justify;
+}
+
+.carta-ferocidad{
+    text-align: right;
+    color: white;
+    text-shadow: 1px 2px 3px rgb( 0, 0, 0 );
+}
+
+.estrellas{
+    margin-right: 10px;
 }

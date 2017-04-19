@@ -450,17 +450,16 @@ Template.dinoGame.events({
     
 /**********************EVENTOS HABITATS**********************************************/
 "click #pasar-pagina":function(event, template){
-    //$('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("position", "relative").animate({"position": "relative","right":'+2000px'}, 800);
-    $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("display", "none").animate({"position": "relative","right":'+2000px'}, 800);
-    //$('#mostrar_dinos').css("position", "relative").animate({"position": "relative","right":'-2000px'}, 800);
-    $('#pasar-pagina').css('display', 'none');
+    $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("position", "relative").animate({"position": "relative","right":'+2000px'}, 800);
+    $('#tipoTerrestre').css("display", "block").animate({"top": "120px", "left": "0px"}, 800);
+    $('#pasar-pagina').css('display', 'block'); //none
     $('#volver-pagina').css('display', 'block');
 },
 
 "click #volver-pagina":function(event, template){
      $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("display", "block").animate({"position": "relative","right":'0px'}, 800);
      $('#pasar-pagina').css('display', 'block');
-     $('#volver-pagina').css('display', 'none');
+     $('#volver-pagina').css('display', 'block');//none
 },
 
 
@@ -799,6 +798,24 @@ Template.dinoGame.helpers({
         return max_cap;
     },
 
+    estrellas:function( id, encuentro){
+        var dino = Dinosaurio.findOne({_id:id});
+        console.log("dinosaurio" + dino);
+        if(dino.encuentro<10){
+            var x = [1,2,3,4,5];  
+        }else if(dino.encuentro<35 && dino.encuentro>10){
+            var x =[1,2,3,4];
+        }else if(dino.encuentro>=35 && dino.encuentro<50){
+            var x = [1,2,3];
+        }else if(dino.encuentro>=50 && dino.encuentro<=60){
+            var x = [1,2];
+        }else if(dino.encuentro>60){
+            var x =[1];
+        }
+
+        return x;
+    },
+
     edificios: function(){
          var variable=Session.get('key');
        //console.log("Edificio:" + quinedifici);
@@ -808,8 +825,24 @@ Template.dinoGame.helpers({
     habitats: function(){
         return Terreno.find({});
     },
+    habitatTipo: function(nombre1, nombre2){
+        /*var bol=false;
+        if(num1==num2){
+            bol=true;
+        }
+        return bol;*/
+
+        if(nombre1===nombre2){
+            return true;
+        }else{
+            return false;
+        }
+    },
     dinosaurios: function(){
         return Dinosaurio.find({});
+    },
+    dinosauriosTipo: function(nombreHabitat){
+        return Dinosaurio.find({habitat:nombreHabitat});
     },
     mostrar_dino:function(dino){
         var quantitat = 0;

@@ -323,7 +323,7 @@
      <div tabindex="-1" class="modal fade" id="pop_habitats" style="display: none;" aria-hidden="true">
         <div class="modal-dialog pop_gran">
             <div class="modal-content border">
-                <div class="modal-body content_gran">
+                <div class="modal-body content-gran-cuartel">
                     <div class="modal-header">
 
                     {{#each edificios}}
@@ -351,6 +351,7 @@
                             </div>
                         </div>
                         <div id="tipos-habitat" class="row">
+                            <div class="col-sm-12">
                             {{ #each habitats }}
                                 <div class="col-sm-4">
                                     <div class="div-habitat">
@@ -360,37 +361,104 @@
                                         <div class="header_gran" style="text-align: center">
                                             <p>{{tipo_terreno}}</p>
                                         </div>
-                                            <p>{{descripcion}}</p>
+                                            <p class="contador-habitat">{{descripcion}}</p>
                                             <p class="dinobuton-text" style="text-align: center">{{mostrar_num_dinoss tipo_terreno }}/{{max_dinosaurios}}</p>
                                         </div>                                    
                                     </div>
+                                </div>  
+                            {{ /each }} 
                             </div>  
-                         
-                            {{ /each }}   
                         </div>
-                        <div id="mostrar_dinos" style="overflow-y:scroll">
-                            {{ #each dinosaurios }}
-                                <div class="  col-lg-11" style="padding-bottom: 7px; margin-left: 113px;">
-                                    <div class="col-lg-3">
-                                        <img src="{{imagen_terreno this}}" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
-                                    </div>
+                        <div id="mostrar_dinos">
+                        <div id="tipoTerrestre" class="col-sm-12">
+                            <div id="contenedor-terrestre" class="col-sm-offset-1">
+                            {{ #each dinosauriosTipo "terrestre"}}
+                                    <div class="col-sm-3 carta">
+                                        <div class="carta-contenedor">
+                                            <div>
+                                                <div class="carta-nombre">
+                                                    <p>{{nombre}}</p>
+                                                </div>
+                                                <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
+                                            </div>
+                                            <div class="carta-habitat">
+                                                <p>Habitat - {{habitat}}
+                                                    <span class="estrellas pull-right">
+                                                    {{#each estrellas _id encuentro}} 
+                                                    <img src="images/estrella.png" style="width: 10px">
+                                                    {{/each}}
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <p class="carta-descripcion">{{descripcion}}</p>
+                                            </div>
 
-                                    <div class="modal-desc col-sm-4 ">
-                                        <p>{{descripcion}}</p>
+                                        </div>
+                                        <p class="carta-ferocidad"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
                                     </div>
-
-                                    <div class=" col-sm-2 ">
-                                        <p class="">{{nombre}}</p>
-                                        <p>{{mostrar_dino this}}/{{max_dinosaurios}}</p>
-                                    </div>
-
-                                    <div class="col-lg-3">
-                                        <img src="{{imagen_terreno this}}" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
-                                    </div>
+                                   <!--Cantidad que tienes <p>{{mostrar_dino this}}/{{max_dinosaurios}}</p>-->
+                                {{/each}}
                                 </div>
-                            {{ /each}}
-                        </div>
+                            </div>
+                            <div id="tipoAcuatico" class="col-sm-12">
+                                {{#each dinosauriosTipo "acuatico"}}
+                                    <div class="col-sm-3 carta">
+                                        <div class="carta-contenedor">
+                                            <div>
+                                                <div class="carta-nombre">
+                                                    <p>{{nombre}}</p>
+                                                </div>
+                                                <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
+                                            </div>
+                                            <div class="carta-habitat">
+                                                <p>Habitat - {{habitat}}
+                                                    <span class="estrellas pull-right">
+                                                    {{#each estrellas _id encuentro}} 
+                                                    <img src="images/estrella.png" style="width: 10px">
+                                                    {{/each}}
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <p class="carta-descripcion">{{descripcion}}</p>
+                                            </div>
 
+                                        </div>
+                                        <p class="carta-ferocidad"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                    </div>
+                                {{/each}}
+                            </div>
+                            <div id="tipoAereo" class="col-sm-12">
+                                {{#each dinosauriosTipo "aereo"}}
+                                    <div class="col-sm-3 carta">
+                                        <div class="carta-contenedor">
+                                            <div>
+                                                <div class="carta-nombre">
+                                                    <p>{{nombre}}</p>
+                                                </div>
+                                                <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
+                                            </div>
+                                            <div class="carta-habitat">
+                                                <p>Habitat - {{habitat}}
+                                                    <span class="estrellas pull-right">
+                                                    {{#each estrellas _id encuentro}} 
+                                                    <img src="images/estrella.png" style="width: 10px">
+                                                    {{/each}}
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <p class="carta-descripcion">{{descripcion}}</p>
+                                            </div>
+
+                                        </div>
+                                        <p class="carta-ferocidad"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                    </div>
+                                {{/each}}
+                            </div>
+                            </div>
+                            </div>
                         <div>
                                 <button id="pasar-pagina" type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui">
                                     <p class="dinobuton-text"><span class="glyphicon glyphicon-menu-right"></span></p>
@@ -398,11 +466,11 @@
                                 <button id="volver-pagina" type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui">
                                     <p class="dinobuton-text"><span class="glyphicon glyphicon-menu-left"></span></p>
                                 </button>
-                            </div>
+                        </div>
                     </div>
-                </div>
+                </div> 
             </div>
-        </div>
+        
     </div>
     
     
