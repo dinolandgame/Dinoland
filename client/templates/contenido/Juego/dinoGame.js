@@ -1030,7 +1030,9 @@ Template.dinoGame.onRendered(function(){
 function comprobarNotificaciones(){
     /*NOTIFICACIONES */
 
-        var notificaciones = Notificacion.find({usuario:user}).fetch();
+        // Las únicas notificaciones que recuperamos de la BD son aquellas que pertenecen al usuario y
+        // todavía no ha marcado como leidas
+        var notificaciones = Notificacion.find({usuario:user, leido:"false"}).fetch();
         var cont_notificiaciones = notificaciones.length;
         $("#text-contador-notis").text(cont_notificiaciones);
 

@@ -52,13 +52,7 @@ Meteor.methods({
   
 }*/
   },
-  sumardinero(){
-    //user= Meteor.userId();
-    
-
-    //Partida.update({_id:user},{ $inc:{dinero:1}});
-  },
-
+  
   cambioTienda(dineroRestante, suministrosTotales){
     console.log(suministrosTotales);
     Partida.update({_id:Meteor.userId()},{$set: {dinero: dineroRestante, suministros: suministrosTotales}});
@@ -110,7 +104,8 @@ Meteor.methods({
             // Se genera una notificación
             Notificacion.insert({usuario: user,
                                  nombre: "mejora edificio",
-                                 descripcion: "Ha finalizado la mejora del " + Edifici.nom + " a nivel " + EdificiUp.nivel
+                                 descripcion: "Ha finalizado la mejora del " + Edifici.nom + " a nivel " + EdificiUp.nivel,
+                                 leido: "false"
             });
             console.log("edifici modificat");            
         }  
@@ -156,7 +151,8 @@ Meteor.methods({
              // Se genera una notificación
             Notificacion.insert({usuario: user,
                                  nombre: "construccion edificio",
-                                 descripcion: "Ha finalizado la construcción: " + Edifici.nom
+                                 descripcion: "Ha finalizado la construcción: " + Edifici.nom,
+                                 leido: "false"
             });
           
             if(Edifici._id==401 || Edifici._id==402 || Edifici._id==403){
@@ -410,6 +406,7 @@ Meteor.methods({
             Notificacion.insert({usuario: user,
                                  nombre: "expedición finalizada",
                                  descripcion: "Ha finalizado la expedición. ¡Buen trabajo!",
+                                 leido: "false",
                                  doc_expedicion: id_expedicion
             });
             var partida_jugador = Partida.findOne({_id:user});
@@ -528,7 +525,8 @@ Meteor.methods({
             // Se genera una notificación
             Notificacion.insert({usuario: user,
                                  nombre: "investigacion finalizada",
-                                 descripcion: "Ha finalizado investigación de " + Investigacio.nom
+                                 descripcion: "Ha finalizado investigación de " + Investigacio.nom,
+                                 leido: "false"
             }); 
             console.log("investigacion acabada!!");
         }  
