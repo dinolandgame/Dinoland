@@ -539,18 +539,20 @@ Template.dinoGame.events({
     "click button[data-toggle='collapse-side']": function(event,template){
         $('.side-collapse').toggleClass('open');
     },
-
+/*************************+NOTIFICACIONES **********************************************/
+    
     "click img.close-noti": function(event,template){
         //comprobarNotificaciones();
         var notificaciones = Notificacion.find({usuario:user}).fetch();
         var cont_notificiaciones = notificaciones.length;
-        var notificacion = event.target.data("id");
+        var notificacion = $(event.target).parent().data("id");
         $("#text-contador-notis").text(cont_notificiaciones);
         $(event.target).parent().fadeOut();
         
         //Se modifica el registro en la BD cambiando su campo leido a true. Ésto permite 
         // conservar las notificaciones para que las puedan usar otras funcionalidades (como el muro en la parte social)
-        Notificacion.update({usuario:user, id:notificacion},{ $set:{leido:"true"}});
+        console.log("usuario= " + user + "idnotificacion= " + notificacion)
+        Notificacion.update({_id:notificacion},{ $set:{leido:"true"}});
     }
 
     
@@ -1036,11 +1038,12 @@ function comprobarNotificaciones(){
         // todavía no ha marcado como leidas
         var notificaciones = Notificacion.find({usuario:user, leido:"false"}).fetch();
         var cont_notificiaciones = notificaciones.length;
+        console.log(cont_notificiaciones);
         $("#text-contador-notis").text(cont_notificiaciones);
 
         notificaciones.forEach(function(noti){
             //$("#divnotificaciones").empty();
-            $("#divnotificaciones").append('<li class="notificacion" data-id='+ noti.id + '><img class="close-noti" src="/images/close.png" alt="close">'+ noti.descripcion +'</li>');
+            $("#divnotificaciones").append('<li class="notificacion" data-id="'+ noti._id + '"><img class="close-noti" src="/images/close.png" alt="close">'+ noti.descripcion +'</li>');
         });
 }
 
