@@ -6,8 +6,9 @@ Juego = function(game){
 Juego.prototype = {
     create: function(){ 
         //Lo ideal seria fer una funcio que comprovi el tamany de la pantalla, i aixi sapiga on situar el mapa i com de grans han de ser els bounds.
-    this.world.setBounds(-150, -100, 1600, 998); //fem que el mon sigui mes gran que el canvas
-    var ground = this.add.sprite(-150, -100, 'mapa'); //coloquem el mapa a la posicio indicada. El punt 0 ,0 és l'origen
+    this.world.setBounds(-75, -50, 1440, 898.2); //fem que el mon sigui mes gran que el canvas
+    var ground = this.add.sprite(-75, -50, 'mapa'); //coloquem el mapa a la posicio indicada. El punt 0 ,0 és l'origen
+    
         
         //Meteor.call('creando_casas');//marca error des de server error [500]
         user = Meteor.userId();     
@@ -75,6 +76,26 @@ Juego.prototype = {
                 }
             }
         });
+
+        /*cuartel2 = this.add.sprite(405,102,'cuartel2');
+        cuartel2.scale.setTo(0.60,0.60);*/
+
+        cuartel3 = this.add.sprite(415,135,'cuartel3');
+        cuartel3.scale.setTo(0.60,0.60);
+
+        /*hotel2 = game.add.image(630,60,'hotel2');
+        hotel2.scale.setTo(0.50,0.50);*/
+
+        /*hotel3 = game.add.image(630,30,'hotel3');
+        hotel3.scale.setTo(0.50,0.50);*/
+
+        /*magatzem2 = game.add.image(650,270,'magatzem2');
+        magatzem2.scale.setTo(0.90,0.90);*/
+
+        magatzem3 = game.add.image(650,270,'magatzem3');
+        magatzem3.scale.setTo(0.90,0.90);
+
+        ground.scale.setTo(0.90,0.90);
         
     /*clan1 = this.add.sprite(200,430,'clan1');
 =======
