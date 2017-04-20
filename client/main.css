@@ -556,9 +556,9 @@ canvas{
     background-color: #F5E3AA;
     border-radius: 10px;
     /* margin-top: 60px; */
-    height: 430px;
+    height: 500px;
     padding-top: 20px;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 
 #contingut_modal h2{
@@ -579,34 +579,42 @@ canvas{
 }
 
 #volver-pagina{
+    display: none;
     position: fixed;
     top: 200px;
     left: 20px;
 }
 
 #tipoTerrestre{
-    display: none;
-    position: fixed;
-    top: 120px;
+    
+    position: relative;
+    top: -450px;
     left:2000px;
+    padding-left: 11%;
 }
 
 #tipoAcuatico{
-    display: none;
-    position: fixed;
-    top: 120px;
-    left:2000px;
+    
+    position: relative;
+    top: -790px;
+    left:6000px;
+    padding-left: 30%;
 }
 
 #tipoAereo{
-    display: none;
-    position: fixed;
-    top: 120px;
-    left:2000px;
+   
+    position: relative;
+    top: -1150px;
+    left:4000px;
+    padding-left: 30%;
 }
 
 .contador-habitat{
     height: 60px;
+}
+
+#mostrar_dinos{
+    overflow: hidden;
 }
 /********* MODALS EDIFICI ***************/
 

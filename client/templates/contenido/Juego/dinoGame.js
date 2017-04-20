@@ -450,18 +450,12 @@ Template.dinoGame.events({
     
 /**********************EVENTOS HABITATS**********************************************/
 "click #pasar-pagina":function(event, template){
-    $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("position", "relative").animate({"position": "relative","right":'+2000px'}, 800);
-    $('#tipoTerrestre').css("display", "block").animate({"top": "120px", "left": "0px"}, 800);
-    $('#pasar-pagina').css('display', 'block'); //none
-    $('#volver-pagina').css('display', 'block');
+    pasarPagina();
 },
 
 "click #volver-pagina":function(event, template){
-     $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("display", "block").animate({"position": "relative","right":'0px'}, 800);
-     $('#pasar-pagina').css('display', 'block');
-     $('#volver-pagina').css('display', 'block');//none
+     volverPagina();
 },
-
 
 
 
@@ -583,6 +577,74 @@ Template.dinoGame.events({
 
 
  }); 
+/*************************FUNCIONES HABITATS**********************************************/
+
+//Variables globales de referencia de la posición;
+    
+    posicionFinal=0
+    posicionTerrestre=2000;
+    posicionAereo=4000;
+    posicionAcuatico=6000;
+//Funcion que cambia la posición de las paginas de habitats hacia delante
+    function pasarPagina(){
+    
+    if(posicionFinal<6000){
+        //Variables cambio de pagina
+        posicionFinal=posicionFinal+2000;
+        posicionTerrestre=posicionTerrestre-2000;
+        posicionAereo=posicionAereo-2000;
+        posicionAcuatico=posicionAcuatico-2000;
+
+    
+    //Menu de habitat
+    $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("position", "relative").animate({"position": "relative","right":posicionFinal + 'px'}, 800);
+    //Habitat terrestre
+    $('#tipoTerrestre').css("display", "block").animate({"left":posicionTerrestre+"px"}, 800);
+    //Habitat aereo
+    $('#tipoAereo').css("display", "block").animate({"left":posicionAereo+"px"}, 800);
+    //Habitat acuatico
+    $('#tipoAcuatico').css("display", "block").animate({"left":posicionAcuatico+"px"}, 800);
+    //Boton pagina anterior
+    $('#volver-pagina').css('display', 'block');
+
+    //Si la posición es 6000 desaparece el boton de pagina siguiente
+    }if(posicionFinal==6000){
+
+        $('#pasar-pagina').css('display', 'none'); //none
+    }
+    
+    }
+//Funcion que cambia la posición de las paginas de habitats hacia atras
+    function volverPagina(){
+        
+        if(posicionFinal>0){
+
+            posicionFinal=posicionFinal-2000;
+            posicionTerrestre=posicionTerrestre+2000;
+            posicionAereo=posicionAereo+2000;
+            posicionAcuatico=posicionAcuatico+2000;
+
+    //Menu de habitat
+    $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("display", "block").animate({"position": "relative","right":posicionFinal +'px'}, 800);
+    //Habitat terrestre
+
+     $('#tipoTerrestre').css("display", "block").animate({"left":posicionTerrestre+"px"}, 800);
+    
+    //Habitat aereo
+    $('#tipoAereo').css("display", "block").animate({ "left":posicionAereo+"px"}, 800);
+    //Habitat acuatico
+    $('#tipoAcuatico').css("display", "block").animate({"left":posicionAcuatico+"px"}, 800);
+    //Boton pasar pagina
+     $('#pasar-pagina').css('display', 'block');
+
+     //Si esta en la primera pagina se esconde el boton de volver pagina
+     }if(posicionFinal==0){
+        $('#volver-pagina').css('display', 'none');
+     }
+     
+    }
+
+/***********************FIN FUNCIONES HABITATS******************************************/
 
 /************************ FUNCIONES TIENDA ********************************************/
 
