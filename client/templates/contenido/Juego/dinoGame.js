@@ -503,7 +503,7 @@ Template.dinoGame.events({
         $('#div-bono').css('display', 'block');
         $('#span-bono').text(this.bonus);
         console.log("this id: " + this._id);
-        $('#investiga').data('id', this._id);
+        $('.investiga').data('id', this._id);
         $('#btn-investiga').css('display', 'block');
 
 
@@ -528,52 +528,28 @@ Template.dinoGame.events({
         $('#desc-cuartel').text(this.descripcion);
         $('#div-costes').css('display', 'none');
     },
+   
 
-      
-    /*****************EVENTOS INVESTIGACIONES ****************************************/
-    
 
-    "click #investiga": function(event, template){
-        event.preventDefault();
-        var $this = $(event.target);
-        var investigacionId = $($this).data('id');
-        console.log("investigacioId: "+investigacionId);
-        Meteor.call('hacerinvestigacion',investigacionId);
+    "click button[data-toggle='collapse-side']": function(event,template){
+        $('.side-collapse').toggleClass('open');
+    },
+
+    "click img.close-noti": function(event,template){
+        //comprobarNotificaciones();
+        var notificaciones = Notificacion.find({usuario:user}).fetch();
+        var cont_notificiaciones = notificaciones.length;
+        var notificacion = event.target.data("id");
+        $("#text-contador-notis").text(cont_notificiaciones);
+        $(event.target).parent().fadeOut();
         
-        console.log("voy a acabar esta funcion con el crhon");
-},
-
-    "click a#expedicion": function(event, template){
-
-
-        //id = $(this).data('id'); // obtengo el id del edifici
-        console.log(this);
-       // var investigacion = Investigacion.findOne({_id:this._id});   // obtengo el objecte del edifici que es vol crear         
-       var mi_partida = Partida.findOne({_id:user});// obtengo el objecte de partida
-
-
-        if(mi_partida.dinero > this.coste_DinoCoins && mi_partida.suministros > this.coste_Suministro){
-            
-            var dinero = mi_partida.dinero - this.coste_DinoCoins;
-            var suministros = mi_partida.suministros - this.coste_Suministro;
-            
-            Partida.update({_id:user},{$set:{dinero:dinero,suministros:suministros}});
-
-            event.preventDefault();
-            var $this = $(event.target);
-            
-            var investigacionId = $($this).data('investigar');
-            
-            Meteor.call('hacerinvestigacion',investigacionId,bono_logistica);
-            
-            console.log("voy a acabar esta funcion con el crhon");
-        }else{
-
-            alert("faltan recursos");
-        } 
+        //Se modifica el registro en la BD cambiando su campo leido a true. Ésto permite 
+        // conservar las notificaciones para que las puedan usar otras funcionalidades (como el muro en la parte social)
+        Notificacion.update({usuario:user, id:notificacion},{ $set:{leido:"true"}});
     }
+
     
-    /*****************FIN EVENTOS INVESTIGACIONES*****************************************/
+    
 
 
  }); 
@@ -771,6 +747,17 @@ function showBtnEnviar(){
 
 //Algoritmo que tiene en cuenta lo que ocupa cada tropa con los slots restantes, para saber si hay que mostrar el botón de + y -. También tiene en cuenta si ya se han seleccionado tropas del mismo tipo, por lo que son varios factores a tener en cuenta. Esta función se ejecuta en cada click a cualquier boton de sumar o restar ya que los valores cambian
 function buttons_sum_res(){
+    misBonos = []; 
+        /******** mis bonos tienen controlados los bonos 
+        de la partida del jugador con la funcion de comprobar Bonos
+            misBonos[0] = seguridad;
+            misBonos[1] = habitats;
+            misBonos[2] = rrpp;
+            misBonos[3] =logistica;
+            misBonos[4] = liderazgo;
+        
+        ********/
+        misBonos = comprobarBonos();
 
     $("#resumen p").each(function(){
         quantitat = $(this).children("span").text();
@@ -1045,8 +1032,10 @@ Template.dinoGame.helpers({
 /* ON RENDERES ES COMO EL DOCUMENT(READY) */
 Template.dinoGame.onRendered(function(){
 
+    /* NOTIFICACIONES */
     comprobarNotificaciones();
 
+    
     cont_sonido = 0;//Variable para controlar el sonido y el mute
 
     /* VARIABLES GLOBALES PARA EXPEDICIONES */   
@@ -1072,7 +1061,7 @@ Template.dinoGame.onRendered(function(){
 
    
     $('.crearEdificio').on('click',function(event){
-       var id=0;
+        var id=0;
         event.preventDefault();
         id = $(this).data('id');
         $(this).data('id', "0");
@@ -1105,6 +1094,50 @@ Template.dinoGame.onRendered(function(){
 
         }
     });
+    
+    
+
+      
+    /*****************EVENTOS INVESTIGACIONES ************
+    ********************************************
+    *******************************************
+    ****************************/
+
+
+    $('.investiga').on('click' , function(event){
+        
+        var id=0;
+        event.preventDefault();
+        id = $(this).data('id');
+        $(this).data('id', "0");
+    
+        
+        var investigacion = Investigacion.findOne({_id:id});
+       // var investigacion = Investigacion.findOne({_id:this._id});   // obtengo el objecte del edifici que es vol crear         
+       var mi_partida = Partida.findOne({_id:user});// obtengo el objecte de partida
+
+
+        if(mi_partida.dinero > investigacion.coste_DinoCoins && mi_partida.suministros > investigacion.coste_Suministro){
+            
+            var dinero = mi_partida.dinero - investigacion.coste_DinoCoins;
+            var suministros = mi_partida.suministros - investigacion.coste_Suministro;
+            
+            Partida.update({_id:user},{$set:{dinero:dinero,suministros:suministros}});
+
+            
+            
+            
+            
+            Meteor.call('hacerinvestigacion',investigacion._id);
+            
+            console.log("voy a acabar esta funcion con el crhon");
+        }else{
+
+            alert("faltan recursos");
+        } 
+    });
+     /*****************FIN EVENTOS INVESTIGACIONES*****************************************/
+    
         $('[data-toggle="popover"]').popover(); 
 
         /* EXPEDICIONES */
@@ -1119,12 +1152,15 @@ Template.dinoGame.onRendered(function(){
 function comprobarNotificaciones(){
     /*NOTIFICACIONES */
 
-        var notificaciones = Notificacion.find({usuario:user}).fetch();
+        // Las únicas notificaciones que recuperamos de la BD son aquellas que pertenecen al usuario y
+        // todavía no ha marcado como leidas
+        var notificaciones = Notificacion.find({usuario:user, leido:"false"}).fetch();
         var cont_notificiaciones = notificaciones.length;
         $("#text-contador-notis").text(cont_notificiaciones);
 
         notificaciones.forEach(function(noti){
-            $("#divnotificaciones").append('<p>' + noti.nombre + '</p>');
+            //$("#divnotificaciones").empty();
+            $("#divnotificaciones").append('<li class="notificacion" data-id='+ noti.id + '><img class="close-noti" src="/images/close.png" alt="close">'+ noti.descripcion +'</li>');
         });
 }
 
