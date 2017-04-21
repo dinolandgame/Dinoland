@@ -80,20 +80,61 @@ Juego.prototype = {
         /*cuartel2 = this.add.sprite(405,102,'cuartel2');
         cuartel2.scale.setTo(0.60,0.60);*/
 
-        cuartel3 = this.add.sprite(415,135,'cuartel3');
+        cuartel3 = this.add.sprite(415,125,'cuartel3');
         cuartel3.scale.setTo(0.60,0.60);
 
         /*hotel2 = game.add.image(630,60,'hotel2');
         hotel2.scale.setTo(0.50,0.50);*/
 
-        /*hotel3 = game.add.image(630,30,'hotel3');
-        hotel3.scale.setTo(0.50,0.50);*/
+        hotel3 = game.add.image(630,20,'hotel3');
+        hotel3.scale.setTo(0.50,0.50);
 
         /*magatzem2 = game.add.image(650,270,'magatzem2');
         magatzem2.scale.setTo(0.90,0.90);*/
 
         magatzem3 = game.add.image(650,270,'magatzem3');
         magatzem3.scale.setTo(0.90,0.90);
+
+        /*seguretat2 = game.add.image(820,340,'seguretat2');
+        seguretat2.scale.setTo(0.70,0.70);*/
+
+        seguretat3 = game.add.image(820,350,'seguretat3');
+        seguretat3.scale.setTo(0.70,0.70);
+
+        /*energia2 = game.add.image(270,240,'energia2');
+        energia2.scale.setTo(0.90,0.90);*/
+
+        energia3 = game.add.image(270,240,'energia3');
+        energia3.scale.setTo(0.90,0.90);
+
+        /*habitats2 = game.add.image(370,325,'habitats2');
+        habitats2.scale.setTo(0.80,0.80);*/
+
+        habitats3 = game.add.image(370,325,'habitats3');
+        habitats3.scale.setTo(0.80,0.80);
+
+        /*sintetizador2 = game.add.image(950,160,'sintetizador2');
+        sintetizador2.scale.setTo(0.40,0.40);*/
+
+        sintetizador3 = game.add.image(950,160,'sintetizador3');
+        sintetizador3.scale.setTo(0.40,0.40);
+
+        /*trade2 = game.add.image(1030,455,'trade2');
+        trade2.scale.setTo(0.70,0.70);*/
+
+        trade3 = game.add.image(1030,455,'trade3');
+        trade3.scale.setTo(0.70,0.70);
+
+        /*laboratori2 = game.add.image(800,150,'laboratori2');
+        laboratori2.scale.setTo(0.70,0.70);*/
+
+        laboratori3 = game.add.image(800,150,'laboratori3');
+        laboratori3.scale.setTo(0.70,0.70);
+
+        port2 = game.add.image(700,460,'port2');
+        port2.scale.setTo(0.60,0.60);
+
+
 
         ground.scale.setTo(0.90,0.90);
         
