@@ -14,8 +14,8 @@ Meteor.methods({
      user= Meteor.userId();
      Partida.insert({_id:user,
                       dinero:100000000,
-                      energia:200,
-                      suministros:2000000000000,
+                      energia:200000,
+                      suministros:20000000000,
                       visitantes:0,
                      bono_seguridad:false,
                      bono_logistica:false,
@@ -37,7 +37,8 @@ Meteor.methods({
                         {id:5,cantidad:0},
                         {id:6,cantidad:0},
                         {id:7,cantidad:0}
-                    ]}); 
+                    ],
+                   desbloqueando:[]}); 
 
       
        
@@ -92,6 +93,8 @@ Meteor.methods({
 
             Partida.update({ _id:user, edificio: Edifici._id },{ $set: { "edificio.$" : EdificiUp._id}});
             
+             //quitamos del array de desbloqueando 
+ +          Partida.update({_id:user},{$pull:{desbloqueando:{_id:EdificiUp._id}}});
             
             if(EdificiUp.key=="cuartel2"){
 
@@ -144,10 +147,12 @@ Meteor.methods({
            
             console.log("ha entrat en el job");
         
-
+            //añadimos al array de edificio de partida 
             Partida.update({_id:user},{$push:{edificio:id}});
-
-                
+            
+            //quitamos del array de desbloqueando 
+ +          Partida.update({_id:user},{$pull:{desbloqueando:{_id:id}}});
+            
              // Se genera una notificación
             Notificacion.insert({usuario: user,
                                  nombre: "construccion edificio",

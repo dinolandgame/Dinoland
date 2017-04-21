@@ -68,20 +68,24 @@ Template.dinoGame.events({
 
          //console.log(EdificiUp);    
          //console.log(mi_partida); 
-         console.log((mi_partida[0].energia > EdificiUp.consumoEnergia)+" ||| "+(mi_partida[0].suministros > EdificiUp.costeSuministros)+ "  ||| " +(mi_partida[0].dinero >EdificiUp.costeDinocoins));
+         //console.log((mi_partida[0].energia > EdificiUp.consumoEnergia)+" ||| "+(mi_partida[0].suministros > EdificiUp.costeSuministros)+ "  ||| " +(mi_partida[0].dinero >EdificiUp.costeDinocoins));
             if(EdificiUp != null && Edifici.nivel<=cuartel && mi_partida[0].energia >= EdificiUp.consumoEnergia  && mi_partida[0].suministros >= EdificiUp.costeSuministros && mi_partida[0].dinero >= EdificiUp.costeDinocoins ){
                 
                 var dinero = mi_partida[0].dinero - EdificiUp.costeDinocoins;
                 var suministros = mi_partida[0].suministros - EdificiUp.costeSuministros;
                 var energia = mi_partida[0].energia - EdificiUp.consumoEnergia;
+                
+                var now = new Date().getTime(); 
+                now = now +(EdificiUp.tiempoConstruccion*1000);
+                tarea = {"_id":EdificiUp._id,"final":now}
 
 
                 Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }});
-
+                Partida.update({_id:user},{$push:{desbloqueando:tarea}});
+                contador(mi_partida[0]);
 
                 Meteor.call('update_part',EdificiUp,Edifici); 
-              //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados
-                    
+                //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados   
                 alert("se ha subido de nivel");
             }
             else{
@@ -917,6 +921,12 @@ Template.dinoGame.onRendered(function(){
     /* NOTIFICACIONES */
     comprobarNotificaciones();
 
+    user = Meteor.userId();
+    partida = Partida.find({_id:user}).fetch();
+    
+    //iniciamos los contadores, tantos como hay
+    contador(partida[0]);
+    
     
     cont_sonido = 0;//Variable para controlar el sonido y el mute
 
@@ -958,8 +968,14 @@ Template.dinoGame.onRendered(function(){
                 var suministros = mi_partida.suministros - edificiCrear.costeSuministros;
                 var energia = mi_partida.energia - edificiCrear.consumoEnergia;
 
+                
+                var now = new Date().getTime(); 
+                now = now +(edificiCrear.tiempoConstruccion*1000);
+                tarea = {"_id":edificiCrear._id,"final":now}
 
-                Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }})
+                Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }});
+                Partida.update({_id:user},{$push:{desbloqueando:tarea}});
+                contador(mi_partida);
 
              alert("se esta contruyendo");
            
@@ -1062,6 +1078,56 @@ function comprobarBonos(){
     return Bonos;
 }
 
+
+
+function contador(partida){
+     
+     ahora = new Date().getTime();
+     
+     
+     for(z=0;z<partida.desbloqueando.length;z++){
+          var final =  partida.desbloqueando[z].final;
+         $("#cronometres").append("<p id='crono" + z + "'></p>");
+         var countDownDate = final;
+         
+         crearContador('#crono'+z,countDownDate);
+         
+   
+     }
+}
+
+function crearContador(crono,countDownDate){
+    var cont=0;
+    var x=[];
+    x[cont] = setInterval(function() {
+         
+        var now = new Date().getTime();  
+        var distance = countDownDate - now;
+
+        // Output the result in an element with id="demo"
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+         $(crono).text(days + "d " + hours + "h "
+         + minutes + "m " + seconds + "s ");
+
+        if (distance < 0) {
+
+         $(crono).text(0 + "d " + 0 + "h " + 0 + "m " + 0 + "s ");
+         clearInterval(x[cont]);
+        }
+    }, 1000);
+
+    cont++;
+}
+
+
+function contadorInstant(){
+    
+}
 
 
 
