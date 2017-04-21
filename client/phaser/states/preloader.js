@@ -39,8 +39,8 @@ Preloader.prototype = {
         this.load.image('magatzem2', '../images/sprites/magatzem2.png');
         this.load.image('magatzem3', '../images/sprites/magatzem3.png');
         this.load.spritesheet('cuartel1', '../images/sprites/cuartel1.png', 458.4, 354, 21);
-        this.load.spritesheet('cuartel2', '../images/sprites/cuartel2.png');
-        this.load.spritesheet('cuartel3', '../images/sprites/cuartel3.png');
+        this.load.image('cuartel2', '../images/sprites/cuartel2.png');
+        this.load.image('cuartel3', '../images/sprites/cuartel3.png');
         this.load.image('habitats1', '../images/sprites/habitats1.png');
         this.load.image('habitats2', '../images/sprites/habitats2.png');
         this.load.image('habitats3', '../images/sprites/habitats3.png');
@@ -50,15 +50,15 @@ Preloader.prototype = {
         this.load.spritesheet('port1', '../images/sprites/port1.png', 478.5, 438.3, 13);
         this.load.image('port2', '../images/sprites/port2.png');
         this.load.image('port3', '../images/sprites/port3.png');
-        this.load.spritesheet('trade1', '../images/sprites/trade1.png', 357, 215.1, 83);
+        this.load.spritesheet('trade1', '../images/sprites/trade1.png', 357, 215.1, 82);
         this.load.image('trade2', '../images/sprites/trade2.png');
         this.load.image('trade3', '../images/sprites/trade3.png');
         this.load.spritesheet('seguretat1', '../images/sprites/seguretat1.png', 301.2, 214.2, 8);
         this.load.image('seguretat2', '../images/sprites/seguretat2.png');
         this.load.image('seguretat3', '../images/sprites/seguretat3.png');
         this.load.spritesheet('sintetizador1', '../images/sprites/sintetizador1.png', 379.5, 415.5, 12);
-        this.load.spritesheet('sintetizador2', '../images/sprites/sintetizador2.png');
-        this.load.spritesheet('sintetizador3', '../images/sprites/sintetizador3.png');
+        this.load.image('sintetizador2', '../images/sprites/sintetizador2.png');
+        this.load.image('sintetizador3', '../images/sprites/sintetizador3.png');
         
         // La siguiente función se ejecuta una vez se dispara el evento del loader de Phaser de que
         // se ha finalizado la carga de todos los assets

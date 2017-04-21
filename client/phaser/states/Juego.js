@@ -78,7 +78,7 @@ Juego.prototype = {
         });
 
         ground.scale.setTo(0.90,0.90);
-        
+
         /*cuartel1 = this.add.sprite(405,128,'cuartel1');
         cuartel1.scale.setTo(0.60,0.60);
 
@@ -256,26 +256,26 @@ function clicar(edifici){
         //Popup normal
         case 'clan1': case 'clan2': case 'clan3':
         case 'bar1': case 'bar2': case 'bar3':
-        case 'energia1':
-        case 'sintetizador1':
-        case 'port1':
-        case 'seguretat1':
-        case 'hotel1':
-        case 'magatzem1':
+        case 'energia1': case 'energia2' : case 'energia3':
+        case 'sintetizador1': case 'sintetizador2': case 'sintetizador3' :
+        case 'port1': case 'port1': case'port2': case 'port3':
+        case 'seguretat1': case 'seguretat2': case 'seguretat3':
+        case 'hotel1': case 'hotel2': case 'hotel3':
+        case 'magatzem1': case 'magatzem2': case 'magatzem3':
         $('#pop_edifici').modal('show');
         break;
         //Popup tienda
-        case 'trade1':
+        case 'trade1': case 'trade2': case 'trade3':
         $('#pop_tienda').modal('show');
         vaciarSuministros();
         vaciarDinero();
         break;
         //Popup habitats
-        case 'habitats1':
+        case 'habitats1': case 'habitats2': case 'habitats3':
         $('#pop_habitats').modal('show');
         break;
         //Popup laboratorio
-        case 'laboratori1':
+        case 'laboratori1': case 'laboratori2': case 'laboratori3':
         $('#pop_laboratorio').modal('show');
         var laboratorio = Edificio.findOne({_id:201});
         console.log(laboratorio);
