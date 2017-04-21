@@ -8,13 +8,13 @@ Preloader = function(game){
 Preloader.prototype = {
     preload: function(){
         
-        //Sprite preloader, que saldrá antes que se carguen todos los assets
+        Sprite preloader, que saldrá antes que se carguen todos los assets
         island = this.add.sprite(400, 80,'island_preloader');
         island.animations.add('run');
         island.animations.play('run', 10, true);
         
         // ***********  ASSETS DEL JUEGO A CARGAR *******************//
-        this.load.audio('jungle', ['/sounds/jungle_music.mp3', '/sounds/jungle_music.ogg']);
+        //this.load.audio('jungle', ['/sounds/jungle_music.mp3', '/sounds/jungle_music.ogg']);
         this.load.audio('tinny', ['/sounds/button_tiny.mp3', '/sounds/button_tiny.ogg']);
         this.load.audio('droplet', ['/sounds/water_droplet.mp3', '/sounds/water_droplet.ogg']);
         this.load.audio('snap', ['/sounds/snap.mp3', '/sounds/snap.ogg']);

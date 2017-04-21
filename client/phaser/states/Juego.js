@@ -203,7 +203,7 @@ function clicar(edifici){
         case 'port1':
         case 'seguretat1':
         case 'hotel1':
-        case 'magatzem1':
+        case 'magatzem1': case 'magatzem2': case 'magatzem3':
         $('#pop_edifici').modal('show');
         break;
         //Popup tienda
