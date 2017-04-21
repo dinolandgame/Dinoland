@@ -590,7 +590,7 @@ canvas{
     position: relative;
     top: -450px;
     left:2000px;
-    padding-left: 11%;
+    padding-left: 5%;
 }
 
 #tipoAcuatico{
@@ -598,7 +598,7 @@ canvas{
     position: relative;
     top: -790px;
     left:6000px;
-    padding-left: 30%;
+    padding-left: 25%;
 }
 
 #tipoAereo{
@@ -606,7 +606,7 @@ canvas{
     position: relative;
     top: -1150px;
     left:4000px;
-    padding-left: 30%;
+    padding-left: 25%;
 }
 
 .contador-habitat{
