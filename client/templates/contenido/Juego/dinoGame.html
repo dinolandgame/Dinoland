@@ -9,22 +9,19 @@
                 <img class="img-circle" src="images/foto_perfil.jpg">
                 <!-- cercle voltant -->
                 <div class="rank-label-container">
-                    <span class="label label-default rank-label">Usuario 1</span>
+                    
+                    <span class="label label-default rank-label" style="font-size: 1.5em">{{currentUser.username}}</span>
                 </div>
             </div>
-            <div class="progress">
-                <div data-percentage="0%" style="width: 20%;" class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-
-            <p class="coins">nivel 8 - 856/900 exp</p>
-            <br>
             <div class="coins">
                 <i class="ionicons ion-egg"></i>
             </div>
-            <p class="coins">2,342</p>
-        
+            {{#each partida}}
+            <p class="coins"><img src="images/recursos/ambar.png" style="width: 20px">  Ambar: {{ambar}}</p>
+            {{/each}}
 
         </div> 
+        
         <br>
 
         <div>
@@ -72,7 +69,7 @@
            <!--dinero-->
         <div class="boton btn-recurso">
             <div class="row">
-                <img class="recurso-img" src="images/coin.png">
+                <img class="recurso-img" src="images/recursos/dinocoins.png">
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso">
                 <p class="dinobuton-text dinobuton-text-size">{{dinero}}</p>
@@ -86,7 +83,7 @@
     
         <div class="boton btn-recurso">
             <div class="row">
-                <img class="recurso-img" src="images/coin.png">
+                <img class="recurso-img" src="images/recursos/energia.png">
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso">
                 <p class="dinobuton-text recurso-text dinobuton-text-size">{{energia}}</p>
@@ -98,7 +95,7 @@
         
         <div class="boton btn-recurso">
             <div class="row">
-                <img class="recurso-img" src="images/coin.png">
+                <img class="recurso-img" src="images/recursos/suministros.png">
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso">
 
@@ -113,10 +110,22 @@
         
         <div class="boton btn-recurso">
             <div class="row">
-                <img class="recurso-img" src="images/coin.png">
+                <img class="recurso-img" src="images/recursos/visitantes.png">
                 <img class="recurso-plus" src="images/plus.png">
             <div class="container-recurso recurso-text">
                 <p class="dinobuton-text recurso-text dinobuton-text-size">{{visitantes}}</p>
+            </div>
+        </div>
+        </div>
+
+        <!--ambar-->
+
+         <div class="boton btn-recurso">
+            <div class="row">
+                <img class="recurso-img" src="images/recursos/ambar.png">
+                <img class="recurso-plus" src="images/plus.png">
+            <div class="container-recurso recurso-text">
+                <p class="dinobuton-text recurso-text dinobuton-text-size">{{ambar}}</p>
             </div>
         </div>
         </div>
@@ -321,7 +330,7 @@
      <div tabindex="-1" class="modal fade" id="pop_habitats" style="display: none;" aria-hidden="true">
         <div class="modal-dialog pop_gran">
             <div class="modal-content border">
-                <div class="modal-body content_gran">
+                <div class="modal-body content-gran-cuartel">
                     <div class="modal-header">
 
                     {{#each edificios}}
@@ -333,8 +342,8 @@
                         </div> 
                     {{/each}} 
                     </div>
-                    <div id="contingut_modal-habitat">
-                         <div id="resumen-habitat" class="row info_edifici">
+                   <div id="contingut_modal-habitat">
+                        <div id="resumen-habitat" class="row info_edifici">
                             <div class="modal-desc col-sm-6 col-sm-offset-3 modal-desc-habitats">
                             {{ #each edificios }}
                                 <p>{{ descripcion }}</p>
@@ -349,6 +358,7 @@
                             </div>
                         </div>
                         <div id="tipos-habitat" class="row">
+                            <div class="col-sm-12">
                             {{ #each habitats }}
                                 <div class="col-sm-4">
                                     <div class="div-habitat">
@@ -358,14 +368,104 @@
                                         <div class="header_gran" style="text-align: center">
                                             <p>{{tipo_terreno}}</p>
                                         </div>
-                                            <p>{{descripcion}}</p>
+                                            <p class="contador-habitat">{{descripcion}}</p>
                                             <p class="dinobuton-text" style="text-align: center">{{mostrar_num_dinoss tipo_terreno }}/{{max_dinosaurios}}</p>
                                         </div>                                    
                                     </div>
+                                </div>  
+                            {{ /each }} 
                             </div>  
-                         
-                            {{ /each }}   
                         </div>
+                        
+                        <div id="tipoTerrestre" class="col-sm-12">
+                            <div id="contenedor-terrestre" class="col-sm-offset-1">
+                            {{ #each dinosauriosTipo "terrestre"}}
+                                    <div class="col-sm-3 carta">
+                                        <div class="carta-contenedor">
+                                            <div>
+                                                <div class="carta-nombre">
+                                                    <p>{{nombre}}</p>
+                                                </div>
+                                                <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
+                                            </div>
+                                            <div class="carta-habitat">
+                                                <p>Habitat - {{habitat}}
+                                                    <span class="estrellas pull-right">
+                                                    {{#each estrellas _id encuentro}} 
+                                                    <img src="images/estrella.png" style="width: 10px">
+                                                    {{/each}}
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <p class="carta-descripcion">{{descripcion}}</p>
+                                            </div>
+
+                                        </div>
+                                        <p class="carta-ferocidad"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                    </div>
+                                   <!--Cantidad que tienes <p>{{mostrar_dino this}}/{{max_dinosaurios}}</p>-->
+                                {{/each}}
+                                </div>
+                            </div>
+                            <div id="tipoAcuatico" class="col-sm-12">
+                                {{#each dinosauriosTipo "acuatico"}}
+                                    <div class="col-sm-3 carta">
+                                        <div class="carta-contenedor">
+                                            <div>
+                                                <div class="carta-nombre">
+                                                    <p>{{nombre}}</p>
+                                                </div>
+                                                <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
+                                            </div>
+                                            <div class="carta-habitat">
+                                                <p>Habitat - {{habitat}}
+                                                    <span class="estrellas pull-right">
+                                                    {{#each estrellas _id encuentro}} 
+                                                    <img src="images/estrella.png" style="width: 10px">
+                                                    {{/each}}
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <p class="carta-descripcion">{{descripcion}}</p>
+                                            </div>
+
+                                        </div>
+                                        <p class="carta-ferocidad"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                    </div>
+                                {{/each}}
+                            </div>
+                            <div id="tipoAereo" class="col-sm-12">
+                                {{#each dinosauriosTipo "aereo"}}
+                                    <div class="col-sm-3 carta">
+                                        <div class="carta-contenedor">
+                                            <div>
+                                                <div class="carta-nombre">
+                                                    <p>{{nombre}}</p>
+                                                </div>
+                                                <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
+                                            </div>
+                                            <div class="carta-habitat">
+                                                <p>Habitat - {{habitat}}
+                                                    <span class="estrellas pull-right">
+                                                    {{#each estrellas _id encuentro}} 
+                                                    <img src="images/estrella.png" style="width: 10px">
+                                                    {{/each}}
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <p class="carta-descripcion">{{descripcion}}</p>
+                                            </div>
+
+                                        </div>
+                                        <p class="carta-ferocidad"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                    </div>
+                                {{/each}}
+                            </div>
+                            </div>
+                            
                         <div>
                                 <button id="pasar-pagina" type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui">
                                     <p class="dinobuton-text"><span class="glyphicon glyphicon-menu-right"></span></p>
@@ -373,11 +473,11 @@
                                 <button id="volver-pagina" type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui">
                                     <p class="dinobuton-text"><span class="glyphicon glyphicon-menu-left"></span></p>
                                 </button>
-                            </div>
+                        </div>
                     </div>
-                </div>
+                </div> 
             </div>
-        </div>
+        
     </div>
     
     
@@ -401,17 +501,17 @@
                                 <h2>Dinero</h2>
                                 <div class="col-sm-12">
                                     <div style="text-align: center">
-                                        <img src="images/coin.png" style="width: 80px">
+                                        <img src="images/recursos/dinocoins.png" style="width: 80px">
                                     <div class="row">
                                     <div class="label-rojo modal-desc-shadow resumenDinero">
-                                        <label id="pierdesDinero" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Pierdes:</span></label>
-                                        <label id="teQuedaDinero" class="label  center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Te queda:</span> </label>
+                                        <label id="pierdesDinero" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/dinocoins.png" style="width: 30px"><span>Pierdes:</span></label>
+                                        <label id="teQuedaDinero" class="label  center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/dinocoins.png" style="width: 30px"><span>Te queda:</span> </label>
                                     </div>
-                                        <label id="tienesDinero" class="label-naranja label modal-desc-shadow center-block" style="font-size: 1.2em; display: block; width: 200px; border-radius: 10px"><img src="images/coin.png" style="width: 30px"><span> Dinero: {{dinero}}</span></label>
+                                        <label id="tienesDinero" class="label-naranja label modal-desc-shadow center-block" style="font-size: 1.2em; display: block; width: 200px; border-radius: 10px"><img src="images/recursos/dinocoins.png" style="width: 30px"><span> Dinero: {{dinero}}</span></label>
 
                                     <div class="label-verde modal-desc-shadow resumenDinero">
-                                        <label id="ganasSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Ganas:</span></label>
-                                        <label id="teQuedaSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Te quedan:</span></label>
+                                        <label id="ganasSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>Ganas:</span></label>
+                                        <label id="teQuedaSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>Te quedan:</span></label>
                                     </div>
                                         
                                     </div>
@@ -442,17 +542,17 @@
                                 <h2>Suministros</h2>
                                 <div class="col-sm-12" >
                                     <div style="text-align: center">
-                                        <img src="images/carne.png" style="width: 80px">
+                                        <img src="images/recursos/suministros.png" style="width: 80px">
                                     <div class="row">
-                                        <label id="tienesSuministros" class="label modal-desc-shadow label-naranja center-block" style="font-size: 1.2em; display: block; width: 200px; border-radius: 10px"><img src="images/carne.png" style="width: 30px;" ><span> Suministros: {{suministros}}</span></label>
+                                        <label id="tienesSuministros" class="label modal-desc-shadow label-naranja center-block" style="font-size: 1.2em; display: block; width: 200px; border-radius: 10px"><img src="images/recursos/suministros.png" style="width: 30px;" ><span> Suministros: {{suministros}}</span></label>
 
                                         <div class="label-rojo modal-desc-shadow resumenSuministros">
-                                            <label id="pierdesSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Pierdes:</span></label>
-                                            <label id="QuedaSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/carne.png" style="width: 30px"><span>Te queda:</span> </label>
+                                            <label id="pierdesSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>Pierdes:</span></label>
+                                            <label id="QuedaSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>Te queda:</span> </label>
                                         </div>
                                         <div class="label-verde modal-desc-shadow resumenSuministros">
-                                            <label id="ganasDinero" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Ganas:</span></label>
-                                            <label id="QuedaDinero" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/coin.png" style="width: 30px"><span>Te quedan:</span></label>
+                                            <label id="ganasDinero" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>Ganas:</span></label>
+                                            <label id="QuedaDinero" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>Te quedan:</span></label>
                                         </div>
                                         
                                     </div>
@@ -475,9 +575,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
                                     </div>
-                                    </div>
-                                    
                                 </div>
                             </div>
                         </div>

@@ -450,17 +450,12 @@ Template.dinoGame.events({
     
 /**********************EVENTOS HABITATS**********************************************/
 "click #pasar-pagina":function(event, template){
-    $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("position", "relative").animate({"position": "relative","right":'+2000px'}, 800);
-    $('#pasar-pagina').css('display', 'none');
-    $('#volver-pagina').css('display', 'block');
+    pasarPagina();
 },
 
 "click #volver-pagina":function(event, template){
-     $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("position", "relative").animate({"position": "relative","right":'0px'}, 800);
-     $('#pasar-pagina').css('display', 'block');
-     $('#volver-pagina').css('display', 'none');
+     volverPagina();
 },
-
 
 
 
@@ -544,11 +539,13 @@ Template.dinoGame.events({
         //comprobarNotificaciones();
         var notificaciones = Notificacion.find({usuario:user}).fetch();
         var cont_notificiaciones = notificaciones.length;
-        
+        var notificacion = event.target.data("id");
         $("#text-contador-notis").text(cont_notificiaciones);
         $(event.target).parent().fadeOut();
-        //$(event.target).parent().remove();
-        //falta fer el delete a la BD
+        
+        //Se modifica el registro en la BD cambiando su campo leido a true. Ésto permite 
+        // conservar las notificaciones para que las puedan usar otras funcionalidades (como el muro en la parte social)
+        Notificacion.update({usuario:user, id:notificacion},{ $set:{leido:"true"}});
     }
 
     
@@ -556,6 +553,74 @@ Template.dinoGame.events({
 
 
  }); 
+/*************************FUNCIONES HABITATS**********************************************/
+
+//Variables globales de referencia de la posición;
+    
+    posicionFinal=0
+    posicionTerrestre=2000;
+    posicionAereo=4000;
+    posicionAcuatico=6000;
+//Funcion que cambia la posición de las paginas de habitats hacia delante
+    function pasarPagina(){
+    
+    if(posicionFinal<6000){
+        //Variables cambio de pagina
+        posicionFinal=posicionFinal+2000;
+        posicionTerrestre=posicionTerrestre-2000;
+        posicionAereo=posicionAereo-2000;
+        posicionAcuatico=posicionAcuatico-2000;
+
+    
+    //Menu de habitat
+    $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("position", "relative").animate({"position": "relative","right":posicionFinal + 'px'}, 800);
+    //Habitat terrestre
+    $('#tipoTerrestre').css("display", "block").animate({"left":posicionTerrestre+"px"}, 800);
+    //Habitat aereo
+    $('#tipoAereo').css("display", "block").animate({"left":posicionAereo+"px"}, 800);
+    //Habitat acuatico
+    $('#tipoAcuatico').css("display", "block").animate({"left":posicionAcuatico+"px"}, 800);
+    //Boton pagina anterior
+    $('#volver-pagina').css('display', 'block');
+
+    //Si la posición es 6000 desaparece el boton de pagina siguiente
+    }if(posicionFinal==6000){
+
+        $('#pasar-pagina').css('display', 'none'); //none
+    }
+    
+    }
+//Funcion que cambia la posición de las paginas de habitats hacia atras
+    function volverPagina(){
+        
+        if(posicionFinal>0){
+
+            posicionFinal=posicionFinal-2000;
+            posicionTerrestre=posicionTerrestre+2000;
+            posicionAereo=posicionAereo+2000;
+            posicionAcuatico=posicionAcuatico+2000;
+
+    //Menu de habitat
+    $('#resumen-habitat, #botonera-habitat, #tipos-habitat').css("display", "block").animate({"position": "relative","right":posicionFinal +'px'}, 800);
+    //Habitat terrestre
+
+     $('#tipoTerrestre').css("display", "block").animate({"left":posicionTerrestre+"px"}, 800);
+    
+    //Habitat aereo
+    $('#tipoAereo').css("display", "block").animate({ "left":posicionAereo+"px"}, 800);
+    //Habitat acuatico
+    $('#tipoAcuatico').css("display", "block").animate({"left":posicionAcuatico+"px"}, 800);
+    //Boton pasar pagina
+     $('#pasar-pagina').css('display', 'block');
+
+     //Si esta en la primera pagina se esconde el boton de volver pagina
+     }if(posicionFinal==0){
+        $('#volver-pagina').css('display', 'none');
+     }
+     
+    }
+
+/***********************FIN FUNCIONES HABITATS******************************************/
 
 /************************ FUNCIONES TIENDA ********************************************/
 
@@ -782,6 +847,24 @@ Template.dinoGame.helpers({
         return max_cap;
     },
 
+    estrellas:function( id, encuentro){
+        var dino = Dinosaurio.findOne({_id:id});
+        console.log("dinosaurio" + dino);
+        if(dino.encuentro<10){
+            var x = [1,2,3,4,5];  
+        }else if(dino.encuentro<35 && dino.encuentro>10){
+            var x =[1,2,3,4];
+        }else if(dino.encuentro>=35 && dino.encuentro<50){
+            var x = [1,2,3];
+        }else if(dino.encuentro>=50 && dino.encuentro<=60){
+            var x = [1,2];
+        }else if(dino.encuentro>60){
+            var x =[1];
+        }
+
+        return x;
+    },
+
     edificios: function(){
          var variable=Session.get('key');
        //console.log("Edificio:" + quinedifici);
@@ -791,7 +874,44 @@ Template.dinoGame.helpers({
     habitats: function(){
         return Terreno.find({});
     },
+    habitatTipo: function(nombre1, nombre2){
+        /*var bol=false;
+        if(num1==num2){
+            bol=true;
+        }
+        return bol;*/
 
+        if(nombre1===nombre2){
+            return true;
+        }else{
+            return false;
+        }
+    },
+    dinosaurios: function(){
+        return Dinosaurio.find({});
+    },
+    dinosauriosTipo: function(nombreHabitat){
+        return Dinosaurio.find({habitat:nombreHabitat});
+    },
+    mostrar_dino:function(dino){
+        var quantitat = 0;
+        var mi_partida = Partida.findOne({_id:Meteor.userId()});
+        mi_partida.dinos.forEach(function(di){
+            if(dino._id == di.id){
+                quantitat = di.cantidad;
+            }
+        });
+        return quantitat;
+
+    },
+    imagen_terreno:function(dino){
+        var imagterreno = "";
+        var terreno = Terreno.findOne({tipo_terreno:dino.habitat});
+        if(terreno!=null){
+            imagterreno = terreno.avatar;
+        }
+        return imagterreno;
+    },
     edificioslvl1: function(){
         return Edificio.find({nivel: 1});
     },
@@ -1025,18 +1145,22 @@ Template.dinoGame.onRendered(function(){
         buttons_sum_res(); 
 
 
+
+
 });
 
 function comprobarNotificaciones(){
     /*NOTIFICACIONES */
 
-        var notificaciones = Notificacion.find({usuario:user}).fetch();
+        // Las únicas notificaciones que recuperamos de la BD son aquellas que pertenecen al usuario y
+        // todavía no ha marcado como leidas
+        var notificaciones = Notificacion.find({usuario:user, leido:"false"}).fetch();
         var cont_notificiaciones = notificaciones.length;
         $("#text-contador-notis").text(cont_notificiaciones);
 
         notificaciones.forEach(function(noti){
             //$("#divnotificaciones").empty();
-            $("#divnotificaciones").append('<li class="notificacion"><img class="close-noti" src="/images/close.png" alt="close">'+ noti.descripcion +'</li>');
+            $("#divnotificaciones").append('<li class="notificacion" data-id='+ noti.id + '><img class="close-noti" src="/images/close.png" alt="close">'+ noti.descripcion +'</li>');
         });
 }
 
