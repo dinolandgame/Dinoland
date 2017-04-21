@@ -77,123 +77,119 @@ Juego.prototype = {
             }
         });
 
+        ground.scale.setTo(0.90,0.90);
+        
+        /*cuartel1 = this.add.sprite(405,128,'cuartel1');
+        cuartel1.scale.setTo(0.60,0.60);
+
+        hotel1 = game.add.image(660,90,'hotel1');
+        hotel1.scale.setTo(0.80,0.80);
+
+        magatzem1 = game.add.image(630,240,'magatzem1');
+        magatzem1.scale.setTo(0.65,0.65);
+
+        seguretat1 = game.add.image(825,375,'seguretat1');
+        seguretat1.scale.setTo(0.65,0.65);
+
+        energia1 = game.add.image(270,160,'energia1');
+        energia1.scale.setTo(0.80,0.80);
+
+        habitats1 = game.add.image(390,330,'habitats1');
+        habitats1.scale.setTo(0.60,0.60);
+
+        sintetizador1 = game.add.image(880,150,'sintetizador1');
+        sintetizador1.scale.setTo(0.60,0.60);
+
+        laboratori1 = game.add.image(840,150,'laboratori1');
+        laboratori1.scale.setTo(0.60,0.60);
+
+        trade1 = game.add.image(1040,425,'trade1');
+        trade1.scale.setTo(0.70,0.70);
+
+        port1 = game.add.image(730,480,'port1');
+        port1.scale.setTo(0.55,0.55);*/
+
         /*cuartel2 = this.add.sprite(405,102,'cuartel2');
         cuartel2.scale.setTo(0.60,0.60);*/
 
-        cuartel3 = this.add.sprite(415,125,'cuartel3');
+        /*cuartel3 = this.add.sprite(415,125,'cuartel3');
         cuartel3.scale.setTo(0.60,0.60);
 
         /*hotel2 = game.add.image(630,60,'hotel2');
         hotel2.scale.setTo(0.50,0.50);*/
 
-        hotel3 = game.add.image(630,20,'hotel3');
-        hotel3.scale.setTo(0.50,0.50);
+        /*hotel3 = game.add.image(630,20,'hotel3');
+        hotel3.scale.setTo(0.50,0.50);*/
 
         /*magatzem2 = game.add.image(650,270,'magatzem2');
         magatzem2.scale.setTo(0.90,0.90);*/
 
-        magatzem3 = game.add.image(650,270,'magatzem3');
-        magatzem3.scale.setTo(0.90,0.90);
+        /*magatzem3 = game.add.image(650,270,'magatzem3');
+        magatzem3.scale.setTo(0.90,0.90);*/
 
         /*seguretat2 = game.add.image(820,340,'seguretat2');
         seguretat2.scale.setTo(0.70,0.70);*/
 
-        seguretat3 = game.add.image(820,350,'seguretat3');
-        seguretat3.scale.setTo(0.70,0.70);
+        /*seguretat3 = game.add.image(820,350,'seguretat3');
+        seguretat3.scale.setTo(0.70,0.70);*/
 
         /*energia2 = game.add.image(270,240,'energia2');
         energia2.scale.setTo(0.90,0.90);*/
 
-        energia3 = game.add.image(270,240,'energia3');
-        energia3.scale.setTo(0.90,0.90);
+        /*energia3 = game.add.image(270,240,'energia3');
+        energia3.scale.setTo(0.90,0.90);*/
 
         /*habitats2 = game.add.image(370,325,'habitats2');
         habitats2.scale.setTo(0.80,0.80);*/
 
-        habitats3 = game.add.image(370,325,'habitats3');
-        habitats3.scale.setTo(0.80,0.80);
+        /*habitats3 = game.add.image(370,325,'habitats3');
+        habitats3.scale.setTo(0.80,0.80);*/
 
         /*sintetizador2 = game.add.image(950,160,'sintetizador2');
         sintetizador2.scale.setTo(0.40,0.40);*/
 
-        sintetizador3 = game.add.image(950,160,'sintetizador3');
-        sintetizador3.scale.setTo(0.40,0.40);
+        /*sintetizador3 = game.add.image(950,160,'sintetizador3');
+        sintetizador3.scale.setTo(0.40,0.40);*/
 
         /*trade2 = game.add.image(1030,455,'trade2');
         trade2.scale.setTo(0.70,0.70);*/
 
-        trade3 = game.add.image(1030,455,'trade3');
-        trade3.scale.setTo(0.70,0.70);
+        /*trade3 = game.add.image(1030,455,'trade3');
+        trade3.scale.setTo(0.70,0.70);*/
 
         /*laboratori2 = game.add.image(800,150,'laboratori2');
         laboratori2.scale.setTo(0.70,0.70);*/
 
-        laboratori3 = game.add.image(800,150,'laboratori3');
-        laboratori3.scale.setTo(0.70,0.70);
+        /*laboratori3 = game.add.image(800,150,'laboratori3');
+        laboratori3.scale.setTo(0.70,0.70);*/
 
-        port2 = game.add.image(700,460,'port2');
-        port2.scale.setTo(0.60,0.60);
+        /*port2 = game.add.image(700,460,'port2');
+        port2.scale.setTo(0.60,0.60);*/
+
+        /*port3 = game.add.image(690,460,'port3');
+        port3.scale.setTo(0.60,0.60);*/
+
+        /*clan1 = game.add.image(230,365,'clan1');
+        clan1.scale.setTo(0.60,0.60);*/
+
+        /*clan2 = game.add.image(230,365,'clan2');
+        clan2.scale.setTo(0.60,0.60);*/
+
+        /*clan3 = game.add.image(230,365,'clan3');
+        clan3.scale.setTo(0.60,0.60);*/
+
+        /*bar1 = game.add.image(320,480,'bar1');
+        bar1.scale.setTo(0.60,0.60);*/
+
+        /*bar2 = game.add.image(320,470,'bar2');
+        bar2.scale.setTo(0.60,0.60);*/
+
+        /*bar3 = game.add.image(300,470,'bar3');
+        bar3.scale.setTo(0.60,0.60);*/
 
 
-
-        ground.scale.setTo(0.90,0.90);
         
-    /*clan1 = this.add.sprite(200,430,'clan1');
-=======
-        const cursor =Partida.find({_id:user});
-        const cambiar_nivel=cursor.observeChanges({
-            changed(id,fields){
-        console.log(fields);
-        if(fields.hasOwnProperty('edificio')){
-                game.state.restart();
-        }                                  
-    }});
-    /*
-    clan1 = this.add.sprite(200,430,'clan1
-    bar1 = this.add.sprite(330,490,'bar1');
-    magatzem1 = this.add.image(670,270,'magatzem1');
-    hotel1 = this.add.image(170,270,'hotel1');
-    laboratori1 = this.add.image(800,150,'laboratori1');
-    
-    bar1.scale.setTo(0.60,0.60);
-    clan1.scale.setTo(0.60,0.60);
-    magatzem1.scale.setTo(0.50,0.50);
-    hotel1.scale.setTo(0.50,0.50);
-    laboratori1.scale.setTo(0.70,0.70); 
-    
-    afegirPropietatsSprite(bar1);
-    afegirPropietatsSprite(clan1);
-    afegirPropietatsSprite(magatzem1);
-    afegirPropietatsSprite(hotel1);
-    afegirPropietatsSprite(laboratori1);
-
-    energia1 = this.add.sprite(750,50,'energia1');
-    energia1.scale.setTo(0.60,0.60);
-    afegirPropietatsSprite(energia1);
-
-    port1 = this.add.sprite(730,430,'port1');
-    port1.scale.setTo(0.60,0.60);
-    afegirPropietatsSprite(port1);
-
-    trade1 = this.add.sprite(1050,450,'trade1');
-    trade1.scale.setTo(0.60,0.60);
-    afegirPropietatsSprite(trade1);
-
-    seguretat1 = this.add.sprite(920,340,'seguretat1');
-    seguretat1.scale.setTo(0.60,0.60);
-    afegirPropietatsSprite(seguretat1);
-
-    sintetizador1 = this.add.sprite(1000,160,'sintetizador1');
-    sintetizador1.scale.setTo(0.50,0.50);
-    afegirPropietatsSprite(sintetizador1);
-
-    cuartel1 = this.add.sprite(450,80,'cuartel1');
-    cuartel1.scale.setTo(0.60,0.60);
-    afegirPropietatsSprite(cuartel1);
-
-    habitats1 = this.add.sprite(430,330,'habitats1');
-    habitats1.scale.setTo(0.50,0.50);
-    afegirPropietatsSprite(habitats1);*/
+        
 
     },
     

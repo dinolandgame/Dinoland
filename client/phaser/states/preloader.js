@@ -29,7 +29,7 @@ Preloader.prototype = {
         this.load.spritesheet('clan1', '../images/sprites/clan1.png', 195.9, 181.5, 14);
         this.load.spritesheet('clan2', '../images/sprites/clan2.png', 216.6, 178.5, 14);
         this.load.spritesheet('clan3', '../images/sprites/clan3.png', 220.5, 180.6, 14);
-        this.load.spritesheet('hotel1', '../images/sprites/hotel1.png', 535.666666, 296.5, 6);
+        this.load.spritesheet('hotel1', '../images/sprites/hotel1.png', 266.666666, 181, 6);
         this.load.image('hotel2', '../images/sprites/hotel2.png');
         this.load.image('hotel3', '../images/sprites/hotel3.png');
         this.load.spritesheet('laboratori1', '../images/sprites/laboratori1.png', 204.9, 228, 23);
