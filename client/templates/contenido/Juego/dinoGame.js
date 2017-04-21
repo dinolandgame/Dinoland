@@ -67,7 +67,7 @@ Template.dinoGame.events({
 
          //console.log(EdificiUp);    
          //console.log(mi_partida); 
-         console.log((mi_partida[0].energia > EdificiUp.consumoEnergia)+" ||| "+(mi_partida[0].suministros > EdificiUp.costeSuministros)+ "  ||| " +(mi_partida[0].dinero >EdificiUp.costeDinocoins));
+         //console.log((mi_partida[0].energia > EdificiUp.consumoEnergia)+" ||| "+(mi_partida[0].suministros > EdificiUp.costeSuministros)+ "  ||| " +(mi_partida[0].dinero >EdificiUp.costeDinocoins));
             if(EdificiUp != null && Edifici.nivel<=cuartel && mi_partida[0].energia > EdificiUp.consumoEnergia  && mi_partida[0].suministros > EdificiUp.costeSuministros && mi_partida[0].dinero > EdificiUp.costeDinocoins ){
                 
                 var dinero = mi_partida[0].dinero - EdificiUp.costeDinocoins;
@@ -87,7 +87,7 @@ Template.dinoGame.events({
                 ahora = new Date().getTime()
                 console.log(ahora);
                 total = ahora+EdificiUp.tiempoConstruccion*1000;
-                contador(total);
+                //crearContador(mi_partida[0])
                 alert("se ha subido de nivel");
             }
             else{
@@ -822,30 +822,20 @@ Template.dinoGame.onRendered(function(){
     aqui deberiamos leer el array de tareas pendientes de la partida del jugador para podel hacer tantos
     cronometros como tareas se esten haciendo
     **********************/
-     user = Meteor.userId();
+    user = Meteor.userId();
     partida = Partida.find({_id:user}).fetch();
+   
     
-    for(var tarea = 0; tarea <partida[0].desbloqueando.length; tarea++){
-        ahora = new Date().getTime();
-        
-        final =  partida[0].desbloqueando[tarea].final;
-        if(ahora<final){
-            var tiempoRestante = final;
-            
-            contador(tiempoRestante);
-        }
-        
-    }
-      
-
+    // llamamos a la funcion contador
+    contador(partida[0]);
+    
+           
     cont_sonido = 0;//Variable para controlar el sonido y el mute
 
     /* VARIABLES GLOBALES PARA EXPEDICIONES */
     
      /* Aumenta en 10 la variable capacidad*/
-    
-    
-   
+
 
     totalDC = 0;            /* Total coste Dinocoins */
     totalSUM = 0;           /* Total coste Suministros */
@@ -880,9 +870,17 @@ Template.dinoGame.onRendered(function(){
                 var dinero = mi_partida.dinero - edificiCrear.costeDinocoins;
                 var suministros = mi_partida.suministros - edificiCrear.costeSuministros;
                 var energia = mi_partida.energia - edificiCrear.consumoEnergia;
+                
+                var now = new Date().getTime();
+                
+                now += edificiCrear.tiempoConstruccion;
+                tarea = {"_id":edificiCrear._id,"final":now}
+                
 
-
-                Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }})
+                
+                Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }});
+                Partida.update({_id:user},{$push:{desbloqueando:tarea}});
+                contador(mi_partida);
 
              alert("se esta contruyendo");
            
@@ -935,37 +933,56 @@ la llamaremos cuando se haga efectiva la creacion de un edificio, el subir nivel
 y tambien en las investigaciones
 
 /****************************************/
-function contador(tiempo,cont){
-    var countDownDate = tiempo;
+function contador(partida){
+    
+    ahora = new Date().getTime();
+    
+    
+    for(z=0;z<partida.desbloqueando.length;z++){
+         var final =  partida.desbloqueando[z].final;
+        $("#cronometres").append("<p id='crono" + z + "'></p>");
+        var countDownDate = final;
+        
+        crearContador('#crono'+z,countDownDate);
+        
+  
+    }
+    
+}
 
-// Update the count down every 1 second
-   
-    var x = setInterval(function() {
-    // Get todays date and time
-    var now = new Date().getTime();
     
-    // Find the distance between now an the count down date
-    var distance = countDownDate - now;
+function crearContador(crono,countDownDate){
+    var cont=0;
+   var x=[];
+         x[cont] = setInterval(function() {
+        
+        var now = new Date().getTime();  
+        var distance = countDownDate - now;
     
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        
+    $(crono).text(days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ");
+
     
-    // Output the result in an element with id="demo"
-    
-    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-    + minutes + "m " + seconds + "s ";
     
     // If the count down is over, write some text 
     if (distance < 0) {
-        clearInterval(x);
         
-        document.getElementById("demo").innerHTML =0 + "d " + 0 + "h "
-    + 0 + "m " + 0 + "s ";
+        
+        $(crono).text(0 + "d " + 0 + "h " + 0 + "m " + 0 + "s ");
+        clearInterval(x[cont]);
     }
 }, 1000);
-}
+    cont++;
+    }
+        
+
+
+
 
 

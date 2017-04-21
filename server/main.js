@@ -13,9 +13,9 @@ Meteor.methods({
     
      user= Meteor.userId();
      Partida.insert({_id:user,
-                      dinero:1000,
-                      energia:200,
-                      suministros:200,
+                      dinero:100000,
+                      energia:20000,
+                      suministros:20000,
                       visitantes:0,
                      bono_seguridad:false,
                      bono_logistica:false,
@@ -128,10 +128,11 @@ Meteor.methods({
            
             console.log("ha entrat en el job");
         
-
+            //añadimos al array de edificio de partida 
             Partida.update({_id:user},{$push:{edificio:id}});
                 
-            
+            //quitamos del array de desbloqueando 
+            Partida.update({_id:user},{$pull:{desbloqueando:{_id:id}}});
             
             /*Partida.update(
                { _id:"zC27EwRQnrHgcuZz8", edificio: 1 },
