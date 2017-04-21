@@ -17,6 +17,7 @@ Meteor.methods({
                       energia:200,
                       suministros:2000000000000,
                       visitantes:0,
+                      ambar:0,
                      bono_seguridad:false,
                      bono_logistica:false,
                      bono_liderazgo:30,
@@ -101,6 +102,8 @@ Meteor.methods({
                 Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
             }
 
+            Partida.update({_id:user}, {$inc:{ambar:EdificiUp.ambar}});
+
             // Se genera una notificación
             Notificacion.insert({usuario: user,
                                  nombre: "mejora edificio",
@@ -163,13 +166,18 @@ Meteor.methods({
                 Partida.update({_id:user}, {$set:{seguridad:Edifici.aumento_seguridad}});
             }
             
-            
+            Partida.update({_id:user},{$inc:{ambar:Edifici.ambar}});
             /*Partida.update(
                { _id:"zC27EwRQnrHgcuZz8", edificio: 1 },
                { $set: { "edificio.$" : 2} }
             );*/
 
-            console.log("edifici modificat");            
+            console.log("edifici modificat");   
+
+            
+
+                
+                     
         }  
           
     });
@@ -463,6 +471,8 @@ Meteor.methods({
             //Partida.update({ _id:user, edificio: Edifici._id },{ $set: { "edificio.$" : EdificiUp._id}});
             }
 
+
+
         }  
           
     });
@@ -521,7 +531,7 @@ Meteor.methods({
                      Partida.update({_id:user},{$push:{bonos_desbloqueados:5}});
                     console.log("investigacio acabada!!");
                 }
-           
+           Partida.update({_id:user}, {$inc:{ambar:Investigacio.ambar}});
             // Se genera una notificación
             Notificacion.insert({usuario: user,
                                  nombre: "investigacion finalizada",
