@@ -739,25 +739,92 @@
         </div>
     </div>
 
-   
-
     <!-- POP SOCIAL -->
-    <div tabindex="-1" class="modal fade" id="pop_social" style="display: none;" aria-hidden="true">
+
+   <div tabindex="-1" class="modal fade" id="pop_social" style="display: none;" aria-hidden="true">
         <div class="modal-dialog pop_gran">
             <div class="modal-content border">
-                <div class="modal-body content_gran">
-                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                    <div class="header_gran">
-                        <h2>SOCIAL</h2>
+                <div class="modal-body content-expediciones">
+                    <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                            <div class="modal-ribon">
+                                <img src="/images/ribbon.png">
+                                <h2 id="nom_edifici" class="dinobuton-text">Social</h2>
+                            </div> 
                     </div>
-
                     <div id="contingut_modal">
-                        <p>Contenido aquí</p>
+                        <div class="row">
+                            <div id="menu-soldados" class="col-sm-8">
+                
+                                <div class="row modal-desc-exp">
+                                    <div  class="col-sm-1 "></div>
+                                        {{#each lideres}}
+                                            <div class="col-sm-3">
+                                                <img class="img_tropa modal-img-edif mouse-efect" data-tipo="{{tipo}}" data-nombre="{{nombre}}" src="{{avatar}}">
+                                            </div> 
+                                        {{/each}}
+                                    </div>
+                
+                                <div class="row modal-desc-tropa">
+                                    <div class="col-sm-1"></div>
+                                    {{#each tropas}}
+                                        <div class="col-sm-2 tropa" data-nombre={{nombre}} data-tipo="{{tipo}}" data-efectividad={{efectividad}} data-salud={{salud}} data-slots={{slots}} data-costedc={{dinocoins}} data-costesum={{suministros}}>
+                                            <img class="img_tropa modal-img-edif" src="{{avatar}}">
+                                            <button data-efecto = "sumar" class="boton-gui-exp-ok">+</button>
+                                            <button data-efecto = "restar" class="boton-gui-exp-cancel">-</button>
+                                        </div>
+                                    {{/each}}
+                                </div>
+                
+                                <div class="row modal-desc-exp">
+                                <div class="col-sm-1"></div>
+                                {{#each terrenos}}                                                                                 
+
+                                    <div class="col-sm-3">
+                                        <img class="img_tropa modal-img-edif mouse-efect" src="{{avatar}}" data-tipo="{{tipo}}" data-nombre="{{nombre}}" data-terreno="{{tipo_terreno}}">                   
+
+                                    </div>
+                                {{/each}}
+                                </div>
+                            </div>
+                
+                            <div class="col-sm-3">
+                                <div class="row">
+                                    <div id="stats-exp" class="modal-desc-resumen-exp">
+                                        <h6>CAPACIDAD: <p id="slots" class="inline text-color-white"></p></h6>
+                                        <h6>EFECTIVIDAD TOTAL:  <p id="efectividad" class="inline text-color-white">0</p></h6>
+                                        <h6>SALUD TOTAL: <p id="salud" class="inline text-color-white">0</p></h6>
+                                        <h6>COSTE TOTAL DINOCOINS: <p id="costeDC" class="inline text-color-white">0</p></h6>
+                                        <h6>COSTE TOTAL SUMINISTROS: <p id="costeSUM" class="inline text-color-white">0</p></h6>
+                                    </div>
+                
+                                   
+                
+                                   <div id="resumen" class="modal-desc-resumen-exp">
+                                        <h4>LÍDER: <p id="liderEXP" class="inline text-color-white">Ninguno</p></h4>
+                                        <p data-tipo="rifle" class="block">Soldado con rifle sónico: <span id="total-rifle" class="text-color-white">0</span></p>
+                                        <p data-tipo="lanzarredes" class="block">Soldado con lanzaredes: <span id="total-lanzaredes" class="text-color-white">0</span></p>
+                                        <p data-tipo="exotraje" class="block">Soldado con exotraje: <span id="total-exotraje" class="text-color-white">0</span></p>
+                                        <p data-tipo="doctor" class="block">Doctor de campo: <span id="total-doctor" class="text-color-white">0</span></p>
+                                        <p data-tipo="jeep" class="block">jeep: <span id="total-jeep" class="text-color-white">0</span></p>
+                                        <h4>LUGAR: <p id="lugarEXP" class="inline text-color-white">Ninguno</p></h4>
+                                    </div>
+                
+                                   
+                                </div>
+                
+                                <div class="row" style="text-align: center;">
+                                    <button id="resetEXP" style="display: none;" class="boton_gui col-sm-3"><p class="dinobuton-text"><span class="glyphicon glyphicon-trash"></span></p></button>
+                                    <button id="enviarEXP" style="display: none;" class="col-sm-offset-1 boton_gui"><p class="dinobuton-text">ENVIAR</p></button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div>        
+
 
     <!-- SIDEBAR NOTIFICACIONES -->
 
