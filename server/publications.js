@@ -1,3 +1,7 @@
+Meteor.publish('chat', function(){
+	return Chat.find();
+});
+
 Meteor.publish('partida', function(){
 	return Partida.find({_id: this.userId});
 	//return Partida.find();
@@ -26,4 +30,8 @@ Meteor.publish('investigacion',function(){
 
 Meteor.publish('notificaciones',function(){
 	return Notificacion.find({usuario: this.userId});
+});
+
+Meteor.publish("users", function () {
+  return Meteor.users.find({});
 });
