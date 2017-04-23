@@ -97,7 +97,7 @@ if(Meteor.isClient){
 		}
 	});	
 
-   var myInterval = Meteor.setInterval(function(){
+   /*var myInterval = Meteor.setInterval(function(){
       Meteor.call('sumardinero');
-   }, 1000);	
+   }, 1000);*/	
 }

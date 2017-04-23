@@ -551,6 +551,13 @@ Template.dinoGame.events({
         //Se modifica el registro en la BD cambiando su campo leido a true. Ésto permite 
         // conservar las notificaciones para que las puedan usar otras funcionalidades (como el muro en la parte social)
         Notificacion.update({usuario:user, id:notificacion},{ $set:{leido:"true"}});
+    },
+    /////////// funciones Chat /////////
+    "click #mensaje_text":function(event,template){
+
+        text = $("#mensaje").val();
+        $("#mensaje").val("");
+        Meteor.call("guardar_mensaje",text);
     }
 
     
@@ -743,6 +750,10 @@ Template.dinoGame.helpers({
         return Partida.find({});
         
     }, 
+
+    chats:function(){
+        return Chat.find({});
+    },
     //buscamos la quantidad de dinosaurios que hay por areaa
     mostrar_num_dinoss:function(nom_area){
         //obtenemos la partida de jugador
@@ -908,6 +919,9 @@ Template.dinoGame.helpers({
         }
 
     }
+
+
+
 
 });
 

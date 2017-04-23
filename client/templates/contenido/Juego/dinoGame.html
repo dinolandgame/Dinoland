@@ -55,6 +55,10 @@
             <img class="btn-icon" src="images/ui/icon-social.png">
     </button>
 
+    <button id="btn-chat" data-target="#pop_chat"  class="boton_gui" style="display:block;position: absolute;left: 36%;top: 90%" data-toggle="modal">
+            <p>chat</p>
+    </button>
+
     <button id="btn-sound">
             <img class="btn-icon" src="images/ui/sound.png">
     </button>
@@ -654,6 +658,43 @@
 
                     <div id="contingut_modal">
                         <p>Contenido aquí</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- POP CHAT -->
+
+    <div tabindex="-1" class="modal fade" id="pop_chat" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog pop_gran">
+            <div class="modal-content border">
+                <div class="modal-body content_gran">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <div class="header_gran">
+                        <h2>CHAT</h2>
+                    </div>
+
+                    <div id="contingut_modal">
+                        <div>
+                            <div class="col-lg-4">
+                                <input type="text" id="mensaje" name="FirstName" value="">
+                            </div>
+                            <div class="col-lg-4">
+                               <button id="mensaje_text"  class="col-sm-offset-1 boton_gui"><p class="dinobuton-text">ENVIAR</p></button>
+                            </div>
+                            <div class="col-lg-12">
+                                <p class="dinobuton-text">Chat comun:</p>
+                                <div class="chat">
+                                    <ul id="lista_mensajes" class="nav navbar-nav">
+                                        {{#each chats}}
+                                            <li>{{timestamp}}  {{nom_user}}:{{text}}</li><br>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
