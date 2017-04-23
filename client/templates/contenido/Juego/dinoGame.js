@@ -1035,6 +1035,10 @@ Template.dinoGame.onRendered(function(){
     /* NOTIFICACIONES */
     comprobarNotificaciones();
 
+    bono_dinos = partida.bono_habitats;
+    if(bono_dinos){
+        Habitats.update({$inc:{capacidadDino:5}})
+    }
     
     cont_sonido = 0;//Variable para controlar el sonido y el mute
 
@@ -1173,8 +1177,8 @@ function comprobarBonos(){
     comprobarPartida();
     
     Bonos.push(mi_partida[0].bono_seguridad);
-    Bonos.push(mi_partida[0].bono_habitats);
-    Bonos.push(mi_partida[0].bono_rrpp);
+    Bonos.push(mi_partida[0].bono_habitats);//falta por hacer
+    Bonos.push(mi_partida[0].bono_rrpp);//falta por hacer
     Bonos.push(mi_partida[0].bono_logistica);
     Bonos.push(mi_partida[0].bono_liderazgo);
     
