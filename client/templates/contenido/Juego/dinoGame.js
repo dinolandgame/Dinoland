@@ -82,7 +82,8 @@ Template.dinoGame.events({
 
                 Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }});
                 Partida.update({_id:user},{$push:{desbloqueando:tarea}});
-                contador(mi_partida[0]);
+                //llamamos a la funcion contador para hacer aparecer el contador cuando se sube nivel
+                contador();
 
                 Meteor.call('update_part',EdificiUp,Edifici); 
                 //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados   
@@ -924,8 +925,8 @@ Template.dinoGame.onRendered(function(){
     user = Meteor.userId();
     partida = Partida.find({_id:user}).fetch();
     
-    //iniciamos los contadores, tantos como hay
-    contador(partida[0]);
+    //iniciamos los contadores, tantos como haya en el array de desbloqueando cada vez que regarguemos la pagina
+    contador();
     
     
     cont_sonido = 0;//Variable para controlar el sonido y el mute
@@ -974,8 +975,11 @@ Template.dinoGame.onRendered(function(){
                 tarea = {"_id":edificiCrear._id,"final":now}
 
                 Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }});
+                
+                //se añade al aray desbloqueando el edificio q se esta desbloqueando
                 Partida.update({_id:user},{$push:{desbloqueando:tarea}});
-                contador(mi_partida);
+                //llamamos a la funcion para hacer aparecer el contador
+                contador();
 
              alert("se esta contruyendo");
            
@@ -1080,14 +1084,17 @@ function comprobarBonos(){
 
 
 
-function contador(partida){
+function contador(){
      
      ahora = new Date().getTime();
-     
-     
-     for(z=0;z<partida.desbloqueando.length;z++){
-          var final =  partida.desbloqueando[z].final;
-         $("#cronometres").append("<p id='crono" + z + "'></p>");
+     //controlo la partida antes de mostrar el contador
+      part = Partida.findOne({_id:Meteor.userId()});
+        
+     for(z=0;z<part.desbloqueando.length;z++){
+          var final =  part.desbloqueando[z].final;
+                   
+           
+         $("#cronometres").append("<p class='dinobuton-text dinobuton-text-size' id='crono" + z + "'></p>");
          var countDownDate = final;
          
          crearContador('#crono'+z,countDownDate);
@@ -1115,9 +1122,12 @@ function crearContador(crono,countDownDate){
          + minutes + "m " + seconds + "s ");
 
         if (distance < 0) {
-
-         $(crono).text(0 + "d " + 0 + "h " + 0 + "m " + 0 + "s ");
+            //borra elementos del DOM que posteriormente se volveran a insertar
+            $(crono).detach();
+            $(crono).remove();
+            $(crono).empty();
          clearInterval(x[cont]);
+            cont=0;
         }
     }, 1000);
 
@@ -1125,9 +1135,7 @@ function crearContador(crono,countDownDate){
 }
 
 
-function contadorInstant(){
-    
-}
+
 
 
 
