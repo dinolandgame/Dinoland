@@ -30,13 +30,13 @@ Meteor.methods({
                     desbloqueados:[],
                     bonos_desbloqueados:[],
                     dinos:[
-                        {id:1,cantidad:0},
-                        {id:2,cantidad:0},
-                        {id:3,cantidad:0},
-                        {id:4,cantidad:0},
-                        {id:5,cantidad:0},
-                        {id:6,cantidad:0},
-                        {id:7,cantidad:0}
+                        {id:1,cantidad:0,max:10},
+                        {id:2,cantidad:0,max:10},
+                        {id:3,cantidad:0,max:10},
+                        {id:4,cantidad:0,max:10},
+                        {id:5,cantidad:0,max:10},
+                        {id:6,cantidad:0,max:10},
+                        {id:7,cantidad:0,max:10}
                     ]}); 
 
       
@@ -444,13 +444,32 @@ Meteor.methods({
             console.log("dino: "+ dinosaurio_rastreado.nombre + "; cantidad: "+ capturas_final );
             Partida.update({_id:user},{$set: {dinero: dinocoins, suministros: suministros}});
             if(capturas_final > 0){
+                var activo= partida_jugador.bono_habitats;
             
             partida_jugador.dinos.forEach(function(dino){
                 //console.log("ids: " + dino._id + " !!!!!!" +dinosaurio_rastreado._id)
                 if(dino.id==dinosaurio_rastreado._id){
+                   var maximo = dino.cantidad + capturas_final;
+                    if(activo){
+                        if(maximo>15){
+                            dino.cantidad = 15;
+                        }
+                        else{
+                            dino.cantidad +=capturas_final;
+                            //dino_act = dino.cantidad;
+                        }
+                    }
+                    else{
+                        if(maximo>10){
+                            dino.cantidad = 10;
+                        }
+                        else{
+                            dino.cantidad +=capturas_final;
+                            //dino_act = dino.cantidad;
+                        }
+                    }
                     
-                    dino.cantidad +=capturas_final;
-                    //dino_act = dino.cantidad;
+                    
                 }  
 
             });
