@@ -813,9 +813,10 @@ Template.dinoGame.helpers({
         return Partida.find({});
         
     }, 
-
     chats:function(){
-        return Chat.find({});
+        limit_dades=20;
+        var convers = Chat.find({}, {sort: { id_missatge: -1 }, limit:limit_dades});
+        return convers;
     },
     //buscamos la quantidad de dinosaurios que hay por areaa
     mostrar_num_dinoss:function(nom_area){
@@ -1150,6 +1151,12 @@ Template.dinoGame.onRendered(function(){
             alert("faltan recursos");
         } 
     });
+
+
+    
+
+
+
      /*****************FIN EVENTOS INVESTIGACIONES*****************************************/
     
         $('[data-toggle="popover"]').popover(); 
@@ -1157,6 +1164,7 @@ Template.dinoGame.onRendered(function(){
         /* EXPEDICIONES */
         //la primera carga comprobamos los botones de sumar y restar para cada tropa
         buttons_sum_res(); 
+
 
 
 

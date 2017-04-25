@@ -22,7 +22,10 @@ Meteor.methods({
         }
     });
     
-    Chat.insert({id_user:user,nom_user:nom_user,text:mensaje,timestamp:ara.toString()});
+    var dateFormat = require('dateformat');
+    var now = new Date();
+   
+    Chat.insert({id_missatge:Chat.find().count()+1,id_user:user,nom_user:nom_user,text:mensaje,timestamp:dateFormat(now,"HH:MM:ss")});
   },
 
   //methodo creacion partida
