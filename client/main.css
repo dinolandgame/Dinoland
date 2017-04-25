@@ -10,6 +10,10 @@ body {
     font-family: "Skranji";
 }
 
+.top-margin{
+    margin-top: 30px;
+}
+
 .tap-i18n-dropdown .form-control{
     background-color: #f0f8ff;
     border-radius: 30px;
@@ -546,10 +550,10 @@ canvas{
 }
 
 #contingut_modal{
-    background-color: #f4f4f4;
-    border-radius: 10px;
     margin-top:  20px;
-    height: 86%;
+    background-color: #F5E3AA;
+    border-radius: 10px;
+    height: 400px;
 }
 
 #contingut_modal-habitat{
@@ -886,17 +890,6 @@ border-radius: 100%;
 
 
 /********** MODALS PETITS ***********/
-
-#contingut_modal {
-/*    background-color: #3e8c42;
-    border-radius: 10px;
-    margin-top: 20px;
-    height: 86%;*/
-    background-color: #F5E3AA;
-    border-radius: 10px;
-    /*margin-top: 60px;*/
-    height: 400px;
-}
 
 .modal-body {
     padding: 0 25px;
@@ -1538,5 +1531,55 @@ border-radius: 100%;
     margin-left: -40px;
     font-size: 18px;
     color: #8dd6e3;
+  }
+
+  /* MURO SOCIAL */
+
+  .col-sm-offset-half{
+    margin-left: 4.166666666667%;
+  }
+
+  .muro-title{
+    background-image: -moz-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
+    padding-top: 7px;
+    height: 49px;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    -moz-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    margin-top: 20px;
+  }
+
+  .muro-title-content{
+    padding-top: 3px;
+    text-align: center;
+    display: block;
+    margin-left: 9px;
+    margin-right: 9px;
+    background-image: -moz-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
+    border-radius: 10px;
+    height: 35px;
+  }
+
+/* Esta clase la deberiamos usar para cada modulo que se muestre en cualquier modal. Deberiamos unificarlo ya que algunos usan borde negros, otros blancos, etc*/
+  .modal-widget{
+    background-image: -moz-linear-gradient( 90deg, rgb(219,174,111) 0%, rgb(230,197,143) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(219,174,111) 0%, rgb(230,197,143) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(219,174,111) 0%, rgb(230,197,143) 100%);
+    border: 3px solid #a87438;
+    border-radius: 10px;
+    text-align: justify;
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    -webkit-box-shadow: 0.3px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0.3px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0.3px 1px 1px 1px rgba(0, 0, 0, 0.3);
   }
 
