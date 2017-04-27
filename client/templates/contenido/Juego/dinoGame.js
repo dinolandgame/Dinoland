@@ -1051,22 +1051,17 @@ Template.dinoGame.helpers({
 
 /* ON RENDERES ES COMO EL DOCUMENT(READY) */
 Template.dinoGame.onRendered(function(){
-
+    user = Meteor.userId();
     /* NOTIFICACIONES */
     comprobarNotificaciones();
-
-    user = Meteor.userId();
     partida = Partida.find({_id:user}).fetch();
     
     //iniciamos los contadores, tantos como haya en el array de desbloqueando cada vez que regarguemos la pagina
     contador();
-    
-    
+
     cont_sonido = 0;//Variable para controlar el sonido y el mute
 
     /* VARIABLES GLOBALES PARA EXPEDICIONES */   
-    
-    user = Meteor.userId();
 
     totalDC = 0;            /* Total coste Dinocoins */
     totalSUM = 0;           /* Total coste Suministros */
@@ -1215,8 +1210,8 @@ function comprobarBonos(){
     comprobarPartida();
     
     Bonos.push(mi_partida[0].bono_seguridad);
-    Bonos.push(mi_partida[0].bono_habitats);
-    Bonos.push(mi_partida[0].bono_rrpp);
+    Bonos.push(mi_partida[0].bono_habitats);//falta por hacer
+    Bonos.push(mi_partida[0].bono_rrpp);//falta por hacer
     Bonos.push(mi_partida[0].bono_logistica);
     Bonos.push(mi_partida[0].bono_liderazgo);
     
