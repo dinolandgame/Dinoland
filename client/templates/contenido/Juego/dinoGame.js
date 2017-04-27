@@ -1039,14 +1039,6 @@ Template.dinoGame.onRendered(function(){
     /* CONTROL BONO HABITATS*/
     
     var mi_partida = Partida.findOne({_id:user});
-
-    bono_dinos = mi_partida.bono_habitats;
-    if(bono_dinos){
-        if(mi_partida.dinos[0].max==10){
-            Habitats.update({$inc:{capacidadDino:5}});
-            Partida.update({$inc:{$each:{dinos:{max:5}}}});
-       }        
-    }
     
     cont_sonido = 0;//Variable para controlar el sonido y el mute
 

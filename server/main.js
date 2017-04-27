@@ -25,18 +25,19 @@ Meteor.methods({
                      max_suministros:240,
                      max_dinero:1800,
                      max_visitantes:10,
+                     max_dinosaurios:0,
                      seguridad:0,
                      edificio:[],
                     desbloqueados:[],
                     bonos_desbloqueados:[],
                     dinos:[
-                        {id:1,cantidad:0,max:10},
-                        {id:2,cantidad:0,max:10},
-                        {id:3,cantidad:0,max:10},
-                        {id:4,cantidad:0,max:10},
-                        {id:5,cantidad:0,max:10},
-                        {id:6,cantidad:0,max:10},
-                        {id:7,cantidad:0,max:10}
+                        {id:1,cantidad:0},
+                        {id:2,cantidad:0},
+                        {id:3,cantidad:0},
+                        {id:4,cantidad:0},
+                        {id:5,cantidad:0},
+                        {id:6,cantidad:0},
+                        {id:7,cantidad:0}
                     ]}); 
 
       
@@ -100,6 +101,9 @@ Meteor.methods({
             else if(EdificiUp.key=="cuartel3"){
                 Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
             }
+            else if(EdificiUp._id==1102||EdificiUp._id==1103){
+                Partida.update({_id:user}, {$inc:{max_dinosaurios:EdificiUp.capacidadDino}});
+            }
 
             // Se genera una notificación
             Notificacion.insert({usuario: user,
@@ -162,6 +166,9 @@ Meteor.methods({
             }else if(Edifici._id==801){
                 Partida.update({_id:user}, {$set:{seguridad:Edifici.aumento_seguridad}});
             }
+            else if(Edifici._id==1101){
+                Partida.update({_id:user}, {$inc:{max_dinosaurios:Edifici.capacidadDino}});
+                    }
             
             
             /*Partida.update(
@@ -443,48 +450,53 @@ Meteor.methods({
               }
             console.log("dino: "+ dinosaurio_rastreado.nombre + "; cantidad: "+ capturas_final );
             Partida.update({_id:user},{$set: {dinero: dinocoins, suministros: suministros}});
-            if(capturas_final > 0){
-                var activo= partida_jugador.bono_habitats;
             
-            partida_jugador.dinos.forEach(function(dino){
+            /* limitar los dinosaurio con referencia al maxio de dinos permitidos*/
+            if(capturas_final > 0){
+                var max_dinosaur =0;
+                
+                
+                //Controlamos cuantos dinosaurios pueden haber en la partida
+                max_dinosaur = partida_jugador.max_dinosaurios;
+               
+                
+                var cantidadActualdinos = 0;
+                partida_jugador.dinos.forEach(function(dino){
+                    cantidadActualdinos +=dino.cantidad;
+                    
+                });
+                var maximo = 0;
+                partida_jugador.dinos.forEach(function(dino){
+  
                 //console.log("ids: " + dino._id + " !!!!!!" +dinosaurio_rastreado._id)
-                if(dino.id==dinosaurio_rastreado._id){
-                   var maximo = dino.cantidad + capturas_final;
-                    if(activo){
-                        if(maximo>15){
-                            dino.cantidad = 15;
+                    if(dino.id==dinosaurio_rastreado._id){
+                       var dinos_totales = cantidadActualdinos + capturas_final;
+                        
+                            if(dinos_totales>=max_dinosaur){
+                                var provisional = dinos_totales - max_dinosaur;
+                                capturas_final -=provisional;
+                                dino.cantidad +=capturas_final;
+                                console.log("solo los justos... maximo dinosaurios permitidos ");
+                            }
+                            else{
+                                dino.cantidad +=capturas_final;
+                                //dino_act = dino.cantidad;
+                                console.log("todo correcto ");
+                            }
                         }
-                        else{
-                            dino.cantidad +=capturas_final;
-                            //dino_act = dino.cantidad;
-                        }
-                    }
-                    else{
-                        if(maximo>10){
-                            dino.cantidad = 10;
-                        }
-                        else{
-                            dino.cantidad +=capturas_final;
-                            //dino_act = dino.cantidad;
-                        }
-                    }
-                    
-                    
-                }  
-
-            });
+                                     
+                });  
+                                              
+            }
+            
             console.log(partida_jugador.dinos);
              var dino_act= partida_jugador.dinos;
-
-
-            
+ 
             Partida.update({_id:user},{$set: {dinos: dino_act }});            
             //Partida.update({ _id:user, edificio: Edifici._id },{ $set: { "edificio.$" : EdificiUp._id}});
             }
 
-        }  
-          
-    });
+        });
     },
     // FIN EXPEDICIONES
     
@@ -521,10 +533,13 @@ Meteor.methods({
             if(Investigacio._id==1){
                 Partida.update({_id:user},{$set:{bono_seguridad:true}});
                 Partida.update({_id:user},{$push:{bonos_desbloqueados:1}});
+                console.log("investigacio acabada!!");
             }
             else if(Investigacio._id==2){
                 Partida.update({_id:user},{$set:{bono_habitats:true}});
                 Partida.update({_id:user},{$push:{bonos_desbloqueados:2}});
+                Partida.update({_id:user},{$inc:{max_dinosaurios:5}});
+                console.log("investigacio acabada!!");
             }
             else if(Investigacio._id==3){
                 Partida.update({_id:user},{$set:{bono_rrpp:true}});
@@ -605,7 +620,7 @@ Accounts.emailTemplates.verifyEmail = {
 
 //SyncedCron.start();
      /* SyncedCron.add({
-        name: 'Run in 1 seconds dinocoins',
+        name: 'Run in 2 seconds dinocoins',
         schedule: function(parser) {
             // parser is a later.parse obje
             return parser.text('every 2 seconds');
@@ -686,7 +701,7 @@ SyncedCron.start();*/
     //***********LOS DINOS ESCAPAN
     //************ CRON DE 12 o 24 Horas, por el momento cada 20s
     //************
-   /* SyncedCron.start();
+    SyncedCron.start();
         SyncedCron.add({
         name: 'Run in 20 seconds ',
         schedule: function(parser) {
@@ -695,9 +710,7 @@ SyncedCron.start();*/
         },
         job: function() {
             
-            var dinos_perdidos = getRndInteger(1,10);//numero aleatorio para saber cantos dinosaurios se han escapado
-            var dino_perdidoId =  getRndInteger(1,7);//numero aleatorio para comparar al id del dinosaurio
-            // do something important here
+            
             console.log("aixo es un missatge de mostra (666-555-666)CALL ME <3");
             
             
@@ -710,7 +723,33 @@ SyncedCron.start();*/
                 console.log("----------2--------");
                 console.log(dino_perdidoId);
                 var array =[]; //array para almacenar los objetos dinosaurios
-                
+               
+               //miramos que edificio hay de garita seguridad por cada partida
+               var edificioSeguridad = 0;
+               
+               mi_partida[proba].edificio.forEach(function(edif,i){
+                   if(edif==801||edif==802||edif==803){
+                       edificioSeguridad = edif;
+                   }
+                   
+               });
+               if(edificioSeguridad==801){
+                    var dinos_perdidos = getRndInteger(1,15);
+                    var dino_perdidoId =  getRndInteger(1,7);
+                }
+                else if(edificioSeguridad==802){
+                    var dinos_perdidos = getRndInteger(1,10);
+                    var dino_perdidoId =  getRndInteger(1,7);
+                }
+                else if(edificioSeguridad==803){
+                    var dinos_perdidos = getRndInteger(1,5);
+                    var dino_perdidoId =  getRndInteger(1,7);
+                }else{
+                    var dinos_perdidos = getRndInteger(1,20);
+                    var dino_perdidoId =  getRndInteger(1,7);
+                }
+               
+                 
                 mi_partida[proba].dinos.forEach(function(dino,i){ //por cada partida
                     console.log("partida: " + proba + " dino " + dino.id);
                     
@@ -736,8 +775,12 @@ SyncedCron.start();*/
                         }
                         
                         else{//si tenemos bono
-                            var restantes = dino.cantidad-(Math.floor(dinos_perdidos/2));//se escapan dinosaurios -50% la mitad
-                        
+                            
+                            
+                            
+                                var restantes = dino.cantidad-(Math.floor(dinos_perdidos/2));//se escapan dinosaurios -50% la mitad
+                           
+             
                             console.log("dinosaurio en la partida " + dino.cantidad);
                             console.log("dinosaurios perdidios sin bono "+dinos_perdidos); 
                             console.log("dinosaurios perdidios con bono "+(dino.cantidad-restantes));
@@ -764,12 +807,12 @@ SyncedCron.start();*/
                 });
                
                //actualizamos el array en la partida; para todas las partidas sera lo mismoS
-                Partida.update({_id:mi_partida[proba]._id},{$set: {dinos: array }});
+                Partida.update({_id:mi_partida[proba]._id},{$set: {dinos: array}});
             //SyncedCron.remove('Run in 20 seconds only once');
             }
     
         }
-    });*/
+    });
 
 });
 
