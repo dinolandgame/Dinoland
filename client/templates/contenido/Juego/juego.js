@@ -96,6 +96,4 @@ if(Meteor.isClient){
 			}
 		}
 	});	
-
-   	
 }

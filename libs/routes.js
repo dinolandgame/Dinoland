@@ -43,7 +43,9 @@ Router.configure({
                Meteor.subscribe('dinosaurios'),
                Meteor.subscribe('expedicion'),
                Meteor.subscribe('investigacion'),
-               Meteor.subscribe('notificaciones')];
+               Meteor.subscribe('notificaciones'),
+               Meteor.subscribe('chat'),
+               Meteor.subscribe('users')];
   }
 		
 });

@@ -8,15 +8,36 @@ Meteor.methods({
       return Accounts.sendVerificationEmail( userId );
     }
   },
+  
+  //metodo para guardar los menaje del chat en bd
+  guardar_mensaje(mensaje){
+    user= Meteor.userId();
+    data = new Date();
+    ara = data.getDate()+":"+data.getMinutes()+":"+data.getSeconds();
+    nom_user = "";
+    usuaris  = Meteor.users.find({}).fetch();
+    usuaris.forEach(function(us){
+        if(user==us._id){
+            nom_user=us.username;
+        }
+    });
+    
+    var dateFormat = require('dateformat');
+    var now = new Date();
+   
+    Chat.insert({id_missatge:Chat.find().count()+1,id_user:user,nom_user:nom_user,text:mensaje,timestamp:dateFormat(now,"HH:MM:ss")});
+  },
+
   //methodo creacion partida
   crear_partida(){
     
      user= Meteor.userId();
      Partida.insert({_id:user,
                       dinero:100000000,
-                      energia:200,
-                      suministros:2000000000000,
+                      energia:200000,
+                      suministros:20000000000,
                       visitantes:0,
+                      ambar:0,
                      bono_seguridad:false,
                      bono_logistica:false,
                      bono_liderazgo:30,
@@ -38,7 +59,8 @@ Meteor.methods({
                         {id:5,cantidad:0},
                         {id:6,cantidad:0},
                         {id:7,cantidad:0}
-                    ]}); 
+                    ],
+                   desbloqueando:[]}); 
 
       
        
@@ -93,6 +115,8 @@ Meteor.methods({
 
             Partida.update({ _id:user, edificio: Edifici._id },{ $set: { "edificio.$" : EdificiUp._id}});
             
+             //quitamos del array de desbloqueando 
+ +          Partida.update({_id:user},{$pull:{desbloqueando:{_id:EdificiUp._id}}});
             
             if(EdificiUp.key=="cuartel2"){
 
@@ -104,6 +128,8 @@ Meteor.methods({
             else if(EdificiUp._id==1102||EdificiUp._id==1103){
                 Partida.update({_id:user}, {$inc:{max_dinosaurios:EdificiUp.capacidadDino}});
             }
+
+            Partida.update({_id:user}, {$inc:{ambar:EdificiUp.ambar}});
 
             // Se genera una notificación
             Notificacion.insert({usuario: user,
@@ -148,10 +174,12 @@ Meteor.methods({
            
             console.log("ha entrat en el job");
         
-
+            //añadimos al array de edificio de partida 
             Partida.update({_id:user},{$push:{edificio:id}});
-
-                
+            
+            //quitamos del array de desbloqueando 
+ +          Partida.update({_id:user},{$pull:{desbloqueando:{_id:id}}});
+            
              // Se genera una notificación
             Notificacion.insert({usuario: user,
                                  nombre: "construccion edificio",
@@ -170,13 +198,18 @@ Meteor.methods({
                 Partida.update({_id:user}, {$inc:{max_dinosaurios:Edifici.capacidadDino}});
                     }
             
-            
+            Partida.update({_id:user},{$inc:{ambar:Edifici.ambar}});
             /*Partida.update(
                { _id:"zC27EwRQnrHgcuZz8", edificio: 1 },
                { $set: { "edificio.$" : 2} }
             );*/
 
-            console.log("edifici modificat");            
+            console.log("edifici modificat");   
+
+            
+
+                
+                     
         }  
           
     });
@@ -494,9 +527,9 @@ Meteor.methods({
  
             Partida.update({_id:user},{$set: {dinos: dino_act }});            
             //Partida.update({ _id:user, edificio: Edifici._id },{ $set: { "edificio.$" : EdificiUp._id}});
-            }
+        }     
+    });
 
-        });
     },
     // FIN EXPEDICIONES
     
@@ -556,7 +589,7 @@ Meteor.methods({
                      Partida.update({_id:user},{$push:{bonos_desbloqueados:5}});
                     console.log("investigacio acabada!!");
                 }
-           
+           Partida.update({_id:user}, {$inc:{ambar:Investigacio.ambar}});
             // Se genera una notificación
             Notificacion.insert({usuario: user,
                                  nombre: "investigacion finalizada",

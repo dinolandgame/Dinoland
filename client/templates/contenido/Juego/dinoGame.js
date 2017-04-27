@@ -68,20 +68,25 @@ Template.dinoGame.events({
 
          //console.log(EdificiUp);    
          //console.log(mi_partida); 
-         console.log((mi_partida[0].energia > EdificiUp.consumoEnergia)+" ||| "+(mi_partida[0].suministros > EdificiUp.costeSuministros)+ "  ||| " +(mi_partida[0].dinero >EdificiUp.costeDinocoins));
+         //console.log((mi_partida[0].energia > EdificiUp.consumoEnergia)+" ||| "+(mi_partida[0].suministros > EdificiUp.costeSuministros)+ "  ||| " +(mi_partida[0].dinero >EdificiUp.costeDinocoins));
             if(EdificiUp != null && Edifici.nivel<=cuartel && mi_partida[0].energia >= EdificiUp.consumoEnergia  && mi_partida[0].suministros >= EdificiUp.costeSuministros && mi_partida[0].dinero >= EdificiUp.costeDinocoins ){
                 
                 var dinero = mi_partida[0].dinero - EdificiUp.costeDinocoins;
                 var suministros = mi_partida[0].suministros - EdificiUp.costeSuministros;
                 var energia = mi_partida[0].energia - EdificiUp.consumoEnergia;
+                
+                var now = new Date().getTime(); 
+                now = now +(EdificiUp.tiempoConstruccion*1000);
+                tarea = {"_id":EdificiUp._id,"final":now}
 
 
                 Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }});
-
+                Partida.update({_id:user},{$push:{desbloqueando:tarea}});
+                //llamamos a la funcion contador para hacer aparecer el contador cuando se sube nivel
+                contador();
 
                 Meteor.call('update_part',EdificiUp,Edifici); 
-              //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados
-                    
+                //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados   
                 alert("se ha subido de nivel");
             }
             else{
@@ -546,6 +551,13 @@ Template.dinoGame.events({
         //Se modifica el registro en la BD cambiando su campo leido a true. Ésto permite 
         // conservar las notificaciones para que las puedan usar otras funcionalidades (como el muro en la parte social)
         Notificacion.update({usuario:user, id:notificacion},{ $set:{leido:"true"}});
+    },
+    /////////// funciones Chat /////////
+    "click #mensaje_text":function(event,template){
+
+        text = $("#mensaje").val();
+        $("#mensaje").val("");
+        Meteor.call("guardar_mensaje",text);
     }
 
     
@@ -806,6 +818,11 @@ Template.dinoGame.helpers({
         return Partida.find({});
         
     }, 
+    chats:function(){
+        limit_dades=20;
+        var convers = Chat.find({}, {sort: { id_missatge: -1 }, limit:limit_dades});
+        return convers;
+    },
     //buscamos la quantidad de dinosaurios que hay por areaa
     mostrar_num_dinoss:function(nom_area){
         //obtenemos la partida de jugador
@@ -1027,6 +1044,9 @@ Template.dinoGame.helpers({
 
     }
 
+
+
+
 });
 
 /* ON RENDERES ES COMO EL DOCUMENT(READY) */
@@ -1034,17 +1054,14 @@ Template.dinoGame.onRendered(function(){
     user = Meteor.userId();
     /* NOTIFICACIONES */
     comprobarNotificaciones();
+    partida = Partida.find({_id:user}).fetch();
     
-    
-    /* CONTROL BONO HABITATS*/
-    
-    var mi_partida = Partida.findOne({_id:user});
-    
+    //iniciamos los contadores, tantos como haya en el array de desbloqueando cada vez que regarguemos la pagina
+    contador();
+
     cont_sonido = 0;//Variable para controlar el sonido y el mute
 
     /* VARIABLES GLOBALES PARA EXPEDICIONES */   
-    
-    
 
     totalDC = 0;            /* Total coste Dinocoins */
     totalSUM = 0;           /* Total coste Suministros */
@@ -1080,8 +1097,17 @@ Template.dinoGame.onRendered(function(){
                 var suministros = mi_partida.suministros - edificiCrear.costeSuministros;
                 var energia = mi_partida.energia - edificiCrear.consumoEnergia;
 
+                
+                var now = new Date().getTime(); 
+                now = now +(edificiCrear.tiempoConstruccion*1000);
+                tarea = {"_id":edificiCrear._id,"final":now}
 
-                Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }})
+                Partida.update({_id:user},{$set:{dinero:dinero, suministros:suministros, energia:energia }});
+                
+                //se añade al aray desbloqueando el edificio q se esta desbloqueando
+                Partida.update({_id:user},{$push:{desbloqueando:tarea}});
+                //llamamos a la funcion para hacer aparecer el contador
+                contador();
 
              alert("se esta contruyendo");
            
@@ -1140,6 +1166,12 @@ Template.dinoGame.onRendered(function(){
             alert("faltan recursos");
         } 
     });
+
+
+    
+
+
+
      /*****************FIN EVENTOS INVESTIGACIONES*****************************************/
     
         $('[data-toggle="popover"]').popover(); 
@@ -1147,6 +1179,7 @@ Template.dinoGame.onRendered(function(){
         /* EXPEDICIONES */
         //la primera carga comprobamos los botones de sumar y restar para cada tropa
         buttons_sum_res(); 
+
 
 
 
@@ -1185,6 +1218,60 @@ function comprobarBonos(){
     
     return Bonos;
 }
+
+
+
+function contador(){
+     
+     ahora = new Date().getTime();
+     //controlo la partida antes de mostrar el contador
+      part = Partida.findOne({_id:Meteor.userId()});
+        
+     for(z=0;z<part.desbloqueando.length;z++){
+          var final =  part.desbloqueando[z].final;
+                   
+           
+         $("#cronometres").append("<p class='dinobuton-text dinobuton-text-size' id='crono" + z + "'></p>");
+         var countDownDate = final;
+         
+         crearContador('#crono'+z,countDownDate);
+         
+   
+     }
+}
+
+function crearContador(crono,countDownDate){
+    var cont=0;
+    var x=[];
+    x[cont] = setInterval(function() {
+         
+        var now = new Date().getTime();  
+        var distance = countDownDate - now;
+
+        // Output the result in an element with id="demo"
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+         $(crono).text(days + "d " + hours + "h "
+         + minutes + "m " + seconds + "s ");
+
+        if (distance < 0) {
+            //borra elementos del DOM que posteriormente se volveran a insertar
+            $(crono).detach();
+            $(crono).remove();
+            $(crono).empty();
+         clearInterval(x[cont]);
+            cont=0;
+        }
+    }, 1000);
+
+    cont++;
+}
+
+
 
 
 
