@@ -107,7 +107,7 @@ Template.dinoGame.events({
         
         /********
         aqui podemos modificar la partida con los edifciios desbloqueados por el primer cuartel 
-        pero faltaria controlar cuando se sube de nivel el cuartel (mencionado en la linea.229 
+       
         ************/
         
         Partida.update({_id:user},{$push:{desbloqueados:{$each:[401,501,901,1001]}}});
@@ -852,14 +852,20 @@ Template.dinoGame.helpers({
         //obtenemos la partida
         var mi_partida = Partida.findOne({_id:Meteor.userId()});
         //recorremos el array de edificios i comprovamos nivel de habitat 
+        var bonohabitats = mi_partida.bono_habitats;
         mi_partida.edificio.forEach(function(edif){
+            
             switch(edif)
             {   //guardamos la capacidad de dinos que puede tener el habitat segun su nivel
                 case 1101: max_cap = Edificio.findOne({_id:edif}).capacidadDino; break;
-                case 1102: max_cap = Edificio.findOne({_id:edif}).capacidadDino; break;
-                case 1103: max_cap = Edificio.findOne({_id:edif}).capacidadDino; break;
+                case 1102: max_cap = Edificio.findOne({_id:edif}).capacidadDino*2; break;
+                case 1103: max_cap = Edificio.findOne({_id:edif}).capacidadDino*3; break;
             }
         });
+        
+        if(bonohabitats){
+            max_cap += 5;
+        }
         
         return max_cap;
     },

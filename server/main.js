@@ -125,8 +125,11 @@ Meteor.methods({
             else if(EdificiUp.key=="cuartel3"){
                 Partida.update({_id:user},{$push:{desbloqueados:{$each:EdificiUp.desbloquea}}});
             }
-            else if(EdificiUp._id==1102||EdificiUp._id==1103){
+            else if(EdificiUp._id==1102||EdificiUp._id==1103){//incremento de max dinos en la partida
                 Partida.update({_id:user}, {$inc:{max_dinosaurios:EdificiUp.capacidadDino}});
+            }
+            else if(EdificiUp._id==302||EdificiUp._id==303){//incremento max visitantes por partida
+                Partida.update({_id:user}, {$set:{max_visitantes:EdificiUp.max_visitantes}});
             }
 
             Partida.update({_id:user}, {$inc:{ambar:EdificiUp.ambar}});
@@ -505,7 +508,7 @@ Meteor.methods({
                     if(dino.id==dinosaurio_rastreado._id){
                        var dinos_totales = cantidadActualdinos + capturas_final;
                         
-                            if(dinos_totales>=max_dinosaur){
+                            if(dinos_totales>max_dinosaur){
                                 var provisional = dinos_totales - max_dinosaur;
                                 capturas_final -=provisional;
                                 dino.cantidad +=capturas_final;
@@ -651,8 +654,8 @@ Accounts.emailTemplates.verifyEmail = {
     });*/
 
 
-//SyncedCron.start();
-     /* SyncedCron.add({
+SyncedCron.start();
+      SyncedCron.add({
         name: 'Run in 2 seconds dinocoins',
         schedule: function(parser) {
             // parser is a later.parse obje
@@ -672,6 +675,45 @@ Accounts.emailTemplates.verifyEmail = {
                   var dinero = part.dinero;
                   var suministros = part.suministros;
                   var almacen = 0;
+                    
+                    //VISITANTES X dinosaurio
+                    var totalvisitantes=0;
+                    var totalDinos = [];
+                    var visitantesXdino = [];
+                    var bonoVisitante = part.bono_rrpp;
+                //buscaremos cuantos dinosaurios por id hay en la partida
+                    part.dinos.forEach(function(dino,i){
+                         
+                        totalDinos[i]={"id":dino.id,"num":dino.cantidad};  
+                    });
+                    
+                    
+                    Dinosaurio.find().forEach(function(dino,i){
+                        visitantesXdino[i]={"id":dino._id,"genera":dino.visitantes};              
+                            
+                         if(visitantesXdino[i].id==totalDinos[i].id){
+                            totalvisitantes += visitantesXdino[i].genera * totalDinos[i].num;
+                            
+                        }    
+                    });
+                    
+                    if(bonoVisitante){//20% mas de visitantes con el bono
+                        totalvisitantes = Math.ceil(totalvisitantes + (totalvisitantes*0.2)); 
+                        console.log(totalvisitantes);            
+                        console.log("*********X2********");
+                    }else{
+                        console.log(totalvisitantes);            
+                        console.log("*****************");
+                    }
+                    
+                    //si es superior
+                    if(totalvisitantes>part.max_visitantes){
+                        totalvisitantes=part.max_visitantes;
+                    }
+                    //FIN VISITANTES
+                    
+                    
+                    
                   part.edificio.forEach(function(num){
                     
                     var edificio  = Edificio.findOne({"_id":num});
@@ -680,7 +722,7 @@ Accounts.emailTemplates.verifyEmail = {
                       almacen = num;
                     }
 
-                    dinero += Math.ceil(edificio.dinoCoins/60);
+                    dinero += Math.ceil(edificio.dinoCoins/60) + (totalvisitantes*2);
                     suministros += Math.ceil(edificio.Suministros/60);
 
                   });
@@ -702,7 +744,7 @@ Accounts.emailTemplates.verifyEmail = {
                     dinero = coins_maxim;
                   }
 
-                  Partida.update({_id:part._id},{$set:{dinero:dinero, suministros:suministros}})
+                  Partida.update({_id:part._id},{$set:{dinero:dinero, suministros:suministros, visitantes:totalvisitantes}})
 
 
                 });
@@ -714,7 +756,7 @@ Accounts.emailTemplates.verifyEmail = {
             }
         }
     });
-
+/*
 //SyncedCron.start();
       SyncedCron.add({
         name: 'Run in 1 minute',
