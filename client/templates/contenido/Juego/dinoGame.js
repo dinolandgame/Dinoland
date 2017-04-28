@@ -543,16 +543,19 @@ Template.dinoGame.events({
     
     "click img.close-noti": function(event,template){
         //comprobarNotificaciones();
-        var notificaciones = Notificacion.find({usuario:user}).fetch();
-        var cont_notificiaciones = notificaciones.length;
+        
         var notificacion = $(event.target).parent().data("id");
-        $("#text-contador-notis").text(cont_notificiaciones);
+       
         $(event.target).parent().fadeOut();
         
         //Se modifica el registro en la BD cambiando su campo leido a true. Ésto permite 
         // conservar las notificaciones para que las puedan usar otras funcionalidades (como el muro en la parte social)
         console.log("usuario= " + user + "idnotificacion= " + notificacion)
         Notificacion.update({_id:notificacion},{ $set:{leido:"true"}});
+        //Se refresca el numero 
+        var notificaciones = Notificacion.find({usuario:user, leido:"false"}).fetch();
+        var cont_notificiaciones = notificaciones.length;
+        $("#text-contador-notis").text(cont_notificiaciones);
     }
 
     

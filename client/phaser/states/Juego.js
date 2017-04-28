@@ -146,13 +146,13 @@ Juego.prototype = {
 function comprobarNotificaciones(){
     /*NOTIFICACIONES */
 
-        var notificaciones = Notificacion.find({usuario:user}).fetch();
+        var notificaciones = Notificacion.find({usuario:user, leido:"false"}).fetch();
         var cont_notificiaciones = notificaciones.length;
         $("#text-contador-notis").text(cont_notificiaciones);
 
+        $("#divnotificaciones").empty();
         notificaciones.forEach(function(noti){
-            //$("#divnotificaciones").empty();
-            $("#divnotificaciones").append('<li class="notificacion"><img class="close-noti" src="/images/close.png" alt="close">'+ noti.descripcion +'</li>');
+            $("#divnotificaciones").append('<li class="notificacion" data-id="'+ noti._id +'"><img class="close-noti" src="/images/close.png" alt="close">'+ noti.descripcion +'</li>');
         });
 }
 
