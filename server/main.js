@@ -28,6 +28,101 @@ Meteor.methods({
     Chat.insert({id_missatge:Chat.find().count()+1,id_user:user,nom_user:nom_user,text:mensaje,timestamp:dateFormat(now,"HH:MM:ss")});
   },
 
+  partidas(){
+    var partidas=Partida.find({},{sort:{expediciones:-1}}).fetch();
+        
+        var partExp=[];
+        var topUserExped=[];
+        var experesul=[];
+        for (var i=0; i<3; i++){
+            
+            partExp.push(partidas[i]);
+            var a= Meteor.users.findOne({_id:partExp[i]._id});
+
+            topUserExped.push(a);
+                      
+           //console.log("user " + topUserExped);
+            var info={
+                expe:partExp[i].expediciones,
+                name:topUserExped[i].username,
+                avatar:topUserExped[i].profile.avatar
+            }
+
+            experesul.push(info);
+        }
+
+        return result = experesul;
+  },
+    rankingVisitantes(){
+    var partidas=Partida.find({},{sort:{visitantes:-1}}).fetch();
+        
+        var partExp=[];
+        var topUserExped=[];
+        var experesul=[];
+        for (var i=0; i<3; i++){
+            
+            partExp.push(partidas[i]);
+            var a= Meteor.users.findOne({_id:partExp[i]._id});
+
+            topUserExped.push(a);
+                      
+           //console.log("user " + topUserExped);
+            var info={
+                visitantes:partExp[i].visitantes,
+                name:topUserExped[i].username,
+                avatar:topUserExped[i].profile.avatar
+            }
+
+            experesul.push(info);
+        }
+
+        return result = experesul;
+  },
+  rankingAmbar(){
+    var partidas=Partida.find({},{sort:{ambar:-1}}).fetch();
+        
+        var partExp=[];
+        var topUserExped=[];
+        var experesul=[];
+
+        if(partidas.length>=7){
+                for (var i=0; i<7; i++){
+                
+                partExp.push(partidas[i]);
+                var a= Meteor.users.findOne({_id:partExp[i]._id});
+
+                topUserExped.push(a);
+                          
+               //console.log("user " + topUserExped);
+                var info={
+                    ambar:partExp[i].ambar,
+                    name:topUserExped[i].username,
+                    avatar:topUserExped[i].profile.avatar
+                }
+
+                experesul.push(info);
+            }
+        }else{
+            for(var i=0; i<partidas.length; i++){
+                partExp.push(partidas[i]);
+                var a= Meteor.users.findOne({_id:partExp[i]._id});
+
+                topUserExped.push(a);
+                          
+               //console.log("user " + topUserExped);
+                var info={
+                    ambar:partExp[i].ambar,
+                    name:topUserExped[i].username,
+                    avatar:topUserExped[i].profile.avatar
+                }
+
+                experesul.push(info);
+            }
+        }
+
+        return result = experesul;
+  },
+
   //methodo creacion partida
   crear_partida(){
     
@@ -38,6 +133,7 @@ Meteor.methods({
                       suministros:20000000000,
                       visitantes:0,
                       ambar:0,
+                      expediciones:0,
                      bono_seguridad:false,
                      bono_logistica:false,
                      bono_liderazgo:30,
@@ -486,7 +582,7 @@ Meteor.methods({
               }
             console.log("dino: "+ dinosaurio_rastreado.nombre + "; cantidad: "+ capturas_final );
             Partida.update({_id:user},{$set: {dinero: dinocoins, suministros: suministros}});
-            
+            Partida.update({_id:user},{$inc:{expediciones:1}});
             /* limitar los dinosaurio con referencia al maxio de dinos permitidos*/
             if(capturas_final > 0){
                 var max_dinosaur =0;

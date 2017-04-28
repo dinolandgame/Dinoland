@@ -4,7 +4,7 @@
 	{{#if currentUser}}
        
 <!--       Si l'usuari no està verificat-->
-        {{#unless currentUser.emails.[0].verified}}
+        <!--{{#unless currentUser.emails.[0].verified}}
 
 		<div class="container-fluid">
 	         <div class="row">
@@ -14,20 +14,20 @@
 		    		<a href="#" id="resend-verification-link">Enviar email de verificación de nuevo.</a>.</p>
 	            </div>
             </div>
-        </div>
+        </div>-->
 
 <!--          Si l'usuari està verificat-->
-	  		{{else}}
+	  		<!--{{else}}
 
             <div>
-               <div>
+               <div>-->
 
                	<!-- Aqui llamamos a la plantilla que va a contener el juego y que sera unica en la pagina-->
 		            {{> dinoGame}}
 
-	    	    </div>
+	    	   <!-- </div>
 	        </div>
-        {{/unless}}
+        {{/unless}}-->
         {{else}}
 
             {{> nolog}}
