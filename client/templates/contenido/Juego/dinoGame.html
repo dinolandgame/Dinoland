@@ -808,17 +808,9 @@
 
                                 <div class="row top-margin">
                                     <div class="modal-widget">
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>     
+                                        {{#each rankingAmbar}}  
+                                            <p><img src="{{avatar}}" style="width: 30px">{{name}} : {{ambar}}</p>
+                                        {{/each}}   
                                     </div>
                                 </div>
                             </div>
@@ -834,9 +826,9 @@
 
                                 <div class="row top-margin">
                                     <div class="modal-widget">
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
+                                    {{#each rankingExpediciones}}
+                                        <p><img src={{avatar}} style="width: 30px">{{name}}: {{expe}}</p>
+                                    {{/each}}
                                     </div>
                                 </div>
 
@@ -850,9 +842,9 @@
 
                                 <div class="row top-margin">
                                     <div class="modal-widget">
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>                                        
+                                        {{#each rankingVisitantes}}
+                                            <p><img src="{{avatar}}" style="width: 30px">{{name}}: {{visitantes}}</p>
+                                        {{/each}}                                
                                     </div>
                                 </div>
                             </div>

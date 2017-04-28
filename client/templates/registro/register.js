@@ -16,7 +16,8 @@ Template.register.events({
 	var userObject = {
 		username:user,
 		email:email,
-		password:pass1
+		password:pass1,
+		profile: {avatar:"images/lider1.png"}
 		
 	};
 

@@ -1042,8 +1042,55 @@ Template.dinoGame.helpers({
             }
         }
 
-    }
+    },
+    rankingExpediciones:function(){
+        
+        
+        Meteor.call('partidas', function(error, result){
+            if(error){
+                
+            }else{
+                 return Session.set('ranking', result);
+            }
+        });
+        
+        var resul =Session.get('ranking');
+        return resul;
 
+        
+    },
+     rankingVisitantes:function(){
+        
+        
+        Meteor.call('rankingVisitantes', function(error, result){
+            if(error){
+                
+            }else{
+                 return Session.set('visitantes', result);
+            }
+        });
+        
+        var resul =Session.get('visitantes');
+        return resul;
+
+        
+    },
+    rankingAmbar:function(){
+        
+        
+        Meteor.call('rankingAmbar', function(error, result){
+            if(error){
+                
+            }else{
+                 return Session.set('ambar', result);
+            }
+        });
+        
+        var resul =Session.get('ambar');
+        return resul;
+
+        
+    }
 
 
 
