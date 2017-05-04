@@ -810,16 +810,14 @@ function buttons_sum_res(){
 
 /**************************** FIN FUNCIONES EXPEDICIONES ***************************************/
 
-
 //Helpers
 Template.dinoGame.helpers({
     partida:function(){
         return Partida.find({});
-        
     }, 
     chats:function(){
         limit_dades=20;
-        var convers = Chat.find({}, {sort: { id_missatge: -1 }, limit:limit_dades});
+        var convers = Chat.find({}, {sort: {timestamp: 1}});
         return convers;
     },
     //buscamos la quantidad de dinosaurios que hay por areaa

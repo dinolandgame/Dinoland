@@ -52,8 +52,9 @@
             <img class="btn-icon" src="images/ui/icon-social.png">
     </button>
 
-    <button id="btn-chat" data-target="#pop_chat"  class="boton_gui" style="display:block;position: absolute;left: 36%;top: 90%" data-toggle="modal">
-            <p>chat</p>
+    <button id="btn-chat" data-target="#pop_chat"  class="boton_gui" style="display:block;position: absolute;left: 34%;top: 90%" data-toggle="modal">
+            <p class="dinobuton-text">chat</p>
+
     </button>
 
     <button id="btn-sound">
@@ -863,28 +864,35 @@
         <div class="modal-dialog pop_gran">
             <div class="modal-content border">
                 <div class="modal-body content_gran">
-                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
                     <div class="header_gran">
-                        <h2>CHAT</h2>
+                        <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                            <div class="modal-ribon">
+                                <img src="/images/ribbon.png">
+                                <h2 id="nom_edifici" class="dinobuton-text">Chat</h2>
+                            </div> 
+                        </div>
                     </div>
 
                     <div id="contingut_modal">
                         <div>
-                            <div class="col-lg-4">
-                                <input type="text" id="mensaje" name="FirstName" value="">
-                            </div>
-                            <div class="col-lg-4">
-                               <button id="mensaje_text"  class="col-sm-offset-1 boton_gui"><p class="dinobuton-text">ENVIAR</p></button>
-                            </div>
+                            
                             <div class="col-lg-12">
-                                <p class="dinobuton-text">Chat comun:</p>
+                                <p class="dinobuton-text" style="font-size: 30px;">Chat comun:</p>
                                 <div class="chat">
-                                    <ul id="lista_mensajes" class="nav navbar-nav">
+                                    <ul id="lista_mensajes" class="nav navbar-nav col-lg-12 modal-desc" style="padding: 8px;">
                                         {{#each chats}}
-                                            <li>{{timestamp}}  {{nom_user}}:{{text}}</li><br>
+                                            <li>{{fechaString}}  {{nom_user}}:{{text}}</li><br>
                                         {{/each}}
                                     </ul>
                                 </div>
+                            </div>
+
+                            <div class="col-sm-offset-1 col-lg-8">
+                                <input type="text"  class="form-control" id="mensaje" name="FirstName" value="">
+                            </div>
+                            <div class="col-lg-2" style="bottom:8px;" >
+                               <button id="mensaje_text"  class="col-sm-offset-1 boton_gui"><p class="dinobuton-text">ENVIAR</p></button>
                             </div>
                         </div>
 
