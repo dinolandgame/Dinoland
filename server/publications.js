@@ -1,5 +1,5 @@
 Meteor.publish('chat', function(){
-	return Chat.find();
+	return Chat.find({},{sort: {timestamp: -1}, limit:14});
 });
 
 Meteor.publish('partida', function(){
