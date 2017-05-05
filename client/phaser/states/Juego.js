@@ -69,7 +69,13 @@ Juego.prototype = {
                     $(".side-collapse").addClass('open'); 
                 }
 
-                if(fields.hasOwnProperty('expedicion')){
+                if(fields.hasOwnProperty('expediciones')){
+                    bell.play();
+                    comprobarNotificaciones();
+                    $(".side-collapse").addClass('open');
+                }
+
+                if(fields.hasOwnProperty('bonos_desbloqueados')){
                     bell.play();
                     comprobarNotificaciones();
                     $(".side-collapse").addClass('open');
