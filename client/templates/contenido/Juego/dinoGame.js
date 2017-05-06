@@ -557,8 +557,16 @@ Template.dinoGame.events({
         text = $("#mensaje").val();
         $("#mensaje").val("");
         Meteor.call("guardar_mensaje",text);
-    }
+    },
 
+    /************************************EVENTOS MURO*******************************************/
+
+"click button[data-publicacion]": function(event, template){
+        var idPublicacion = $(event.target).data('publicacion');
+        var texto = $(event.target).prev().val();
+
+        Meteor.call('comentarioPublicacion', idPublicacion, texto, Meteor.user());
+}
     
     
 
@@ -1093,6 +1101,8 @@ Template.dinoGame.helpers({
         return resul;
 
         
+    }, publicaciones:function(){
+        return Muro.find({});
     }
 
 
