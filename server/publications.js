@@ -35,3 +35,6 @@ Meteor.publish('notificaciones',function(){
 Meteor.publish("users", function () {
   return Meteor.users.find({});
 });
+Meteor.publish('muro', function(){
+	return Muro.find({},{sort: {timestamp: 1}, limit:15});
+});

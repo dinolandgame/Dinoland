@@ -8,4 +8,4 @@ Lider = new Mongo.Collection("lideres");
 Investigacion = new Mongo.Collection("investigacion");
 Notificacion = new Mongo.Collection("notificaciones");
 Chat = new Mongo.Collection("chat");
-//Users= new Mongo.Collection("users");
+Muro = new Mongo.Collection("muro");

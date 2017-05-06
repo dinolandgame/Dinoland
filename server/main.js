@@ -169,14 +169,37 @@ Meteor.methods({
     costeConstrución:200,
     descripcion:"descripcion edificio",
     avatar:"images/logo.png"
-  
+            
 }*/
+           var usuario = Meteor.user();
+            Muro.insert({id_usuario:user,
+                nombre:usuario.username,
+                avatar:usuario.profile.avatar,
+                descripcion:"El usuario " + usuario.username + " ha empezado una partida",
+                timestamp: Date.now(),
+                valoracion:0,
+                comentarios:[]});
+
   },
   
   cambioTienda(dineroRestante, suministrosTotales){
     console.log(suministrosTotales);
     Partida.update({_id:Meteor.userId()},{$set: {dinero: dineroRestante, suministros: suministrosTotales}});
     console.log("Ha entrado");
+  },
+
+  comentarioPublicacion(idPublicacion, texto, usuario){
+    //var publicacion=Muro.find({_id:idPublicacion});
+    var comentario = {
+            idUser: usuario._id,
+            username: usuario.username,
+            fecha: Date.now(),
+            avatar: usuario.profile.avatar,
+            texto:texto
+
+    };
+
+    Muro.update({_id:idPublicacion},{$push:{comentarios:comentario}});
   },
  
     // INICIO TAREA DE MEJORA DE UN EDIFICIO (SUBIR NIVEL)
@@ -752,7 +775,7 @@ Accounts.emailTemplates.verifyEmail = {
 
 
 SyncedCron.start();
-      SyncedCron.add({
+      /*SyncedCron.add({
         name: 'Run in 2 seconds dinocoins',
         schedule: function(parser) {
             // parser is a later.parse obje
@@ -853,7 +876,7 @@ SyncedCron.start();
             }
         }
     });
-/*
+*//*
 //SyncedCron.start();
       SyncedCron.add({
         name: 'Run in 1 minute',

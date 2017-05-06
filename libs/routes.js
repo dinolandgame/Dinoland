@@ -45,7 +45,8 @@ Router.configure({
                Meteor.subscribe('investigacion'),
                Meteor.subscribe('notificaciones'),
                Meteor.subscribe('chat'),
-               Meteor.subscribe('users')];
+               Meteor.subscribe('users'),
+               Meteor.subscribe('muro')];
   }
 		
 });

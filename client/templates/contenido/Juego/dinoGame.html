@@ -783,17 +783,26 @@
 
                                 <div class="row top-margin">
                                     <div class="modal-widget">
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>
-                                        <p>HOLA</p>      
+                                    {{#each publicaciones}}
+                                        <div>
+                                            <img src="{{avatar}}" style="width: 20px">
+                                                <p>{{nombre}}</p>
+                                            <p>{{timestamp}}</p>
+                                            <p>{{descripcion}}</p>
+                                            <p>{{valoracion}}</p>
+                                            {{#each comentarios}}
+                                                <div style="margin-left: 40px">
+                                                    <img src={{avatar}} style="width: 20px">
+                                                    <p>{{username}}</p>
+                                                    <p>{{fecha}}</p>
+                                                    <p>{{texto}}</p>
+                                                </div>
+                                            {{/each}}
+                                            <input data-publicacion="{{_id}}" type="text">
+                                            <button data-publicacion="{{_id}}">Comentar</button>
+                                        </div>   
+                                    
+                                    {{/each}}
                                     </div>
                                 </div>
                             </div>
