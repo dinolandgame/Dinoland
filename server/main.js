@@ -11,22 +11,24 @@ Meteor.methods({
   
   //metodo para guardar los menaje del chat en bd
   guardar_mensaje(mensaje){
-    user= Meteor.userId();
-    data = new Date();
-    ara = data.getDate()+":"+data.getMinutes()+":"+data.getSeconds();
-    nom_user = "";
-    usuaris  = Meteor.users.find({}).fetch();
-    usuaris.forEach(function(us){
-        if(user==us._id){
-            nom_user=us.username;
-        }
-    });
-    
-    var dateFormat = require('dateformat');
-    var now = new Date();
-    var int=now.getTime();
-    var hora = dateFormat(now,"H:MM:ss");
-    Chat.insert({_id:Chat.find().count()+1+"",id_user:user,nom_user:nom_user,text:mensaje,timestamp:int,fechaString:hora});
+    if(mensaje.length>0){
+        user= Meteor.userId();
+        data = new Date();
+        ara = data.getDate()+":"+data.getMinutes()+":"+data.getSeconds();
+        nom_user = "";
+        usuaris  = Meteor.users.find({}).fetch();
+        usuaris.forEach(function(us){
+            if(user==us._id){
+                nom_user=us.username;
+            }
+        });
+        
+        var dateFormat = require('dateformat');
+        var now = new Date();
+        var int=now.getTime();
+        var hora = dateFormat(now,"H:MM:ss");
+        Chat.insert({_id:Chat.find().count()+1+"",id_user:user,nom_user:nom_user,text:mensaje,timestamp:int,fechaString:hora});
+    }
   },
 
   partidas(){
