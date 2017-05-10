@@ -21,7 +21,7 @@ Paso 4: Actualizar meteor con el comando
 
 meteor update
 
-Paso 5: Instalar la librería node.js con el comando
+Paso 5: Instalar el gestor de paquetes node.js con el comando
 
 meteor npm install
 
