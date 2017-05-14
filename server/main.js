@@ -734,71 +734,31 @@ Meteor.methods({
 
 
 Meteor.startup(() => {
-  // code to run on server at startup
-
-  process.env.MAIL_URL = "smtp://postmaster%40sandbox8368add522ff48f499f2947ee132de90.mailgun.org:a580db119fe98417965ca8c0dcacd1f2@smtp.mailgun.org:587";
-//process.env.MAIL_URL="smtp://dinolandgame%40gmail.com:huevo2016@smtp.gmail.com:587/"; 
-
  
-Accounts.emailTemplates.siteName = "Dinoland";
-Accounts.emailTemplates.from     = "Dinoland <dinolandgame@gmail.com>";
-
-Accounts.emailTemplates.verifyEmail = {
-  subject() {
-    return "[Dinoland] Verificación de correo electrónico";
-  },
-  text( user, url ) {
-    let emailAddress   = user.emails[0].address,
-     urlWithoutHash = url.replace( 'game', '' ),
-     supportEmail   = "dinolandgame@gmail.com",
-     emailBody      = 'Para verificar tu cuenta de correo '+emailAddress+' visita el seguiente link\n\n'+ urlWithoutHash +' \n\n Si usted no ha solicitado esta verificación, ignore este correo electrónico. Si cree que algo está mal, comuníquese con nuestro equipo de soporte técnico: '+ supportEmail;
-     
-    return emailBody;
-  }
-};
-
-
-
-
-  
-//SyncedCron.start();
-/*    SyncedCron.add({
-        name: 'Run in 20 seconds ',
-        schedule: function(parser) {
-            // parser is a later.parse obje
-            return parser.text('every 20 seconds');
-        },
-        job: function() {
-            // do something important here
-            console.log("aixo es un missatge de mostra (20)");
-            //SyncedCron.remove('Run in 20 seconds only once');
-        }
-    });*/
 
 
 SyncedCron.start();
-      /*SyncedCron.add({
+      SyncedCron.add({
         name: 'Run in 2 seconds dinocoins',
         schedule: function(parser) {
             // parser is a later.parse obje
             return parser.text('every 2 seconds');
         },
         job: function() {
-                     // do something important here
+             // do something important here
             //console.log("aixo es un missatge de mostra (1)");
             //SyncedCron.remove('Run in 20 seconds only once');
             try{
-             // if(Meteor.userId() != null){
-                //user= Meteor.userId();
+             
+                
                 Partida.find().forEach(function(part){  
-                  var sum_maxim = 240;
-                  var coins_maxim = 1800;
-
-                  var dinero = part.dinero;
-                  var suministros = part.suministros;
-                  var almacen = 0;
+                    var sum_maxim = 240;
+                    var coins_maxim = 1800;
+                    var dinero = part.dinero;
+                    var suministros = part.suministros;
+                    var almacen = 0;
                     
-                    //VISITANTES X dinosaurio
+                //VISITANTES X dinosaurio
                     var totalvisitantes=0;
                     var totalDinos = [];
                     var visitantesXdino = [];
@@ -821,11 +781,7 @@ SyncedCron.start();
                     
                     if(bonoVisitante){//20% mas de visitantes con el bono
                         totalvisitantes = Math.ceil(totalvisitantes + (totalvisitantes*0.2)); 
-                        console.log(totalvisitantes);            
-                        console.log("*********X2********");
-                    }else{
-                        console.log(totalvisitantes);            
-                        console.log("*****************");
+                        
                     }
                     
                     //si es superior
@@ -834,9 +790,7 @@ SyncedCron.start();
                     }
                     //FIN VISITANTES
                     
-                    
-                    
-                  part.edificio.forEach(function(num){
+                    part.edificio.forEach(function(num){
                     
                     var edificio  = Edificio.findOne({"_id":num});
 
@@ -868,37 +822,21 @@ SyncedCron.start();
 
                   Partida.update({_id:part._id},{$set:{dinero:dinero, suministros:suministros, visitantes:totalvisitantes}})
 
-
                 });
                 
-             // }
+             
             }catch(e){
 
-              console.log("error: "+e.message);
+              //console.log("error: "+e.message);
             }
         }
     });
-*//*
-//SyncedCron.start();
-      SyncedCron.add({
-        name: 'Run in 1 minute',
-        schedule: function(parser) {
-            // parser is a later.parse obje
-            return parser.text('every 1 minute');
-        },
-        job: function() {
-            // do something important here
-            console.log("aixo es un missatge de mostra 1 minute");
-            //SyncedCron.remove('Run in 20 seconds only once');
-        }
-    });
 
-SyncedCron.start();*/
     
     //***********LOS DINOS ESCAPAN
     //************ CRON DE 12 o 24 Horas, por el momento cada 20s
     //************
-    /*SyncedCron.start();
+    SyncedCron.start();
         SyncedCron.add({
         name: 'Run in 20 seconds ',
         schedule: function(parser) {
@@ -907,29 +845,22 @@ SyncedCron.start();*/
         },
         job: function() {
             
-            
-            console.log("aixo es un missatge de mostra (666-555-666)CALL ME <3");
-            
-            
+          
             mi_partida = Partida.find().fetch();//obtenemos una array con todas las partidas
-            console.log("numero de partidas = " + mi_partida.length);
-            console.log("---------1---------");
-           for(var proba = 0; proba<mi_partida.length; proba++){//por cada partida
-                
-                console.log(mi_partida[proba]);
-                console.log("----------2--------");
-                console.log(dino_perdidoId);
-                var array =[]; //array para almacenar los objetos dinosaurios
+           
+            for(var proba = 0; proba<mi_partida.length; proba++){//por cada partida
+       
+            var array =[]; //array para almacenar los objetos dinosaurios
+           
+           //miramos que edificio hay de garita seguridad por cada partida
+           var edificioSeguridad = 0;
+           
+           mi_partida[proba].edificio.forEach(function(edif,i){
+               if(edif==801||edif==802||edif==803){
+                   edificioSeguridad = edif;
+               }
                
-               //miramos que edificio hay de garita seguridad por cada partida
-               var edificioSeguridad = 0;
-               
-               mi_partida[proba].edificio.forEach(function(edif,i){
-                   if(edif==801||edif==802||edif==803){
-                       edificioSeguridad = edif;
-                   }
-                   
-               });
+           });
                if(edificioSeguridad==801){
                     var dinos_perdidos = getRndInteger(1,15);
                     var dino_perdidoId =  getRndInteger(1,7);
@@ -948,17 +879,13 @@ SyncedCron.start();*/
                
                  
                 mi_partida[proba].dinos.forEach(function(dino,i){ //por cada partida
-                    console.log("partida: " + proba + " dino " + dino.id);
-                    
+                                  
                     if(dino.id==dino_perdidoId){//tipo de dinosaurio escapado escoogido aleatoriamente
                         var activo=false; //booleano para el bono de seguridad
                         activo = mi_partida[proba].bono_seguridad; 
                         if(!activo){//si el bono no esta activado
                             var restantes = dino.cantidad-dinos_perdidos; //se han escapado los dinosaurios sin bono
                         
-                            console.log("dinosaurio en la partida " + dino.cantidad);
-                            console.log("dinosaurios perdidos "+dinos_perdidos);  
-                            
                             //se escapan y ademas evitamos que tengamos dinosaurios negativos
                             if(restantes<0){
                                 dino.cantidad = 0;
@@ -966,22 +893,11 @@ SyncedCron.start();*/
                             else{
                                 dino.cantidad = restantes;//hacemos que los dinosaurios restantes sean los dinosaurios de la partida
                             }
-                            
-                            console.log("dinosaurios restantes: "+ dino.cantidad);
-                            console.log("---------3---------");
                         }
                         
                         else{//si tenemos bono
-                            
-                            
-                            
+
                                 var restantes = dino.cantidad-(Math.floor(dinos_perdidos/2));//se escapan dinosaurios -50% la mitad
-                           
-             
-                            console.log("dinosaurio en la partida " + dino.cantidad);
-                            console.log("dinosaurios perdidios sin bono "+dinos_perdidos); 
-                            console.log("dinosaurios perdidios con bono "+(dino.cantidad-restantes));
-                            console.log("bonus bonus");
 
                              //se escapan y ademas evitamos que tengamos dinosaurios negativos
                             if(restantes<0){
@@ -990,26 +906,19 @@ SyncedCron.start();*/
                             else{
                                 dino.cantidad = restantes;//hacemos que los dinosaurios restantes sean los dinosaurios de la partida
                             }
-                            console.log("dinosaurios restantes: "+ dino.cantidad);
-                            console.log("---------3---------");
                         }
-                   
                     } 
-                    console.log("<<<<<<< top top top >>>>>>>>");
-                    console.log("dinosaurio en la partida " + dino.cantidad);
-                    console.log("<<<<<<< top top top >>>>>>>");
+                   
                     array.push(dino);//por cada dinosaurio lo guardamos en un array
-                    
-                    
+
                 });
                
                //actualizamos el array en la partida; para todas las partidas sera lo mismoS
                 Partida.update({_id:mi_partida[proba]._id},{$set: {dinos: array}});
             //SyncedCron.remove('Run in 20 seconds only once');
             }
-    
         }
-    });*/
+    });
 
 });
 
@@ -1021,12 +930,54 @@ function getRndInteger(min, max) {
 
     
             
+/* // code to run on server at startup
+
+  process.env.MAIL_URL = "smtp://postmaster%40sandbox8368add522ff48f499f2947ee132de90.mailgun.org:a580db119fe98417965ca8c0dcacd1f2@smtp.mailgun.org:587";
+//process.env.MAIL_URL="smtp://dinolandgame%40gmail.com:huevo2016@smtp.gmail.com:587/"; 
+
+ 
+Accounts.emailTemplates.siteName = "Dinoland";
+Accounts.emailTemplates.from     = "Dinoland <dinolandgame@gmail.com>";
+
+Accounts.emailTemplates.verifyEmail = {
+  subject() {
+    return "[Dinoland] Verificación de correo electrónico";
+  },
+  text( user, url ) {
+    let emailAddress   = user.emails[0].address,
+     urlWithoutHash = url.replace( 'game', '' ),
+     supportEmail   = "dinolandgame@gmail.com",
+     emailBody      = 'Para verificar tu cuenta de correo '+emailAddress+' visita el seguiente link\n\n'+ urlWithoutHash +' \n\n Si usted no ha solicitado esta verificación, ignore este correo electrónico. Si cree que algo está mal, comuníquese con nuestro equipo de soporte técnico: '+ supportEmail;
+     
+    return emailBody;
+  }
+};*/
 
 /*Email.send({
-	to: "xvicente2000@gmail.com",
+    to: "xvicente2000@gmail.com",
   from: "dinolandgame@gmail.com",
   subject: "Example Email",
   text: "The contents of our email in plain text.",
 });*/
+
+
+
+
+  //EJEMPLO DE CRON
+
+//SyncedCron.start();
+/*    SyncedCron.add({
+        name: 'Run in 20 seconds ',
+        schedule: function(parser) {
+            // parser is a later.parse obje
+            return parser.text('every 20 seconds');
+        },
+        job: function() {
+            // do something important here
+            console.log("aixo es un missatge de mostra (20)");
+            //SyncedCron.remove('Run in 20 seconds only once');
+        }
+    });*/
+
 
   
