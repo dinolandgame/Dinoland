@@ -3,7 +3,7 @@ Meteor.publish('chat', function(){
 });
 
 Meteor.publish('noticies', function(){
-	return Noticias.find({},{sort: {num: -1}, limit:5});
+	return Noticias.find({},{sort: {timestamp: -1}, limit:5});
 });
 
 Meteor.publish('partida', function(){

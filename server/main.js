@@ -21,18 +21,18 @@ Meteor.methods({
 
   },
   entrarnoticia(version,comentario,rol){
-    var next = Noticias.find().count()+1;
+    
     var autor = "Dinoland Group Corporation";
     var date = new Date();
+    var timestamp = Date.now();
     var dataenString = ""+date.getDate()+"/"+ date.getMonth()+"/"+ date.getFullYear()+"";
     if(comentario.length>0){
-        Noticias.insert({_id:next+"",
-                        version:version,
+        Noticias.insert({version:version,
                         autor:autor,
                         descripcion:comentario,
                         rol,rol,
                         data:dataenString,
-                        num:next});
+                        timestamp:timestamp});
         console.log("todo OK!");
     }
   },
