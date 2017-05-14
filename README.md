@@ -35,7 +35,7 @@ https://robomongo.org/download
 
 <b>Paso 8:</b> Utilizar el script que facilitamos a continuación, para cargar todas las colecciones y el contenido necesario para el correcto funcionamiento de la aplicación
 
-link del script
+https://drive.google.com/file/d/0B2L4pXQ3K_DyYzN6U3lqOGMxM1E/view?usp=sharing
 
 <b>Paso 9:</b> Crear un usuario y disfrutar de la Aventura Dinoland.
 
