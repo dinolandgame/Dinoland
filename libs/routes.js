@@ -46,7 +46,8 @@ Router.configure({
                Meteor.subscribe('notificaciones'),
                Meteor.subscribe('chat'),
                Meteor.subscribe('users'),
-               Meteor.subscribe('muro')];
+               Meteor.subscribe('muro'),
+               Meteor.subscribe('noticies')];
   }
 		
 });

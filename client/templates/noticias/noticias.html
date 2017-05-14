@@ -1,0 +1,41 @@
+<template name="noticias">
+	<h3>
+	Notícias
+        </h3>
+        {{#each noticia}}
+        <blockquote>
+            <p>
+                {{version}}:{{descripcion}}
+            </p> <small>{{autor}} <cite>{{rol}}</cite></small>
+
+         </blockquote>
+        {{/each}}
+        {{#if admin}}
+        	<blockquote>
+            <form role="form" id="entradaNoticia" method="post">
+                                 <div class="form-group">
+                                    <label>Version</label>
+                                    <input type="text" class="form-control" name="version" placeholder="version" id="version"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>News</label>
+                                    <input type="text" class="form-control" name="comentario" placeholder="comment" id="comentario"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Rol</label>
+                                    <input type="text" class="form-control" name="rol" placeholder="role" id="rol"/>
+                                </div>
+                                <br>
+                             <input type="submit" id="login-account" class="btn btn-default btn-succes" value="Push"/>
+                                <br>
+                            </form>
+
+         	</blockquote>
+        	{{else}}
+        	AUN NO FUNCIONA!!
+        {{/if}}
+
+                        
+</template>
+
+   

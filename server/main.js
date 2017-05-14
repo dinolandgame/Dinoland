@@ -8,6 +8,32 @@ Meteor.methods({
       return Accounts.sendVerificationEmail( userId );
     }
   },
+  mostrarentradanoticia(){
+    var user = Meteor.users.findOne({username:"DinoAdmin"});
+    var userActual = Meteor.userId();
+
+    var administrador = false
+    if(user._id==userActual){
+        administrador = true;
+    }
+
+    return administrador;
+
+  },
+  entrarnoticia(version,comentario,rol){
+    var next = Noticias.find().count()+1;
+    var autor = "Dinoland Group Corporation";
+    
+    if(comentario.length>0){
+        Noticias.insert({_id:next+"",
+                        version:version,
+                        autor:autor,
+                        descripcion:comentario,
+                        rol,rol,
+                        num:next});
+        console.log("todo OK!");
+    }
+  },
   
   //metodo para guardar los menaje del chat en bd
   guardar_mensaje(mensaje){

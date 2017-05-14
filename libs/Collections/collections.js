@@ -9,3 +9,4 @@ Investigacion = new Mongo.Collection("investigacion");
 Notificacion = new Mongo.Collection("notificaciones");
 Chat = new Mongo.Collection("chat");
 Muro = new Mongo.Collection("muro");
+Noticias = new Mongo.Collection("noticies");

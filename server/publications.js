@@ -2,6 +2,10 @@ Meteor.publish('chat', function(){
 	return Chat.find({},{sort: {timestamp: -1}, limit:14});
 });
 
+Meteor.publish('noticies', function(){
+	return Noticias.find({},{sort: {num: -1}, limit:5});
+});
+
 Meteor.publish('partida', function(){
 	return Partida.find({_id: this.userId});
 	//return Partida.find();
