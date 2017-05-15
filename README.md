@@ -33,7 +33,7 @@ meteor
 
 https://robomongo.org/download
 
-<b>Paso 8:</b> Utilizad Robomongo para cargar el script que facilitamos a continuación, que contiene las colecciones y el contenido necesario para el correcto funcionamiento de la aplicación. 
+<b>Paso 8:</b> Es necesario usar Robomongo para cargar el script que facilitamos a continuación, que contiene las colecciones y el contenido necesario para el correcto funcionamiento de la aplicación. 
 
 https://drive.google.com/drive/folders/0B2L4pXQ3K_DyRUNxOC03TjRoZ2c?usp=sharing
 
