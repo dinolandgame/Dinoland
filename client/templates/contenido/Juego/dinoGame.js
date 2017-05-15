@@ -232,6 +232,8 @@ Template.dinoGame.events({
                                 });
             Meteor.call('enviar_expedicion', idexp, tipoZona);
 
+            alert("Se ha enviado la expedicion. Volvera en 1 minuto.");
+
             resetExpedicion();
 
 
@@ -1219,8 +1221,9 @@ Template.dinoGame.onRendered(function(){
             
             
             Meteor.call('hacerinvestigacion',investigacion._id);
-            
-            console.log("voy a acabar esta funcion con el crhon");
+
+            alert("se esta investigando");
+            //console.log("voy a acabar esta funcion con el crhon");
         }else{
 
             alert("faltan recursos");
