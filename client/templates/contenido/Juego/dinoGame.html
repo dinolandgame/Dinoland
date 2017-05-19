@@ -28,7 +28,7 @@
             <div class="left-navigation">
                 <ul class="list">
                     <li><i class="ionicons ion-ios-person"></i>  Mi muro</li>
-                    <li><i class="ionicons ion-ios-search-strong"></i>  Expediciones</li>
+                    <li data-target="#pop_historialExpediciones" data-toggle="modal"><i class="ionicons ion-ios-search-strong"></i>  Mis Expediciones</li>
                     <li><i class="fa fa-envelope-o"></i> Mensajes</li>
                     <li><i class="fa fa-shopping-cart"></i> Comercio</li>
                     <li><i class="fa fa-bar-chart"></i> Logros</li>
@@ -754,6 +754,58 @@
             </div>
         </div>
     </div>
+
+    <!--<button data-target="#pop_historialExpediciones" data-toggle="modal">HISTORIAL</button>-->
+
+    <!-- POP HISTORIAL EXPEDICIONES -->
+
+    <div tabindex="-1" class="modal fade" id="pop_historialExpediciones" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog pop_gran">
+            <div class="modal-content border">
+                <div class="modal-body content_gran">
+                    <div class="modal-header">
+                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                            <div class="modal-ribon">
+                                   <img src="/images/ribbon.png">
+                                    <h2 id="nom_edifici" class="dinobuton-text">Historial Expediciones</h2>
+                            </div>  
+                    </div>
+
+                    <div class="col-sm-5 divHistorialExpe">
+                       {{#each expediciones}}
+                            <div class="row bottom-margin modal-widget">
+                                <div class="col-sm-3">
+                                    {{#each terrenoExpedicion area}}
+                                    <img class="zonaHistorial" src="{{avatar}}">
+                                    {{/each}}
+                                </div>
+                                
+                                <div class="col-sm-9">
+                                    <p>{{fecha_finalizacion}}</p>
+                                    <button data-idExpe="{{_id}}" class="boton_gui ver-historial">Ver</button>
+                                </div>
+                            </div>
+                        {{/each}} 
+                    </div>
+
+                    <div class="col-sm-6 col-sm-offset-1 modal-widget">
+                        <div class="row">
+                            <h4 style="margin-left: 25px;"><img src="/images/mapreport.png" class="img-titleReport"> Report</h4>
+                        </div>
+                        <div>
+                            <p id="reportExpe"></p>
+                        </div>
+                        <div class="row top-margin">
+                            <button class="boton_gui" style="margin-bottom:10px; margin-left: 30px;">
+                                <p id="prepararExp" class="dinobuton-text">Preparar expedición</p>
+                            </button>
+                        </div>
+                    </div>                 
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
     <!-- POP SOCIAL -->
 

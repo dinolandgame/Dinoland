@@ -566,6 +566,17 @@ Template.dinoGame.events({
         var texto = $(event.target).prev().val();
 
         Meteor.call('comentarioPublicacion', idPublicacion, texto, Meteor.user());
+},
+
+"click button[data-idExpe]": function(event, template){
+        var idExpe = $(event.target).data('idexpe');
+        var expedicion = Expedicion.findOne({_id:idExpe});
+        $("#reportExpe").text(expedicion.resultados[0].report);
+},
+
+"click #prepararExp" : function(evenet,template){
+    $("#pop_historialExpediciones").modal("hide");
+    $("#pop_expediciones").modal("show");
 }
     
     
@@ -1101,9 +1112,20 @@ Template.dinoGame.helpers({
         return resul;
 
         
-    }, publicaciones:function(){
+    }, 
+
+    publicaciones:function(){
         return Muro.find({});
+    },
+
+    expediciones: function(){
+        return Expedicion.find({},{sort: {_id: 1}, limit:15});
+    },
+
+    terrenoExpedicion: function(nombreTerreno){
+        return Terreno.find({nombre: nombreTerreno});
     }
+
 
 
 
