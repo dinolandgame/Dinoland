@@ -755,6 +755,52 @@
         </div>
     </div>
 
+    <button data-target="#pop_historialExpediciones" data-toggle="modal">HISTORIAL</button>
+
+    <!-- POP HISTORIAL EXPEDICIONES -->
+
+    <div tabindex="-1" class="modal fade" id="pop_historialExpediciones" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog pop_gran">
+            <div class="modal-content border">
+                <div class="modal-body content_gran">
+                    <div class="modal-header">
+                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                            <div class="modal-ribon">
+                                   <img src="/images/ribbon.png">
+                                    <h2 id="nom_edifici" class="dinobuton-text">Historial Expediciones</h2>
+                            </div>  
+                    </div>
+
+                    <div class="col-sm-4 col-sm-offset-1">
+                       {{#each expediciones}}
+                            <div class="row">
+
+                                {{#each terrenoExpedicion area}}
+                                <img class="zonaHistorial" src="{{avatar}}">
+                                {{/each}}
+
+                                <p>{{fecha_finalizacion}}</p>
+            
+                            </div>
+                        {{/each}} 
+                    </div>
+
+                    <div class="col-sm-6 col-sm-offset-1">
+                        <div class="row">
+                            <h3>Report</h3>
+                        </div>
+                        {{#each expediciones}}
+                            <!--<p>{{resultados[0].report}}</p>-->
+                        {{/each}}
+                    </div>
+
+                                       
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
     <!-- POP SOCIAL -->
 
         <div tabindex="-1" class="modal fade" id="pop_social" style="display: none;" aria-hidden="true">

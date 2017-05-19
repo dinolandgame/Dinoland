@@ -1583,3 +1583,8 @@ border-radius: 100%;
     box-shadow: 0.3px 1px 1px 1px rgba(0, 0, 0, 0.3);
   }
 
+  /* HISTORIAL EXPEDICIONES */
+  .zonaHistorial{
+    height: 50px;
+  }
+

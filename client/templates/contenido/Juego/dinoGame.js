@@ -1101,9 +1101,20 @@ Template.dinoGame.helpers({
         return resul;
 
         
-    }, publicaciones:function(){
+    }, 
+
+    publicaciones:function(){
         return Muro.find({});
+    },
+
+    expediciones: function(){
+        return Expedicion.find({},{sort: {_id: 1}, limit:15});
+    },
+
+    terrenoExpedicion: function(nombreTerreno){
+        return Terreno.find({nombre: nombreTerreno});
     }
+
 
 
 
