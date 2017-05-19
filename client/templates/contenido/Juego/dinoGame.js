@@ -572,7 +572,12 @@ Template.dinoGame.events({
         var idExpe = $(event.target).data('idexpe');
         var expedicion = Expedicion.findOne({_id:idExpe});
         $("#reportExpe").text(expedicion.resultados[0].report);
-    }
+},
+
+"click #prepararExp" : function(evenet,template){
+    $("#pop_historialExpediciones").modal("hide");
+    $("#pop_expediciones").modal("show");
+}
     
     
 

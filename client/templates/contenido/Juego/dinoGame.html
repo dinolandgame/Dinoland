@@ -28,7 +28,7 @@
             <div class="left-navigation">
                 <ul class="list">
                     <li><i class="ionicons ion-ios-person"></i>  Mi muro</li>
-                    <li><i class="ionicons ion-ios-search-strong"></i>  Expediciones</li>
+                    <li data-target="#pop_historialExpediciones" data-toggle="modal"><i class="ionicons ion-ios-search-strong"></i>  Mis Expediciones</li>
                     <li><i class="fa fa-envelope-o"></i> Mensajes</li>
                     <li><i class="fa fa-shopping-cart"></i> Comercio</li>
                     <li><i class="fa fa-bar-chart"></i> Logros</li>
@@ -755,7 +755,7 @@
         </div>
     </div>
 
-    <button data-target="#pop_historialExpediciones" data-toggle="modal">HISTORIAL</button>
+    <!--<button data-target="#pop_historialExpediciones" data-toggle="modal">HISTORIAL</button>-->
 
     <!-- POP HISTORIAL EXPEDICIONES -->
 
@@ -796,7 +796,9 @@
                             <p id="reportExpe"></p>
                         </div>
                         <div class="row top-margin">
-                            <button class="boton_gui">Preparar expedición</button>
+                            <button class="boton_gui" style="margin-bottom:10px; margin-left: 30px;">
+                                <p id="prepararExp" class="dinobuton-text">Preparar expedición</p>
+                            </button>
                         </div>
                     </div>                 
                 </div>
