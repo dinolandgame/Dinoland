@@ -771,30 +771,34 @@
                             </div>  
                     </div>
 
-                    <div class="col-sm-4 col-sm-offset-1">
+                    <div class="col-sm-5 divHistorialExpe">
                        {{#each expediciones}}
-                            <div class="row">
-
-                                {{#each terrenoExpedicion area}}
-                                <img class="zonaHistorial" src="{{avatar}}">
-                                {{/each}}
-
-                                <p>{{fecha_finalizacion}}</p>
-            
+                            <div class="row bottom-margin modal-widget">
+                                <div class="col-sm-3">
+                                    {{#each terrenoExpedicion area}}
+                                    <img class="zonaHistorial" src="{{avatar}}">
+                                    {{/each}}
+                                </div>
+                                
+                                <div class="col-sm-9">
+                                    <p>{{fecha_finalizacion}}</p>
+                                    <button data-idExpe="{{_id}}" class="boton_gui ver-historial">Ver</button>
+                                </div>
                             </div>
                         {{/each}} 
                     </div>
 
-                    <div class="col-sm-6 col-sm-offset-1">
+                    <div class="col-sm-6 col-sm-offset-1 modal-widget">
                         <div class="row">
-                            <h3>Report</h3>
+                            <h4 style="margin-left: 25px;"><img src="/images/mapreport.png" class="img-titleReport"> Report</h4>
                         </div>
-                        {{#each expediciones}}
-                            <!--<p>{{resultados[0].report}}</p>-->
-                        {{/each}}
-                    </div>
-
-                                       
+                        <div>
+                            <p id="reportExpe"></p>
+                        </div>
+                        <div class="row top-margin">
+                            <button class="boton_gui">Preparar expedición</button>
+                        </div>
+                    </div>                 
                 </div>
             </div>
         </div>

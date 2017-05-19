@@ -14,6 +14,10 @@ body {
     margin-top: 30px;
 }
 
+.bottom-margin{
+    margin-bottom: 30px;
+}
+
 .tap-i18n-dropdown .form-control{
     background-color: #f0f8ff;
     border-radius: 30px;
@@ -1585,6 +1589,30 @@ border-radius: 100%;
 
   /* HISTORIAL EXPEDICIONES */
   .zonaHistorial{
+    height: 80px;
+  }
+
+  #reportExpe{
+    margin-left: 15px;
+    margin-right: 25px;
+  }
+
+  .img-titleReport{
     height: 50px;
+    margin-right: 10px;
+  }
+
+  .zonaHistorial{
+    border-radius: 10px;
+  }
+
+  .ver-historial{
+    height: 26px;
+    font-size: 11px;
+  }
+
+  .divHistorialExpe{
+    overflow-y: scroll;
+    max-height: 370px;
   }
 
