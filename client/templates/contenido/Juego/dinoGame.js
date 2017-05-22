@@ -936,7 +936,7 @@ Template.dinoGame.helpers({
         var quantitat = 0;
         var mi_partida = Partida.findOne({_id:Meteor.userId()});
         mi_partida.dinos.forEach(function(di){
-            if(dino._id == di.id){
+            if(dino == di.id){
                 quantitat = di.cantidad;
             }
         });
