@@ -14,7 +14,7 @@ Preloader.prototype = {
         island.animations.play('run', 10, true);
         
         // ***********  ASSETS DEL JUEGO A CARGAR *******************//
-//       this.load.audio('jungle', ['/sounds/jungle_music.mp3', '/sounds/jungle_music.ogg']);
+       this.load.audio('jungle', ['/sounds/jungle_music.mp3', '/sounds/jungle_music.ogg']);
         this.load.audio('tinny', ['/sounds/button_tiny.mp3', '/sounds/button_tiny.ogg']);
         this.load.audio('droplet', ['/sounds/water_droplet.mp3', '/sounds/water_droplet.ogg']);
         this.load.audio('snap', ['/sounds/snap.mp3', '/sounds/snap.ogg']);
@@ -27,7 +27,7 @@ Preloader.prototype = {
         this.load.spritesheet('bar2', '../images/sprites/bar2.png', 180, 178.5, 10);
         this.load.spritesheet('bar3', '../images/sprites/bar3.png', 217.5, 169.2, 10);
         this.load.spritesheet('clan1', '../images/sprites/clan1.png', 195.9, 181.5, 14);
-        this.load.spritesheet('clan2', '../images/sprites/clan2.png', 216.6, 178.5, 14);
+        this.load.spritesheet('clan2', '../images/sprites/clan2.png', 216.5, 178.5, 14);
         this.load.spritesheet('clan3', '../images/sprites/clan3.png', 220.5, 180.6, 14);
         this.load.spritesheet('hotel1', '../images/sprites/hotel1.png', 266.666666, 181, 6);
         this.load.image('hotel2', '../images/sprites/hotel2.png');
@@ -53,7 +53,7 @@ Preloader.prototype = {
         this.load.spritesheet('trade1', '../images/sprites/trade1.png', 357, 215.1, 82);
         this.load.image('trade2', '../images/sprites/trade2.png');
         this.load.image('trade3', '../images/sprites/trade3.png');
-        this.load.spritesheet('seguretat1', '../images/sprites/seguretat1.png', 301.2, 214.2, 8);
+        this.load.spritesheet('seguretat1', '../images/sprites/seguretat1.png', 301.3333, 217.6666, 8);
         this.load.image('seguretat2', '../images/sprites/seguretat2.png');
         this.load.image('seguretat3', '../images/sprites/seguretat3.png');
         this.load.spritesheet('sintetizador1', '../images/sprites/sintetizador1.png', 379.5, 415.5, 12);
