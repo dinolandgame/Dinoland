@@ -15,6 +15,7 @@ Inicializador.prototype = {
        this.load.spritesheet('island_preloader', '../images/island_preloader.png', 500, 500, 121);
    },
   create: function(){
+      $("#tip").fadeIn();
        this.stage.backgroundColor = '#00b0be';    
   },
   update: function(){
