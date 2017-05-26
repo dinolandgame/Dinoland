@@ -36,21 +36,43 @@
             </div>
         </div>
 
-        <!-- Botons -->
-
-        <button id="btn-tienda" class="boton_gui" data-target="#pop_tienda" data-toggle="modal">
+<!-- Botons -->
+    {{#if mostrar_boton 701}}
+    <button id="btn-tienda" class="boton_gui seleccionable" data-target="#pop_tienda" data-toggle="modal">
             <img src="images/recursos/traderecursos.png" style="height: 70px;">
             <p class="dinobuton-text" style="font-size:0.7em;">Comercio</p>
-        </button>
+    </button>
 
-        <button id="btn-expediciones" data-target="#pop_expediciones" data-toggle="modal" class="boton_gui">
+    {{else}}
+
+    <button id="btn-tienda" class="boton_gui no-seleccionable-btn" data-target="#pop_tienda" data-toggle="modal" disabled>
+            <img src="images/recursos/traderecursos.png" style="height: 70px;">
+            <p class="dinobuton-text" style="font-size:0.7em;">Comercio</p>
+    </button>
+
+    {{/if}}
+
+
+    {{#if mostrar_boton 1101}}
+
+    <button id="btn-expediciones" data-target="#pop_expediciones" data-toggle="modal" class="boton_gui seleccionable">
             <img src="images/mapreport.png" style="height: 70px;">
             <p class="dinobuton-text" style="font-size:0.7em;">Expediciones</p>
-        </button>
+    </button>
 
-        <button id="btn-social" data-target="#pop_social" data-toggle="modal">
-            <img class="btn-icon" src="images/ui/icon-social.png">
-        </button>
+    {{else}}
+
+    <button id="btn-expediciones" data-target="#pop_expediciones" data-toggle="modal" class="boton_gui no-seleccionable-btn" disabled>
+             <img src="images/mapreport.png" style="height: 70px;">
+            <p class="dinobuton-text" style="font-size:0.7em;">Expediciones</p>
+    </button>
+
+
+    {{/if}}
+
+    <button id="btn-social" data-target="#pop_social" data-toggle="modal">
+           <img class="btn-icon" src="images/ui/icon-social.png">
+     </button>
 
         <!--<button id="btn-chat" data-target="#pop_chat"  class="boton_gui" style="display:block;position: absolute;left: 34%;top: 90%" data-toggle="modal">
             <p class="dinobuton-text">chat</p>

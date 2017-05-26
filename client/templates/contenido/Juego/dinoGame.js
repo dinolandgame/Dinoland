@@ -855,6 +855,36 @@ Template.dinoGame.helpers({
     partida:function(){
         return Partida.find({});
     }, 
+    mostrar_boton:function(idcercar){
+
+        mi_partida = Partida.findOne({_id:Meteor.userId()});
+        tiene_edif = false;
+
+
+        var nom_edif_cercar = Edificio.findOne({_id:idcercar}).nom;
+        //var edificios = Edificio.find({nom:nom_edif.nom}).fetch();
+        //var edif_cercar = Edificio.find({nom:nom_edif}).fetch();
+        
+
+
+        mi_partida.edificio.forEach(function(edif){
+            
+            //console.log(id);
+            //console.log(edif);
+
+           //console.log(id);
+            
+            var edif_act = Edificio.findOne({_id:edif}).nom;
+            
+            if(edif_act == nom_edif_cercar){
+                tiene_edif = true;
+                
+            }
+            
+        });
+
+        return tiene_edif;
+    },
     chats:function(){
         limit_dades=20;
         var convers = Chat.find({}, {sort: {timestamp: 1}});

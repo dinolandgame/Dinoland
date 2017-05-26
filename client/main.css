@@ -1357,6 +1357,13 @@ border-radius: 100%;
     cursor:not-allowed;
 }
 
+.no-seleccionable-btn{
+    opacity:0.40;
+   pointer-events:none;
+    cursor:not-allowed;
+}
+
+
 #div-costes{
     display: block;
     position: fixed;
