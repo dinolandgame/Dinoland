@@ -14,7 +14,7 @@ Preloader.prototype = {
         island.animations.play('run', 10, true);
         
         // ***********  ASSETS DEL JUEGO A CARGAR *******************//
-       this.load.audio('jungle', ['/sounds/jungle_music.mp3', '/sounds/jungle_music.ogg']);
+       //this.load.audio('jungle', ['/sounds/jungle_music.mp3', '/sounds/jungle_music.ogg']);
         this.load.audio('tinny', ['/sounds/button_tiny.mp3', '/sounds/button_tiny.ogg']);
         this.load.audio('droplet', ['/sounds/water_droplet.mp3', '/sounds/water_droplet.ogg']);
         this.load.audio('snap', ['/sounds/snap.mp3', '/sounds/snap.ogg']);
@@ -81,6 +81,8 @@ Preloader.prototype = {
 
 function empezar(){
     /* MUSICA EN EL JUEGO*/
+    
+    $("#tip").hide();
         
         music = game.add.audio('jungle');
         if(music.isPlaying == false){
