@@ -1242,6 +1242,7 @@ Template.dinoGame.onRendered(function(){
                 //llamamos a la funcion para hacer aparecer el contador
                 contador();
 
+            $('.modal').modal('hide');
             $(".text-alert").text("Los obreros han empezado a trabajar. Pronto terminaran la construcción.");
             $(".img-alert").attr("src","images/eines.gif");
             $(".alert-general").fadeIn();
@@ -1255,6 +1256,7 @@ Template.dinoGame.onRendered(function(){
              $('.prueba2').hide();
         }else{
 
+            $('.modal').modal('hide');
             $(".text-alert").text("No tienes suficientes recursos para construir este edificio.");
             $(".img-alert").attr("src","images/recursos/suministros");
             $(".alert-general").fadeIn();
