@@ -116,8 +116,8 @@ Meteor.methods({
         var topUserExped=[];
         var experesul=[];
 
-        if(partidas.length>=7){
-                for (var i=0; i<7; i++){
+        if(partidas.length>=9){
+                for (var i=0; i<9; i++){
                 
                 partExp.push(partidas[i]);
                 var a= Meteor.users.findOne({_id:partExp[i]._id});
@@ -152,6 +152,10 @@ Meteor.methods({
         }
 
         return result = experesul;
+  },
+
+  cambiarFotoPerfil(usuario, rutaImagen){
+    Meteor.users.update({_id:usuario},{$set:{"profile.avatar":rutaImagen}});
   },
 
   //methodo creacion partida

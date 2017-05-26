@@ -5,12 +5,12 @@
         <img id="btn_plegar" src="images/ui/plegar.png">
       
         <div class="profile-header-container">   
-            <div class="profile-header-img">
-                <img class="img-circle" src="images/foto_perfil.jpg">
+            <div class="profile-header-img" >
+                <img class="img-circle" src="{{currentUser.profile.avatar}}" data-target="#pop_img_perfil" data-toggle="modal">
                 <!-- cercle voltant -->
                 <div class="rank-label-container">
                     
-                    <span class="label label-default rank-label" style="font-size: 1.5em">{{currentUser.username}}</span>
+                    <span class="label label-default rank-label" style="font-size: 1.5em" data-target="#pop_img_perfil" data-toggle="modal">{{currentUser.username}}</span>
                 </div>
             </div>
             <div class="coins">
@@ -140,10 +140,10 @@
 </div>
 {{/each}}
 <!-- Usuari -->
-   <div id="divUsuario">
+   <div id="divUsuario" data-target="#pop_img_perfil" data-toggle="modal">
            <div class="boton">
         <div class="row">
-            <img class="user-img" src="images/user-profile.png">
+            <img class="user-img" src="{{currentUser.profile.avatar}}">
             <div class="container-username">
                 <p class="dinobuton-text dinobuton-text-size">{{currentUser.username}}</p>
             </div>
@@ -760,7 +760,7 @@
         <div tabindex="-1" class="modal fade" id="pop_social" style="display: none;" aria-hidden="true">
             <div class="modal-dialog pop_gran">
                 <div class="modal-content border">
-                    <div class="modal-body content-expediciones">
+                    <div class="modal-body content-social">
                         <div class="modal-header">
                                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
                                 <div class="modal-ribon">
@@ -782,7 +782,7 @@
                                 </div>
 
                                 <div class="row top-margin">
-                                    <div class="modal-widget">
+                                    <div class="modal-widget-muro">
                                     {{#each publicaciones}}
                                         <div>
                                             <img src="{{avatar}}" style="width: 20px">
@@ -817,9 +817,14 @@
                                 </div>
 
                                 <div class="row top-margin">
-                                    <div class="modal-widget">
+                                    <div class="modal-widget-ranking">
                                         {{#each rankingAmbar}}  
-                                            <p><img src="{{avatar}}" style="width: 30px">{{name}} : {{ambar}}</p>
+                                        <div class="col-sm-7">
+                                            <p style="overflow:hidden;width: 100%"><img src="{{avatar}}" style="width: 30px;"><span class="varRanking dinobuton-text-stroke">{{name}} </span></p>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <p style="overflow:hidden; width: 100%"> <img src="images/coin.png" style="width: 30px;"> <span class="dinobuton-text-stroke">{{ambar}}</span></p>
+                                        </div>
                                         {{/each}}   
                                     </div>
                                 </div>
@@ -837,13 +842,19 @@
                                 <div class="row top-margin">
                                     <div class="modal-widget">
                                     {{#each rankingExpediciones}}
-                                        <p><img src={{avatar}} style="width: 30px">{{name}}: {{expe}}</p>
+                                        <div class="col-sm-7">
+                                            <p><img src={{avatar}} style="width: 30px"><span class="varRanking dinobuton-text-stroke">{{name}}</span></p>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <p><span class="dinobuton-text-stroke"> {{expe}}</span></p>
+                                        </div>
+                                        
                                     {{/each}}
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="muro-title">
+                                    <div class="muro-title margin-top-20">
                                         <div class="muro-title-content">
                                             <p class="dinobuton-text dinobuton-text-size">Top Visitantes</p>
                                         </div>
@@ -853,7 +864,12 @@
                                 <div class="row top-margin">
                                     <div class="modal-widget">
                                         {{#each rankingVisitantes}}
-                                            <p><img src="{{avatar}}" style="width: 30px">{{name}}: {{visitantes}}</p>
+                                        <div class="col-sm-7">
+                                            <p><img src="{{avatar}}" style="width: 30px"><span class="varRanking dinobuton-text-stroke">{{name}}</span></p>
+                                        </div>
+                                        <div>
+                                            <p><span class="dinobuton-text-stroke">{{visitantes}}</span></p>
+                                        </div>    
                                         {{/each}}                                
                                     </div>
                                 </div>
@@ -943,6 +959,45 @@
     </button>
   </div>
 </div>
+
+
+<!--Popup cambio avatar-->
+
+<div tabindex="-1" class="modal fade" id="pop_img_perfil" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">    
+        <div class="modal-content" style="height: 400px">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <div class="modal-ribon">
+                    <img src="/images/ribbon.png">
+                    <h2 id="nom_edifici" class="dinobuton-text dinobuton-text-size">Imagen de perfil</h2>
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-4 text-align-c">
+                        <img src="/images/expediciones/cientifica.png" class="img-perfil img-circle">
+                        <p>Cientifica</p>
+                    </div>
+                    <div class="col-sm-4 text-align-c">
+                        <img src="/images/expediciones/comandante.png" class="img-perfil img-circle">
+                        <p>Comandante</p>
+                    </div>
+                    <div class="col-sm-4 text-align-c">
+                        <img src="/images/expediciones/jefe.png" class="img-perfil img-circle">
+                        <p>Aventurero</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            
+            
+            
+        </div>
+    </div>
+</div>
+
 
 <!--
 <div id="user">

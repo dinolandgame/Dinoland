@@ -564,8 +564,14 @@ Template.dinoGame.events({
 "click button[data-publicacion]": function(event, template){
         var idPublicacion = $(event.target).data('publicacion');
         var texto = $(event.target).prev().val();
-
         Meteor.call('comentarioPublicacion', idPublicacion, texto, Meteor.user());
+},
+
+/****************************************EVENTOS IMG PERFIL************************************/
+"click .img-perfil":function(event, template){
+    var rutaImagen = $(event.target).attr("src");
+    console.log(rutaImagen);
+    Meteor.call("cambiarFotoPerfil", Meteor.userId(), rutaImagen);
 }
     
     
