@@ -86,8 +86,10 @@ Template.dinoGame.events({
                 contador();
 
                 Meteor.call('update_part',EdificiUp,Edifici); 
-                //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados   
-                alert("se ha subido de nivel");
+                //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados
+                $(".text-alert").text("Los obreros ya han empezado a trabajar en las mejoras de edificio");
+                $("#alert-general").fadeIn();
+                //alert("se ha subido de nivel");
             }
             else{
         

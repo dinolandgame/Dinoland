@@ -1587,6 +1587,35 @@ border-radius: 100%;
     box-shadow: 0.3px 1px 1px 1px rgba(0, 0, 0, 0.3);
   }
 
+  .alert-general{
+    display: none;
+    position: absolute;
+    top: 30%;
+    height: 150px;
+    box-shadow: 3px 4px 5px 3px rgba(0, 0, 0, 0.5);
+    background-image: -webkit-linear-gradient( 90deg, rgb(239, 198, 141) 0%, rgb(247, 215, 163) 100%);
+  }
+
+  .close-alert{
+    height: 28px;
+    position: absolute;
+    top: 5%;
+    left: 92%;
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  .close-alert:hover{
+    opacity: 1;
+  }
+
+  .egg-alert{
+    height: 50px;
+    position: absolute;
+    top: 6%;
+    left: 2%;
+  }
+
   /* HISTORIAL EXPEDICIONES */
   .zonaHistorial{
     height: 80px;
