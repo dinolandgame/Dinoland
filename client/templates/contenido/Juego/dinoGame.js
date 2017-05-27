@@ -111,6 +111,14 @@ Template.dinoGame.events({
         ************/
         
         Partida.update({_id:user},{$push:{desbloqueados:{$each:[401,501,901,1001]}}});
+        $('.prueba').removeClass('crear');
+        $('.prueba').addClass('cerrar');
+        
+        $('.prueba').hide();
+        
+    },
+    "click .cerrar":function(event,template){
+
         
         $('.prueba').hide();
         
@@ -1103,6 +1111,21 @@ Template.dinoGame.helpers({
         
     }, publicaciones:function(){
         return Muro.find({});
+    },
+    tutoriales:function(){
+
+        var resul = Session.get('tutorialXmostrar');
+    
+                
+        return {"id":resul.id,"descripcion":resul.descripcion,"visto":resul.visto};
+    },
+    tuto:function(id){
+        if(id==1){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 
@@ -1177,7 +1200,7 @@ Template.dinoGame.onRendered(function(){
              Meteor.call('crear_edificio',id);
              $('[data-id='+ id + ']').addClass('no-seleccionable');
          
-             $('.prueba2').hide();
+             //$('.prueba2').hide();
         }else{
 
         alert("falten recursos");
@@ -1332,7 +1355,33 @@ function crearContador(crono,countDownDate){
 }
 
 
+function mensajeTutorial(id){
+   // Session.set('numTutorial', id);
+   partida = Partida.findOne({});
+   var tutorialActual = {"id":0,"descripcion":""};
+
+    var renovacionTutoriales = [];
+   partida.tutorial.forEach(function(tuto,i){
+        if(id==tuto.id&&tuto.visto==false){
+            tuto.visto=true;
+            tutorialActual = {"id":tuto.id,
+                            "descripcion":tuto.descripcion,
+                            "visto":tuto.visto};
+            
+            $('.prueba').show();
+            
+        }
+        renovacionTutoriales.push(tuto);
+   });
+
+   Partida.update({_id:user},{$set:{tutorial:renovacionTutoriales}});
+
+Session.set('tutorialXmostrar' , tutorialActual);
+}
 
 
 
 
+   
+   
+     

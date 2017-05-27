@@ -53,7 +53,7 @@ Juego.prototype = {
         //controlamos si no hay edificios en el array de edificios en la coleccion partida
         if(mi_partida[0].edificio.length===0){
                     console.log("no tengo edificios");
-                    $('.prueba').show();
+                    mensajeTutorial(1);
                     
                 }
         
@@ -79,6 +79,11 @@ Juego.prototype = {
                     bell.play();
                     comprobarNotificaciones();
                     $(".side-collapse").addClass('open');
+                }
+
+                if(fields.hasOwnProperty(tutorial)){
+                    bell.play();
+                    mensajeTutorial(id);
                 }
             }
         });
@@ -272,15 +277,18 @@ function clicar(edifici){
         //Popup tienda
         case 'trade1': case 'trade2': case 'trade3':
         $('#pop_tienda').modal('show');
+        mensajeTutorial(5);
         vaciarSuministros();
         vaciarDinero();
         break;
         //Popup habitats
         case 'habitats1': case 'habitats2': case 'habitats3':
         $('#pop_habitats').modal('show');
+        mensajeTutorial(3);
         break;
         //Popup laboratorio
         case 'laboratori1': case 'laboratori2': case 'laboratori3':
+        mensajeTutorial(4);
         $('#pop_laboratorio').modal('show');
         var laboratorio = Edificio.findOne({_id:201});
         console.log(laboratorio);
@@ -289,18 +297,17 @@ function clicar(edifici){
         $('.btn-lvlup-laboratorio').css('display', 'block');
         $('#btn-investiga').css('display', 'none');
         $('#div-bono').css('display', 'none');
+
         break;
         //Popup cuartel
         case 'cuartel1': case 'cuartel2': case 'cuartel3':
         $('#pop_cuartel').modal('show');
             var mi_partida = Partida.find({_id:user}).fetch();
             if(mi_partida[0].edificio.length===1){
-                    console.log("tengo  1 edificio");
-                    $('.prueba2').show();
+                console.log("tengo  1 edificio");
+                mensajeTutorial(2);
                     
-                }
-           
-            
+            }    
         break;
         default:
         break;
@@ -359,3 +366,27 @@ function vaciarSuministros(){
             $('.resumenSuministros').css('display', 'none');
 };
 
+function mensajeTutorial(id){
+   // Session.set('numTutorial', id);
+   partida = Partida.findOne({});
+   var tutorialActual = {"id":0,"descripcion":""};
+
+    var renovacionTutoriales = [];
+   partida.tutorial.forEach(function(tuto,i){
+        if(id==tuto.id&&tuto.visto==false){
+            tuto.visto=true;
+            tutorialActual = {"id":tuto.id,
+                            "descripcion":tuto.descripcion,
+                            "visto":tuto.visto};
+            
+            $('.prueba').show();
+            
+        }
+        renovacionTutoriales.push(tuto);
+   });
+
+   Partida.update({_id:user},{$set:{tutorial:renovacionTutoriales}});
+
+   Session.set('tutorialXmostrar' , tutorialActual);
+
+}

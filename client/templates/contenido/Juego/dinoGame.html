@@ -933,15 +933,22 @@
     </div>
 
 <div class="panel panel-default prueba" style="display:none;position: absolute;left: 40%;top: 40%">
- 
+    {{#with tutoriales}}
   <div class="panel-body">
-    BENVENIDO A DINOLAND!!
+        {{descripcion}}
     <br>
-    Aqui empieza tu aventura.. Empecemos por construir nuestro Cuartel
+    {{#if tuto id}}
     <br>
     <button type="button" class="btn pmd-ripple-effect btn-default btn_modal crear">Edificio Cuartel
     </button>
+    {{else}}
+    <br>
+    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal cerrar">cerrar    </button>
+    {{/if}}
   </div>
+
+
+  {{/with}}
 </div>
 
 <!--

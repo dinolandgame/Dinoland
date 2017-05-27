@@ -187,6 +187,14 @@ Meteor.methods({
                         {id:6,cantidad:0},
                         {id:7,cantidad:0}
                     ],
+                     tutorial:[
+                            {id:1,descripcion:"Bienvenido!! Aqui empieza tu aventura.. Empecemos por construir nuestro Cuartel",visto:false},
+                            {id:2,descripcion:"Ahora que tienes tu edificio puedes cronstruir más",visto:false},
+                            {id:3,descripcion:"Una vez tenemos un edifcio podemos subirlo de nivel",visto:false},
+                            {id:4,descripcion:"Al haber construido el edificio de hábitats se ha desbloqueado el modo expediciones",visto:false},
+                            {id:5,descripcion:"Al haber construido el edificio de laboratorio se han desbloqueado las mejoras",visto:false},
+                            {id:6,descripcion:"Al haber construido el edificio de mercado se ha desbloqueado el mercat TRADE ",visto:false},
+                        ],
                    desbloqueando:[]}); 
 
       
@@ -266,7 +274,7 @@ Meteor.methods({
             Partida.update({ _id:user, edificio: Edifici._id },{ $set: { "edificio.$" : EdificiUp._id}});
             
              //quitamos del array de desbloqueando 
- +          Partida.update({_id:user},{$pull:{desbloqueando:{_id:EdificiUp._id}}});
+             Partida.update({_id:user},{$pull:{desbloqueando:{_id:EdificiUp._id}}});
             
             if(EdificiUp.key=="cuartel2"){
 
@@ -331,7 +339,7 @@ Meteor.methods({
             Partida.update({_id:user},{$push:{edificio:id}});
             
             //quitamos del array de desbloqueando 
- +          Partida.update({_id:user},{$pull:{desbloqueando:{_id:id}}});
+           Partida.update({_id:user},{$pull:{desbloqueando:{_id:id}}});
             
              // Se genera una notificación
             Notificacion.insert({usuario: user,
@@ -349,6 +357,8 @@ Meteor.methods({
             }
             else if(Edifici._id==1101){
                 Partida.update({_id:user}, {$inc:{max_dinosaurios:Edifici.capacidadDino}});
+
+                //aparece un tutorial
                     }
             
             Partida.update({_id:user},{$inc:{ambar:Edifici.ambar}});
