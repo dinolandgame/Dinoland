@@ -86,18 +86,27 @@ Template.dinoGame.events({
                 contador();
 
                 Meteor.call('update_part',EdificiUp,Edifici); 
-                //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados   
-                alert("se ha subido de nivel");
+                //hay que probarlo y saber si hace este if para hacer unpdate tmabien del array de desbloqueados
+                $(".text-alert").text("Los obreros ya han empezado a trabajar en las mejoras del edificio.");
+                $(".img-alert").attr("src","images/eines.gif");
+                $(".alert-general").fadeIn();
+                
             }
             else{
         
-                console.log("aquet edifici ja esta en el seu maxim nivell o be no hi han recursos suficients");
-                alert("no deja");
+                $(".text-alert").text("El edifico ya se encuentra a su máximo nivel.");
+                $(".img-alert").attr("src","images/speaker.jpg");
+                $(".alert-general").fadeIn();
             }
             $('.modal').modal('hide');
                     
            
         },
+    
+    "click .close-alert":function(event,template){
+      
+        $(".alert-general").fadeOut();
+    },
 
 
 
@@ -252,10 +261,17 @@ Template.dinoGame.events({
             Meteor.call('enviar_expedicion', idexp, tipoZona);
 
             resetExpedicion();
+             
+             $('.modal').modal('hide');
+             $(".text-alert").text("Tu expedición se dirije al punto de captura. Mucha suerte.");
+                $(".img-alert").attr("src","images/mapreport.png");
+                $(".alert-general").fadeIn();
 
 
          }else{
-            alert("te faltan recursos");
+            $(".text-alert").text("Te faltan recursos para enviar la expedición.");
+                $(".img-alert").attr("src","images/recursos/suministros.png");
+                $(".alert-general").fadeIn();
 
          }
     },
@@ -558,6 +574,11 @@ Template.dinoGame.events({
     "click button[data-toggle='collapse-side']": function(event,template){
         $('.side-collapse').toggleClass('open');
     },
+    
+    "click button[data-toggle='collapse-side2']": function(event,template){
+        $('.side-collapse2').toggleClass('open');
+        
+    },
 
     "click img.close-noti": function(event,template){
         //Se modifica el registro en la BD cambiando su campo leido a true. Ésto permite 
@@ -585,6 +606,17 @@ Template.dinoGame.events({
         var texto = $(event.target).prev().val();
 
         Meteor.call('comentarioPublicacion', idPublicacion, texto, Meteor.user());
+},
+
+"click button[data-idExpe]": function(event, template){
+        var idExpe = $(event.target).data('idexpe');
+        var expedicion = Expedicion.findOne({_id:idExpe});
+        $("#reportExpe").text(expedicion.resultados[0].report);
+},
+
+"click #prepararExp" : function(evenet,template){
+    $("#pop_historialExpediciones").modal("hide");
+    $("#pop_expediciones").modal("show");
 }
     
     
@@ -842,6 +874,36 @@ Template.dinoGame.helpers({
     partida:function(){
         return Partida.find({});
     }, 
+    mostrar_boton:function(idcercar){
+
+        mi_partida = Partida.findOne({_id:Meteor.userId()});
+        tiene_edif = false;
+
+
+        var nom_edif_cercar = Edificio.findOne({_id:idcercar}).nom;
+        //var edificios = Edificio.find({nom:nom_edif.nom}).fetch();
+        //var edif_cercar = Edificio.find({nom:nom_edif}).fetch();
+        
+
+
+        mi_partida.edificio.forEach(function(edif){
+            
+            //console.log(id);
+            //console.log(edif);
+
+           //console.log(id);
+            
+            var edif_act = Edificio.findOne({_id:edif}).nom;
+            
+            if(edif_act == nom_edif_cercar){
+                tiene_edif = true;
+                
+            }
+            
+        });
+
+        return tiene_edif;
+    },
     chats:function(){
         limit_dades=20;
         var convers = Chat.find({}, {sort: {timestamp: 1}});
@@ -944,7 +1006,7 @@ Template.dinoGame.helpers({
         var quantitat = 0;
         var mi_partida = Partida.findOne({_id:Meteor.userId()});
         mi_partida.dinos.forEach(function(di){
-            if(dino._id == di.id){
+            if(dino == di.id){
                 quantitat = di.cantidad;
             }
         });
@@ -1121,8 +1183,18 @@ Template.dinoGame.helpers({
         return resul;
 
         
-    }, publicaciones:function(){
+    }, 
+
+    publicaciones:function(){
         return Muro.find({});
+    },
+
+    expediciones: function(){
+        return Expedicion.find({},{sort: {_id: 1}, limit:15});
+    },
+
+    terrenoExpedicion: function(nombreTerreno){
+        return Terreno.find({nombre: nombreTerreno});
     }
 
 
@@ -1188,7 +1260,10 @@ Template.dinoGame.onRendered(function(){
                 //llamamos a la funcion para hacer aparecer el contador
                 contador();
 
-             alert("se esta contruyendo");
+            $('.modal').modal('hide');
+            $(".text-alert").text("Los obreros han empezado a trabajar. Pronto terminaran la construcción.");
+            $(".img-alert").attr("src","images/eines.gif");
+            $(".alert-general").fadeIn();
            
              console.log(this);
             //Partida.update({_id:user},{$push:{edificio:id}});
@@ -1199,7 +1274,10 @@ Template.dinoGame.onRendered(function(){
              //$('.prueba2').hide();
         }else{
 
-        alert("falten recursos");
+            $('.modal').modal('hide');
+            $(".text-alert").text("No tienes suficientes recursos para construir este edificio.");
+            $(".img-alert").attr("src","images/recursos/suministros");
+            $(".alert-general").fadeIn();
 
         }
     });
@@ -1239,10 +1317,15 @@ Template.dinoGame.onRendered(function(){
             
             Meteor.call('hacerinvestigacion',investigacion._id);
             
-            console.log("voy a acabar esta funcion con el crhon");
+            $('.modal').modal('hide');
+            $(".text-alert").text("El equipo de científicos de la isla ya está en marcha.");
+                $(".img-alert").attr("src","images/flask.png");
+                $(".alert-general").fadeIn();
         }else{
 
-            alert("faltan recursos");
+            $(".text-alert").text("Te faltan recursos para realizar la investigación.");
+                $(".img-alert").attr("src","images/recursos/suministros.png");
+                $(".alert-general").fadeIn();
         } 
     });
 
