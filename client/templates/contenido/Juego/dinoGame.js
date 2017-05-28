@@ -118,10 +118,29 @@ Template.dinoGame.events({
         aqui podemos modificar la partida con los edifciios desbloqueados por el primer cuartel 
        
         ************/
-        
+   
         Partida.update({_id:user},{$push:{desbloqueados:{$each:[401,501,901,1001]}}});
+
         
-        $('.prueba').hide();
+        
+        $('.text-alert').empty();
+        $('.botones').empty();
+        $('.botones').remove();
+        $('.botones').detach();
+
+        $('.tutorial').hide();
+
+         mensajeTutorial(2);
+        
+    },
+    "click .cerrar":function(event,template){
+
+        $('.text-alert').empty();
+        $('.botones').empty();
+        $('.botones').remove();
+        $('.botones').detach();
+
+        $('.tutorial').hide();
         
     },
     
@@ -1053,7 +1072,8 @@ Template.dinoGame.helpers({
                 //si coincide con el id del edificio lo quitaremos del array de desbloqueados 
                 //porque ya ha sido desbloqueado del todo
                 if(id==misedificiosEnPartida[x]){
-                        Partida.update({_id:user},{$pull:{desbloqueados:id}});         
+                        Partida.update({_id:user},{$pull:{desbloqueados:id}});   
+                              
                 }  
         }
         
@@ -1178,8 +1198,6 @@ Template.dinoGame.helpers({
     }
 
 
-
-
 });
 
 /* ON RENDERES ES COMO EL DOCUMENT(READY) */
@@ -1253,7 +1271,7 @@ Template.dinoGame.onRendered(function(){
              Meteor.call('crear_edificio',id);
              $('[data-id='+ id + ']').addClass('no-seleccionable');
          
-             $('.prueba2').hide();
+             //$('.prueba2').hide();
         }else{
 
             $('.modal').modal('hide');
@@ -1416,7 +1434,42 @@ function crearContador(crono,countDownDate){
 }
 
 
+function mensajeTutorial(id){
+   // Session.set('numTutorial', id);
+   partida = Partida.findOne({});
+   var tutorialActual = {"id":0,"descripcion":""};
+
+    var renovacionTutoriales = [];
+   partida.tutorial.forEach(function(tuto,i){
+        if(id==tuto.id&&tuto.visto==false){
+            tuto.visto=true;
+            tutorialActual = {"id":tuto.id,
+                            "descripcion":tuto.descripcion,
+                            "visto":tuto.visto};
+            
+            $('.tutorial').show();
+
+
+            $('.text-alert').append(tutorialActual.descripcion);
+            if(id==1){
+                 $('.tutorial').append('<button type="button" class="btn pmd-ripple-effect btn-default btn_modal crear botones">Crear Oficina Central</button>');
+            }
+            else{
+               
+                $('.tutorial').append('<button type="button" class="btn pmd-ripple-effect btn-default btn_modal cerrar botones">Cerrar</button>');
+            }
+            
+        }
+        renovacionTutoriales.push(tuto);
+   });
+
+   Partida.update({_id:user},{$set:{tutorial:renovacionTutoriales}});
+
+}
 
 
 
 
+   
+   
+     
