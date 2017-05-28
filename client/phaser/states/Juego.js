@@ -398,15 +398,14 @@ function mensajeTutorial(id){
             tutorialActual = {"id":tuto.id,
                             "descripcion":tuto.descripcion,
                             "visto":tuto.visto};
+
+            $('.text-tutorial').empty();
             
             $('.tutorial').show();
              if(id==1){
-                 $('.tutorial').append('<button type="button" class="btn pmd-ripple-effect btn-default btn_modal crear botones">Crear Oficina Central</button>');
+                 $('.botonelli').append('<button type="button" class="btn pmd-ripple-effect btn-default btn_modal crear botones">Crear Oficina Central</button>');
             }
-            else{
-               
-                $('.tutorial').append('<button type="button" class="btn pmd-ripple-effect btn-default btn_modal cerrar botones">Cerrar</button>');
-            }
+            
             
             
         }
@@ -417,7 +416,7 @@ function mensajeTutorial(id){
 
    Partida.update({_id:user},{$set:{tutorial:renovacionTutoriales}});
     
-   $('.text-alert').append(tutorialActual.descripcion);
+   $('.text-tutorial').append(tutorialActual.descripcion);
            
 
 

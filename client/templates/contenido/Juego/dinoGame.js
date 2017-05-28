@@ -106,6 +106,8 @@ Template.dinoGame.events({
     "click .close-alert":function(event,template){
       
         $(".alert-general").fadeOut();
+        $('.alert-tutorial').fadeOut();
+
     },
 
 
@@ -123,7 +125,8 @@ Template.dinoGame.events({
 
         
         
-        $('.text-alert').empty();
+        $('.text-tutorial').empty();
+        
         $('.botones').empty();
         $('.botones').remove();
         $('.botones').detach();
@@ -131,16 +134,6 @@ Template.dinoGame.events({
         $('.tutorial').hide();
 
          mensajeTutorial(2);
-        
-    },
-    "click .cerrar":function(event,template){
-
-        $('.text-alert').empty();
-        $('.botones').empty();
-        $('.botones').remove();
-        $('.botones').detach();
-
-        $('.tutorial').hide();
         
     },
     
@@ -1448,16 +1441,13 @@ function mensajeTutorial(id){
                             "visto":tuto.visto};
             
             $('.tutorial').show();
+            $('.text-tutorial').empty();
 
-
-            $('.text-alert').append(tutorialActual.descripcion);
+            $('.text-tutorial').append(tutorialActual.descripcion);
             if(id==1){
-                 $('.tutorial').append('<button type="button" class="btn pmd-ripple-effect btn-default btn_modal crear botones">Crear Oficina Central</button>');
+                 $('.botonelli').append('<button type="button" class="btn pmd-ripple-effect btn-default btn_modal crear botones">Crear Oficina Central</button>');
             }
-            else{
-               
-                $('.tutorial').append('<button type="button" class="btn pmd-ripple-effect btn-default btn_modal cerrar botones">Cerrar</button>');
-            }
+            
             
         }
         renovacionTutoriales.push(tuto);
