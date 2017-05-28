@@ -932,24 +932,20 @@
       </div>
     </div>
 
-<div class="panel panel-default prueba" style="display:none;position: absolute;left: 40%;top: 40%">
-    {{#with tutoriales}}
-  <div class="panel-body">
-        {{descripcion}}
-    <br>
-    {{#if tuto id}}
-    <br>
-    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal crear">Edificio Cuartel
-    </button>
-    {{else}}
-    <br>
-    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal cerrar">cerrar    </button>
-    {{/if}}
-  </div>
+
+        <div class="modal-widget alert-general col-sm-4 col-sm-offset-4 tutorial" style="display:none;">
+            <img class="close-alert" src="images/close.png">
+            <img class="img-alert" src="">
+            
+            <div class="col-sm-8 col-sm-offset-2 top-margin">
+                <p class="text-alert"></p>
+   
+            </div>
+            
+        </div>
 
 
-  {{/with}}
-</div>
+
 
 <!--
 <div id="user">

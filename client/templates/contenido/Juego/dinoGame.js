@@ -109,18 +109,29 @@ Template.dinoGame.events({
         aqui podemos modificar la partida con los edifciios desbloqueados por el primer cuartel 
        
         ************/
-        
+   
         Partida.update({_id:user},{$push:{desbloqueados:{$each:[401,501,901,1001]}}});
-        $('.prueba').removeClass('crear');
-        $('.prueba').addClass('cerrar');
+
         
-        $('.prueba').hide();
+        
+        $('.text-alert').empty();
+        $('.botones').empty();
+        $('.botones').remove();
+        $('.botones').detach();
+
+        $('.tutorial').hide();
+
+         mensajeTutorial(2);
         
     },
     "click .cerrar":function(event,template){
 
-        
-        $('.prueba').hide();
+        $('.text-alert').empty();
+        $('.botones').empty();
+        $('.botones').remove();
+        $('.botones').detach();
+
+        $('.tutorial').hide();
         
     },
     
@@ -999,7 +1010,8 @@ Template.dinoGame.helpers({
                 //si coincide con el id del edificio lo quitaremos del array de desbloqueados 
                 //porque ya ha sido desbloqueado del todo
                 if(id==misedificiosEnPartida[x]){
-                        Partida.update({_id:user},{$pull:{desbloqueados:id}});         
+                        Partida.update({_id:user},{$pull:{desbloqueados:id}});   
+                              
                 }  
         }
         
@@ -1111,23 +1123,7 @@ Template.dinoGame.helpers({
         
     }, publicaciones:function(){
         return Muro.find({});
-    },
-    tutoriales:function(){
-
-        var resul = Session.get('tutorialXmostrar');
-    
-                
-        return {"id":resul.id,"descripcion":resul.descripcion,"visto":resul.visto};
-    },
-    tuto:function(id){
-        if(id==1){
-            return true;
-        }
-        else{
-            return false;
-        }
     }
-
 
 
 });
@@ -1368,7 +1364,17 @@ function mensajeTutorial(id){
                             "descripcion":tuto.descripcion,
                             "visto":tuto.visto};
             
-            $('.prueba').show();
+            $('.tutorial').show();
+
+
+            $('.text-alert').append(tutorialActual.descripcion);
+            if(id==1){
+                 $('.tutorial').append('<button type="button" class="btn pmd-ripple-effect btn-default btn_modal crear botones">Crear Oficina Central</button>');
+            }
+            else{
+               
+                $('.tutorial').append('<button type="button" class="btn pmd-ripple-effect btn-default btn_modal cerrar botones">Cerrar</button>');
+            }
             
         }
         renovacionTutoriales.push(tuto);
@@ -1376,7 +1382,6 @@ function mensajeTutorial(id){
 
    Partida.update({_id:user},{$set:{tutorial:renovacionTutoriales}});
 
-Session.set('tutorialXmostrar' , tutorialActual);
 }
 
 

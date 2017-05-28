@@ -188,8 +188,8 @@ Meteor.methods({
                         {id:7,cantidad:0}
                     ],
                      tutorial:[
-                            {id:1,descripcion:"Bienvenido!! Aqui empieza tu aventura.. Empecemos por construir nuestro Cuartel",visto:false},
-                            {id:2,descripcion:"Ahora que tienes tu edificio puedes cronstruir más",visto:false},
+                            {id:1,descripcion:"Bienvenido!! Aqui empieza tu aventura.. Empecemos por construir nuestra Oficina Cental",visto:false},
+                            {id:2,descripcion:"Ahora que tienes tu Administracion puedes cronstruir más edificioshaciendo click en él",visto:false},
                             {id:3,descripcion:"Una vez tenemos un edifcio podemos subirlo de nivel",visto:false},
                             {id:4,descripcion:"Al haber construido el edificio de hábitats se ha desbloqueado el modo expediciones",visto:false},
                             {id:5,descripcion:"Al haber construido el edificio de laboratorio se han desbloqueado las mejoras",visto:false},
@@ -335,8 +335,7 @@ Meteor.methods({
            
             console.log("ha entrat en el job");
         
-            //añadimos al array de edificio de partida 
-            Partida.update({_id:user},{$push:{edificio:id}});
+            
             
             //quitamos del array de desbloqueando 
            Partida.update({_id:user},{$pull:{desbloqueando:{_id:id}}});
@@ -367,6 +366,8 @@ Meteor.methods({
                { $set: { "edificio.$" : 2} }
             );*/
 
+            //añadimos al array de edificio de partida 
+            Partida.update({_id:user},{$push:{edificio:id}});
             console.log("edifici modificat");   
 
             
