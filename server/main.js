@@ -189,11 +189,11 @@ Meteor.methods({
                     ],
                      tutorial:[
                             {id:1,descripcion:"Bienvenido!! Aqui empieza tu aventura.. Empecemos por construir nuestra Oficina Cental",visto:false},
-                            {id:2,descripcion:"Ahora que tienes tu Administracion puedes cronstruir más edificioshaciendo click en él",visto:false},
+                            {id:2,descripcion:"Ahora que tienes tu Administracion puedes cronstruir más edificios haciendo click en él",visto:false},
                             {id:3,descripcion:"Una vez tenemos un edifcio podemos subirlo de nivel",visto:false},
                             {id:4,descripcion:"Al haber construido el edificio de hábitats se ha desbloqueado el modo expediciones",visto:false},
                             {id:5,descripcion:"Al haber construido el edificio de laboratorio se han desbloqueado las mejoras",visto:false},
-                            {id:6,descripcion:"Al haber construido el edificio de mercado se ha desbloqueado el mercat TRADE ",visto:false},
+                            {id:6,descripcion:"Al haber construido el edificio de mercado se ha desbloqueado el TRADE market de recursos",visto:false},
                         ],
                    desbloqueando:[]}); 
 
@@ -816,7 +816,7 @@ Accounts.emailTemplates.verifyEmail = {
 
 
 SyncedCron.start();
-      /*SyncedCron.add({
+     /* SyncedCron.add({
         name: 'Run in 2 seconds dinocoins',
         schedule: function(parser) {
             // parser is a later.parse obje
@@ -917,27 +917,12 @@ SyncedCron.start();
             }
         }
     });
-*//*
-//SyncedCron.start();
-      SyncedCron.add({
-        name: 'Run in 1 minute',
-        schedule: function(parser) {
-            // parser is a later.parse obje
-            return parser.text('every 1 minute');
-        },
-        job: function() {
-            // do something important here
-            console.log("aixo es un missatge de mostra 1 minute");
-            //SyncedCron.remove('Run in 20 seconds only once');
-        }
-    });
 
-SyncedCron.start();*/
     
     //***********LOS DINOS ESCAPAN
     //************ CRON DE 12 o 24 Horas, por el momento cada 20s
     //************
-    /*SyncedCron.start();
+    SyncedCron.start();
         SyncedCron.add({
         name: 'Run in 20 seconds ',
         schedule: function(parser) {
