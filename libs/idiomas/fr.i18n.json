@@ -15,8 +15,95 @@
     "sesion"    :       "Sesion",
     "logout"    :       "Fermer Sesion",
     "language"  :       "Langue",
-    "news"      :       "nouvelles"
+    "news"      :       "nouvelles",
 
+     //pagina dinoGame.html
+    "muro"      :       "Mon mur",
+    "expediciones":     "Expéditions",
+    "comercio"  :       "Marché",
+    "rankings"  :       "Classements",
+    "subirLvl"  :       "Monté un niveau",
+    "visitantes":       "Visiteurs",
+    "suministros":      "Provisions",
+    "energia"   :       "Energie",
+    "seguridad" :       "Sécurité",
+     "capacidad" :       "CAPACITÉ",
+    "efectividad":      "EFFICACITÉ",
+    "total"     :       "TOTAL",
+    "salud"     :       "SANTÉ",
+    "coste"     :       "COÛT",
+    "sumini"    :       "PROVISIONS",
+    "costetotal":       "COÛT TOTAL",
+    "saludtotal":       "SANTÉ TOTAL",
+    "efectividadtotal": "EFFICACITÉ TOTAL",
+    "ninguno"   :       "Aucun",
+
+    "lider"     :       "LEADER",
+    "doctor"    :       "Docteur de campo",
+    "lugar"     :       "PLACE",
+    "jeep"      :       "Jeep",
+    "soldadoExo":       "Soldat avec exotraje",
+    "soldadoRed":       "Soldat avec lanzaredes",
+    "soldadoRifle":     "Soldat avec un fusil sonic",
+    "enviar"    :       "ENVOYER",
+
+    "dinero"    :       "Argent",
+    "perder"    :       "Vous perdez",
+    "queda"     :       "Vous avez",
+    "cambio"    :       "Changer",
+    "confirm"   :       "Confirmer",
+    "cancel"    :       "Annuler",
+    "win"       :       "Vous gagnez",
+
+    "construir" :       "Construire",
+
+    "consumenerg"  :    "Consum Energie",
+    "costsumini"   :    "Coût de provisions",
+    "costdinocoins":    "Coût de DinoCoins",
+
+    "investiga":        "Recherche",
+    "histo"     :       "Expeditions d'historie",
+
+    "ver"       :       "Voir",
+    "report"    :       "Rapport",
+    "prepExp"   :       "Préparer l'expédition",
+    "social"    :       "Sociale",
+    "dinoMuro"  :       "DinoMur",
+    "comenta"   :       "Comenté",
+
+    "topExp"    :       "Top explorateur",
+    "topVisit"  :       "Top visiteurs",
+    "avis"      :       "Annonces",
+
+
+    //frase cargador phaser
+    "frase1"    :       "Envoie des expéditions pour capturer les dinosaures et augmenter les visiteurs ..."
+    //FIN template dinoGame
+
+     //pagina login.html y noticias.html
+,   "nombre"    :       "Prenom d'user",
+    "contra"    :       "Password",
+    "pregunta1" :       "¿Pas encore registre?",
+    "pregunta2" :       "¿Oblieu votre password?",
+    "noticias"  :       "Nouvelles"
+
+    //fin pagina login.html y noticias.html
+    //logout.html
+    ,"close"    :       "Fermer la session",
+    "pregunta3" :       "¿Vous étes sure de sortir?"
+
+    //fin logout.html
+
+     //register.html
+    ,"regis"    :       "Enregistrement de l'usuaire",
+    "user"      :       "Surnom",
+    "email"     :       "Email",
+    "terminos"  :       "J'accepte les termes et conditions",
+    "crear"     :       "Créer compte",
+    "pregunta4" :       "¿Vous avez une compte?"
+
+
+    //fin register.html
 
    }
 

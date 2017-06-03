@@ -9,52 +9,52 @@
         			<div class="panel panel-default">
         				<div class="panel-heading">
         					<h3 class="panel title">
-        						Registro de Usuario
+        						{{_ "regis"}}
         					</h3>
         				</div>
         				<div class="panel-body ">
         					<form role="form" id="register-form" method="post" class="form-horizontal">
 
 									<div class="form-group">
-										<label for="regnombre" class=" col-sm-1 control-label">Usuario</label>
+										<label for="regnombre" class=" col-sm-1 control-label">{{_ "user"}}</label>
 										<div class="col-sm-offset-2 col-sm-8">
-											<input type="text" class="form-control"  name="regnombre" id="regnombre" placeholder="Usuario" required/>
+											<input type="text" class="form-control"  name="regnombre" id="regnombre" placeholder="{{_ 'user'}}" required/>
 										</div>
 									</div>
 
 
 									<div class="form-group">
-										<label for="regmail" class=" col-sm-1 control-label">Email</label>
+										<label for="regmail" class=" col-sm-1 control-label">{{_ "email"}}</label>
 								    <div class="col-sm-offset-2 col-sm-8">
-								      <input type="email" class="form-control"  name="regmail" id="regmail" placeholder="Email" required adress/>
+								      <input type="email" class="form-control"  name="regmail" id="regmail" placeholder="{{_ 'email'}}" required adress/>
 								    </div>
 									</div>
 
 									<div class="form-group">
-										<label for="regpass1" class=" col-sm-1 control-label">Password</label>
+										<label for="regpass1" class=" col-sm-1 control-label">{{_ "contra"}}</label>
 										<div class="col-sm-offset-2 col-sm-8">
-											<input type="password" class="form-control" name="regclave1" placeholder="password" id="regpass1" required/>
+											<input type="password" class="form-control" name="regclave1" placeholder="{{_ 'contra'}}" id="regpass1" required/>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label for="regpass1" class=" col-sm-1 control-label">Password</label>
+										<label for="regpass1" class=" col-sm-1 control-label">{{_ "contra"}}</label>
 										<div class="col-sm-offset-2 col-sm-8">
-											<input type="password" class="form-control" name="regclave2" placeholder="password" id="regpass2" required/>
+											<input type="password" class="form-control" name="regclave2" placeholder="{{_ 'contra'}}" id="regpass2" required/>
 										</div>
 									</div>
 
 
         					<br>
                   <label>
-                      <input type="checkbox" name="terminos" id="regterminos" value="" required/> Acepto los términos y condiciones
+                      <input type="checkbox" name="terminos" id="regterminos" value="" required/> {{_ "terminos"}}
 
                   </label>
                   <!--<label for="terminos">Acepto los términos y condiciones<input id="terminos" name="terminos" value="1" type="checkbox"></label> -->
                   <br>
 
                           <!--boton crear cuenta!!!!-->
-        					<input type="submit" id="create-account" class="btn btn-default btn-primary" value="Crear Cuenta"/>
+        					<input type="submit" id="create-account" class="btn btn-default btn-primary" value="{{_ 'crear'}}"/>
         					<br>
         					<br>
 
@@ -62,7 +62,7 @@
         					</form>
         					<br>
                            <!--boton reset formulario!!!!-->
-        					<a href="#" datta-toggle="modal" id="reglogin"> ¿ya tienes cuenta?</a>
+        					<a href="#" datta-toggle="modal" id="reglogin"> {{_ "pregunta4"}}</a>
         				</div>
         			</div>
 				</div>

@@ -188,8 +188,8 @@ Meteor.methods({
                         {id:7,cantidad:0}
                     ],
                      tutorial:[
-                            {id:1,descripcion:"Bienvenido!! Aqui empieza tu aventura.. Empecemos por construir nuestra Oficina Cental",visto:false},
-                            {id:2,descripcion:"Ahora que tienes tu Administracion puedes cronstruir más edificios haciendo click en él",visto:false},
+                            {id:1,descripcion:"Bienvenido!! Aqui empieza tu aventura.. Empecemos por construir nuestra Oficina Central",visto:false},
+                            {id:2,descripcion:"Ahora que tienes tu Administracion puedes cronstruir más edificios haciendo click en ella",visto:false},
                             {id:3,descripcion:"Una vez tenemos un edifcio podemos subirlo de nivel",visto:false},
                             {id:4,descripcion:"Al haber construido el edificio de hábitats se ha desbloqueado el modo expediciones",visto:false},
                             {id:5,descripcion:"Al haber construido el edificio de laboratorio se han desbloqueado las mejoras",visto:false},
@@ -816,7 +816,7 @@ Accounts.emailTemplates.verifyEmail = {
 
 
 SyncedCron.start();
-     /* SyncedCron.add({
+      /*SyncedCron.add({
         name: 'Run in 2 seconds dinocoins',
         schedule: function(parser) {
             // parser is a later.parse obje
@@ -917,7 +917,7 @@ SyncedCron.start();
             }
         }
     });
-
+*/
     
     //***********LOS DINOS ESCAPAN
     //************ CRON DE 12 o 24 Horas, por el momento cada 20s
@@ -930,10 +930,7 @@ SyncedCron.start();
             return parser.text('every 20 seconds');
         },
         job: function() {
-            
-            
-            console.log("aixo es un missatge de mostra (666-555-666)CALL ME <3");
-            
+                         
             
             mi_partida = Partida.find().fetch();//obtenemos una array con todas las partidas
             console.log("numero de partidas = " + mi_partida.length);
@@ -947,26 +944,45 @@ SyncedCron.start();
                
                //miramos que edificio hay de garita seguridad por cada partida
                var edificioSeguridad = 0;
+               var porcentajeSegunNivel = 0;
                
+
                mi_partida[proba].edificio.forEach(function(edif,i){
-                   if(edif==801||edif==802||edif==803){
+                   if(edif==801){
+                        edificioSeguridad = edif;                   
+                        porcentajeSegunNivel = Edificio.findOne({_id:edif}).aumento_seguridad;
+                        
+                   }
+                   if(edif==802){
+                        edificioSeguridad = edif;
+                        porcentajeSegunNivel = Edificio.findOne({_id:edif}).aumento_seguridad;
+                        porcentajeSegunNivel += 20;
+                   }
+                   if(edif==803){
                        edificioSeguridad = edif;
+                       console.log(edif);
+                       porcentajeSegunNivel = Edificio.findOne({_id:edif}).aumento_seguridad;
+                        porcentajeSegunNivel += 20 + 30;
                    }
                    
                });
+               var maxDinosPerdidos = 20;
+               maxDinosPerdidos -= maxDinosPerdidos*(porcentajeSegunNivel/100);
+               console.log(maxDinosPerdidos);
                if(edificioSeguridad==801){
-                    var dinos_perdidos = getRndInteger(1,15);
+                    
+                    var dinos_perdidos = getRndInteger(1,maxDinosPerdidos);
                     var dino_perdidoId =  getRndInteger(1,7);
                 }
                 else if(edificioSeguridad==802){
-                    var dinos_perdidos = getRndInteger(1,10);
+                    var dinos_perdidos = getRndInteger(1,maxDinosPerdidos);
                     var dino_perdidoId =  getRndInteger(1,7);
                 }
                 else if(edificioSeguridad==803){
-                    var dinos_perdidos = getRndInteger(1,5);
+                    var dinos_perdidos = getRndInteger(1,maxDinosPerdidos);
                     var dino_perdidoId =  getRndInteger(1,7);
                 }else{
-                    var dinos_perdidos = getRndInteger(1,20);
+                    var dinos_perdidos = getRndInteger(1,maxDinosPerdidos);
                     var dino_perdidoId =  getRndInteger(1,7);
                 }
                
@@ -1033,7 +1049,7 @@ SyncedCron.start();
             }
     
         }
-    });*/
+    });
 
 });
 

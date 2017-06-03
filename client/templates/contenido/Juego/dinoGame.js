@@ -1198,7 +1198,19 @@ Template.dinoGame.onRendered(function(){
     user = Meteor.userId();
     /* NOTIFICACIONES */
     comprobarNotificaciones();
-    partida = Partida.find({_id:user}).fetch();
+    partida = Partida.findOne({_id:user});
+    if(partida.edificio.includes(201)){
+        mensajeTutorial(5);
+    }
+    if(partida.edificio.includes(701)){
+        mensajeTutorial(6);
+    }
+    if(partida.edificio.includes(1101)){
+        mensajeTutorial(4);
+    }
+    if(partida.edificio.length>=2){
+        mensajeTutorial(3);
+    }
     
     //iniciamos los contadores, tantos como haya en el array de desbloqueando cada vez que regarguemos la pagina
     contador();
