@@ -595,10 +595,26 @@ Template.dinoGame.events({
     /************************************EVENTOS MURO*******************************************/
 
 "click button[data-publicacion]": function(event, template){
+        event.preventDefault();
         var idPublicacion = $(event.target).data('publicacion');
         var texto = $(event.target).prev().val();
-
         Meteor.call('comentarioPublicacion', idPublicacion, texto, Meteor.user());
+
+        $(event.target).prev().val("");
+},
+
+"click [data-like]":function(event,template){
+    event.preventDefault();
+    var idPublicacion =$(event.target).data('like');
+    Meteor.call('likePublicacion',Meteor.userId(), idPublicacion);
+},
+
+/****************************************EVENTOS IMG PERFIL************************************/
+"click .img-perfil":function(event, template){
+    var rutaImagen = $(event.target).attr("src");
+    console.log(rutaImagen);
+    Meteor.call("cambiarFotoPerfil", Meteor.userId(), rutaImagen);
+
 },
 
 "click button[data-idExpe]": function(event, template){
@@ -610,6 +626,7 @@ Template.dinoGame.events({
 "click #prepararExp" : function(evenet,template){
     $("#pop_historialExpediciones").modal("hide");
     $("#pop_expediciones").modal("show");
+
 }
     
     
@@ -965,6 +982,198 @@ Template.dinoGame.helpers({
         }
 
         return x;
+    },
+
+    estrellasPublic:function(id){
+        var publicacion = Muro.findOne({_id:id});
+        var x = [];
+        if(publicacion.valoracion <= 1)
+        {
+            x = [1];
+        }
+        if(publicacion.valoracion == 2)
+        {
+            x = [1,2];
+        }
+        if(publicacion.valoracion == 3)
+        {
+            x = [1,2,3];
+        }
+        if(publicacion.valoracion >=4)
+        {
+            x = [1,2,3,4];
+        }
+
+        return x;
+    },
+
+    diferenciaFecha: function(id){
+        var publicacion = Muro.findOne({_id:id});
+        var fechaPublic = publicacion.timestamp;
+        var fechaActual = Date.now();
+        var diferencia  = fechaActual - fechaPublic;
+        diferencia = diferencia/1000;
+        var result ="";
+
+        if(diferencia <60)
+        {
+            var segundos = Math.round(diferencia%60);
+            result = "Hace " + segundos + " segundos."
+        }
+        else
+        {
+            var segundos = Math.round(diferencia%60);
+            diferencia  = Math.floor(diferencia/60);
+
+            var minutos = Math.round(diferencia % 60);
+            diferencia  = Math.floor(diferencia/60);
+
+            var horas   = Math.round(diferencia%24);
+            diferencia  = Math.floor(diferencia/24);
+
+            var dias = diferencia;
+
+            if(dias > 0)
+            {
+                if(dias == 1)
+                {
+                    result = "Hace " + dias + " dia."
+                }
+                else
+                {
+                    result = "Hace " + dias + " dias.";
+                }
+            } 
+            else if (horas > 0)
+            {
+                if(horas == 1)
+                {
+                    if(minutos ==1)
+                    {
+                        result = "Hace " + horas + " hora y " + minutos + " minuto.";
+                    }
+                    else
+                    {
+                        result = "Hace " + horas + " hora y " + minutos + " minutos.";
+                    }
+                }
+                else
+                {
+                    if(minutos ==1)
+                    {
+                        result = "Hace " + horas + " horas y " + minutos + " minuto.";
+                    }
+                    else
+                    {
+                        result = "Hace " + horas + " horas y " + minutos + " minutos.";
+                    }
+                }
+            }
+            else
+            {
+                if(minutos ==1)
+                {
+                    result = "Hace " + minutos + " minuto.";
+                }
+                else
+                {
+                    result = "Hace " + minutos + " minutos.";
+                }
+            }
+        }
+
+        return result;
+    },
+
+    difFechaComent: function(timestamp){
+        var fechaPublic = timestamp;
+        var fechaActual = Date.now();
+        var diferencia  = fechaActual - fechaPublic;
+        diferencia = diferencia/1000;
+        var result ="";
+
+        if(diferencia <60)
+        {
+            var segundos = Math.round(diferencia%60);
+            result = "Hace " + segundos + " segundos."
+        }
+        else
+        {
+            var segundos = Math.round(diferencia%60);
+            diferencia  = Math.floor(diferencia/60);
+
+            var minutos = Math.round(diferencia % 60);
+            diferencia  = Math.floor(diferencia/60);
+
+            var horas   = Math.round(diferencia%24);
+            diferencia  = Math.floor(diferencia/24);
+
+            var dias = diferencia;
+
+            if(dias > 0)
+            {
+                if(dias == 1)
+                {
+                    result = "Hace " + dias + " dia."
+                }
+                else
+                {
+                    result = "Hace " + dias + " dias.";
+                }
+            } 
+            else if (horas > 0)
+            {
+                if(horas == 1)
+                {
+                    if(minutos ==1)
+                    {
+                        result = "Hace " + horas + " hora y " + minutos + " minuto.";
+                    }
+                    else
+                    {
+                        result = "Hace " + horas + " hora y " + minutos + " minutos.";
+                    }
+                }
+                else
+                {
+                    if(minutos ==1)
+                    {
+                        result = "Hace " + horas + " horas y " + minutos + " minuto.";
+                    }
+                    else
+                    {
+                        result = "Hace " + horas + " horas y " + minutos + " minutos.";
+                    }
+                }
+            }
+            else
+            {
+                if(minutos ==1)
+                {
+                    result = "Hace " + minutos + " minuto.";
+                }
+                else
+                {
+                    result = "Hace " + minutos + " minutos.";
+                }
+            }
+        }
+
+        return result;
+    },
+
+    hadadolike:function(idPublic){
+        var id = Meteor.userId();
+        var publicacion = Muro.findOne({_id:idPublic});
+        var result = true;
+        for(var i =0; i< publicacion.likes.length; i++)
+        {
+            if(publicacion.likes[i] === id){
+                result = false;
+            }
+        }
+
+        return result;
     },
 
     edificios: function(){

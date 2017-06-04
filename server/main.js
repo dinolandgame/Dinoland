@@ -116,8 +116,8 @@ Meteor.methods({
         var topUserExped=[];
         var experesul=[];
 
-        if(partidas.length>=7){
-                for (var i=0; i<7; i++){
+        if(partidas.length>=9){
+                for (var i=0; i<9; i++){
                 
                 partExp.push(partidas[i]);
                 var a= Meteor.users.findOne({_id:partExp[i]._id});
@@ -152,6 +152,10 @@ Meteor.methods({
         }
 
         return result = experesul;
+  },
+
+  cambiarFotoPerfil(usuario, rutaImagen){
+    Meteor.users.update({_id:usuario},{$set:{"profile.avatar":rutaImagen}});
   },
 
   //methodo creacion partida
@@ -216,7 +220,8 @@ Meteor.methods({
                 descripcion:"El usuario " + usuario.username + " ha empezado una partida",
                 timestamp: Date.now(),
                 valoracion:0,
-                comentarios:[]});
+                comentarios:[],
+                likes:[]});
 
   },
   
@@ -238,6 +243,10 @@ Meteor.methods({
     };
 
     Muro.update({_id:idPublicacion},{$push:{comentarios:comentario}});
+
+  },likePublicacion(userId,idPublicacion){
+    Muro.update({_id:idPublicacion},{$inc:{valoracion:1}});
+    Muro.update({_id:idPublicacion},{$push:{likes:userId}});
   },
  
     // INICIO TAREA DE MEJORA DE UN EDIFICIO (SUBIR NIVEL)

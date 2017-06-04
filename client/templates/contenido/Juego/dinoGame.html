@@ -1,16 +1,18 @@
 <template name="dinoGame">
-    <div id="content-juego">
-        <div id="sidebar" class="col-sm-2 sidebar1">
-            <img id="btn_desplegar" src="images/ui/desplegar.png">
-            <img id="btn_plegar" src="images/ui/plegar.png">
 
-            <div class="profile-header-container">   
-                <div class="profile-header-img">
-                    <img class="img-circle" src="images/foto_perfil.jpg">
-                    <!-- cercle voltant -->
-                    <div class="rank-label-container">
-                        <span class="label label-default rank-label" style="font-size: 1.5em">{{currentUser.username}}</span>
-                    </div>
+<div id="content-juego">
+	<div id="sidebar" class="col-sm-2 sidebar1">
+        <img id="btn_desplegar" src="images/ui/desplegar.png">
+        <img id="btn_plegar" src="images/ui/plegar.png">
+      
+        <div class="profile-header-container">   
+            <div class="profile-header-img" >
+                <img class="img-circle" src="{{currentUser.profile.avatar}}" data-target="#pop_img_perfil" data-toggle="modal">
+                <!-- cercle voltant -->
+                <div class="rank-label-container">
+                    
+                    <span class="label label-default rank-label" style="font-size: 1.5em" data-target="#pop_img_perfil" data-toggle="modal">{{currentUser.username}}</span>
+
                 </div>
                 <div class="coins">
                     <i class="ionicons ion-egg"></i>
@@ -190,7 +192,17 @@
                 </div>
                 <div id="cronometres" class="row">
 
-                </div>
+
+</div>
+{{/each}}
+<!-- Usuari -->
+   <div id="divUsuario" data-target="#pop_img_perfil" data-toggle="modal">
+           <div class="boton">
+        <div class="row">
+            <img class="user-img" src="{{currentUser.profile.avatar}}">
+            <div class="container-username">
+                <p class="dinobuton-text dinobuton-text-size">{{currentUser.username}}</p>
+
             </div>
         </div>
 
@@ -846,7 +858,7 @@
         <div tabindex="-1" class="modal fade" id="pop_social" style="display: none;" aria-hidden="true">
             <div class="modal-dialog pop_gran">
                 <div class="modal-content border">
-                    <div class="modal-body content-expediciones">
+                    <div class="modal-body content-social">
                         <div class="modal-header">
                             <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
                             <div class="modal-ribon">
@@ -868,27 +880,36 @@
                                 </div>
 
                                 <div class="row top-margin">
-                                    <div class="modal-widget">
-                                        {{#each publicaciones}}
-                                        <div>
-                                            <img src="{{avatar}}" style="width: 20px">
-                                            <p>{{nombre}}</p>
-                                            <p>{{timestamp}}</p>
-                                            <p>{{descripcion}}</p>
-                                            <p>{{valoracion}}</p>
-                                            {{#each comentarios}}
-                                            <div style="margin-left: 40px">
-                                                <img src={{avatar}} style="width: 20px">
-                                                <p>{{username}}</p>
-                                                <p>{{fecha}}</p>
-                                                <p>{{texto}}</p>
-                                            </div>
-                                            {{/each}}
-                                            <input data-publicacion="{{_id}}" type="text">
-                                            <button data-publicacion="{{_id}}">{{_ "comenta"}}</button>
-                                        </div>   
 
-                                        {{/each}}
+                                    <div class="modal-widget-muro">
+                                    {{#each publicaciones}}
+                                        <div class="publicacion">
+                                            <p class="dinobuton-text-stroke"><img src="{{avatar}}" style="width: 30px;"> {{nombre}}
+                                                {{#each estrellasPublic _id}}
+                                                    <img src="images/estrella.png" style="width:20px;float: right;">
+                                                {{/each}}
+                                            </p>
+                                            <p style="font-size: 0.8em">{{diferenciaFecha _id}}</p>
+                                            <p class="dinobuton-text-stroke" style="margin-top: 30px">{{descripcion}}</p>
+                                            <p>
+                                            
+                                            </p>
+                                            {{#each comentarios}}
+                                                <div style="margin-left: 40px;">
+                                                    <p class="dinobuton-text-stroke" style="font-size:0.8em;"><img src={{avatar}} style="width: 20px"> {{username}}</p>
+                                                    <p style="font-size:0.6em;">{{difFechaComent fecha}}</p>
+                                                    <p style="font-size:0.8em;margin-top:-10px; ">{{texto}}</p>
+                                                </div>
+                                            {{/each}}
+                                            <img src="{{currentUser.profile.avatar}}" style="width: 30px"> 
+                                            <input class="input-muro" type="text" placeholder="Escribir un comentario...">
+                                            <button class="btn-muro" data-publicacion={{_id}}>Enviar</button>
+                                            {{#if hadadolike _id}}
+                                            <button data-like={{_id}} class="btn-like"><img src="images/corazon.png"></button>
+                                            {{/if}}
+                                        </div>   
+                                    {{/each}}
+
                                     </div>
                                 </div>
                             </div>
@@ -903,9 +924,18 @@
                                 </div>
 
                                 <div class="row top-margin">
-                                    <div class="modal-widget">
+                                    <div class="modal-widget-ranking">
                                         {{#each rankingAmbar}}  
-                                        <p><img src="{{avatar}}" style="width: 30px">{{name}} : {{ambar}}</p>
+
+                                        <div class="col-sm-7">
+                                            <p style="overflow:hidden;width: 100%;"><img src="{{avatar}}" style="width: 30px;"><span class="varRanking dinobuton-text-stroke">{{name}} </span></p>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <p style="overflow:hidden; width: 100%"> <img src="images/coin.png" style="width: 30px;"> <span class="dinobuton-text-stroke">{{ambar}}</span></p>
+                                        </div>
+
+                                        
+
                                         {{/each}}   
                                     </div>
                                 </div>
@@ -922,14 +952,22 @@
 
                                 <div class="row top-margin">
                                     <div class="modal-widget">
-                                        {{#each rankingExpediciones}}
-                                        <p><img src={{avatar}} style="width: 30px">{{name}}: {{expe}}</p>
-                                        {{/each}}
+
+                                    {{#each rankingExpediciones}}
+                                        <div class="col-sm-7">
+                                            <p style="height: 30px;"><img src={{avatar}} style="width: 30px;"><span class="varRanking dinobuton-text-stroke">{{name}}</span></p>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <p style="height: 30px; margin-top: 6px;"><span class="dinobuton-text-stroke"> {{expe}}</span></p>
+                                        </div>
+                                        
+                                    {{/each}}
+
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="muro-title">
+                                    <div class="muro-title margin-top-20">
                                         <div class="muro-title-content">
                                             <p class="dinobuton-text dinobuton-text-size">{{_ "topVisit"}}</p>
                                         </div>
@@ -939,7 +977,14 @@
                                 <div class="row top-margin">
                                     <div class="modal-widget">
                                         {{#each rankingVisitantes}}
-                                        <p><img src="{{avatar}}" style="width: 30px">{{name}}: {{visitantes}}</p>
+
+                                        <div class="col-sm-7">
+                                            <p style="height: 30px;"><img src="{{avatar}}" style="width: 30px"><span class="varRanking dinobuton-text-stroke">{{name}}</span></p>
+                                        </div>
+                                        <div>
+                                            <p style="height: 30px;"><span class="dinobuton-text-stroke"><img src="images/recursos/visitantes.png" style="width: 30px;">  {{visitantes}}</span></p>
+                                        </div>    
+
                                         {{/each}}                                
                                     </div>
                                 </div>
@@ -1022,6 +1067,50 @@
 
     <div id="dinosaur">
         {{dino}}
+
+
+
+<!--Popup cambio avatar-->
+
+<div tabindex="-1" class="modal fade" id="pop_img_perfil" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">    
+        <div class="modal-content" style="height: 400px">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <div class="modal-ribon">
+                    <img src="/images/ribbon.png">
+                    <h2 id="nom_edifici" class="dinobuton-text dinobuton-text-size">Imagen de perfil</h2>
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-4 text-align-c">
+                        <img src="/images/expediciones/cientifica.png" class="img-perfil img-circle">
+                        <p>Cientifica</p>
+                    </div>
+                    <div class="col-sm-4 text-align-c">
+                        <img src="/images/expediciones/comandante.png" class="img-perfil img-circle">
+                        <p>Comandante</p>
+                    </div>
+                    <div class="col-sm-4 text-align-c">
+                        <img src="/images/expediciones/jefe.png" class="img-perfil img-circle">
+                        <p>Aventurero</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            
+            
+            
+        </div>
+    </div>
+</div>
+
+
+<!--
+<div id="user">
+    <div id="img_perfil">
 
         
         <p id="tip">{{_ "frase1"}}</p>
