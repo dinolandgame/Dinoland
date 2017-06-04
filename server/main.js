@@ -212,7 +212,8 @@ Meteor.methods({
                 descripcion:"El usuario " + usuario.username + " ha empezado una partida",
                 timestamp: Date.now(),
                 valoracion:0,
-                comentarios:[]});
+                comentarios:[],
+                likes:[]});
 
   },
   
@@ -234,6 +235,10 @@ Meteor.methods({
     };
 
     Muro.update({_id:idPublicacion},{$push:{comentarios:comentario}});
+
+  },likePublicacion(userId,idPublicacion){
+    Muro.update({_id:idPublicacion},{$inc:{valoracion:1}});
+    Muro.update({_id:idPublicacion},{$push:{likes:userId}});
   },
  
     // INICIO TAREA DE MEJORA DE UN EDIFICIO (SUBIR NIVEL)

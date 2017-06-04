@@ -784,24 +784,31 @@
                                 <div class="row top-margin">
                                     <div class="modal-widget-muro">
                                     {{#each publicaciones}}
-                                        <div>
-                                            <img src="{{avatar}}" style="width: 20px">
-                                                <p>{{nombre}}</p>
-                                            <p>{{timestamp}}</p>
-                                            <p>{{descripcion}}</p>
-                                            <p>{{valoracion}}</p>
+                                        <div class="publicacion">
+                                            <p class="dinobuton-text-stroke"><img src="{{avatar}}" style="width: 30px;"> {{nombre}}
+                                                {{#each estrellasPublic _id}}
+                                                    <img src="images/estrella.png" style="width:20px;float: right;">
+                                                {{/each}}
+                                            </p>
+                                            <p style="font-size: 0.8em">{{diferenciaFecha _id}}</p>
+                                            <p class="dinobuton-text-stroke" style="margin-top: 30px">{{descripcion}}</p>
+                                            <p>
+                                            
+                                            </p>
                                             {{#each comentarios}}
-                                                <div style="margin-left: 40px">
-                                                    <img src={{avatar}} style="width: 20px">
-                                                    <p>{{username}}</p>
-                                                    <p>{{fecha}}</p>
-                                                    <p>{{texto}}</p>
+                                                <div style="margin-left: 40px;">
+                                                    <p class="dinobuton-text-stroke" style="font-size:0.8em;"><img src={{avatar}} style="width: 20px"> {{username}}</p>
+                                                    <p style="font-size:0.6em;">{{difFechaComent fecha}}</p>
+                                                    <p style="font-size:0.8em;margin-top:-10px; ">{{texto}}</p>
                                                 </div>
                                             {{/each}}
-                                            <input data-publicacion="{{_id}}" type="text">
-                                            <button data-publicacion="{{_id}}">Comentar</button>
+                                            <img src="{{currentUser.profile.avatar}}" style="width: 30px"> 
+                                            <input class="input-muro" type="text" placeholder="Escribir un comentario...">
+                                            <button class="btn-muro" data-publicacion={{_id}}>Enviar</button>
+                                            {{#if hadadolike _id}}
+                                            <button data-like={{_id}} class="btn-like"><img src="images/corazon.png"></button>
+                                            {{/if}}
                                         </div>   
-                                    
                                     {{/each}}
                                     </div>
                                 </div>
@@ -820,7 +827,7 @@
                                     <div class="modal-widget-ranking">
                                         {{#each rankingAmbar}}  
                                         <div class="col-sm-7">
-                                            <p style="overflow:hidden;width: 100%"><img src="{{avatar}}" style="width: 30px;"><span class="varRanking dinobuton-text-stroke">{{name}} </span></p>
+                                            <p style="overflow:hidden;width: 100%;"><img src="{{avatar}}" style="width: 30px;"><span class="varRanking dinobuton-text-stroke">{{name}} </span></p>
                                         </div>
                                         <div class="col-sm-5">
                                             <p style="overflow:hidden; width: 100%"> <img src="images/coin.png" style="width: 30px;"> <span class="dinobuton-text-stroke">{{ambar}}</span></p>
@@ -843,10 +850,10 @@
                                     <div class="modal-widget">
                                     {{#each rankingExpediciones}}
                                         <div class="col-sm-7">
-                                            <p><img src={{avatar}} style="width: 30px"><span class="varRanking dinobuton-text-stroke">{{name}}</span></p>
+                                            <p style="height: 30px;"><img src={{avatar}} style="width: 30px;"><span class="varRanking dinobuton-text-stroke">{{name}}</span></p>
                                         </div>
                                         <div class="col-sm-5">
-                                            <p><span class="dinobuton-text-stroke"> {{expe}}</span></p>
+                                            <p style="height: 30px; margin-top: 6px;"><span class="dinobuton-text-stroke"> {{expe}}</span></p>
                                         </div>
                                         
                                     {{/each}}
@@ -865,10 +872,10 @@
                                     <div class="modal-widget">
                                         {{#each rankingVisitantes}}
                                         <div class="col-sm-7">
-                                            <p><img src="{{avatar}}" style="width: 30px"><span class="varRanking dinobuton-text-stroke">{{name}}</span></p>
+                                            <p style="height: 30px;"><img src="{{avatar}}" style="width: 30px"><span class="varRanking dinobuton-text-stroke">{{name}}</span></p>
                                         </div>
                                         <div>
-                                            <p><span class="dinobuton-text-stroke">{{visitantes}}</span></p>
+                                            <p style="height: 30px;"><span class="dinobuton-text-stroke"><img src="images/recursos/visitantes.png" style="width: 30px;">  {{visitantes}}</span></p>
                                         </div>    
                                         {{/each}}                                
                                     </div>

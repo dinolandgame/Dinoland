@@ -1619,22 +1619,33 @@ border-radius: 100%;
   }
 
 .modal-widget-muro{
+  /* background-image: -moz-linear-gradient( 90deg, rgb(219,174,111) 0%, rgb(230,197,143) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(219,174,111) 0%, rgb(230,197,143) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(219,174,111) 0%, rgb(230,197,143) 100%);*/
+    /*border: 3px solid #a87438;
+    border-radius: 10px;*/
+    text-align: justify;
+    margin-bottom: 20px;
+    overflow-y: scroll;;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    /*-webkit-box-shadow: 0.3px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0.3px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0.3px 1px 1px 1px rgba(0, 0, 0, 0.3);*/
+    height: 400px;
+  }
+
+.publicacion{
     background-image: -moz-linear-gradient( 90deg, rgb(219,174,111) 0%, rgb(230,197,143) 100%);
     background-image: -webkit-linear-gradient( 90deg, rgb(219,174,111) 0%, rgb(230,197,143) 100%);
     background-image: -ms-linear-gradient( 90deg, rgb(219,174,111) 0%, rgb(230,197,143) 100%);
     border: 3px solid #a87438;
     border-radius: 10px;
-    text-align: justify;
+    padding: 10px;
     margin-bottom: 20px;
-    overflow: hidden;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    -webkit-box-shadow: 0.3px 1px 1px 1px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0.3px 1px 1px 1px rgba(0, 0, 0, 0.3);
-    box-shadow: 0.3px 1px 1px 1px rgba(0, 0, 0, 0.3);
-    height: 400px;
-  }
+    margin: 0px 10px 20px 10px;
+}
 .varRanking{
     margin-left: 20px;
 }
@@ -1655,4 +1666,55 @@ border-radius: 100%;
 
   .text-align-c{
     text-align: center;
+  }
+
+  ::-webkit-scrollbar{
+    background-color: #F5E3AA;
+    border-radius: 10px;
+    border: 2px solid #a87438;
+  }
+
+  .btn-muro{
+    font-size: 0.8em;
+    background-color: #F5E3AA;
+    border: 2px solid #A87438;
+    padding: 0px 15px 0px 15px;
+    padding-top: 0px;
+    height: 29px;
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 0.3px 1px 1px 1px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-muro:hover{
+    box-shadow: none;
+  }
+
+  .input-muro{
+    font-size: 0.8em;
+    background-color: #F5E3AA;
+    border-radius: 10px;
+    border: 2px solid #A87438;
+    padding-left: 10px;
+    padding-right:10px;
+    height: 29px;
+    box-shadow: 0.3px 1px 1px 1px rgba(0, 0, 0, 0.3);
+  }
+    
+.input-muro:hover{
+    box-shadow: none;
+}
+
+  .btn-like{
+    background: none;
+    border-radius: 10px;
+    border: 2px solid #a87438;
+    box-shadow: 0.3px 1px 1px 1px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-like:hover{
+    box-shadow: none;
   }
