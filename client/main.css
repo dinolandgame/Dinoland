@@ -14,6 +14,10 @@ body {
     margin-top: 30px;
 }
 
+.bottom-margin{
+    margin-bottom: 30px;
+}
+
 .tap-i18n-dropdown .form-control{
     background-color: #f0f8ff;
     border-radius: 30px;
@@ -279,9 +283,11 @@ canvas{
 }
 
 .btn-recurso{
+    display: inline-block;
     width: 150px;
     height: 33px;
     padding-top: 4px;
+    margin-right: 20px;
 }
 
 .boton_gui{
@@ -353,7 +359,7 @@ canvas{
     background-image: -webkit-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
     background-image: -ms-linear-gradient( 90deg, rgb(253,168,26) 0%, rgb(254,200,61) 100%);
     padding: 0px 10px 0px 10px;
-    height: 38px;
+    height: 49px;
     border-radius: 50px;
     border: none;
     -webkit-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
@@ -361,28 +367,31 @@ canvas{
     box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
     cursor: pointer;
     position: absolute;
-    left: 95%;
-    top: 34%;
+    left: 94%;
+    top: 63%;
 }
 
 #btn-sound img{
-    width: 20px;
+    width: 30px;
 }
 
 
 #btn-tienda{
     cursor: pointer;
     position: absolute;
-    left: 20%;
-    top: 90%;
+    left: 2%;
+    top: 63%;
+    height: 106px;
+    padding: 10px 20px;
 }
 
 
 #btn-expediciones{
     cursor: pointer;
     position: absolute;
-    left: 3%;
-    top: 90%;
+    left: 2%;
+    top: 81%;
+    height: 106px;
 }
 
 
@@ -788,7 +797,7 @@ border-radius: 100%;
 
 #divRecursos{
     position:absolute;
-    left:87%;
+    left:26%;
 }
 
 #divUsuario{
@@ -819,17 +828,19 @@ border-radius: 100%;
 }
 
 .recurso-text{
-    font-size: 18px;
+    padding-top: 1.5px;
+    font-size: 16px;
+    padding-left: 10px;
 }
 
 .container-recurso{
     display: block;
-    margin-left: 62px;
+    margin-left: 36px;
     background-image: -moz-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
     background-image: -webkit-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
     background-image: -ms-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
     border-radius: 7px;
-    width: 72px;
+    width: 106px;
     height: 25px;
 }
 
@@ -872,7 +883,7 @@ border-radius: 100%;
     float: left;
     height: 45px;
     margin-top: -10px;
-    margin-left: 8px;
+    margin-left: -13px;
 }
 /***********************************************************************/
 /********* MODALS GRANS *************/
@@ -1362,6 +1373,13 @@ border-radius: 100%;
     cursor:not-allowed;
 }
 
+.no-seleccionable-btn{
+    opacity:0.40;
+   pointer-events:none;
+    cursor:not-allowed;
+}
+
+
 #div-costes{
     display: block;
     position: fixed;
@@ -1385,7 +1403,7 @@ border-radius: 100%;
     cursor: pointer;
     position: absolute;
     left: 94%;
-    top: 70%;
+    top: 74%;
      border-radius: 50px;
     padding-left: 11px;
     padding-right: 11px;
@@ -1490,8 +1508,30 @@ border-radius: 100%;
     height: 200px;
     box-shadow: rgba(0, 0, 0, 0.498039) 0px 5px 15px;
   }
+
+.side-collapse2 {
+    top: 31%;
+    bottom: 0;
+    left: 100%;
+    width: 256px;
+    position: fixed;
+    overflow: auto;
+    transition: all 0.3s cubic-bezier(.87, -.41, .19, 1.44);
+    z-index: 1000;
+    box-shadow: none;
+    background-color: #f5e3aa;
+    border-radius: 20px;
+    border: 4px solid #d2a169;
+    height: 363px;
+    box-shadow: rgba(0, 0, 0, 0.498039) 0px 5px 15px;
+  }
+
   .side-collapse.open {
     left: 80%;
+  }
+
+.side-collapse2.open {
+    left: 79%;
   }
 
   .side-noti{
@@ -1708,6 +1748,7 @@ border-radius: 100%;
     box-shadow: none;
 }
 
+
   .btn-like{
     background: none;
     border-radius: 10px;
@@ -1718,3 +1759,129 @@ border-radius: 100%;
   .btn-like:hover{
     box-shadow: none;
   }
+
+  .alert-general{
+    display: none;
+    position: absolute;
+    top: 30%;
+    height: 120px;
+    box-shadow: 3px 4px 5px 3px rgba(0, 0, 0, 0.5);
+    background-image: -webkit-linear-gradient( 90deg, rgb(239, 198, 141) 0%, rgb(247, 215, 163) 100%);
+  }
+
+  .alert-tutorial{
+    display: none;
+    position: absolute;
+    top: 30%;
+    height: auto;
+    box-shadow: 3px 4px 5px 3px rgba(0, 0, 0, 0.5);
+    background-image: -webkit-linear-gradient( 90deg, rgb(239, 198, 141) 0%, rgb(247, 215, 163) 100%);
+  
+  }
+
+  .close-alert{
+    height: 28px;
+    position: absolute;
+    top: 5%;
+    left: 92%;
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  .close-alert:hover{
+    opacity: 1;
+  }
+
+  .img-alert{
+    height: 50px;
+    position: absolute;
+    top: 6%;
+    left: 2%;
+  }
+
+  .img-tutorial{
+    height: 50px;
+    position: absolute;
+    top: 6%;
+    left: 2%;
+  }
+
+  /* HISTORIAL EXPEDICIONES */
+  .zonaHistorial{
+    height: 80px;
+  }
+
+  #reportExpe{
+    margin-left: 15px;
+    margin-right: 25px;
+  }
+
+  .img-titleReport{
+    height: 50px;
+    margin-right: 10px;
+  }
+
+  .zonaHistorial{
+    border-radius: 10px;
+  }
+
+  .ver-historial{
+    height: 26px;
+    font-size: 11px;
+  }
+
+  .divHistorialExpe{
+    overflow-y: scroll;
+    max-height: 370px;
+  }
+
+#mensaje_text{
+    display: block;
+    margin: auto;
+    height: 30px;
+    font-size: 0.8em;
+    padding: 1px 6px;
+}
+
+.enviar-chat{
+    position: absolute;
+    top: 85%;
+    overflow-x: hidden;
+}
+
+.chat-message{
+    font-size: 0.8em;
+    background-color: #d2a169;
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    border: 1px solid #b58753;
+    text-shadow: 0px 0px 4px black;
+    margin-bottom: 5px;
+}
+
+#lista_mensajes{
+    height: 250px;
+    overflow: auto;
+}
+
+#btn-chat{
+    cursor: pointer;
+    position: absolute;
+    left: 88%;
+    top: 89.5%;
+     border-radius: 50px;
+    padding-left: 11px;
+    padding-right: 11px;
+}
+
+#tip{
+    display: none;
+    position: absolute;
+    top: 83%;
+    left: 30%;
+    color: white;
+    
+}
+

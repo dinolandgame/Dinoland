@@ -15,5 +15,94 @@
     "sesion"	:		"Sesion",
     "logout"	:		"Log Out",
     "language"	:		"Language",
-    "news"		: 		"News"
-}
+    "news"		: 		"News",
+
+    //pagina dinoGame.html
+    "muro"      :       "My wall",
+    "expediciones":     "Expeditions",
+    "comercio"  :       "Market",
+    "rankings"  :       "Rankings",
+    "subirLvl"  :       "Level up",
+    "visitantes":       "Visitors",
+    "suministros":      "Supplies",
+    "energia"   :       "Energy",
+    "seguridad" :       "Security",
+     "capacidad" :       "CAPACITY",
+    "efectividad":      "EFECTIVENESS",
+    "total"     :       "TOTAL",
+    "salud"     :       "HEALTH",
+    "coste"     :       "COST",
+    "sumini"    :       "SUPPLIES",
+    "costetotal":       "TOTAL COST",
+    "saludtotal":       "TOTAL HEALTH",
+    "efectividadtotal": "TOTAL EFECTIVENESS",
+    "ninguno"   :       "Any",
+
+    "lider"     :       "LEADER",
+    "doctor"    :       "Doctor field",
+    "lugar"     :       "PLACE",
+    "jeep"      :       "Jeep",
+    "soldadoExo":       "Soldier with exotraje",
+    "soldadoRed":       "Soldier with spear-nets",
+    "soldadoRifle":     "Soldier with sonic rifle",
+    "enviar"    :       "SEND",
+
+    "dinero"    :       "Money",
+    "perder"    :       "You lose",
+    "queda"     :       "You've left",
+    "cambio"    :       "Change",
+    "confirm"   :       "Confirm",
+    "cancel"    :       "Cancel",
+    "win"       :       "You win",
+
+    "construir" :       "Build",
+
+    "consumenerg"  :    "Energy consum",
+    "costsumini"   :    "Supplies cost",
+    "costdinocoins":    "DinoCoins cost",
+
+    "investiga":        "Investigate",
+    "histo"     :       "History Expeditions",
+
+    "ver"       :       "Look",
+    "report"    :       "Report",
+    "prepExp"   :       "Prepare expedition",
+    "social"    :       "Social",
+    "dinoMuro"  :       "DinoWall",
+    "comenta"   :       "Commit",
+
+    "topExp"    :       "Top explorers",
+    "topVisit"  :       "Top visitors",
+    "avis"      :       "Notices",
+
+    //frase cargador phaser
+    "frase1"    :       "Send expeditions to capture dinosaurs and increase visitors ..."
+
+//FIN template dinoGame.html
+
+
+ //pagina login.html y noticias.html
+,   "nombre"    :       "Username",
+    "contra"    :       "Password",
+    "pregunta1" :       "¿Not yet an account?",
+    "pregunta2" :       "¿Forgot de password?",
+    "noticias"  :       "News"
+
+    //fin pagina login.html y noticias.html
+//logout.html
+    ,"close"    :       "Log Out",
+    "pregunta3" :       "yes, I want to disconnect!"
+
+    //fin logout.html
+
+ //register.html
+    ,"regis"    :       "User Sign up",
+    "user"      :       "User",
+    "email"     :       "Email",
+    "terminos"  :       "I accept de terms and conditions",
+    "crear"     :       "Create account",
+    "pregunta4" :       "¿Have you an account?"
+
+
+    //fin register.html
+     }

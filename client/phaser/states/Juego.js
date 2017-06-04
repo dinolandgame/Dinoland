@@ -53,20 +53,39 @@ Juego.prototype = {
         //controlamos si no hay edificios en el array de edificios en la coleccion partida
         if(mi_partida[0].edificio.length===0){
                     console.log("no tengo edificios");
-                    $('.prueba').show();
+                    mensajeTutorial(1);
                     
                 }
         
-
         const cursor = Partida.find({_id:user});
         const cambiar_nivel = cursor.observeChanges({
             changed(id,fields){
-                //console.log(fields);
+                console.log(fields);
+                console.log(fields.edificio);
                 if(fields.hasOwnProperty('edificio')){
                     game.state.restart();
                     bell.play();
                     comprobarNotificaciones();
                     $(".side-collapse").addClass('open'); 
+
+                   
+                    if(fields.edificio.includes(201)){
+                        mensajeTutorial(5);
+                    }
+                    if(fields.edificio.includes(701)){
+                        mensajeTutorial(6);
+                    }
+                    if(fields.edificio.includes(1101)){
+                        mensajeTutorial(4);
+                    }
+                    if(fields.edificio.length>=2){
+                        mensajeTutorial(3);
+                    }
+                    
+
+                        
+                  
+                    
                 }
 
                 if(fields.hasOwnProperty('expediciones')){
@@ -80,8 +99,14 @@ Juego.prototype = {
                     comprobarNotificaciones();
                     $(".side-collapse").addClass('open');
                 }
+
+                 
+
+                
             }
         });
+
+
 
         ground.scale.setTo(0.90,0.90);
 
@@ -272,15 +297,18 @@ function clicar(edifici){
         //Popup tienda
         case 'trade1': case 'trade2': case 'trade3':
         $('#pop_tienda').modal('show');
+        
         vaciarSuministros();
         vaciarDinero();
         break;
         //Popup habitats
         case 'habitats1': case 'habitats2': case 'habitats3':
         $('#pop_habitats').modal('show');
+        
         break;
         //Popup laboratorio
         case 'laboratori1': case 'laboratori2': case 'laboratori3':
+        
         $('#pop_laboratorio').modal('show');
         var laboratorio = Edificio.findOne({_id:201});
         console.log(laboratorio);
@@ -289,18 +317,17 @@ function clicar(edifici){
         $('.btn-lvlup-laboratorio').css('display', 'block');
         $('#btn-investiga').css('display', 'none');
         $('#div-bono').css('display', 'none');
+
         break;
         //Popup cuartel
         case 'cuartel1': case 'cuartel2': case 'cuartel3':
         $('#pop_cuartel').modal('show');
             var mi_partida = Partida.find({_id:user}).fetch();
             if(mi_partida[0].edificio.length===1){
-                    console.log("tengo  1 edificio");
-                    $('.prueba2').show();
+                console.log("tengo  1 edificio");
+                
                     
-                }
-           
-            
+            }    
         break;
         default:
         break;
@@ -358,4 +385,41 @@ function vaciarSuministros(){
             $('#suministros').val("");
             $('.resumenSuministros').css('display', 'none');
 };
+
+function mensajeTutorial(id){
+   // Session.set('numTutorial', id);
+   partida = Partida.findOne({});
+   var tutorialActual = {"id":0,"descripcion":""};
+
+    var renovacionTutoriales = [];
+   partida.tutorial.forEach(function(tuto,i){
+        if(id==tuto.id&&tuto.visto==false){
+            tuto.visto=true;
+            tutorialActual = {"id":tuto.id,
+                            "descripcion":tuto.descripcion,
+                            "visto":tuto.visto};
+
+            $('.text-tutorial').empty();
+            
+            $('.tutorial').show();
+             if(id==1){
+                 $('.botonelli').append('<button type="button" class="btn pmd-ripple-effect btn-default btn_modal crear botones">Crear Oficina Central</button>');
+            }
+            
+            
+            
+        }
+        renovacionTutoriales.push(tuto);
+   });
+
+   //se hace update de los tutoriales para ver cual se ha visto y evitar entrar en el if anterior 
+
+   Partida.update({_id:user},{$set:{tutorial:renovacionTutoriales}});
+    
+   $('.text-tutorial').append(tutorialActual.descripcion);
+           
+
+
+}
+
 

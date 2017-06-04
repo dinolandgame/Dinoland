@@ -9,14 +9,14 @@
         			<div class="panel panel-default">
         				<div class="panel-heading">
         					<h3 class="panel title">
-        						Cerrar Sesión: {{currentUser.username}}
+        						{{_ "close"}}: {{currentUser.username}}
         					</h3>
         				</div>
         				<div class="panel-body">
         					<form role="form" id="logout-form" method="post">
 	        					<div class="form-group">	
-		        					<label>¿Estás seguro que deseas salir?</label>
-		        					<input type="submit" name="lognombre" class="btn btn-default btn-primary" placeholder="usuario" id="logout-account" value="Salir sesión" /> 
+		        					<label>{{_ "pregunta3"}}</label>
+		        					<input type="submit" name="lognombre" class="btn btn-default btn-primary" placeholder="usuario" id="logout-account" value="Logout" /> 
 	        					</div>
         					</form>
         					<br>    					
