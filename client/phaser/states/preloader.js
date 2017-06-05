@@ -59,6 +59,9 @@ Preloader.prototype = {
         this.load.spritesheet('sintetizador1', '../images/sprites/sintetizador1.png', 379.5, 415.5, 12);
         this.load.image('sintetizador2', '../images/sprites/sintetizador2.png');
         this.load.image('sintetizador3', '../images/sprites/sintetizador3.png');
+        this.load.spritesheet('habitatple', '../images/sprites/habitats_plens.png', 621, 433, 8);
+        this.load.spritesheet('habitatsemiple', '../images/sprites/habitats_semiplens.png', 621, 433, 8);
+        
         
         // La siguiente función se ejecuta una vez se dispara el evento del loader de Phaser de que
         // se ha finalizado la carga de todos los assets
