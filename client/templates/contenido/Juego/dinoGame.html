@@ -433,92 +433,180 @@
                             <div id="tipoTerrestre" class="col-sm-12">
                                 <div id="contenedor-terrestre" class="col-sm-offset-1">
                                     {{ #each dinosauriosTipo "terrestre"}}
-                                    <div class="col-sm-3 carta">
-                                        <div class="carta-contenedor">
-                                            <div>
-                                                <div class="carta-nombre">
-                                                    <p>{{nombre}}</p>
-                                                </div>
-                                                <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
-                                            </div>
-                                            <div class="carta-habitat">
-                                                <p>Habitat - {{habitat}}
-                                                    <span class="estrellas pull-right">
-                                                        {{#each estrellas _id encuentro}} 
-                                                        <img src="images/estrella.png" style="width: 10px">
-                                                        {{/each}}
-                                                    </span>
-                                                </p>
-                                            </div>
-                                            <div>
-                                                <p class="carta-descripcion">{{descripcion}}</p>
-                                            </div>
+                                        {{#if existeCarta _id}}
+                                            <div class="col-sm-3 carta">
+                                                <div class="carta-contenedor">
+                                                    <div>
+                                                        <div class="carta-nombre">
+                                                            <p>{{nombre}}</p>
+                                                        </div>
+                                                        <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
+                                                    </div>
+                                                    <div class="carta-habitat">
+                                                        <p>Habitat - {{habitat}}
+                                                            <span class="estrellas pull-right">
+                                                                {{#each estrellas _id encuentro}} 
+                                                                <img src="images/estrella.png" style="width: 10px">
+                                                                {{/each}}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="carta-descripcion">{{descripcion}}</p>
+                                                    </div>
 
+                                            </div>
+                                            
+                                            <p class=" carta-ferocidad" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                            <p id="dinosObtenidos" style="text-align: center;font-size: 1.5em">x <span>{{mostrar_dino _id}}</span></p>
                                         </div>
-                                        <p class=" carta-ferocidad col-lg-6" style="padding-left: 0px;">Obtenidos:{{mostrar_dino _id}}</p>
-                                        <p class=" carta-ferocidad col-lg-6" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                        {{else}}
+                                            <div class="col-sm-3 carta no-seleccionable-btn">
+                                                <div class="carta-contenedor">
+                                                    <div>
+                                                        <div class="carta-nombre">
+                                                            <p>{{nombre}}</p>
+                                                        </div>
+                                                        <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
+                                                    </div>
+                                                    <div class="carta-habitat">
+                                                        <p>Habitat - {{habitat}}
+                                                            <span class="estrellas pull-right">
+                                                                {{#each estrellas _id encuentro}} 
+                                                                <img src="images/estrella.png" style="width: 10px">
+                                                                {{/each}}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="carta-descripcion">{{descripcion}}</p>
+                                                    </div>
 
-                                    </div>
-
+                                                </div>
+                                                
+                                                <p class=" carta-ferocidad" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                                <p id="dinosObtenidos" style="text-align: center;font-size: 1.5em">x <span>{{mostrar_dino _id}}</span></p>
+                                            </div>
+                                        {{/if}}
                                     {{/each}}
                                 </div>
                             </div>
                             <div id="tipoAcuatico" class="col-sm-12">
                                 {{#each dinosauriosTipo "acuatico"}}
-                                <div class="col-sm-3 carta">
-                                    <div class="carta-contenedor">
-                                        <div>
-                                            <div class="carta-nombre">
-                                                <p>{{nombre}}</p>
-                                            </div>
-                                            <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
-                                        </div>
-                                        <div class="carta-habitat">
-                                            <p>Habitat - {{habitat}}
-                                                <span class="estrellas pull-right">
-                                                    {{#each estrellas _id encuentro}} 
-                                                    <img src="images/estrella.png" style="width: 10px">
-                                                    {{/each}}
-                                                </span>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p class="carta-descripcion">{{descripcion}}</p>
-                                        </div>
+                                {{#if existeCarta _id}}
+                                            <div class="col-sm-3 carta-aquatico">
+                                                <div class="carta-contenedor-aquatico">
+                                                    <div>
+                                                        <div class="carta-nombre-aquatico">
+                                                            <p>{{nombre}}</p>
+                                                        </div>
+                                                        <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img-aquatico">
+                                                    </div>
+                                                    <div class="carta-habitat-aquatico">
+                                                        <p>Habitat - {{habitat}}
+                                                            <span class="estrellas pull-right">
+                                                                {{#each estrellas _id encuentro}} 
+                                                                <img src="images/estrella.png" style="width: 10px">
+                                                                {{/each}}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="carta-descripcion">{{descripcion}}</p>
+                                                    </div>
 
-                                    </div>
-                                    <p class=" carta-ferocidad col-lg-6" style="padding-left: 0px;">Obtenidos:{{mostrar_dino _id}}</p>
-                                    <p class=" carta-ferocidad col-lg-6" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
-                                </div>
+                                            </div>
+                                            
+                                            <p class=" carta-ferocidad" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                            <p id="dinosObtenidos" style="text-align: center;font-size: 1.5em">x <span>{{mostrar_dino _id}}</span></p>
+                                        </div>
+                                        {{else}}
+                                            <div class="col-sm-3 carta-aquatico no-seleccionable-btn">
+                                                <div class="carta-contenedor-aquatico">
+                                                    <div>
+                                                        <div class="carta-nombre-aquatico">
+                                                            <p>{{nombre}}</p>
+                                                        </div>
+                                                        <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img-aquatico">
+                                                    </div>
+                                                    <div class="carta-habitat-aquatico">
+                                                        <p>Habitat - {{habitat}}
+                                                            <span class="estrellas pull-right">
+                                                                {{#each estrellas _id encuentro}} 
+                                                                <img src="images/estrella.png" style="width: 10px">
+                                                                {{/each}}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="carta-descripcion">{{descripcion}}</p>
+                                                    </div>
+
+                                                </div>
+                                                
+                                                <p class=" carta-ferocidad" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                                <p id="dinosObtenidos" style="text-align: center;font-size: 1.5em">x <span>{{mostrar_dino _id}}</span></p>
+                                            </div>
+                                        {{/if}}
                                 {{/each}}
                             </div>
                             <div id="tipoAereo" class="col-sm-12">
                                 {{#each dinosauriosTipo "aereo"}}
-                                <div class="col-sm-3 carta">
-                                    <div class="carta-contenedor">
-                                        <div>
-                                            <div class="carta-nombre">
-                                                <p>{{nombre}}</p>
-                                            </div>
-                                            <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
-                                        </div>
-                                        <div class="carta-habitat">
-                                            <p>Habitat - {{habitat}}
-                                                <span class="estrellas pull-right">
-                                                    {{#each estrellas _id encuentro}} 
-                                                    <img src="images/estrella.png" style="width: 10px">
-                                                    {{/each}}
-                                                </span>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p class="carta-descripcion">{{descripcion}}</p>
-                                        </div>
+                                {{#if existeCarta _id}}
+                                            <div class="col-sm-3 carta-aereo">
+                                                <div class="carta-contenedor-aereo">
+                                                    <div>
+                                                        <div class="carta-nombre-aereo">
+                                                            <p>{{nombre}}</p>
+                                                        </div>
+                                                        <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img-aereo">
+                                                    </div>
+                                                    <div class="carta-habitat-aereo">
+                                                        <p>Habitat - {{habitat}}
+                                                            <span class="estrellas pull-right">
+                                                                {{#each estrellas _id encuentro}} 
+                                                                <img src="images/estrella.png" style="width: 10px">
+                                                                {{/each}}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="carta-descripcion">{{descripcion}}</p>
+                                                    </div>
 
-                                    </div>
-                                    <p class=" carta-ferocidad col-lg-6" style="padding-left: 0px;">Obtenidos:{{mostrar_dino _id}} </p>
-                                    <p class=" carta-ferocidad col-lg-6" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
-                                </div>
+                                            </div>
+                                            
+                                            <p class=" carta-ferocidad" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                            <p id="dinosObtenidos" style="text-align: center;font-size: 1.5em">x <span>{{mostrar_dino _id}}</span></p>
+                                        </div>
+                                        {{else}}
+                                            <div class="col-sm-3 carta-aereo no-seleccionable-btn">
+                                                <div class="carta-contenedor-aereo">
+                                                    <div>
+                                                        <div class="carta-nombre-aereo">
+                                                            <p>{{nombre}}</p>
+                                                        </div>
+                                                        <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img-aereo">
+                                                    </div>
+                                                    <div class="carta-habitat-aereo">
+                                                        <p>Habitat - {{habitat}}
+                                                            <span class="estrellas pull-right">
+                                                                {{#each estrellas _id encuentro}} 
+                                                                <img src="images/estrella.png" style="width: 10px">
+                                                                {{/each}}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="carta-descripcion">{{descripcion}}</p>
+                                                    </div>
+
+                                                </div>
+                                                
+                                                <p class=" carta-ferocidad" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                                <p id="dinosObtenidos" style="text-align: center;font-size: 1.5em">x <span>{{mostrar_dino _id}}</span></p>
+                                            </div>
+                                        {{/if}}
                                 {{/each}}
                             </div>
                         </div>
