@@ -382,7 +382,7 @@ Meteor.methods({
     
     user = Meteor.userId();
     var data = new Date();
-    data.setSeconds(data.getSeconds()+zona.tiempoexpedicion);
+    data.setSeconds(data.getSeconds()+2);
       
       
     SyncedCron.start();
@@ -634,12 +634,95 @@ Meteor.methods({
               if(dinocoins > coins_maxim){
                 dinocoins = coins_maxim;
               }
+
+
+            /********per codi tezttejar el guardar dino zaura de comentar o eliminar****/
+            //dinosaurio_rastreado = Dinosaurio.findOne({_id:5});
+            //capturas_final = 15;
+            /**********/
             console.log("dino: "+ dinosaurio_rastreado.nombre + "; cantidad: "+ capturas_final );
             Partida.update({_id:user},{$set: {dinero: dinocoins, suministros: suministros}});
             Partida.update({_id:user},{$inc:{expediciones:1}});
             /* limitar los dinosaurio con referencia al maxio de dinos permitidos*/
+
+
+
             if(capturas_final > 0){
-                var max_dinosaur =0;
+            
+                //var mi_partida = Partida.findOne({_id:this.userId}).dinos;
+                //var dinosa = Dinosaurio.find({habitat:dinosaurio_rastreado.habitat}).fetch();
+                /********* Total de dino area ****/
+                var cap_total_area = 0;
+               
+                partida_jugador.dinos.forEach(function(id_dino){
+
+                        dino = Dinosaurio.findOne({_id:id_dino.id});
+                    
+                        if(dinosaurio_rastreado.habitat == dino.habitat){
+                            cap_total_area += id_dino.cantidad;
+
+                        }  
+
+                    
+
+                });
+                console.log("Es poden guardar: "+ cap_total_area +"dinos, en l'area de:" + dinosaurio_rastreado.habitat );
+                //---obtenemoz el total de dinoz k caben ----/
+                    var max_cap = 0 
+                    //obtenemos la partida
+                    
+                    //recorremos el array de edificios i comprovamos nivel de habitat 
+                    var bonohabitats = partida_jugador.bono_habitats;
+                    partida_jugador.edificio.forEach(function(edif){
+                        
+                        switch(edif)
+                        {   //guardamos la capacidad de dinos que puede tener el habitat segun su nivel
+                            case 1101: max_cap = Edificio.findOne({_id:edif}).capacidadDino; break;
+                            case 1102: max_cap = Edificio.findOne({_id:edif}).capacidadDino*2; break;
+                            case 1103: max_cap = Edificio.findOne({_id:edif}).capacidadDino*3; break;
+                        }
+                    });
+                    
+                    if(bonohabitats){
+                        max_cap += 5;
+                    }
+
+
+                 console.log("Capacitat maxima de dinos en l'area de " + dinosaurio_rastreado.habitat + ": "+max_cap );   
+                /////////////////////////////////////////////
+                /***** espai disponible per nou dino ********/
+                    disp = max_cap-cap_total_area;
+        
+                console.log("Disponibilitat dinos en l'area de " + dinosaurio_rastreado.habitat + ": "+ disp);
+                /////////////////////////////////////////////
+                /********** calcular uans sinclouran*////////////
+                var dis_incloure=0;
+                if(capturas_final>=disp){
+                    dis_incloure = disp;
+                }else{
+                    dis_incloure = capturas_final;
+                }
+
+                console.log("numero de dinos a guardar: " + dis_incloure );
+
+                //////////////////////////////////
+                /* incloure a la bd */
+                //r dinos = Partida.find({}).fetch();
+                partida_jugador.dinos.forEach(function(id_dino){
+
+                    if(dinosaurio_rastreado._id == id_dino.id){
+
+                        id_dino.cantidad += dis_incloure;
+                    }
+
+                });
+
+                dinosa =  partida_jugador.dinos;
+                console.log(dinosa);
+                Partida.update({_id:user},{$set: {dinos: dinosa }});  
+
+
+                /*var max_dinosaur =0;
                 
                 
                 //Controlamos cuantos dinosaurios pueden haber en la partida
@@ -672,15 +755,15 @@ Meteor.methods({
                         }
                                      
                 });  
-                                              
-            }
-            
+        */                               
+            }}
+          /*  
             console.log(partida_jugador.dinos);
              var dino_act= partida_jugador.dinos;
  
             Partida.update({_id:user},{$set: {dinos: dino_act }});            
-            //Partida.update({ _id:user, edificio: Edifici._id },{ $set: { "edificio.$" : EdificiUp._id}});
-        }     
+            //Partida.update({ _id:user, edificio: Edifici._id },{ $set: { "edificio.$" : EdificiUp._id}});*/
+        //}     
     });
 
     },

@@ -923,10 +923,7 @@ Template.dinoGame.helpers({
                 num_dino += dino.cantidad;
             }
 
-            //obtenemos la cantidad de Tyrannosaurus rex
-            if(nom_area== "terrestre" && dino_act.nombre== "Tyrannosaurus rex" ){
-                num_dino +=dino.cantidad;
-            }
+           
             
         });
         console.log(num_dino);
