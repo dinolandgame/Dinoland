@@ -264,6 +264,7 @@ Template.dinoGame.events({
          }else{
             $(".text-alert").text("Te faltan recursos para enviar la expedición.");
                 $(".img-alert").attr("src","images/recursos/suministros.png");
+                $('.modal').modal('hide');
                 $(".alert-general").fadeIn();
 
          }
@@ -1492,7 +1493,7 @@ Template.dinoGame.onRendered(function(){
 
             $('.modal').modal('hide');
             $(".text-alert").text("No tienes suficientes recursos para construir este edificio.");
-            $(".img-alert").attr("src","images/recursos/suministros");
+            $(".img-alert").attr("src","images/recursos/suministros.png");
             $(".alert-general").fadeIn();
 
         }

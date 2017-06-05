@@ -1716,6 +1716,7 @@ border-radius: 100%;
 
 ::-webkit-scrollbar-thumb {
       background-color: rgba(168, 116, 56, 0.7);
+    border-radius: 10px;
 } 
 
   .btn-muro{
