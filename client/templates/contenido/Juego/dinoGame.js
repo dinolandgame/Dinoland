@@ -917,6 +917,24 @@ Template.dinoGame.helpers({
 
         return tiene_edif;
     },
+    mostrar_boton_subir_edif:function(idcercar){
+
+        mi_partida = Partida.findOne({_id:Meteor.userId()});
+        tiene_edif = false;     
+
+
+        mi_partida.edificio.forEach(function(edif){
+            
+            
+            if(idcercar == edif){
+                tiene_edif = true;
+                
+            }
+            
+        });
+
+        return tiene_edif;
+    },
     chats:function(){
         limit_dades=20;
         var convers = Chat.find({}, {sort: {timestamp: 1}});
@@ -937,10 +955,7 @@ Template.dinoGame.helpers({
                 num_dino += dino.cantidad;
             }
 
-            //obtenemos la cantidad de Tyrannosaurus rex
-            if(nom_area== "terrestre" && dino_act.nombre== "Tyrannosaurus rex" ){
-                num_dino +=dino.cantidad;
-            }
+           
             
         });
         console.log(num_dino);

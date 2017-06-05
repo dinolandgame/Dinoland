@@ -30,12 +30,22 @@
             <div>
                 <div class="left-navigation">
                     <ul class="list">
-                        <li id="select_idioma"> {{> i18n_dropdown}} </li>
-                        <li data-target="#pop_social" data-toggle="modal"><i class="ionicons ion-ios-person"></i>{{_ "muro"}}</li>
-                        <li data-target="#pop_historialExpediciones" data-toggle="modal"><i class="ionicons ion-ios-search-strong"></i>{{_ "expediciones"}}</li>
-                        <li data-target="#pop_tienda" data-toggle="modal"><i class="fa fa-shopping-cart"></i>{{_ "comercio"}}</li>
+                       <li id="select_idioma"> {{> i18n_dropdown}} </li>
+                        <li data-target="#pop_social" data-toggle="modal"><i class="ionicons ion-ios-person"></i> {{_ "muro"}}</li>
+                        {{#if mostrar_boton 1101}}
+                        <li data-target="#pop_historialExpediciones" data-toggle="modal" class="seleccionable"><i class="ionicons ion-ios-search-strong"></i> {{_ "expediciones"}}</li>
+                        {{else}}
+                        <li data-target="#pop_historialExpediciones" data-toggle="modal" class="no-seleccionable"><i class="ionicons ion-ios-search-strong"></i>  {{_ "expediciones"}}</li>
+                        {{/if}}
+                        {{#if mostrar_boton 701}}
+                        <li data-target="#pop_tienda" data-toggle="modal" class="seleccionable"><i class="fa fa-shopping-cart"></i> {{_ "comercio"}}</li>
+                        {{else}}
+                        <li data-target="#pop_tienda" data-toggle="modal" class="no-seleccionable"><i class="fa fa-shopping-cart"></i> {{_ "comercio"}}</li>
+                         {{/if}}
+                    
                         <li data-target="#pop_social" data-toggle="modal"><i class="fa fa-bar-chart"></i>{{_ "rankings"}}</li>
                         <li><a href="{{pathFor 'principal'}}" role="button" id="home" class="log-out"><span class="glyphicon glyphicon-home"></span>&nbsp;{{_ "home"}}</a><i class="ionicons ion-log-out"></i></li>
+
                     </ul>
                 </div>
             </div>
@@ -405,9 +415,17 @@
                             </div>
                             <div id="botonera-habitat" class="row">
                                 <div id="boton-habitats" class="col-sm-12 center-block">
-                                    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui" id="subirlvl">
+
+                                    {{#if mostrar_boton_subir_edif 1103}}
+                                    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui seleccionable" id="subirlvl">
+                                        <p class="dinobuton-text">{{_ "subirLvl"}}</p>
+
+                                    </button>
+                                    {{else}}
+                                    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui seleccionable" id="subirlvl">
                                         <p class="dinobuton-text">{{_ "subirLvl"}}</p>
                                     </button>
+                                    {{/if}}
                                 </div>
                             </div>
                             <div id="tipos-habitat" class="row">
