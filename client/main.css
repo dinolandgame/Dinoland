@@ -1714,6 +1714,10 @@ border-radius: 100%;
     border: 2px solid #a87438;
   }
 
+::-webkit-scrollbar-thumb {
+      background-color: rgba(168, 116, 56, 0.7);
+} 
+
   .btn-muro{
     font-size: 0.8em;
     background-color: #F5E3AA;
