@@ -598,7 +598,9 @@ Template.dinoGame.events({
         event.preventDefault();
         var idPublicacion = $(event.target).data('publicacion');
         var texto = $(event.target).prev().val();
-        Meteor.call('comentarioPublicacion', idPublicacion, texto, Meteor.user());
+        if(!texto==""){
+            Meteor.call('comentarioPublicacion', idPublicacion, texto, Meteor.user());
+        }
 
         $(event.target).prev().val("");
 },
