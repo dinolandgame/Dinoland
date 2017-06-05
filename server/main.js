@@ -402,7 +402,7 @@ Meteor.methods({
     
     user = Meteor.userId();
     var data = new Date();
-    data.setSeconds(data.getSeconds()+2);
+    data.setSeconds(data.getSeconds()+zona.tiempoexpedicion);
       
       
     SyncedCron.start();
