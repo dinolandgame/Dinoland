@@ -24,7 +24,7 @@
             </div> 
         </div>
 
-
+       
             <br>
 
             <div>
@@ -185,7 +185,7 @@
 
         {{/each}}
 
-      <div id="cronometres" class="row"></div>       
+        <div id="cronometres" class="row"></div>   
 
 
 <!-- Usuari -->
@@ -898,7 +898,7 @@
                                             <input class="input-muro" type="text" placeholder="Escribir un comentario...">
                                             <button class="btn-muro" data-publicacion={{_id}}>Enviar</button>
                                             {{#if hadadolike _id}}
-                                            <button data-like={{_id}} class="btn-like"><img src="images/corazon.png"></button>
+                                            <img data-like={{_id}} class="btn-like" src="images/corazon.png">
                                             {{/if}}
                                         </div>   
                                     {{/each}}
@@ -924,7 +924,7 @@
                                             <p style="overflow:hidden;width: 100%;"><img src="{{avatar}}" style="width: 30px;"><span class="varRanking dinobuton-text-stroke">{{name}} </span></p>
                                         </div>
                                         <div class="col-sm-5">
-                                            <p style="overflow:hidden; width: 100%"> <img src="images/coin.png" style="width: 30px;"> <span class="dinobuton-text-stroke">{{ambar}}</span></p>
+                                            <p style="overflow:hidden; width: 100%"> <img src="images/recursos/ambar.png" style="width: 30px;"> <span class="dinobuton-text-stroke">{{ambar}}</span></p>
                                         </div>
 
                                         
@@ -951,7 +951,7 @@
                                             <p style="height: 30px;"><img src={{avatar}} style="width: 30px;"><span class="varRanking dinobuton-text-stroke">{{name}}</span></p>
                                         </div>
                                         <div class="col-sm-5">
-                                            <p style="height: 30px; margin-top: 6px;"><span class="dinobuton-text-stroke"> {{expe}}</span></p>
+                                            <p style="height: 30px; margin-top: 6px;"><span class="dinobuton-text-stroke"><img src="images/mapreport.png" style="width: 30px"> {{expe}}</span></p>
                                         </div>
                                         
                                     {{/each}}

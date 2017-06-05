@@ -1754,6 +1754,7 @@ border-radius: 100%;
     border-radius: 10px;
     border: 2px solid #a87438;
     box-shadow: 0.3px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    padding:0px 15px;
   }
 
   .btn-like:hover{
@@ -1885,3 +1886,9 @@ border-radius: 100%;
     
 }
 
+
+#cronometres{
+    position:absolute;
+    left: 100px;
+    top:100px;
+}

@@ -44,5 +44,5 @@ Meteor.publish('muro', function(){
 });
 
 Meteor.publish('historialExpediciones', function(){
-	return Expedicion.find({},{sort: {_id: 1}, limit:15});
+	return Expedicion.find({usuario:this.userId},{sort: {_id: 1}, limit:15});
 });
