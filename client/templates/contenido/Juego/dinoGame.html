@@ -416,12 +416,16 @@
                             <div id="botonera-habitat" class="row">
                                 <div id="boton-habitats" class="col-sm-12 center-block">
 
-                                   
+                                    {{#if mostrar_boton_subir_edif 1103}}
                                     <button type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui seleccionable" id="subirlvl">
                                         <p class="dinobuton-text">{{_ "subirLvl"}}</p>
 
                                     </button>
-                                    
+                                    {{else}}
+                                    <button type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui seleccionable" id="subirlvl">
+                                        <p class="dinobuton-text">{{_ "subirLvl"}}</p>
+                                    </button>
+                                    {{/if}}
                                 </div>
                             </div>
                             <div id="tipos-habitat" class="row">
