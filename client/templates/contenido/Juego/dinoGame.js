@@ -1179,6 +1179,23 @@ Template.dinoGame.helpers({
         return result;
     },
 
+    existeCarta:function(idDino){
+        var partida = Partida.findOne({_id:Meteor.userId()});
+        var result = false;
+        for(var i=0; i<partida.dinos.length; i++)
+        {
+            if(partida.dinos[i].id==idDino)
+            {
+                if(partida.dinos[i].cantidad>0)
+                {
+                    result = true;
+                }
+            }
+        }
+
+        return result;
+    },
+
     edificios: function(){
          var variable=Session.get('key');
        //console.log("Edificio:" + quinedifici);

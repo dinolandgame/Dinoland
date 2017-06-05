@@ -931,7 +931,7 @@ SyncedCron.start();
     //***********LOS DINOS ESCAPAN
     //************ CRON DE 12 o 24 Horas, por el momento cada 20s
     //************
-    SyncedCron.start();
+ /*   SyncedCron.start();
         SyncedCron.add({
         name: 'Run in 20 seconds ',
         schedule: function(parser) {
@@ -1058,7 +1058,7 @@ SyncedCron.start();
             }
     
         }
-    });
+    });*/
 
 });
 

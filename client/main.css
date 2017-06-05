@@ -1425,6 +1425,28 @@ border-radius: 100%;
     background-image: -webkit-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
 }
 
+.carta-aereo{
+    border: 5px solid #11565e;
+    border-radius: 10px;
+    width: 260px;
+    height: 360px;
+    padding-top: 10px;
+    background-color: #76dec7;
+    margin-left: 15px;
+    background-image: -webkit-linear-gradient( 90deg, rgb(21, 127, 107) 0%, rgb(52, 162, 150) 100%);
+}
+
+.carta-aquatico{
+    border: 5px solid #11215e;
+    border-radius: 10px;
+    width: 260px;
+    height: 360px;
+    padding-top: 10px;
+    background-color: #76dec7;
+    margin-left: 15px;
+    background-image: -webkit-linear-gradient( 90deg, rgb(21, 43, 127) 0%, rgb(50, 104, 160) 100%);
+}
+
 .carta-descripcion{
     font-size: 0.8em;
 }
@@ -1436,6 +1458,23 @@ border-radius: 100%;
     border-radius: 13px;
     background-color: #DEB477;
 }
+
+.carta-contenedor-aereo{
+    border: 2px solid #11565e;
+    height: 320px;
+    width: 220px;
+    border-radius: 13px;
+    background-color: #76dece;
+}
+
+.carta-contenedor-aquatico{
+    border: 2px solid #11215e;
+    height: 320px;
+    width: 220px;
+    border-radius: 13px;
+    background-color: #7698de;
+}
+
 
 .carta-nombre{
     text-align: center;
@@ -1450,8 +1489,50 @@ border-radius: 100%;
     padding-top: 6px;
 }
 
+.carta-nombre-aereo{
+    text-align: center;
+    margin-bottom: 0px;
+    font-family: "Skranji";
+    color: rgb( 255, 255, 255 );
+    font-weight: bold;
+    text-shadow: 1px 2px 3px rgb( 0, 0, 0 );
+    background-image: -webkit-linear-gradient( 90deg, #196865 0%, #76ded3 100%);
+    border-radius: 10px;
+    height: 30px;
+    padding-top: 6px;
+}
+
+.carta-nombre-aquatico{
+    text-align: center;
+    margin-bottom: 0px;
+    font-family: "Skranji";
+    color: rgb( 255, 255, 255 );
+    font-weight: bold;
+    text-shadow: 1px 2px 3px rgb( 0, 0, 0 );
+    background-image: -webkit-linear-gradient( 90deg, #193268 0%, #769fde 100%);
+    border-radius: 10px;
+    height: 30px;
+    padding-top: 6px;
+}
+
 .carta-img{
     border: 2px solid #814B17;
+    border-radius: 10px;
+    width: 150px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.carta-img-aereo{
+    border: 2px solid #11565e;
+    border-radius: 10px;
+    width: 150px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.carta-img-aquatico{
+    border: 2px solid #11565e;
     border-radius: 10px;
     width: 150px;
     margin-top: 10px;
@@ -1470,6 +1551,38 @@ border-radius: 100%;
     text-shadow: 1px 2px 3px rgb( 0, 0, 0 );
     /* background-image: -webkit-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%); */
     background-image: -webkit-linear-gradient( 90deg, #5E3711 0%, #DEB477 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
+    border-radius: 3px;
+}
+
+.carta-habitat-aereo{
+    padding-top: 3px;
+    padding-left: 3px;
+    font-size: 0.8em;
+    height: 20px;
+    margin-bottom: 0px;
+    font-family: "Skranji";
+    color: rgb( 255, 255, 255 );
+    font-weight: bold;
+    text-shadow: 1px 2px 3px rgb( 0, 0, 0 );
+    /* background-image: -webkit-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%); */
+    background-image: -webkit-linear-gradient( 90deg, #196865 0%, #76ded3 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
+    border-radius: 3px;
+}
+
+.carta-habitat-aquatico{
+    padding-top: 3px;
+    padding-left: 3px;
+    font-size: 0.8em;
+    height: 20px;
+    margin-bottom: 0px;
+    font-family: "Skranji";
+    color: rgb( 255, 255, 255 );
+    font-weight: bold;
+    text-shadow: 1px 2px 3px rgb( 0, 0, 0 );
+    /* background-image: -webkit-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%); */
+    background-image: -webkit-linear-gradient( 90deg, #193268 0%, #769fde 100%);
     background-image: -ms-linear-gradient( 90deg, rgb(126,72,20) 0%, rgb(169,118,58) 100%);
     border-radius: 3px;
 }
@@ -1895,4 +2008,9 @@ border-radius: 100%;
     position:absolute;
     left: 100px;
     top:100px;
+}
+
+#dinosObtenidos span{
+    color:white;
+    text-shadow: -1.5px -1.5px 1px #4a1900, 1.5px 1.5px 1px #4a1900, -1.5px 1.5px 1px #4a1900, 1.5px -1.5px 1px #4a1900;
 }
