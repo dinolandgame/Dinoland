@@ -1,16 +1,18 @@
 <template name="dinoGame">
-    <div id="content-juego">
-        <div id="sidebar" class="col-sm-2 sidebar1">
-            <img id="btn_desplegar" src="images/ui/desplegar.png">
-            <img id="btn_plegar" src="images/ui/plegar.png">
 
-            <div class="profile-header-container">   
-                <div class="profile-header-img">
-                    <img class="img-circle" src="images/foto_perfil.jpg">
-                    <!-- cercle voltant -->
-                    <div class="rank-label-container">
-                        <span class="label label-default rank-label" style="font-size: 1.5em">{{currentUser.username}}</span>
-                    </div>
+<div id="content-juego">
+	<div id="sidebar" class="col-sm-2 sidebar1">
+        <img id="btn_desplegar" src="images/ui/desplegar.png">
+        <img id="btn_plegar" src="images/ui/plegar.png">
+      
+        <div class="profile-header-container">   
+            <div class="profile-header-img" >
+                <img class="img-circle" src="{{currentUser.profile.avatar}}" data-target="#pop_img_perfil" data-toggle="modal">
+                <!-- cercle voltant -->
+                <div class="rank-label-container">
+                    
+                    <span class="label label-default rank-label" style="font-size: 1.5em" data-target="#pop_img_perfil" data-toggle="modal">{{currentUser.username}}</span>
+
                 </div>
                 <div class="coins">
                     <i class="ionicons ion-egg"></i>
@@ -20,27 +22,30 @@
                 {{/each}}
 
             </div> 
+        </div>
 
+       
             <br>
 
             <div>
                 <div class="left-navigation">
                     <ul class="list">
-                        <li data-target="#pop_social" data-toggle="modal"><i class="ionicons ion-ios-person"></i>  Mi muro</li>
+                       <li id="select_idioma"> {{> i18n_dropdown}} </li>
+                        <li data-target="#pop_social" data-toggle="modal"><i class="ionicons ion-ios-person"></i> {{_ "muro"}}</li>
                         {{#if mostrar_boton 1101}}
-                        <li data-target="#pop_historialExpediciones" data-toggle="modal" class="seleccionable"><i class="ionicons ion-ios-search-strong"></i>  Mis Expediciones</li>
+                        <li data-target="#pop_historialExpediciones" data-toggle="modal" class="seleccionable"><i class="ionicons ion-ios-search-strong"></i> {{_ "expediciones"}}</li>
                         {{else}}
-                        <li data-target="#pop_historialExpediciones" data-toggle="modal" class="no-seleccionable"><i class="ionicons ion-ios-search-strong"></i>  Mis Expediciones</li>
-
-                         {{/if}}
+                        <li data-target="#pop_historialExpediciones" data-toggle="modal" class="no-seleccionable"><i class="ionicons ion-ios-search-strong"></i>  {{_ "expediciones"}}</li>
+                        {{/if}}
                         {{#if mostrar_boton 701}}
-                        <li data-target="#pop_tienda" data-toggle="modal" class="seleccionable"><i class="fa fa-shopping-cart"></i> Comercio</li>
+                        <li data-target="#pop_tienda" data-toggle="modal" class="seleccionable"><i class="fa fa-shopping-cart"></i> {{_ "comercio"}}</li>
                         {{else}}
-                        <li data-target="#pop_tienda" data-toggle="modal" class="no-seleccionable"><i class="fa fa-shopping-cart"></i> Comercio</li>
-
+                        <li data-target="#pop_tienda" data-toggle="modal" class="no-seleccionable"><i class="fa fa-shopping-cart"></i> {{_ "comercio"}}</li>
                          {{/if}}
-                        <li data-target="#pop_social" data-toggle="modal"><i class="fa fa-bar-chart"></i> Rankings</li>
-                        <li><a href="{{pathFor 'principal'}}" role="button" id="home" class="log-out"><span class="glyphicon glyphicon-home"></span>&nbsp;Salir</a><i class="ionicons ion-log-out"></i></li>
+                    
+                        <li data-target="#pop_social" data-toggle="modal"><i class="fa fa-bar-chart"></i>{{_ "rankings"}}</li>
+                        <li><a href="{{pathFor 'principal'}}" role="button" id="home" class="log-out"><span class="glyphicon glyphicon-home"></span>&nbsp;{{_ "home"}}</a><i class="ionicons ion-log-out"></i></li>
+
                     </ul>
                 </div>
             </div>
@@ -50,14 +55,14 @@
     {{#if mostrar_boton 701}}
     <button id="btn-tienda" class="boton_gui seleccionable" data-target="#pop_tienda" data-toggle="modal">
             <img src="images/recursos/traderecursos.png" style="height: 70px;">
-            <p class="dinobuton-text" style="font-size:0.7em;">Comercio</p>
+            <p class="dinobuton-text" style="font-size:0.7em;">{{_ "comercio"}}</p>
     </button>
 
     {{else}}
 
     <button id="btn-tienda" class="boton_gui no-seleccionable-btn" data-target="#pop_tienda" data-toggle="modal" disabled>
             <img src="images/recursos/traderecursos.png" style="height: 70px;">
-            <p class="dinobuton-text" style="font-size:0.7em;">Comercio</p>
+            <p class="dinobuton-text" style="font-size:0.7em;">{{_ "comercio"}}</p>
     </button>
 
     {{/if}}
@@ -67,14 +72,14 @@
 
     <button id="btn-expediciones" data-target="#pop_expediciones" data-toggle="modal" class="boton_gui seleccionable">
             <img src="images/mapreport.png" style="height: 70px;">
-            <p class="dinobuton-text" style="font-size:0.7em;">Expediciones</p>
+            <p class="dinobuton-text" style="font-size:0.7em;">{{_ "expediciones"}}</p>
     </button>
 
     {{else}}
 
     <button id="btn-expediciones" data-target="#pop_expediciones" data-toggle="modal" class="boton_gui no-seleccionable-btn" disabled>
              <img src="images/mapreport.png" style="height: 70px;">
-            <p class="dinobuton-text" style="font-size:0.7em;">Expediciones</p>
+            <p class="dinobuton-text" style="font-size:0.7em;">{{_ "expediciones"}}</p>
     </button>
 
 
@@ -100,6 +105,17 @@
             <img class="img-alert" src="">
             <div class="col-sm-8 col-sm-offset-2 top-margin">
                 <p class="text-alert"></p>
+            </div>
+        </div>
+
+        <!--Modal tutoriales-->
+        <div class="modal-widget alert-tutorial col-sm-4 col-sm-offset-4 tutorial" style="display:none;">
+            <img class="close-alert" src="images/close.png">
+            <img class="img-tutorial" src="images/user-profile.png">
+            
+            <div class="col-sm-8 col-sm-offset-2 top-margin botonelli">
+                <p class="text-tutorial"></p>
+   
             </div>
         </div>
 
@@ -176,23 +192,24 @@
             </div>
 
         </div>
-        {{/each}}
-        <!-- Usuari -->
-        <div id="divUsuario">
-            <div class="boton">
-                <div class="row">
-                    <img class="user-img" src="images/user-profile.png">
-                    <div class="container-username">
-                        <p class="dinobuton-text dinobuton-text-size">{{currentUser.username}}</p>
-                    </div>
-                </div>
-                <div id="cronometres" class="row">
 
-                </div>
+        {{/each}}
+
+        <div id="cronometres" class="row"></div>   
+
+
+<!-- Usuari -->
+   <div id="divUsuario" data-target="#pop_img_perfil" data-toggle="modal">
+           <div class="boton">
+        <div class="row">
+            <img class="user-img" src="{{currentUser.profile.avatar}}">
+            <div class="container-username">
+                <p class="dinobuton-text dinobuton-text-size">{{currentUser.username}}</p>
+
             </div>
         </div>
-
-
+    </div>
+</div>
         <!-- POP EDIFICI-->
 
         <div tabindex="-1" class="modal fade" id="pop_edifici" style="display: none;" aria-hidden="true">
@@ -233,7 +250,7 @@
                             <button class="boton_gui" id="subirlvl" data-toggle="modal">
 
 
-                                <p class="dinobuton-text">Subir nivel</p>
+                                <p class="dinobuton-text">{{_ "subirLvl"}}</p>
                             </button>
                         </div>
                         {{#each edificios}}
@@ -241,7 +258,7 @@
                         {{#if idEdificio _id 301}}
                         {{#each partida}}
                         <div class="col-xs-5 col-xs-offset-3">
-                            <p class="dinobuton-text dinobuton-text-size">Visitantes: {{visitantes}}/{{max_visitantes}}</p>
+                            <p class="dinobuton-text dinobuton-text-size">{{_ "visitantes"}}: {{visitantes}}/{{max_visitantes}}</p>
                         </div>
                         {{/each}}
                         {{/if}}
@@ -250,7 +267,7 @@
                         {{#each partida}}
                         <div class="col-xs-5 col-xs-offset-3">
                             <p class="dinobuton-text dinobuton-text-size">DinoCoins: {{dinero}}/{{max_dinero}}</p>
-                            <p class="dinobuton-text dinobuton-text-size">Suministros: {{suministros}}/{{max_suministros}}</p>
+                            <p class="dinobuton-text dinobuton-text-size">{{_ "suministros"}}: {{suministros}}/{{max_suministros}}</p>
                         </div>
                         {{/each}}
                         {{/if}}
@@ -258,7 +275,7 @@
                         {{#if idEdificio _id 501}}
                         {{#each partida}}
                         <div class="col-xs-5 col-xs-offset-3">
-                            <p class="dinobuton-text dinobuton-text-size">Energia: {{energia}}/h</p>
+                            <p class="dinobuton-text dinobuton-text-size">{{_ "energia"}}: {{energia}}/h</p>
                         </div>
                         {{/each}}
                         {{/if}}
@@ -266,14 +283,14 @@
                         {{#if idEdificio _id 801}}
                         {{#each partida}}
                         <div class="col-xs-5 col-xs-offset-3">
-                            <p class="dinobuton-text dinobuton-text-size">Seguridad: {{seguridad}}%</p>
+                            <p class="dinobuton-text dinobuton-text-size">{{_ "seguridad"}}: {{seguridad}}%</p>
                         </div>
                         {{/each}}
                         {{/if}}
                         <!--Sintetizador-->
                         {{#if idEdificio _id 901}}
                         <div class="col-xs-5 col-xs-offset-3">
-                            <p class="dinobuton-text dinobuton-text-size">Suministros: {{Suministros}}/h</p>
+                            <p class="dinobuton-text dinobuton-text-size">{{_ "suministros"}}: {{Suministros}}/h</p>
                         </div>
                         {{/if}}
                         {{/each}}
@@ -295,7 +312,7 @@
                             <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
                             <div class="modal-ribon">
                                 <img src="/images/ribbon.png">
-                                <h2 id="nom_edifici" class="dinobuton-text">Expediciones</h2>
+                                <h2 id="nom_edifici" class="dinobuton-text">{{_ "expediciones"}}</h2>
                             </div> 
                         </div>
                         <div id="contingut_modal">
@@ -337,23 +354,23 @@
                                 <div class="col-sm-3">
                                     <div class="row">
                                         <div id="stats-exp" class="modal-desc-resumen-exp">
-                                            <h6>CAPACIDAD: <p id="slots" class="inline text-color-white"></p></h6>
-                                            <h6>EFECTIVIDAD TOTAL:  <p id="efectividad" class="inline text-color-white">0</p></h6>
-                                            <h6>SALUD TOTAL: <p id="salud" class="inline text-color-white">0</p></h6>
-                                            <h6>COSTE TOTAL DINOCOINS: <p id="costeDC" class="inline text-color-white">0</p></h6>
-                                            <h6>COSTE TOTAL SUMINISTROS: <p id="costeSUM" class="inline text-color-white">0</p></h6>
+                                            <h6>{{_ "capacidad"}}: <p id="slots" class="inline text-color-white"></p></h6>
+                                            <h6>{{_ "efectividadtotal"}}:  <p id="efectividad" class="inline text-color-white">0</p></h6>
+                                            <h6>{{_ "saludtotal"}}: <p id="salud" class="inline text-color-white">0</p></h6>
+                                            <h6>{{_ "costetotal"}} DINOCOINS: <p id="costeDC" class="inline text-color-white">0</p></h6>
+                                            <h6>{{_ "costetotal"}} {{_ "sumini"}}: <p id="costeSUM" class="inline text-color-white">0</p></h6>
                                         </div>
                                         <!--Lider-->
 
                                         <!--Equipo-->
                                         <div id="resumen" class="modal-desc-resumen-exp">
-                                            <h4>LÍDER: <p id="liderEXP" class="inline text-color-white">Ninguno</p></h4>
-                                            <p data-tipo="rifle" class="block">Soldado con rifle sónico: <span id="total-rifle" class="text-color-white">0</span></p>
-                                            <p data-tipo="lanzarredes" class="block">Soldado con lanzaredes: <span id="total-lanzaredes" class="text-color-white">0</span></p>
-                                            <p data-tipo="exotraje" class="block">Soldado con exotraje: <span id="total-exotraje" class="text-color-white">0</span></p>
-                                            <p data-tipo="doctor" class="block">Doctor de campo: <span id="total-doctor" class="text-color-white">0</span></p>
-                                            <p data-tipo="jeep" class="block">jeep: <span id="total-jeep" class="text-color-white">0</span></p>
-                                            <h4>LUGAR: <p id="lugarEXP" class="inline text-color-white">Ninguno</p></h4>
+                                            <h4>{{_ "lider"}}: <p id="liderEXP" class="inline text-color-white">{{_ "ninguno"}}</p></h4>
+                                            <p data-tipo="rifle" class="block">{{_ "soldadoRifle"}}: <span id="total-rifle" class="text-color-white">0</span></p>
+                                            <p data-tipo="lanzarredes" class="block">{{_ "soldadoRed"}}: <span id="total-lanzaredes" class="text-color-white">0</span></p>
+                                            <p data-tipo="exotraje" class="block">{{_ "soldadoExo"}}: <span id="total-exotraje" class="text-color-white">0</span></p>
+                                            <p data-tipo="doctor" class="block">{{_ "doctor"}}: <span id="total-doctor" class="text-color-white">0</span></p>
+                                            <p data-tipo="jeep" class="block">{{_ "jeep"}}: <span id="total-jeep" class="text-color-white">0</span></p>
+                                            <h4>{{_ "lugar"}}: <p id="lugarEXP" class="inline text-color-white">{{_ "ninguno"}}</p></h4>
                                         </div>
                                         <!--Lugar-->
 
@@ -361,7 +378,7 @@
                                     <!--Enviar-->
                                     <div class="row" style="text-align: center;">
                                         <button id="resetEXP" style="display: none;" class="boton_gui col-sm-3"><p class="dinobuton-text"><span class="glyphicon glyphicon-trash"></span></p></button>
-                                        <button id="enviarEXP" style="display: none;" class="col-sm-offset-1 boton_gui"><p class="dinobuton-text">ENVIAR</p></button>
+                                        <button id="enviarEXP" style="display: none;" class="col-sm-offset-1 boton_gui"><p class="dinobuton-text">{{_ "enviar"}}</p></button>
                                     </div>
                                 </div>
                             </div>
@@ -398,13 +415,15 @@
                             </div>
                             <div id="botonera-habitat" class="row">
                                 <div id="boton-habitats" class="col-sm-12 center-block">
+
                                     {{#if mostrar_boton_subir_edif 1103}}
                                     <button type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui seleccionable" id="subirlvl">
-                                        <p class="dinobuton-text">Subir nivel</p>
+                                        <p class="dinobuton-text">{{_ "subirLvl"}}</p>
+
                                     </button>
                                     {{else}}
                                     <button type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui seleccionable" id="subirlvl">
-                                        <p class="dinobuton-text">Subir nivel</p>
+                                        <p class="dinobuton-text">{{_ "subirLvl"}}</p>
                                     </button>
                                     {{/if}}
                                 </div>
@@ -432,92 +451,180 @@
                             <div id="tipoTerrestre" class="col-sm-12">
                                 <div id="contenedor-terrestre" class="col-sm-offset-1">
                                     {{ #each dinosauriosTipo "terrestre"}}
-                                    <div class="col-sm-3 carta">
-                                        <div class="carta-contenedor">
-                                            <div>
-                                                <div class="carta-nombre">
-                                                    <p>{{nombre}}</p>
-                                                </div>
-                                                <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
-                                            </div>
-                                            <div class="carta-habitat">
-                                                <p>Habitat - {{habitat}}
-                                                    <span class="estrellas pull-right">
-                                                        {{#each estrellas _id encuentro}} 
-                                                        <img src="images/estrella.png" style="width: 10px">
-                                                        {{/each}}
-                                                    </span>
-                                                </p>
-                                            </div>
-                                            <div>
-                                                <p class="carta-descripcion">{{descripcion}}</p>
-                                            </div>
+                                        {{#if existeCarta _id}}
+                                            <div class="col-sm-3 carta">
+                                                <div class="carta-contenedor">
+                                                    <div>
+                                                        <div class="carta-nombre">
+                                                            <p>{{nombre}}</p>
+                                                        </div>
+                                                        <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
+                                                    </div>
+                                                    <div class="carta-habitat">
+                                                        <p>Habitat - {{habitat}}
+                                                            <span class="estrellas pull-right">
+                                                                {{#each estrellas _id encuentro}} 
+                                                                <img src="images/estrella.png" style="width: 10px">
+                                                                {{/each}}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="carta-descripcion">{{descripcion}}</p>
+                                                    </div>
 
+                                            </div>
+                                            
+                                            <p class=" carta-ferocidad" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                            <p id="dinosObtenidos" style="text-align: center;font-size: 1.5em">x <span>{{mostrar_dino _id}}</span></p>
                                         </div>
-                                        <p class=" carta-ferocidad col-lg-6" style="padding-left: 0px;">Obtenidos:{{mostrar_dino _id}}</p>
-                                        <p class=" carta-ferocidad col-lg-6" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                        {{else}}
+                                            <div class="col-sm-3 carta no-seleccionable-btn">
+                                                <div class="carta-contenedor">
+                                                    <div>
+                                                        <div class="carta-nombre">
+                                                            <p>{{nombre}}</p>
+                                                        </div>
+                                                        <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
+                                                    </div>
+                                                    <div class="carta-habitat">
+                                                        <p>Habitat - {{habitat}}
+                                                            <span class="estrellas pull-right">
+                                                                {{#each estrellas _id encuentro}} 
+                                                                <img src="images/estrella.png" style="width: 10px">
+                                                                {{/each}}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="carta-descripcion">{{descripcion}}</p>
+                                                    </div>
 
-                                    </div>
-
+                                                </div>
+                                                
+                                                <p class=" carta-ferocidad" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                                <p id="dinosObtenidos" style="text-align: center;font-size: 1.5em">x <span>{{mostrar_dino _id}}</span></p>
+                                            </div>
+                                        {{/if}}
                                     {{/each}}
                                 </div>
                             </div>
                             <div id="tipoAcuatico" class="col-sm-12">
                                 {{#each dinosauriosTipo "acuatico"}}
-                                <div class="col-sm-3 carta">
-                                    <div class="carta-contenedor">
-                                        <div>
-                                            <div class="carta-nombre">
-                                                <p>{{nombre}}</p>
-                                            </div>
-                                            <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
-                                        </div>
-                                        <div class="carta-habitat">
-                                            <p>Habitat - {{habitat}}
-                                                <span class="estrellas pull-right">
-                                                    {{#each estrellas _id encuentro}} 
-                                                    <img src="images/estrella.png" style="width: 10px">
-                                                    {{/each}}
-                                                </span>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p class="carta-descripcion">{{descripcion}}</p>
-                                        </div>
+                                {{#if existeCarta _id}}
+                                            <div class="col-sm-3 carta-aquatico">
+                                                <div class="carta-contenedor-aquatico">
+                                                    <div>
+                                                        <div class="carta-nombre-aquatico">
+                                                            <p>{{nombre}}</p>
+                                                        </div>
+                                                        <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img-aquatico">
+                                                    </div>
+                                                    <div class="carta-habitat-aquatico">
+                                                        <p>Habitat - {{habitat}}
+                                                            <span class="estrellas pull-right">
+                                                                {{#each estrellas _id encuentro}} 
+                                                                <img src="images/estrella.png" style="width: 10px">
+                                                                {{/each}}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="carta-descripcion">{{descripcion}}</p>
+                                                    </div>
 
-                                    </div>
-                                    <p class=" carta-ferocidad col-lg-6" style="padding-left: 0px;">Obtenidos:{{mostrar_dino _id}}</p>
-                                    <p class=" carta-ferocidad col-lg-6" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
-                                </div>
+                                            </div>
+                                            
+                                            <p class=" carta-ferocidad" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                            <p id="dinosObtenidos" style="text-align: center;font-size: 1.5em">x <span>{{mostrar_dino _id}}</span></p>
+                                        </div>
+                                        {{else}}
+                                            <div class="col-sm-3 carta-aquatico no-seleccionable-btn">
+                                                <div class="carta-contenedor-aquatico">
+                                                    <div>
+                                                        <div class="carta-nombre-aquatico">
+                                                            <p>{{nombre}}</p>
+                                                        </div>
+                                                        <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img-aquatico">
+                                                    </div>
+                                                    <div class="carta-habitat-aquatico">
+                                                        <p>Habitat - {{habitat}}
+                                                            <span class="estrellas pull-right">
+                                                                {{#each estrellas _id encuentro}} 
+                                                                <img src="images/estrella.png" style="width: 10px">
+                                                                {{/each}}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="carta-descripcion">{{descripcion}}</p>
+                                                    </div>
+
+                                                </div>
+                                                
+                                                <p class=" carta-ferocidad" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                                <p id="dinosObtenidos" style="text-align: center;font-size: 1.5em">x <span>{{mostrar_dino _id}}</span></p>
+                                            </div>
+                                        {{/if}}
                                 {{/each}}
                             </div>
                             <div id="tipoAereo" class="col-sm-12">
                                 {{#each dinosauriosTipo "aereo"}}
-                                <div class="col-sm-3 carta">
-                                    <div class="carta-contenedor">
-                                        <div>
-                                            <div class="carta-nombre">
-                                                <p>{{nombre}}</p>
-                                            </div>
-                                            <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img">
-                                        </div>
-                                        <div class="carta-habitat">
-                                            <p>Habitat - {{habitat}}
-                                                <span class="estrellas pull-right">
-                                                    {{#each estrellas _id encuentro}} 
-                                                    <img src="images/estrella.png" style="width: 10px">
-                                                    {{/each}}
-                                                </span>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p class="carta-descripcion">{{descripcion}}</p>
-                                        </div>
+                                {{#if existeCarta _id}}
+                                            <div class="col-sm-3 carta-aereo">
+                                                <div class="carta-contenedor-aereo">
+                                                    <div>
+                                                        <div class="carta-nombre-aereo">
+                                                            <p>{{nombre}}</p>
+                                                        </div>
+                                                        <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img-aereo">
+                                                    </div>
+                                                    <div class="carta-habitat-aereo">
+                                                        <p>Habitat - {{habitat}}
+                                                            <span class="estrellas pull-right">
+                                                                {{#each estrellas _id encuentro}} 
+                                                                <img src="images/estrella.png" style="width: 10px">
+                                                                {{/each}}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="carta-descripcion">{{descripcion}}</p>
+                                                    </div>
 
-                                    </div>
-                                    <p class=" carta-ferocidad col-lg-6" style="padding-left: 0px;">Obtenidos:{{mostrar_dino _id}} </p>
-                                    <p class=" carta-ferocidad col-lg-6" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
-                                </div>
+                                            </div>
+                                            
+                                            <p class=" carta-ferocidad" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                            <p id="dinosObtenidos" style="text-align: center;font-size: 1.5em">x <span>{{mostrar_dino _id}}</span></p>
+                                        </div>
+                                        {{else}}
+                                            <div class="col-sm-3 carta-aereo no-seleccionable-btn">
+                                                <div class="carta-contenedor-aereo">
+                                                    <div>
+                                                        <div class="carta-nombre-aereo">
+                                                            <p>{{nombre}}</p>
+                                                        </div>
+                                                        <img src="{{avatar}}" class="img-responsive img-habitats center-block carta-img-aereo">
+                                                    </div>
+                                                    <div class="carta-habitat-aereo">
+                                                        <p>Habitat - {{habitat}}
+                                                            <span class="estrellas pull-right">
+                                                                {{#each estrellas _id encuentro}} 
+                                                                <img src="images/estrella.png" style="width: 10px">
+                                                                {{/each}}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="carta-descripcion">{{descripcion}}</p>
+                                                    </div>
+
+                                                </div>
+                                                
+                                                <p class=" carta-ferocidad" style="padding-right: 0px;"><img src="images/ferocidad.png" style="width: 20px"> {{ferocidad}}</p>
+                                                <p id="dinosObtenidos" style="text-align: center;font-size: 1.5em">x <span>{{mostrar_dino _id}}</span></p>
+                                            </div>
+                                        {{/if}}
                                 {{/each}}
                             </div>
                         </div>
@@ -547,7 +654,7 @@
                             <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
                             <div class="modal-ribon">
                                 <img src="/images/ribbon.png">
-                                <h2 id="nom_edifici" class="dinobuton-text">Mercado</h2>
+                                <h2 id="nom_edifici" class="dinobuton-text">{{_ "comercio"}}</h2>
                             </div> 
                         </div>
                         {{#each partida}}
@@ -560,14 +667,14 @@
                                             <img src="images/recursos/dinocoins.png" style="width: 80px">
                                             <div class="row">
                                                 <div class="label-rojo modal-desc-shadow resumenDinero">
-                                                    <label id="pierdesDinero" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/dinocoins.png" style="width: 30px"><span>Pierdes:</span></label>
-                                                    <label id="teQuedaDinero" class="label  center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/dinocoins.png" style="width: 30px"><span>Te queda:</span> </label>
+                                                    <label id="pierdesDinero" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/dinocoins.png" style="width: 30px"><span>{{_ "perder"}}:</span></label>
+                                                    <label id="teQuedaDinero" class="label  center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/dinocoins.png" style="width: 30px"><span>{{_ "queda"}}:</span> </label>
                                                 </div>
-                                                <label id="tienesDinero" class="label-naranja label modal-desc-shadow center-block" style="font-size: 1.2em; display: block; width: 200px; border-radius: 10px"><img src="images/recursos/dinocoins.png" style="width: 30px"><span> Dinero: {{dinero}}</span></label>
+                                                <label id="tienesDinero" class="label-naranja label modal-desc-shadow center-block" style="font-size: 1.2em; display: block; width: 200px; border-radius: 10px"><img src="images/recursos/dinocoins.png" style="width: 30px"><span> {{_ "dinero"}}: {{dinero}}</span></label>
 
                                                 <div class="label-verde modal-desc-shadow resumenDinero">
                                                     <label id="ganasSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>Ganas:</span></label>
-                                                    <label id="teQuedaSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>Te quedan:</span></label>
+                                                    <label id="teQuedaSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>{{_ "queda"}}:</span></label>
                                                 </div>
 
                                             </div>
@@ -577,16 +684,16 @@
                                                 <div class="col-sm-12">
                                                     <div class="row">
                                                         <div class="col-sm-12">
-                                                            <button id="camDinero" class="boton-gui-trade" ><p class="dinobuton-text-trade">Cambiar</p></button>
+                                                            <button id="camDinero" class="boton-gui-trade" ><p class="dinobuton-text-trade">{{_ "cambio"}}</p></button>
                                                         </div>
                                                     </div>
                                                     <div class="row row-trade">
                                                         <div class="col-sm-6 col-botones">
-                                                            <button id="conDinero" class="boton-gui-trade-ok" style="display: none;"><p class="dinobuton-text-trade">Confirmar</p></button>
+                                                            <button id="conDinero" class="boton-gui-trade-ok" style="display: none;"><p class="dinobuton-text-trade">{{_ "confirm"}}</p></button>
 
                                                         </div>
                                                         <div class="col-sm-6 col-botones">
-                                                            <button id="cancelDinero" class="boton-gui-trade-cancel" style="display: none;"><p class="dinobuton-text-trade">Cancelar</p></button>
+                                                            <button id="cancelDinero" class="boton-gui-trade-cancel" style="display: none;"><p class="dinobuton-text-trade">{{_ "cancel"}}</p></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -595,20 +702,20 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-4 col-sm-offset-2 modal-desc">
-                                    <h2>Suministros</h2>
+                                    <h2>{{_ "suministros"}}</h2>
                                     <div class="col-sm-12" >
                                         <div style="text-align: center">
                                             <img src="images/recursos/suministros.png" style="width: 80px">
                                             <div class="row">
-                                                <label id="tienesSuministros" class="label modal-desc-shadow label-naranja center-block" style="font-size: 1.2em; display: block; width: 200px; border-radius: 10px"><img src="images/recursos/suministros.png" style="width: 30px;" ><span> Suministros: {{suministros}}</span></label>
+                                                <label id="tienesSuministros" class="label modal-desc-shadow label-naranja center-block" style="font-size: 1.2em; display: block; width: 200px; border-radius: 10px"><img src="images/recursos/suministros.png" style="width: 30px;" ><span> {{_ "suministros"}}: {{suministros}}</span></label>
 
                                                 <div class="label-rojo modal-desc-shadow resumenSuministros">
-                                                    <label id="pierdesSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>Pierdes:</span></label>
-                                                    <label id="QuedaSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>Te queda:</span> </label>
+                                                    <label id="pierdesSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>{{_ "perder"}}:</span></label>
+                                                    <label id="QuedaSuministros" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>{{_ "queda"}}:</span> </label>
                                                 </div>
                                                 <div class="label-verde modal-desc-shadow resumenSuministros">
-                                                    <label id="ganasDinero" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>Ganas:</span></label>
-                                                    <label id="QuedaDinero" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>Te quedan:</span></label>
+                                                    <label id="ganasDinero" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>{{_ "win"}}:</span></label>
+                                                    <label id="QuedaDinero" class="label center-block" style="font-size: 1.2em; display: none; width: 200px"><img src="images/recursos/suministros.png" style="width: 30px"><span>{{_ "queda"}}:</span></label>
                                                 </div>
 
                                             </div>
@@ -618,16 +725,16 @@
                                                 <div class="col-sm-12">
                                                     <div class="row">
                                                         <div class="col-sm-12">
-                                                            <button id="camSuministros" class="boton-gui-trade" ><p class="dinobuton-text-trade">Cambiar</p></button>
+                                                            <button id="camSuministros" class="boton-gui-trade" ><p class="dinobuton-text-trade">{{_ "cambio"}}</p></button>
                                                         </div>
                                                     </div>
                                                     <div class="row row-trade">
                                                         <div class="col-sm-6 col-botones">
-                                                            <button id="conSuministros" class="boton-gui-trade-ok" style="display: none;"><p class="dinobuton-text-trade">Confirmar</p></button>
+                                                            <button id="conSuministros" class="boton-gui-trade-ok" style="display: none;"><p class="dinobuton-text-trade">{{_ "confirm"}}</p></button>
 
                                                         </div>
                                                         <div class="col-sm-6 col-botones">
-                                                            <button id="cancelSuministros" class="boton-gui-trade-cancel" style="display: none;"><p class="dinobuton-text-trade">Cancelar</p></button>
+                                                            <button id="cancelSuministros" class="boton-gui-trade-cancel" style="display: none;"><p class="dinobuton-text-trade">{{_ "cancel"}}</p></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -671,16 +778,16 @@
 
                                 <div id="btn-cuartel">
                                     <button  type="button" class="btn pmd-ripple-effect btn-default btn_modal boton_gui btn-lvlup-cuartel" id="subirlvl">
-                                        <p class="dinobuton-text">Subir nivel</p>
+                                        <p class="dinobuton-text">{{_ "subirLvl"}}</p>
                                     </button>
                                     <button  type="button" data-id="" class="btn pmd-ripple-effect btn-default btn_modal boton_gui crearEdificio">
-                                        <p class="dinobuton-text">Construir</p>
+                                        <p class="dinobuton-text">{{_ "construir"}}</p>
                                     </button>
                                 </div>
                                 <div id="div-costes">
-                                    <p>Consumo Energia: <span id="span-energia"></span></p>
-                                    <p>Coste Suministros: <span id="span-suministros"></span></p>
-                                    <p>Coste DinoCoins: <span id="span-dinocoins"></span></p>
+                                    <p>{{_ "consumenerg"}}: <span id="span-energia"></span></p>
+                                    <p>{{_ "costsumini"}}: <span id="span-suministros"></span></p>
+                                    <p>{{_ "costdinocoins"}}: <span id="span-dinocoins"></span></p>
                                 </div>
                                 <div class="col-sm-4">
                                     {{#each edificios}}
@@ -689,18 +796,18 @@
                                 </div>
                             </div>
                             <!--panel segundo de inicio juego                   
-<div class="panel panel-default prueba2" style="display:none;position: absolute;left: 5%;top: 35%">
+                                <div class="panel panel-default prueba2" style="display:none;position: absolute;left: 5%;top: 35%">
 
-<div class="panel-body">
-DINOLAND CONTINUA CON LA AVENTURA!!
-<br>
-Necesitaremos un sitio para almacenar nuestros suministros..
-<br>
+                                <div class="panel-body">
+                                DINOLAND CONTINUA CON LA AVENTURA!!
+                                <br>
+                                Necesitaremos un sitio para almacenar nuestros suministros..
+                                <br>
 
-</div>
-</div>
+                                </div>
+                                </div>
 
-fin panel 2 -->
+                                fin panel 2 -->
                             <div id="edif-cuartel" class="row" style="margin-left:3%">
 
                                 {{#each edificioslvl1}}
@@ -756,10 +863,10 @@ fin panel 2 -->
                                 </div>
                                 <div class="modal-botones">
                                     <button type="button" class="btn_modal boton_gui btn-lvlup-laboratorio" id="subirlvl">
-                                        <p class="dinobuton-text">Subir nivel</p>
+                                        <p class="dinobuton-text">{{_ "subirLvl"}}</p>
                                     </button>
                                     <button id="btn-investiga" data-id=""  type="button"  class="btn_modal boton_gui investiga" >
-                                        <p class="dinobuton-text">Investigar</p>
+                                        <p class="dinobuton-text">{{_ "investiga"}}</p>
                                     </button>
                                 </div>
                                 <div id="div-bono">
@@ -805,7 +912,7 @@ fin panel 2 -->
                             <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
                             <div class="modal-ribon">
                                 <img src="/images/ribbon.png">
-                                <h2 id="nom_edifici" class="dinobuton-text">Historial Expediciones</h2>
+                                <h2 id="nom_edifici" class="dinobuton-text">{{_ "histo "}}</h2>
                             </div>  
                         </div>
 
@@ -820,22 +927,22 @@ fin panel 2 -->
 
                                 <div class="col-sm-9">
                                     <p>{{fecha_finalizacion}}</p>
-                                    <button data-idExpe="{{_id}}" class="boton_gui ver-historial">Ver</button>
+                                    <button data-idExpe="{{_id}}" class="boton_gui ver-historial">{{_ "ver"}}</button>
                                 </div>
                             </div>
                             {{/each}} 
                         </div>
 
-                        <div class="col-sm-6 col-sm-offset-1 modal-widget">
+                        <div class="col-sm-6 col-sm-offset-1 modal-widget" style="height: auto;">
                             <div class="row">
-                                <h4 style="margin-left: 25px;"><img src="/images/mapreport.png" class="img-titleReport"> Report</h4>
+                                <h4 style="margin-left: 25px;"><img src="/images/mapreport.png" class="img-titleReport"> {{_ "report"}}</h4>
                             </div>
                             <div>
                                 <p id="reportExpe"></p>
                             </div>
                             <div class="row top-margin">
                                 <button class="boton_gui" style="margin-bottom:10px; margin-left: 30px;">
-                                    <p id="prepararExp" class="dinobuton-text">Preparar expedición</p>
+                                    <p id="prepararExp" class="dinobuton-text">{{_ "prepExp"}}</p>
                                 </button>
                             </div>
                         </div>                 
@@ -850,12 +957,12 @@ fin panel 2 -->
         <div tabindex="-1" class="modal fade" id="pop_social" style="display: none;" aria-hidden="true">
             <div class="modal-dialog pop_gran">
                 <div class="modal-content border">
-                    <div class="modal-body content-expediciones">
+                    <div class="modal-body content-social">
                         <div class="modal-header">
                             <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
                             <div class="modal-ribon">
                                 <img src="/images/ribbon.png">
-                                <h2 id="nom_edifici" class="dinobuton-text">Social</h2>
+                                <h2 id="nom_edifici" class="dinobuton-text">{{_ "social"}}</h2>
                             </div> 
                         </div>
                         <div id="contingut_modal">
@@ -865,34 +972,43 @@ fin panel 2 -->
                                     <div id="muro-title">
                                         <div class="muro-title">
                                             <div class="muro-title-content">
-                                                <p class="dinobuton-text dinobuton-text-size">DinoMuro</p>
+                                                <p class="dinobuton-text dinobuton-text-size">{{_ "dinoMuro"}}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row top-margin">
-                                    <div class="modal-widget">
-                                        {{#each publicaciones}}
-                                        <div>
-                                            <img src="{{avatar}}" style="width: 20px">
-                                            <p>{{nombre}}</p>
-                                            <p>{{timestamp}}</p>
-                                            <p>{{descripcion}}</p>
-                                            <p>{{valoracion}}</p>
-                                            {{#each comentarios}}
-                                            <div style="margin-left: 40px">
-                                                <img src={{avatar}} style="width: 20px">
-                                                <p>{{username}}</p>
-                                                <p>{{fecha}}</p>
-                                                <p>{{texto}}</p>
-                                            </div>
-                                            {{/each}}
-                                            <input data-publicacion="{{_id}}" type="text">
-                                            <button data-publicacion="{{_id}}">Comentar</button>
-                                        </div>   
 
-                                        {{/each}}
+                                    <div class="modal-widget-muro">
+                                    {{#each publicaciones}}
+                                        <div class="publicacion">
+                                            <p class="dinobuton-text-stroke"><img src="{{avatar}}" style="width: 30px;"> {{nombre}}
+                                                {{#each estrellasPublic _id}}
+                                                    <img src="images/estrella.png" style="width:20px;float: right;">
+                                                {{/each}}
+                                            </p>
+                                            <p style="font-size: 0.8em">{{diferenciaFecha _id}}</p>
+                                            <p class="dinobuton-text-stroke" style="margin-top: 30px">{{descripcion}}</p>
+                                            <p>
+                                            
+                                            </p>
+                                            {{#each comentarios}}
+                                                <div style="margin-left: 40px;">
+                                                    <p class="dinobuton-text-stroke" style="font-size:0.8em;"><img src={{avatar}} style="width: 20px"> {{username}}</p>
+                                                    <p style="font-size:0.6em;">{{difFechaComent fecha}}</p>
+                                                    <p style="font-size:0.8em;margin-top:-10px; ">{{texto}}</p>
+                                                </div>
+                                            {{/each}}
+                                            <img src="{{currentUser.profile.avatar}}" style="width: 30px"> 
+                                            <input class="input-muro" type="text" placeholder="Escribir un comentario...">
+                                            <button class="btn-muro" data-publicacion={{_id}}>Enviar</button>
+                                            {{#if hadadolike _id}}
+                                            <img data-like={{_id}} class="btn-like" src="images/corazon.png">
+                                            {{/if}}
+                                        </div>   
+                                    {{/each}}
+
                                     </div>
                                 </div>
                             </div>
@@ -907,9 +1023,18 @@ fin panel 2 -->
                                 </div>
 
                                 <div class="row top-margin">
-                                    <div class="modal-widget">
+                                    <div class="modal-widget-ranking">
                                         {{#each rankingAmbar}}  
-                                        <p><img src="{{avatar}}" style="width: 30px">{{name}} : {{ambar}}</p>
+
+                                        <div class="col-sm-7">
+                                            <p style="overflow:hidden;width: 100%;"><img src="{{avatar}}" style="width: 30px;"><span class="varRanking dinobuton-text-stroke">{{name}} </span></p>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <p style="overflow:hidden; width: 100%"> <img src="images/recursos/ambar.png" style="width: 30px;"> <span class="dinobuton-text-stroke">{{ambar}}</span></p>
+                                        </div>
+
+                                        
+
                                         {{/each}}   
                                     </div>
                                 </div>
@@ -919,23 +1044,31 @@ fin panel 2 -->
                                 <div class="row">
                                     <div class="muro-title">
                                         <div class="muro-title-content">
-                                            <p class="dinobuton-text dinobuton-text-size">Top Explorador</p>
+                                            <p class="dinobuton-text dinobuton-text-size">{{_ "topExp"}}</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row top-margin">
                                     <div class="modal-widget">
-                                        {{#each rankingExpediciones}}
-                                        <p><img src={{avatar}} style="width: 30px">{{name}}: {{expe}}</p>
-                                        {{/each}}
+
+                                    {{#each rankingExpediciones}}
+                                        <div class="col-sm-7">
+                                            <p style="height: 30px;"><img src={{avatar}} style="width: 30px;"><span class="varRanking dinobuton-text-stroke">{{name}}</span></p>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <p style="height: 30px;"><span class="dinobuton-text-stroke"><img src="images/mapreport.png" style="width: 30px"> {{expe}}</span></p>
+                                        </div>
+                                        
+                                    {{/each}}
+
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="muro-title">
+                                    <div class="muro-title margin-top-20">
                                         <div class="muro-title-content">
-                                            <p class="dinobuton-text dinobuton-text-size">Top Visitantes</p>
+                                            <p class="dinobuton-text dinobuton-text-size">{{_ "topVisit"}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -943,7 +1076,14 @@ fin panel 2 -->
                                 <div class="row top-margin">
                                     <div class="modal-widget">
                                         {{#each rankingVisitantes}}
-                                        <p><img src="{{avatar}}" style="width: 30px">{{name}}: {{visitantes}}</p>
+
+                                        <div class="col-sm-7">
+                                            <p style="height: 30px;"><img src="{{avatar}}" style="width: 30px"><span class="varRanking dinobuton-text-stroke">{{name}}</span></p>
+                                        </div>
+                                        <div>
+                                            <p style="height: 30px;"><span class="dinobuton-text-stroke"><img src="images/recursos/visitantes.png" style="width: 30px;">  {{visitantes}}</span></p>
+                                        </div>    
+
                                         {{/each}}                                
                                     </div>
                                 </div>
@@ -968,13 +1108,13 @@ fin panel 2 -->
 
     <!-- SIDEBAR NOTIFICACIONES -->
 
-    
+
 
     <div class="side-collapse">
 
         <div class="side-noti">
             <img src="/images/ribbon_noti.png">
-            <h4 id="nom_edifici">Avisos</h4>
+            <h4 id="nom_edifici">{{_ "avis"}}</h4>
         </div>
         <div class="navbar-collapse">
 
@@ -987,7 +1127,6 @@ fin panel 2 -->
     <!-- SIDEBAR CHAT -->
     
    
-
     <div class="side-collapse2">
 
         <div class="side-noti">
@@ -1023,23 +1162,52 @@ fin panel 2 -->
         </div>
     </div>
 
-    <div class="panel panel-default prueba" style="display:none;position: absolute;left: 40%;top: 40%">
+    
 
-        <div class="panel-body">
-            BENVENIDO A DINOLAND!!
-            <br>
-            Aqui empieza tu aventura.. Empecemos por construir nuestro Cuartel
-            <br>
-            <button type="button" class="btn pmd-ripple-effect btn-default btn_modal crear">Edificio Cuartel
-            </button>
+
+
+
+
+<!--Popup cambio avatar-->
+
+<div tabindex="-1" class="modal fade" id="pop_img_perfil" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">    
+        <div class="modal-content" style="height: 400px">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <div class="modal-ribon">
+                    <img src="/images/ribbon.png">
+                    <h2 id="nom_edifici" class="dinobuton-text dinobuton-text-size">Imagen de perfil</h2>
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-4 text-align-c">
+                        <img src="/images/expediciones/cientifica.png" class="img-perfil img-circle">
+                        <p>Cientifica</p>
+                    </div>
+                    <div class="col-sm-4 text-align-c">
+                        <img src="/images/expediciones/comandante.png" class="img-perfil img-circle">
+                        <p>Comandante</p>
+                    </div>
+                    <div class="col-sm-4 text-align-c">
+                        <img src="/images/expediciones/jefe.png" class="img-perfil img-circle">
+                        <p>Aventurero</p>
+                    </div>
+                </div>
+
+            
+            </div>
         </div>
     </div>
+</div>
 
-    <div id="dinosaur">
+
+
+<div id="dinosaur">
         {{dino}}
         
         <p id="tip">Envía expediciones para capturar dinosaurios y aumentar los visitantes...</p>
-    </div>
-
+</div>
 
 </template>

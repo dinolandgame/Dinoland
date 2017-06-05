@@ -22,22 +22,22 @@
                 <div class="form-registre col-sm-4 text-center">
                     <form role="form" id="login-form" method="post">
                                  <div class="form-group">
-                                    <label>Nombre de usuario</label>
-                                    <input type="text" class="form-control" name="lognombre" placeholder="usuario" id="lognombre" required/>
+                                    <label>{{_ "nombre"}}</label>
+                                    <input type="text" class="form-control" name="lognombre" placeholder="{{_ 'user'}}" id="lognombre" required/>
                                 </div>
                                 <div class="form-group">
-                                    <label>Contraseña</label>
-                                    <input type="password" class="form-control" name="logclave" placeholder="password" id="logpass1" required/>
+                                    <label>{{_ "contra"}}</label>
+                                    <input type="password" class="form-control" name="logclave" placeholder="{{_ 'contra'}}" id="logpass1" required/>
                                 </div>
                                 <br>
-                             <input type="submit" id="login-account" class="btn btn-default btn-primary" value="Login cuenta"/>
+                             <input type="submit" id="login-account" class="btn btn-default btn-primary" value="Login"/>
                                 <br>
                             </form>
                             <br>
-                            <a href="#" datta-toggle="modal" id="logreg"> ¿Aún no tienes cuenta?</a>
+                            <a href="#" datta-toggle="modal" id="logreg"> {{_ "pregunta1"}}</a>
                             <br>
                             <br>
-                            <a href="#" datta-toggle="modal" id="logolvid"> ¿Olvidaste la contraseña?</a>
+                            <a href="#" datta-toggle="modal" id="logolvid"> {{_ "pregunta2"}}</a>
                 </div>
 
                 <div class="col-sm-8">

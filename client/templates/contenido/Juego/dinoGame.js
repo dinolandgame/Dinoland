@@ -106,6 +106,8 @@ Template.dinoGame.events({
     "click .close-alert":function(event,template){
       
         $(".alert-general").fadeOut();
+        $('.alert-tutorial').fadeOut();
+
     },
 
 
@@ -118,10 +120,20 @@ Template.dinoGame.events({
         aqui podemos modificar la partida con los edifciios desbloqueados por el primer cuartel 
        
         ************/
-        
+   
         Partida.update({_id:user},{$push:{desbloqueados:{$each:[401,501,901,1001]}}});
+
         
-        $('.prueba').hide();
+        
+        $('.text-tutorial').empty();
+        
+        $('.botones').empty();
+        $('.botones').remove();
+        $('.botones').detach();
+
+        $('.tutorial').hide();
+
+         mensajeTutorial(2);
         
     },
     
@@ -252,6 +264,7 @@ Template.dinoGame.events({
          }else{
             $(".text-alert").text("Te faltan recursos para enviar la expedición.");
                 $(".img-alert").attr("src","images/recursos/suministros.png");
+                $('.modal').modal('hide');
                 $(".alert-general").fadeIn();
 
          }
@@ -583,10 +596,28 @@ Template.dinoGame.events({
     /************************************EVENTOS MURO*******************************************/
 
 "click button[data-publicacion]": function(event, template){
+        event.preventDefault();
         var idPublicacion = $(event.target).data('publicacion');
         var texto = $(event.target).prev().val();
+        if(!texto==""){
+            Meteor.call('comentarioPublicacion', idPublicacion, texto, Meteor.user());
+        }
 
-        Meteor.call('comentarioPublicacion', idPublicacion, texto, Meteor.user());
+        $(event.target).prev().val("");
+},
+
+"click [data-like]":function(event,template){
+    event.preventDefault();
+    var idPublicacion =$(event.target).data('like');
+    Meteor.call('likePublicacion',Meteor.userId(), idPublicacion);
+},
+
+/****************************************EVENTOS IMG PERFIL************************************/
+"click .img-perfil":function(event, template){
+    var rutaImagen = $(event.target).attr("src");
+    console.log(rutaImagen);
+    Meteor.call("cambiarFotoPerfil", Meteor.userId(), rutaImagen);
+
 },
 
 "click button[data-idExpe]": function(event, template){
@@ -598,6 +629,7 @@ Template.dinoGame.events({
 "click #prepararExp" : function(evenet,template){
     $("#pop_historialExpediciones").modal("hide");
     $("#pop_expediciones").modal("show");
+
 }
     
     
@@ -970,6 +1002,215 @@ Template.dinoGame.helpers({
         return x;
     },
 
+    estrellasPublic:function(id){
+        var publicacion = Muro.findOne({_id:id});
+        var x = [];
+        if(publicacion.valoracion <= 1)
+        {
+            x = [1];
+        }
+        if(publicacion.valoracion == 2)
+        {
+            x = [1,2];
+        }
+        if(publicacion.valoracion == 3)
+        {
+            x = [1,2,3];
+        }
+        if(publicacion.valoracion >=4)
+        {
+            x = [1,2,3,4];
+        }
+
+        return x;
+    },
+
+    diferenciaFecha: function(id){
+        var publicacion = Muro.findOne({_id:id});
+        var fechaPublic = publicacion.timestamp;
+        var fechaActual = Date.now();
+        var diferencia  = fechaActual - fechaPublic;
+        diferencia = diferencia/1000;
+        var result ="";
+
+        if(diferencia <60)
+        {
+            var segundos = Math.round(diferencia%60);
+            result = "Hace " + segundos + " segundos."
+        }
+        else
+        {
+            var segundos = Math.round(diferencia%60);
+            diferencia  = Math.floor(diferencia/60);
+
+            var minutos = Math.round(diferencia % 60);
+            diferencia  = Math.floor(diferencia/60);
+
+            var horas   = Math.round(diferencia%24);
+            diferencia  = Math.floor(diferencia/24);
+
+            var dias = diferencia;
+
+            if(dias > 0)
+            {
+                if(dias == 1)
+                {
+                    result = "Hace " + dias + " dia."
+                }
+                else
+                {
+                    result = "Hace " + dias + " dias.";
+                }
+            } 
+            else if (horas > 0)
+            {
+                if(horas == 1)
+                {
+                    if(minutos ==1)
+                    {
+                        result = "Hace " + horas + " hora y " + minutos + " minuto.";
+                    }
+                    else
+                    {
+                        result = "Hace " + horas + " hora y " + minutos + " minutos.";
+                    }
+                }
+                else
+                {
+                    if(minutos ==1)
+                    {
+                        result = "Hace " + horas + " horas y " + minutos + " minuto.";
+                    }
+                    else
+                    {
+                        result = "Hace " + horas + " horas y " + minutos + " minutos.";
+                    }
+                }
+            }
+            else
+            {
+                if(minutos ==1)
+                {
+                    result = "Hace " + minutos + " minuto.";
+                }
+                else
+                {
+                    result = "Hace " + minutos + " minutos.";
+                }
+            }
+        }
+
+        return result;
+    },
+
+    difFechaComent: function(timestamp){
+        var fechaPublic = timestamp;
+        var fechaActual = Date.now();
+        var diferencia  = fechaActual - fechaPublic;
+        diferencia = diferencia/1000;
+        var result ="";
+
+        if(diferencia <60)
+        {
+            var segundos = Math.round(diferencia%60);
+            result = "Hace " + segundos + " segundos."
+        }
+        else
+        {
+            var segundos = Math.round(diferencia%60);
+            diferencia  = Math.floor(diferencia/60);
+
+            var minutos = Math.round(diferencia % 60);
+            diferencia  = Math.floor(diferencia/60);
+
+            var horas   = Math.round(diferencia%24);
+            diferencia  = Math.floor(diferencia/24);
+
+            var dias = diferencia;
+
+            if(dias > 0)
+            {
+                if(dias == 1)
+                {
+                    result = "Hace " + dias + " dia."
+                }
+                else
+                {
+                    result = "Hace " + dias + " dias.";
+                }
+            } 
+            else if (horas > 0)
+            {
+                if(horas == 1)
+                {
+                    if(minutos ==1)
+                    {
+                        result = "Hace " + horas + " hora y " + minutos + " minuto.";
+                    }
+                    else
+                    {
+                        result = "Hace " + horas + " hora y " + minutos + " minutos.";
+                    }
+                }
+                else
+                {
+                    if(minutos ==1)
+                    {
+                        result = "Hace " + horas + " horas y " + minutos + " minuto.";
+                    }
+                    else
+                    {
+                        result = "Hace " + horas + " horas y " + minutos + " minutos.";
+                    }
+                }
+            }
+            else
+            {
+                if(minutos ==1)
+                {
+                    result = "Hace " + minutos + " minuto.";
+                }
+                else
+                {
+                    result = "Hace " + minutos + " minutos.";
+                }
+            }
+        }
+
+        return result;
+    },
+
+    hadadolike:function(idPublic){
+        var id = Meteor.userId();
+        var publicacion = Muro.findOne({_id:idPublic});
+        var result = true;
+        for(var i =0; i< publicacion.likes.length; i++)
+        {
+            if(publicacion.likes[i] === id){
+                result = false;
+            }
+        }
+
+        return result;
+    },
+
+    existeCarta:function(idDino){
+        var partida = Partida.findOne({_id:Meteor.userId()});
+        var result = false;
+        for(var i=0; i<partida.dinos.length; i++)
+        {
+            if(partida.dinos[i].id==idDino)
+            {
+                if(partida.dinos[i].cantidad>0)
+                {
+                    result = true;
+                }
+            }
+        }
+
+        return result;
+    },
+
     edificios: function(){
          var variable=Session.get('key');
        //console.log("Edificio:" + quinedifici);
@@ -1068,7 +1309,8 @@ Template.dinoGame.helpers({
                 //si coincide con el id del edificio lo quitaremos del array de desbloqueados 
                 //porque ya ha sido desbloqueado del todo
                 if(id==misedificiosEnPartida[x]){
-                        Partida.update({_id:user},{$pull:{desbloqueados:id}});         
+                        Partida.update({_id:user},{$pull:{desbloqueados:id}});   
+                              
                 }  
         }
         
@@ -1193,8 +1435,6 @@ Template.dinoGame.helpers({
     }
 
 
-
-
 });
 
 /* ON RENDERES ES COMO EL DOCUMENT(READY) */
@@ -1202,7 +1442,19 @@ Template.dinoGame.onRendered(function(){
     user = Meteor.userId();
     /* NOTIFICACIONES */
     comprobarNotificaciones();
-    partida = Partida.find({_id:user}).fetch();
+    partida = Partida.findOne({_id:user});
+    if(partida.edificio.includes(201)){
+        mensajeTutorial(5);
+    }
+    if(partida.edificio.includes(701)){
+        mensajeTutorial(6);
+    }
+    if(partida.edificio.includes(1101)){
+        mensajeTutorial(4);
+    }
+    if(partida.edificio.length>=2){
+        mensajeTutorial(3);
+    }
     
     //iniciamos los contadores, tantos como haya en el array de desbloqueando cada vez que regarguemos la pagina
     contador();
@@ -1268,12 +1520,12 @@ Template.dinoGame.onRendered(function(){
              Meteor.call('crear_edificio',id);
              $('[data-id='+ id + ']').addClass('no-seleccionable');
          
-             $('.prueba2').hide();
+             //$('.prueba2').hide();
         }else{
 
             $('.modal').modal('hide');
             $(".text-alert").text("No tienes suficientes recursos para construir este edificio.");
-            $(".img-alert").attr("src","images/recursos/suministros");
+            $(".img-alert").attr("src","images/recursos/suministros.png");
             $(".alert-general").fadeIn();
 
         }
@@ -1431,7 +1683,39 @@ function crearContador(crono,countDownDate){
 }
 
 
+function mensajeTutorial(id){
+   // Session.set('numTutorial', id);
+   partida = Partida.findOne({});
+   var tutorialActual = {"id":0,"descripcion":""};
+
+    var renovacionTutoriales = [];
+   partida.tutorial.forEach(function(tuto,i){
+        if(id==tuto.id&&tuto.visto==false){
+            tuto.visto=true;
+            tutorialActual = {"id":tuto.id,
+                            "descripcion":tuto.descripcion,
+                            "visto":tuto.visto};
+            
+            $('.tutorial').show();
+            $('.text-tutorial').empty();
+
+            $('.text-tutorial').append(tutorialActual.descripcion);
+            if(id==1){
+                 $('.botonelli').append('<button type="button" class="btn pmd-ripple-effect btn-default btn_modal crear botones">Crear Oficina Central</button>');
+            }
+            
+            
+        }
+        renovacionTutoriales.push(tuto);
+   });
+
+   Partida.update({_id:user},{$set:{tutorial:renovacionTutoriales}});
+
+}
 
 
 
 
+   
+   
+     

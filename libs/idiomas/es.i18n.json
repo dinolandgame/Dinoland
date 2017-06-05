@@ -15,6 +15,97 @@
     "sesion"	:		"Sesión",
     "logout"	:		"Cerrar Sesión",
     "language"	:		"Idioma",
-    "news"		:		"Notícias"
+    "news"		:		"Notícias",
+
+     //pagina dinoGame.html
+    "muro"      :       "Mi muro",
+    "expediciones":     "Expediciones",
+    "comercio"  :       "Mercado",
+    "rankings"  :       "Rankings",
+    "subirLvl"  :       "Subir Nivel",
+    "visitantes":       "Visitantes",
+    "suministros":      "Suministros",
+    "energia"   :       "Energía",
+    "seguridad" :       "Seguridad",
+    "capacidad" :       "CAPACIDAD",
+    "efectividad":      "EFECTIVIDAD",
+    "total"     :       "TOTAL",
+    "salud"     :       "SALUD",
+    "coste"     :       "COSTE",
+    "sumini"    :       "SUMINISTROS",
+    "costetotal":       "COSTE TOTAL",
+    "saludtotal":       "SALUD TOTAL",
+    "efectividadtotal": "EFECTIVIDAD TOTAL",
+    "ninguno"   :       "Ninguno",
+
+    "lider"     :       "LÍDER",
+    "doctor"    :       "Doctor de campo",
+    "lugar"     :       "LUGAR",
+    "jeep"      :       "Jeep",
+    "soldadoExo":       "Soldado con exotraje",
+    "soldadoRed":       "Soldado con lanzaredes",
+    "soldadoRifle":     "Soldado con rifle sónico",
+    "enviar"    :       "ENVIAR",
+
+    "dinero"    :       "Dinero",
+    "perder"    :       "Pierdes",
+    "queda"     :       "Te quedan",
+    "cambio"    :       "Cambiar",
+    "confirm"   :       "Confirmar",
+    "cancel"    :       "Cancelar",
+    "win"       :       "Ganas",
+
+    "construir" :       "Construir",
+
+    "consumenerg"  :    "Consumo Energia",
+    "costsumini"   :    "Coste Suministros",
+    "costdinocoins":    "Coste DinoCoins",
+
+    "investiga":        "Investigar",
+    "histo"     :       "Historial Expediciones",
+
+    "ver"       :       "Ver",
+    "report"    :       "Report",
+    "prepExp"   :       "Preparar expedición",
+    "social"    :       "Social",
+    "dinoMuro"  :       "DinoMuro",
+    "comenta"   :       "Comentar",
+    
+    "topExp"    :       "Top explorador",
+    "topVisit"  :       "Top visitantes",
+    "avis"      :       "Avisos",
+
+    //frase cargador phaser
+    "frase1"    :       "Envía expediciones para capturar dinosaurios y aumentar los visitantes..."
+
+//FIN template dinoGame
+
+
+    //pagina login.html y noticias.html
+,   "nombre"    :       "Nombre de usuario",
+    "contra"    :       "Contraseña",
+    "pregunta1" :       "¿Aún no tienes cuenta?",
+    "pregunta2" :       "¿Olvidaste la contraseña?",
+    "noticias"  :       "Notícias"
+
+    //fin pagina login.html y noticias.html
+    //logout.html
+    ,"close"    :       "Cerrar Sesión",
+    "pregunta3" :       "¿Estás seguro que deseas salir?"
+
+    //fin logout.html
+
+    //register.html
+    ,"regis"    :       "Registro de Usuario",
+    "user"      :       "Usuario",
+    "email"     :       "Email",
+    "terminos"  :       "Acepto los términos y condiciones",
+    "crear"     :       "Crear cuenta",
+    "pregunta4" :       "¿ya tienes cuenta?"
+
+
+    //fin register.html
+
+
 
    }

@@ -12,7 +12,7 @@ validador.setDefaults({
 			//required por la propiedad que le hemos dado en el .html
 			required:true,
 			minlength:4,
-			maxlength:24
+			maxlength:10
 		},
 		regmail:{
 			required:true,
@@ -35,7 +35,7 @@ validador.setDefaults({
 		lognombre:{
 			required:true,
 			minlength:4,
-			maxlength:24
+			maxlength:10
 		},
 		logclave:{
 			required:true,
@@ -47,12 +47,12 @@ validador.setDefaults({
 		//REGISTER
 		regnombre:{
 			required:"Debes introducir un nombre",
-			minlength:"como minimo {0} carácteres",
-			maxlength:"como minimo {0} carácteres"
+			minlength:"como mínimo {0} carácteres",
+			maxlength:"como máximo {0} carácteres"
 		},
 		regmail:{
 			required:"Debes introducir un email",
-			email:"Has introducido un mail no valido"
+			email:"Has introducido un mail no válido"
 		},
 		regclave1:{
 			required:"Debes introducir una contraseña",
