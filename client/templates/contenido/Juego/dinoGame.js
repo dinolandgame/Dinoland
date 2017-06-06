@@ -560,7 +560,7 @@ Template.dinoGame.events({
         $('.crearEdificio').css('display', 'none');
         $('#img-cuartel').attr("src", this.avatar);
         $('#desc-cuartel').text(this.descripcion);
-        $('#div-costes').css('display', 'none');
+        //$('#div-costes').css('display', 'none');
     },
    
 

@@ -407,7 +407,7 @@
                         </div>
                         <div id="contingut_modal-habitat">
                             <div id="resumen-habitat" class="row info_edifici">
-                                <div class="modal-desc col-sm-6 col-sm-offset-3 modal-desc-habitats">
+                                <div class="modal-desc-hab col-sm-6 col-sm-offset-3 modal-desc-habitats">
                                     {{ #each edificios }}
                                     <p>{{ descripcion }}</p>
                                     {{ /each }}
@@ -433,14 +433,14 @@
                                     {{ #each habitats }}
                                     <div class="col-sm-4">
                                         <div class="div-habitat">
-                                            <div class="modal-desc-noP">
+                                            <div class="modal-desc-noP-hab">
                                                 <img src="{{avatar}}" class="img-responsive img-habitats center-block modal-img-edif" style="border-color: black">
 
                                                 <div class="header_gran" style="text-align: center">
                                                     <p>{{tipo_terreno}}</p>
                                                 </div>
                                                 <p class="contador-habitat">{{descripcion}}</p>
-                                                <p class="dinobuton-text" style="text-align: center">{{mostrar_num_dinoss tipo_terreno }}/{{max_dinosaurios}}</p>
+                                                <p id="cantidad-dinos" class="dinobuton-text" style="text-align: center">{{mostrar_num_dinoss tipo_terreno }}/{{max_dinosaurios}}</p>
                                             </div>                                    
                                         </div>
                                     </div>  
@@ -660,7 +660,7 @@
                         {{#each partida}}
                         <div id="contingut_modal">
                             <div class="row">
-                                <div class="col-sm-4 col-sm-offset-1 modal-desc">
+                                <div class="col-sm-4 col-sm-offset-1 modal-desc-hab">
                                     <h2>DinoCoins</h2>
                                     <div class="col-sm-12">
                                         <div style="text-align: center">
@@ -706,7 +706,7 @@
 
                                 <p class="dinobuton-text">{{_ "subirLvl"}}</p>
                             </button>
-                                <div class="col-sm-4 col-sm-offset-2 modal-desc">
+                                <div class="col-sm-4 col-sm-offset-2 modal-desc-hab">
                                     <h2>{{_ "suministros"}}</h2>
                                     <div class="col-sm-12" >
                                         <div style="text-align: center">
@@ -774,7 +774,7 @@
                         </div>
                         <div id="contingut_modal">
                             <div class="row info-edifici-cuartel">
-                                <div class="modal-desc col-sm-5 col-sm-offset-2">
+                                <div class="modal-desc col-sm-5 col-sm-offset-1">
                                     {{ #each edificios }}
                                     <p id="desc-cuartel">{{ descripcion }}</p>
                                     {{ /each }}
@@ -861,7 +861,7 @@
                         </div>
                         <div id="contingut_modal">
                             <div class="row info_edifici">
-                                <div class="modal-desc col-sm-5 col-sm-offset-2">
+                                <div class="modal-desc-lab col-sm-5 col-sm-offset-2">
                                     {{ #each edificios }}
                                     <p id="desc-laboratorio">{{ descripcion }}</p>
                                     {{ /each }}
