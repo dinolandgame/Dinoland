@@ -322,6 +322,14 @@ function clicar(edifici){
         //Popup cuartel
         case 'cuartel1': case 'cuartel2': case 'cuartel3':
         $('#pop_cuartel').modal('show');
+        var edificio = Edificio.findOne({key:quinedifici});
+        $('#span-energia').text(edificio.consumoEnergia);
+        $('#span-suministros').text(edificio.costeSuministros);
+        $('#span-dinocoins').text(edificio.costeDinocoins);
+        $('.btn-lvlup-cuartel').css('display', 'block');
+        $('.crearEdificio').css('display', 'none');
+        $('#img-cuartel').attr("src", edificio.avatar);
+        $('#desc-cuartel').text(edificio.descripcion);
             var mi_partida = Partida.find({_id:user}).fetch();
             if(mi_partida[0].edificio.length===1){
                 console.log("tengo  1 edificio");

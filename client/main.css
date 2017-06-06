@@ -481,6 +481,25 @@ canvas{
     text-align: justify;
     margin-bottom: 20px;
     overflow: hidden;
+    height: 177px;
+}
+
+.modal-desc-lab{
+    background-color: #deb477;
+    border: 3px solid white;
+    border-radius: 10px;
+    text-align: justify;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.modal-desc-hab{
+    background-color: #deb477;
+    border: 3px solid white;
+    border-radius: 10px;
+    text-align: justify;
+    margin-bottom: 20px;
+    overflow: hidden;
 }
 
 .modal-desc-shadow{
@@ -506,7 +525,28 @@ canvas{
     /*margin-bottom: 20px;*/
 }
 
+.modal-desc-noP-hab{
+    margin-top: 30px;
+    padding-right: 20px;
+    padding-left:20px;
+    padding-top: 10px;
+    background-color: #deb477;
+    border: 3px solid white;
+    border-radius: 10px;
+    text-align: justify;
+    height: 286px;
+    /*margin-bottom: 20px;*/
+}
+
 .modal-desc p{
+    margin: 15px;
+}
+
+.modal-desc-lab p{
+    margin: 15px;
+}
+
+.modal-desc-hab p{
     margin: 15px;
 }
 
@@ -953,6 +993,8 @@ border-radius: 100%;
     max-width: 200px;
     max-height: 200px;
     margin-left: 20px;
+    width: 221px;
+    height: 177px;
 }
 
 .descripcio {
@@ -979,9 +1021,9 @@ border-radius: 100%;
 }
 
 .modal-botones{
-    left: 17%;
     position: absolute;
-    top: 45%;
+    left: 450px;
+    top: 200px;
 
 }
 
@@ -1013,8 +1055,8 @@ border-radius: 100%;
 
 #btn-cuartel{
     position: fixed;
-    top: 200px;
-    left: 18%;
+    top: 220px;
+    right: 120px;
 }
 .btn_construir {
     display: block;
@@ -1185,7 +1227,7 @@ border-radius: 100%;
 /* POP HABITATS */
 
 #boton-habitats{
-    margin-top: -100px;
+    margin-top: -75px;
     text-align: center;
 }
 
@@ -1381,10 +1423,9 @@ border-radius: 100%;
 
 
 #div-costes{
-    display: block;
     position: fixed;
-    left: 400px;
-    top: 200px;
+    right: 100px;
+    top: 120px;
 }
 
 .crearEdificio{
@@ -1392,9 +1433,9 @@ border-radius: 100%;
 }
 
 #div-bono{
+    left: 350px;
     position: fixed;
-    left: 400px;
-    top: 255px;
+    top: 220px;
 }
 
 /* NOTIFICACIONES */
@@ -2019,4 +2060,8 @@ border-radius: 100%;
     position: fixed;
     top: 225px;
     left: 475px;
+}
+
+#cantidad-dinos{
+    margin-top: 50px;
 }
