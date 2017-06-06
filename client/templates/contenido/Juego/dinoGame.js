@@ -1642,12 +1642,11 @@ function contador(){
           var final =  part.desbloqueando[z].final;
                    
            
-         $("#cronometres").append("<p class='dinobuton-text dinobuton-text-size' id='crono" + z + "'></p>");
+         //$("#cronometres").append("<p class='dinobuton-text dinobuton-text-size' id='crono" + z + "'></p>");
+         $("#cronometres").append("<div class='divCrono' style='display:none;'><img class='clock' src='/images/clock.gif'><p class='dinobuton-text text-clock' id='crono" + z + "'></p></div>");
          var countDownDate = final;
          
          crearContador('#crono'+z,countDownDate);
-         
-   
      }
 }
 
@@ -1659,22 +1658,25 @@ function crearContador(crono,countDownDate){
         var now = new Date().getTime();  
         var distance = countDownDate - now;
 
-        // Output the result in an element with id="demo"
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-
+         
          $(crono).text(days + "d " + hours + "h "
          + minutes + "m " + seconds + "s ");
-
+        
+         $(".divCrono").fadeIn();
+        
         if (distance < 0) {
             //borra elementos del DOM que posteriormente se volveran a insertar
             $(crono).detach();
+            $(".divCrono").fadeOut();
+            $(".divCrono").remove();
             $(crono).remove();
             $(crono).empty();
-         clearInterval(x[cont]);
+            clearInterval(x[cont]);
             cont=0;
         }
     }, 1000);

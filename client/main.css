@@ -872,11 +872,16 @@ border-radius: 100%;
 
 .user-img{
     float: left;
-    margin-top: -7px;
+    margin-top: -9px;
     margin-left: 3px;
-    width: 50px;
+    width: 54px;
     border-radius: 60%;
+    border: 2.5px solid #ffdfbb;
+}
 
+.user-img:hover{
+    cursor: pointer;
+    opacity: 0.9;
 }
 
 .recurso-img{
@@ -1809,6 +1814,12 @@ border-radius: 100%;
 .img-perfil{
     margin-bottom: 30px;
     width: 60%;
+    border: 8px solid #d2a169;
+}
+
+.img-perfil:hover{
+    cursor: pointer;
+    opacity: 0.7;
 }
 
   /*auxiliar*/
@@ -2006,8 +2017,28 @@ border-radius: 100%;
 
 #cronometres{
     position:absolute;
-    left: 100px;
+    left: 64px;
     top:100px;
+}
+
+.divCrono{
+    background-color: #fdac1e;
+    padding: 5px 15px 5px 30px;
+    border-radius: 10px;
+    padding-left: 30px;
+    box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    -webkit-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+}
+
+.clock{
+    height: 40px;
+    position: absolute;
+    left: -8%;
+    top: -17%;
+}
+
+.text-clock{
+    font-size: 15px;
 }
 
 #dinosObtenidos span{
