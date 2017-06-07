@@ -2069,11 +2069,14 @@ border-radius: 100%;
     padding-left: 30px;
     box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
     -webkit-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
+    width: auto;
+    margin-bottom: 5px;
 }
 
 .clock{
     height: 40px;
-    position: absolute;
+    position: relative;
+    float:left;
     left: -8%;
     top: -17%;
 }

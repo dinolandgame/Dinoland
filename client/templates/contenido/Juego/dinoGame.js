@@ -1640,17 +1640,20 @@ function contador(){
         
      for(z=0;z<part.desbloqueando.length;z++){
           var final =  part.desbloqueando[z].final;
-                   
-           
+          
+
+          
+            $("#cronometres").append("<div class='divCrono' id='temporitzador" + z + "' style='display:none;'><img id='reloj"+z+"' class='clock' src='/images/clock.gif'><p class='dinobuton-text text-clock' id='crono" + z + "'></p></div>");
+             var countDownDate = final;
+             
+             crearContador('#crono'+z,'#temporitzador'+z,countDownDate);
+             
          //$("#cronometres").append("<p class='dinobuton-text dinobuton-text-size' id='crono" + z + "'></p>");
-         $("#cronometres").append("<div class='divCrono' style='display:none;'><img class='clock' src='/images/clock.gif'><p class='dinobuton-text text-clock' id='crono" + z + "'></p></div>");
-         var countDownDate = final;
          
-         crearContador('#crono'+z,countDownDate);
      }
 }
 
-function crearContador(crono,countDownDate){
+function crearContador(crono,divCrono,countDownDate){
     var cont=0;
     var x=[];
     x[cont] = setInterval(function() {
@@ -1667,13 +1670,13 @@ function crearContador(crono,countDownDate){
          $(crono).text(days + "d " + hours + "h "
          + minutes + "m " + seconds + "s ");
         
-         $(".divCrono").fadeIn();
+         $(divCrono).fadeIn();
         
         if (distance < 0) {
             //borra elementos del DOM que posteriormente se volveran a insertar
             $(crono).detach();
-            $(".divCrono").fadeOut();
-            $(".divCrono").remove();
+            $(divCrono).fadeOut();
+            $(divCrono).remove();
             $(crono).remove();
             $(crono).empty();
             clearInterval(x[cont]);

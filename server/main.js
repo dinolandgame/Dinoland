@@ -13,6 +13,7 @@ Meteor.methods({
     var userActual = Meteor.userId();
 
     var administrador = false
+    
     if(user._id==userActual){
         administrador = true;
     }
