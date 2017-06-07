@@ -519,7 +519,7 @@ Meteor.methods({
                 // la expedición está bien equipada para la cacería
                 tirada*=1.5;
             }
-            capturas = tirada / dinosaurio_rastreado.ferocidad;
+            capturas = (tirada + efectividad) / dinosaurio_rastreado.ferocidad;
             if (capturas > cantidad){
                 capturas = cantidad;
             }
