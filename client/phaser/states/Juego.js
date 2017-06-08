@@ -16,7 +16,32 @@ Juego.prototype = {
         var mi_partida = Partida.find({_id:user}).fetch();//obtengo un array de las partida del usuario siempre sera 1 por user
         var edificios = Edificio.find().fetch(); //obtengo un array con todos los edificios
         
-
+        // El edificio habitat para un mismo nivel puede tener diferentes sprites según lo lleno que esté
+        // se recorre el array para calcular el total de dinosaurios
+                    var keyHabitat;
+                    var cantidadActualdinos = 0;
+                    var dinos =  mi_partida.dinos;           
+        
+                    dinos.forEach(function(dino){
+                        cantidadActualdinos +=dino.cantidad;
+                    }); 
+                    // y se compara con el atributo max_dinosaurios, que marca el límite de
+                    // cada uno de los tres habitats del edificio
+                    // según el valor se asigna un sprite diferente al edificio de habitats nivel 1
+                    if (cantidadActualdinos==0){
+                        // habitat vacio
+                        keyHabitat = 'habitats1';
+                        
+                    }else if(cantidadActualdinos>=1){          
+                        // habitat medio lleno
+                        keyHabitat = 'habitatsemiple';
+                    }else if(cantidadActualdinos>(partida_jugador.max_dinosaurios)){
+                        // habitat muy lleno
+                        keyHabitat = 'habitatple';    
+                    }
+                    
+                    
+        
         edificios.forEach(function(edif){//recorremos la coleccion Edifcios 
             
             //console.log("Title of post " + edif._id); 
@@ -29,7 +54,14 @@ Juego.prototype = {
                         //console.log("Title of post " + edif.key);
                     
                     //añadimos el objeto de phaser  con su posicion y su scala tambien sus propiedades  
-                    edif.key = game.add.sprite(edif.posicionX,edif.posicionY,edif.key); 
+                                        
+                    if(edif._id==1101){
+                        // si se trata del habitat nivel 1 su sprite no tiene porque coincidir con su key
+                        edif.key = game.add.sprite(edif.posicionX,edif.posicionY,keyHabitat); 
+                    }else{
+                        edif.key = game.add.sprite(edif.posicionX,edif.posicionY,edif.key); 
+                    }    
+                    
                     edif.key.scale.setTo(edif.escalaX,edif.escalaY);
                     afegirPropietatsSprite(edif.key);
                         
@@ -82,9 +114,6 @@ Juego.prototype = {
                         mensajeTutorial(3);
                     }
                     
-
-                        
-                  
                     
                 }
 
@@ -100,7 +129,17 @@ Juego.prototype = {
                     $(".side-collapse").addClass('open');
                 }
 
-                 
+                               
+                // cualquier cambio en el array dinos dispara este código
+                // ya que los cambios no son solo a causa de una expedición sino también por
+                // disminución de dinosaurios al escaparse
+                if(fields.hasOwnProperty('dinos')){
+                    
+                    // y se reinicia el juego
+                    // ya que todos los cálculos para determinar el sprite apropiado se efec
+                    game.state.restart();
+                    
+                }
 
                 
             }
