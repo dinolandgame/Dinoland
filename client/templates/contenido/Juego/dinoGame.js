@@ -104,7 +104,7 @@ Template.dinoGame.events({
         },
     
     "click .close-alert":function(event,template){
-      
+        snap.play();
         $(".alert-general").fadeOut();
         $('.alert-tutorial').fadeOut();
 
@@ -212,6 +212,7 @@ Template.dinoGame.events({
     /****************** EVENTOS EXPEDICIONES *******************************************/
  // Acción de mandar una expedición
     "click #enviarEXP":function(event,template){
+        snap.play();
          event.preventDefault();
          var mi_partida = Partida.findOne({_id:user});//obtengo la partidaq dle jugador
          console.log("dinero jugador: " + mi_partida.dinero +"dinero costedC"+ totalDC );
@@ -271,6 +272,7 @@ Template.dinoGame.events({
     },
 
     "click #resetEXP": function(event, template){
+        snap.play();
         resetExpedicion();
     },
 
@@ -443,6 +445,7 @@ Template.dinoGame.events({
     },
 
     "click #btn-expediciones": function(){
+        snap.play();
         misBonos = []; 
         /******** mis bonos tienen controlados los bonos 
         de la partida del jugador con la funcion de comprobar Bonos
@@ -484,10 +487,12 @@ Template.dinoGame.events({
     
 /**********************EVENTOS HABITATS**********************************************/
 "click #pasar-pagina":function(event, template){
+    snap.play();
     pasarPagina();
 },
 
 "click #volver-pagina":function(event, template){
+    snap.play();
      volverPagina();
 },
 
@@ -614,6 +619,7 @@ Template.dinoGame.events({
 
 /****************************************EVENTOS IMG PERFIL************************************/
 "click .img-perfil":function(event, template){
+    snap.play();
     var rutaImagen = $(event.target).attr("src");
     console.log(rutaImagen);
     Meteor.call("cambiarFotoPerfil", Meteor.userId(), rutaImagen);

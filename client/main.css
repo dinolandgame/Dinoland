@@ -1185,9 +1185,9 @@ border-radius: 100%;
     padding-top: 0px;
     border-radius: 6px;
     border: none;
-    -webkit-box-shadow: 2px 2px 2px 1px rgba(73,101,0,0.88);
-    -moz-box-shadow: 2px 2px 2px 1px rgba(73,101,0,0.88);
-    box-shadow: 2px 2px 2px 1px rgba(73,101,0,0.88);
+    -webkit-box-shadow: 1px 1px 1px 1px rgba(73,101,0,0.88);
+    -moz-box-shadow: 1px 1px 1px 1px rgba(73,101,0,0.88);
+    box-shadow: 1px 1px 1px 1px rgba(73,101,0,0.88);
     font-size: 15px;
     margin-top: 10px;
     position: inherit;
@@ -1195,10 +1195,12 @@ border-radius: 100%;
 }
 
 .boton-gui-exp-ok:hover{
-    font-size: 13px;
+    font-size: 14px;
     background-image: none;
     box-shadow: none;
-    background-color: #5E831E;
+    background-image: -moz-linear-gradient( 90deg, rgb(94,131,30) 0%, rgb(211,240,115) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(94,131,30) 0%, rgb(211,240,115) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(94,131,30) 0%, rgb(211,240,115) 100%);
 }
 
 /*Boton rojo*/
@@ -1210,9 +1212,9 @@ border-radius: 100%;
     padding-top: 0px;
     border-radius: 6px;
     border: none;
-    -webkit-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
-    -moz-box-shadow: 2px 2px 2px 1px rgba(180,97,0,0.88);
-    box-shadow: 2px 2px 2px 1px rgba(150,77,0,0.88);
+    -webkit-box-shadow: 1px 1px 1px 1px rgba(180,97,0,0.88);
+    -moz-box-shadow: 1px 1px 1px 1px rgba(180,97,0,0.88);
+    box-shadow: 1px 1px 1px 1px rgba(150,77,0,0.88);
     font-size: 15px;
     margin-top: 10px;
     position: inherit;
@@ -1220,7 +1222,7 @@ border-radius: 100%;
 }
 
 .boton-gui-exp-cancel:hover{
-    font-size: 13px;
+    font-size: 14px;
     background-image: none;
     box-shadow: none;
     background-color: #AA1A13;
@@ -1697,6 +1699,7 @@ border-radius: 100%;
     position: fixed;
     margin-top: -27px;
     margin-left: 16px;
+      z-index: 1000;
   }
 
   .side-noti h4{
@@ -1929,6 +1932,7 @@ border-radius: 100%;
 
   .btn-like:hover{
     box-shadow: none;
+      cursor: pointer;
   }
 
   .alert-general{
@@ -2098,4 +2102,33 @@ border-radius: 100%;
 
 #cantidad-dinos{
     margin-top: 50px;
+}
+
+.rank-label{
+    background-color: #02523f;
+    font-size: 1.3em;
+}
+
+.coins{
+    margin-top: 10px;
+    color: white;
+    font-weight: 100;
+    font-size: 0.9em;
+}
+
+.tap-i18n-dropdown .form-control{
+    background-color: #febe32;
+    border-radius: 8px;
+    margin-top: 0px;
+    cursor: pointer;
+    width: 70%;
+}
+
+.tap-i18n-dropdown .form-control option{
+    background-color: #febe32;
+}
+
+.tap-i18n-dropdown .form-control option:hover{
+    background-color: #ce9927;
+    cursor: pointer;
 }
