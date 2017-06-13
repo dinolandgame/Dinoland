@@ -39,3 +39,6 @@ https://drive.google.com/drive/folders/0B2L4pXQ3K_DyRUNxOC03TjRoZ2c?usp=sharing
 
 <b>Paso 9:</b> Crear un usuario y disfrutar de la Aventura Dinoland.
 
+
+<h1>Documentación</h1>
+ https://drive.google.com/open?id=0B_-pPY9oLtyoV0NmbWtITkVHN28
